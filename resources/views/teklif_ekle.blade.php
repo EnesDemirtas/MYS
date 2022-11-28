@@ -58,9 +58,9 @@
                 <div class="page-header">
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Apps</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Invoice</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">Add</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">MYS</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Teklif</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">Ekle</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -140,28 +140,28 @@
                                                         <div class="invoice-address-client-fields">
 
                                                             <div class="form-group row">
-                                                                <label for="client-name" class="col-sm-3 col-form-label col-form-label-sm">Name</label>
+                                                                <label for="client-name" class="col-sm-3 col-form-label col-form-label-sm">İsim</label>
                                                                 <div class="col-sm-9">
                                                                     <input type="text" class="form-control form-control-sm" id="client-name" placeholder="Client Name">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label for="client-email" class="col-sm-3 col-form-label col-form-label-sm">Email</label>
+                                                                <label for="client-email" class="col-sm-3 col-form-label col-form-label-sm">Eposta</label>
                                                                 <div class="col-sm-9">
                                                                     <input type="text" class="form-control form-control-sm" id="client-email" placeholder="name@company.com">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label for="client-address" class="col-sm-3 col-form-label col-form-label-sm">Address</label>
+                                                                <label for="client-address" class="col-sm-3 col-form-label col-form-label-sm">Adres</label>
                                                                 <div class="col-sm-9">
                                                                     <input type="text" class="form-control form-control-sm" id="client-address" placeholder="XYZ Street">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label for="client-phone" class="col-sm-3 col-form-label col-form-label-sm">Phone</label>
+                                                                <label for="client-phone" class="col-sm-3 col-form-label col-form-label-sm">Telefon</label>
                                                                 <div class="col-sm-9">
                                                                     <input type="text" class="form-control form-control-sm" id="client-phone" placeholder="(123) 456 789">
                                                                 </div>
@@ -183,7 +183,7 @@
                                                     <div class="col-md-3">
 
                                                         <div class="form-group mb-4">
-                                                            <label for="number">Invoice Number</label>
+                                                            <label for="number">Teklif Numarası</label>
                                                             <input type="text" class="form-control form-control-sm" id="number" placeholder="#0001">
                                                         </div>
 
@@ -192,14 +192,14 @@
                                                     <div class="col-md-3">
 
                                                         <div class="form-group mb-4">
-                                                            <label for="date">Invoice Date</label>
+                                                            <label for="date">Teklif Tarihi</label>
                                                             <input type="text" class="form-control form-control-sm" id="date" placeholder="Add date picker">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group mb-4">
-                                                            <label for="due">Due Date</label>
+                                                            <label for="due">Bitiş Tarihi</label>
                                                             <input type="text" class="form-control form-control-sm" id="due" placeholder="None">
                                                         </div>
                                                         
@@ -217,11 +217,11 @@
                                                         <thead>
                                                             <tr>
                                                                 <th class=""></th>
-                                                                <th>Description</th>
-                                                                <th class="">Rate</th>
-                                                                <th class="">Qty</th>
-                                                                <th class="text-right">Amount</th>
-                                                                <th class="text-center">Tax</th>
+                                                                <th>Açıklama</th>
+                                                                <th class="">Oran</th>
+                                                                <th class="">Miktar</th>
+                                                                <th class="text-right">Ücret</th>
+                                                                <th class="text-center">Vergi</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -241,7 +241,7 @@
                                                                     <div class="n-chk">
                                                                         <label class="new-control new-checkbox new-checkbox-text checkbox-primary" style="height: 18px; margin: 0 auto;">
                                                                             <input type="checkbox" class="new-control-input">
-                                                                            <span class="new-control-indicator"></span><span class="new-chk-content">Tax</span>
+                                                                            <span class="new-control-indicator"></span><span class="new-chk-content">Vergi</span>
                                                                         </label>
                                                                     </div>
                                                                 </td>
@@ -250,7 +250,7 @@
                                                     </table>
                                                 </div>
 
-                                                <button class="btn btn-secondary additem btn-sm">Add Item</button>
+                                                <button class="btn btn-secondary additem btn-sm">Ekle</button>
                                                 
                                             </div>
 
@@ -262,31 +262,31 @@
                                                     <div class="col-md-6">
                                                         
                                                         <div class="form-group row invoice-created-by">
-                                                            <label for="payment-method-account" class="col-sm-3 col-form-label col-form-label-sm">Account #:</label>
+                                                            <label for="payment-method-account" class="col-sm-3 col-form-label col-form-label-sm">Hesap #:</label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" class="form-control form-control-sm" id="payment-method-account" placeholder="Bank Account Number">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row invoice-created-by">
-                                                            <label for="payment-method-bank-name" class="col-sm-3 col-form-label col-form-label-sm">Bank Name:</label>
+                                                            <label for="payment-method-bank-name" class="col-sm-3 col-form-label col-form-label-sm">Banka Adı:</label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" class="form-control form-control-sm" id="payment-method-bank-name" placeholder="Insert Bank Name">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row invoice-created-by">
-                                                            <label for="payment-method-code" class="col-sm-3 col-form-label col-form-label-sm">SWIFT code:</label>
+                                                            <label for="payment-method-code" class="col-sm-3 col-form-label col-form-label-sm">SWIFT kodu:</label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" class="form-control form-control-sm" id="payment-method-code" placeholder="Insert Code">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row invoice-created-by">
-                                                            <label for="payment-method-country" class="col-sm-3 col-form-label col-form-label-sm">Country:</label>
+                                                            <label for="payment-method-country" class="col-sm-3 col-form-label col-form-label-sm">Ülke:</label>
                                                             <div class="col-sm-9">
                                                                 <select name="country_code" class="form-control country_code  form-control-sm" id="payment-method-country">
-                                                                    <option value="">Choose Country</option>
+                                                                    <option value="">Ülkeyi Seçiniz</option>
                                                                     <option value="United States">United States</option>
                                                                     <option value="United Kingdom">United Kingdom</option>
                                                                     <option value="Canada">Canada</option>
@@ -487,7 +487,7 @@
                                                         <div class="totals-row">
                                                             <div class="invoice-totals-row invoice-summary-subtotal">
 
-                                                                <div class="invoice-summary-label">Subtotal</div>
+                                                                <div class="invoice-summary-label">Ara Toplam</div>
 
                                                                 <div class="invoice-summary-value">
                                                                     <div class="subtotal-amount">
@@ -501,7 +501,7 @@
 
                                                             <div class="invoice-totals-row invoice-summary-total">
 
-                                                                <div class="invoice-summary-label">Discount</div>
+                                                                <div class="invoice-summary-label">İndirim</div>
 
                                                                 <div class="invoice-summary-value">
                                                                     <div class="total-amount">
@@ -513,7 +513,7 @@
 
                                                             <div class="invoice-totals-row invoice-summary-tax">
 
-                                                                <div class="invoice-summary-label">Tax</div>
+                                                                <div class="invoice-summary-label">Vergi</div>
 
                                                                 <div class="invoice-summary-value">
                                                                     <div class="tax-amount">
@@ -525,7 +525,7 @@
 
                                                             <div class="invoice-totals-row invoice-summary-balance-due">
 
-                                                                <div class="invoice-summary-label">Total</div>
+                                                                <div class="invoice-summary-label">Toplam</div>
 
                                                                 <div class="invoice-summary-value">
                                                                     <div class="balance-due-amount">
@@ -548,9 +548,9 @@
                                                     <div class="col-md-12 align-self-center">
 
                                                         <div class="form-group row invoice-note">
-                                                            <label for="invoice-detail-notes" class="col-sm-12 col-form-label col-form-label-sm">Notes:</label>
+                                                            <label for="invoice-detail-notes" class="col-sm-12 col-form-label col-form-label-sm">Not:</label>
                                                             <div class="col-sm-12">
-                                                                <textarea class="form-control" id="invoice-detail-notes" placeholder='Notes - For example, "Thank you for doing business with us"' style="height: 88px;"></textarea>
+                                                                <textarea class="form-control" id="invoice-detail-notes" placeholder='Not - Örneğin, "Bizimle çalıştığınız için teşekkürler."' style="height: 88px;"></textarea>
                                                             </div>
                                                         </div>
                                                         
@@ -620,17 +620,17 @@
 
                                                     <div class="col-6">
                                                         <div class="form-group mb-0 tax-rate-deducted" style="display: none;">
-                                                            <label for="rate">Rate (%)</label>
+                                                            <label for="rate">Oran (%)</label>
                                                             <input type="number" class="form-control input-rate" id="rate" placeholder="Rate" value="10">
                                                         </div>
 
                                                         <div class="form-group mb-0 tax-rate-per-item" style="display: none;">
-                                                            <label for="rate">Rate (%)</label>
+                                                            <label for="rate">Oran (%)</label>
                                                             <input type="number" class="form-control input-rate" id="rate" placeholder="Rate" value="5">
                                                         </div>
 
                                                         <div class="form-group mb-0 tax-rate-on-total" style="display: none;">
-                                                            <label for="rate">Rate (%)</label>
+                                                            <label for="rate">Oran (%)</label>
                                                             <input type="number" class="form-control input-rate" id="rate" placeholder="Rate" value="25">
                                                         </div>
                                                     </div>

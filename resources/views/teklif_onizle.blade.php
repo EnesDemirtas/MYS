@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>MYS - TEKLİF EKLE</title>
+    <title>MYS - TEKLİF ÖNİZLE</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <x-global-mandatory.styles/>
@@ -54,9 +54,9 @@
                 <div class="page-header">
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Apps</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Invoice</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">Preview</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">MYS</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Teklif</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">Önizle</a></li>
                         </ol>
                     </nav>
                 </div>
