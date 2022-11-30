@@ -91,7 +91,7 @@
 
                             </div>
                         </form>
-                        <p class="terms-conditions">© 2022 Tüm Hakları Saklıdır. <a href="mys_index.html">DAKIK</a>
+                        <p class="terms-conditions">© 2022 Tüm Hakları Saklıdır. <a href="#">DAKIK</a>
 
                     </div>
                 </div>

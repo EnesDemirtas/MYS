@@ -22,7 +22,7 @@
                 <div class="form-container">
                     <div class="form-content">
 
-                        <h1 class="">Giriş Yap <a href="/mys_index"><span class="brand-name">MYS</span></a></h1>
+                        <h1 class=""><a href="#"><span class="brand-name">HOŞGELDİNİZ</span></a></h1>
                         <p class="signup-link">Burada yeni misiniz? <a href="/kayit_ol">Yeni bir hesap oluşturun</a></p>
                         <form class="text-left">
                             <div class="">
@@ -76,7 +76,7 @@
 
                             </div>
                         </form>                        
-                        <p class="terms-conditions">© 2022 Tüm hakları saklıdır. <a href="mys_index.html">DAKIK</a> 
+                        <p class="terms-conditions">© 2022 Tüm hakları saklıdır. <a href="#">DAKIK</a> 
 
                     </div>                    
                 </div>
