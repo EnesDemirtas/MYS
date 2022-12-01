@@ -86,7 +86,7 @@
                                 <div class="w-chart-section total-visits-content">
                                     <div class="w-detail">
                                         <p class="w-title">Toplam Müşteri Sayısı</p>
-                                        <p class="w-stats">6500</p>
+                                        <p class="w-stats">1420</p>
                                     </div>
                                 </div>
                                 
@@ -94,7 +94,7 @@
                                 <div class="w-chart-section paid-visits-content">
                                     <div class="w-detail">
                                         <p class="w-title">Bu Ay Kayıt Olan Müşteri Sayısı</p>
-                                        <p class="w-stats">7800</p>
+                                        <p class="w-stats">95</p>
                                     </div>
                                 </div>
                                 
@@ -102,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                    {{-- <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-card-four widget-one">
                             <div class="widget-content">
                                 <div class="w-header">
@@ -155,6 +155,46 @@
                                 </div>
                             </div>
                         </div>
+                    </div> --}}
+
+                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                        <div class="widget widget-one">
+                            <div class="widget-heading">
+                                <h6 class="">Aylık Kazanç Özeti</h6>
+
+                                <div class="task-action">
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" id="pendingTask" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="pendingTask" style="will-change: transform;">
+                                            <a class="dropdown-item" href="javascript:void(0);">Gözat</a>
+                                            <a class="dropdown-item" href="javascript:void(0);">Yükle</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="w-chart">
+
+                                <div class="w-chart-section total-visits-content">
+                                    <div class="w-detail">
+                                        <p class="w-title">Onaylanan Toplam Tutar</p>
+                                        <p class="w-stats">80.000,00 TL</p>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="w-chart-section paid-visits-content">
+                                    <div class="w-detail">
+                                        <p class="w-title">Tahsil Edilen Tutar</p>
+                                        <p class="w-stats">35.000,00 TL</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
@@ -166,7 +206,7 @@
                                             <h5 class="">Yıllık Kazanç Özeti</h5>
                                         </div>
                                         <div class="inv-balance-info">
-                                            <p class="inv-balance">$ 41,741.42</p>
+                                            <p class="inv-balance">410.741,42 TL</p>
                                         </div>
                                     </div>
                                     <div class="acc-action">
