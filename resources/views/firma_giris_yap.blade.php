@@ -26,10 +26,6 @@
                         <p class="signup-link">Burada yeni misiniz? <a href="/kayit_ol">Yeni bir hesap oluşturun</a></p>
                         <form class="text-left">
                             <div class="">
-                                <div class="kurumsal-bireysel-secme" >
-                                <button type="button" id="kurumsal_buton" class="btn btn-primary btn-rounded mb-2" onclick="kurumsal_bireysel(1)" >Kurumsal</button>
-                                <button type="button" id="bireysel_buton"class="btn btn-outline-primary btn-rounded mb-2" onclick="kurumsal_bireysel(2)">Bireysel</button>
-                                </div>  
                                 <!--Kurumsal Girişi-->
                                 <div id="kurumsal">
                                 <div class="field-wrapper input">
@@ -43,10 +39,6 @@
                                 </div>
                                 </div>
                                 <!--Kurumsal Girişi-->
-                                <!--Bireysel Girişi-->
-                                <div id="bireysel">
-                                </div>
-                                <!--Bireysel Girişi-->
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper toggle-pass">
                                         <p class="d-inline-block">Şifreyi Göster</p>

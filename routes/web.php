@@ -65,6 +65,10 @@ Route::get('hizmet_ve_urunler', function () {
     return view('hizmet_ve_urunler');
 });
 
+Route::get('/musteri/giris_yap', function () {
+    return view('musteri_giris_yap');
+});
+
 Route::get('giris_yap', function () {
-    return view('giris_yap');
+    return view('firma_giris_yap');
 });
