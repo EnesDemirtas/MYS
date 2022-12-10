@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class hizmet extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'htarih',
+        'hpersure',
+        'hyenileme',
+    ];
 }

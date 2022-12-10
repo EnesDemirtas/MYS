@@ -19,7 +19,11 @@ class CreateOnmuhasebeTable extends Migration
             $table->integer('onkno')->lenght(11);
             $table->string('onkturu')->lenght(40);
             $table->date('onvakit');
-
+            $table->string('onmarkaadi')->lenght(40);
+            $table->integer('krefno')->lenght(20);
+            $table->string('ontckn')->lenght(20);
+            $table->string('onadisoyadi')->lenght(50);
+            $table->string('ongorevi')->lenght(20);
         });
     }
 

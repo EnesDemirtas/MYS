@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class urun extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'ugaranti',
+        'ugarantisuresi',
+        'ugarantibitis',
+    ];
 }

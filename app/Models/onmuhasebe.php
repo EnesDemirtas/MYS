@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class onmuhasebe extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'mrefno',
+        'onkno',
+        'onkturu',
+        'onvakit',
+        'onmarkaadi',
+        'krefno',
+        'ontckn',
+        'onadsoyadi',
+        'ongorevi',
+    ];
 }
