@@ -19,5 +19,9 @@ class onmuhasebe extends Model
         'ontckn',
         'onadsoyadi',
         'ongorevi',
+        'onodemesekli',
+        'onodemetaksiti',
+        'onvadevakti',
+        'onnot',
     ];
 }

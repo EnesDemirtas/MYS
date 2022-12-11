@@ -24,6 +24,10 @@ class CreateOnmuhasebeTable extends Migration
             $table->string('ontckn')->lenght(20);
             $table->string('onadisoyadi')->lenght(50);
             $table->string('ongorevi')->lenght(20);
+            $table->string('onodemesekli')->lenght(20);
+            $table->string('onodemetaksiti')->lenght(20);
+            $table->date('onvadevakti');
+            $table->string('onnot')->lenght(255);
         });
     }
 
