@@ -9,6 +9,8 @@ class calisan extends Model
 {
     use HasFactory;
 
+    protected $table = 'calisanlar';
+
     protected $fillable = [
         'mysrefno',
         'ctckn',
@@ -17,7 +19,7 @@ class calisan extends Model
         'cunvani',
         'cdogum',
         'cisegiris',
-        'ckodutel',
+        'ukodutel',
         'ctel',
         'ukodumob',
         'cmobil',

@@ -85,7 +85,7 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="menu1" data-parent="#topAccordion">
                     <li>
-                        <a href="#"> Submenu 1 </a>
+                        <a href="/calisanlar"> Çalışanlar </a>
                     </li>
                     <li>
                         <a href="#"> Submenu 2 </a>
