@@ -80,6 +80,7 @@
                                         <th>İşe Giriş Tarihi</th>
                                         <th>Telefon</th>
                                         <th>Eposta</th>
+                                        <th>İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -118,7 +119,7 @@
                                         <x-calisan :calisan="$calisan" />
                                         @endforeach
                                     @else
-                                        <p>No listings found</p>
+                                        <p class="text-muted">Liste bulunamadı</p>
                                     @endunless
 
                                 </tbody>
