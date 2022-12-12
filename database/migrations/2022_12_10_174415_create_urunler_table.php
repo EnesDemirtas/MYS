@@ -15,7 +15,7 @@ class CreateUrunlerTable extends Migration
     {
         Schema::create('urunler', function (Blueprint $table) {
             $table->id('satirid',11);
-            $table->integer('uid')->lenght(11);
+            $table->string('uid')->lenght(11);
             $table->date('ugaranti');
             $table->integer('ugarantisuresi')->lenght(11);
             $table->date('ugarantibitis');

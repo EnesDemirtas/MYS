@@ -15,9 +15,9 @@ class CreateHizmetlerTable extends Migration
     {
         Schema::create('hizmetler', function (Blueprint $table) {
             $table->id('satirid',11);
-            $table->integer('hid')->lenght(11);
+            $table->string('hid')->lenght(11);
             $table->date('htarih');
-            $table->integer('hpersure')->lenght(11);
+            $table->string('hpersure')->lenght(11);
             $table->date('hyenileme')->lenght(11);
         });
     }

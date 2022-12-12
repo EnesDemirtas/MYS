@@ -18,7 +18,7 @@ class CreateCalisanlarTable extends Migration
             $table->string('ckayitno')->length(40);
             $table->string('mysrefno')->length(40);
             $table->string('mrefno')->length(20);
-            $table->integer('ctckn')->length(11);
+            $table->string('ctckn')->length(20);
             $table->string('cadi')->length(50);
             $table->string('csoyadi')->length(40);
             $table->string('cunvani')->length(40);

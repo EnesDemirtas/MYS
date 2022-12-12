@@ -15,7 +15,7 @@ class CreateMusterilerTable extends Migration
     {
         Schema::create('musteriler', function (Blueprint $table) {
             $table->id('satirid',11);
-            $table->integer('mno')->lenght(11);
+            $table->string('mno')->lenght(11);
             $table->string('mrefno')->lenght(20);
             $table->string('mkayitturu')->lenght(20);
             $table->string('mturu')->lenght(20);
