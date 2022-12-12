@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CalisanlarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::get('randevu_yonetimi', function () {
 Route::get('gorev_yonetimi', function () {
     return view('gorev_yonetimi');
 });
+
+Route::get('calisanlar', [CalisanlarController::class, 'index']);
+
 
 Route::get('teklif_yonetimi', function () {
     return view('teklif_yonetimi');
