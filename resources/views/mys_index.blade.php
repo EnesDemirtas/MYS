@@ -93,38 +93,41 @@
                                 
                                 <div class="w-chart-section paid-visits-content">
                                     <div class="w-detail">
-                                        <p class="w-title">
-                                            @php
-                                                $ay = date("m");
-                                                $yil = date("Y");
-                                                if ($ay == 12) {
-                                                    echo 'Aralık ';
-                                                }elseif ($ay == 11) {
-                                                    echo 'Kasım ';
-                                                }elseif ($ay == 10) {
-                                                    echo 'Ekim ';
-                                                }elseif ($ay == 9) {
-                                                    echo 'Eylül ';
-                                                }elseif ($ay == 8) {
-                                                    echo 'Ağustos ';
-                                                }elseif ($ay == 7) {
-                                                    echo 'Temmuz ';
-                                                }elseif ($ay == 6) {
-                                                    echo 'Haziran ';
-                                                }elseif ($ay == 5) {
-                                                    echo 'Mayıs ';
-                                                }elseif ($ay == 4) {
-                                                    echo 'Nisan ';
-                                                }elseif ($ay == 3) {
-                                                    echo 'Mart ';
-                                                }elseif ($ay == 2) {
-                                                    echo 'Şubat ';
-                                                }elseif ($ay == 1) {
-                                                    echo 'Ocak ';
-                                                }
-                                                echo $yil;
-                                            @endphp 
-                                             Müşteri</p>
+                                        <p class="w-title">Yeni Müşteri
+                                            <span class="text-muted">(
+                                                @php
+                                                    $ay = date("m");
+                                                    $yil = date("Y");
+                                                    if ($ay == 12) {
+                                                        echo 'Aralık ';
+                                                    }elseif ($ay == 11) {
+                                                        echo 'Kasım ';
+                                                    }elseif ($ay == 10) {
+                                                        echo 'Ekim ';
+                                                    }elseif ($ay == 9) {
+                                                        echo 'Eylül ';
+                                                    }elseif ($ay == 8) {
+                                                        echo 'Ağustos ';
+                                                    }elseif ($ay == 7) {
+                                                        echo 'Temmuz ';
+                                                    }elseif ($ay == 6) {
+                                                        echo 'Haziran ';
+                                                    }elseif ($ay == 5) {
+                                                        echo 'Mayıs ';
+                                                    }elseif ($ay == 4) {
+                                                        echo 'Nisan ';
+                                                    }elseif ($ay == 3) {
+                                                        echo 'Mart ';
+                                                    }elseif ($ay == 2) {
+                                                        echo 'Şubat ';
+                                                    }elseif ($ay == 1) {
+                                                        echo 'Ocak ';
+                                                    }
+                                                    echo $yil;
+                                                @endphp 
+                                            )
+                                            </span>    
+                                        </p> 
                                         <p class="w-stats">95</p>
                                     </div>
                                 </div>
@@ -191,7 +194,37 @@
                     <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-one h-100">
                             <div class="widget-heading">
-                                <h6 class="">Aylık Kazanç Özeti</h6>
+                                <h6 class="">Aylık Kazanç Özeti <span class="text-muted">(
+                                    @php
+                                        if ($ay == 12) {
+                                                        echo 'Aralık ';
+                                                    }elseif ($ay == 11) {
+                                                        echo 'Kasım ';
+                                                    }elseif ($ay == 10) {
+                                                        echo 'Ekim ';
+                                                    }elseif ($ay == 9) {
+                                                        echo 'Eylül ';
+                                                    }elseif ($ay == 8) {
+                                                        echo 'Ağustos ';
+                                                    }elseif ($ay == 7) {
+                                                        echo 'Temmuz ';
+                                                    }elseif ($ay == 6) {
+                                                        echo 'Haziran ';
+                                                    }elseif ($ay == 5) {
+                                                        echo 'Mayıs ';
+                                                    }elseif ($ay == 4) {
+                                                        echo 'Nisan ';
+                                                    }elseif ($ay == 3) {
+                                                        echo 'Mart ';
+                                                    }elseif ($ay == 2) {
+                                                        echo 'Şubat ';
+                                                    }elseif ($ay == 1) {
+                                                        echo 'Ocak ';
+                                                    }
+                                                    echo $yil;
+                                    @endphp 
+                                )
+                                </span></h6>
 
                                 <div class="task-action">
                                     <div class="dropdown">
@@ -211,7 +244,7 @@
 
                                 <div class="w-chart-section total-visits-content">
                                     <div class="w-detail">
-                                        <p class="w-title">Toplam Kazanç</p>
+                                        <p class="w-title">Kazanç</p>
                                         <p class="w-stats">80.000,00 TL</p>
                                     </div>
                                 </div>
@@ -219,7 +252,7 @@
                                 
                                 <div class="w-chart-section paid-visits-content">
                                     <div class="w-detail">
-                                        <p class="w-title">Toplam Tahsil Edilen</p>
+                                        <p class="w-title">Tahsil Edilen</p>
                                         <p class="w-stats">35.000,00 TL</p>
                                     </div>
                                 </div>
