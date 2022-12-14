@@ -13,6 +13,7 @@ class calisan extends Model
 
     protected $fillable = [
         'mysrefno',
+        'ckayitno',
         'ctckn',
         'cadi',
         'csoyadi',

@@ -71,8 +71,8 @@
                             <table id="invoice-list" class="table table-hover" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th class="checkbox-column"> Kayıt Numarası </th>
-                                        <th>Referans No</th>
+                                        <th class="checkbox-column" style="width:30px !important;"> Kayıt Numarası </th>
+                                        <th style="padding-left:0px !important;">Referans No</th>
                                         <th>TCKN</th>
                                         <th>Adı</th>
                                         <th>Görevi</th>
