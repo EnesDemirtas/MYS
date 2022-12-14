@@ -118,8 +118,6 @@
                                         @foreach ($calisanlar as $calisan)
                                         <x-calisan :calisan="$calisan" />
                                         @endforeach
-                                    @else
-                                        <p class="text-muted">Liste bulunamadı</p>
                                     @endunless
 
                                 </tbody>

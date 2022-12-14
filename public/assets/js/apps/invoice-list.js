@@ -20,7 +20,7 @@ var invoiceList = $('#invoice-list').DataTable({
             text: 'Yeni Ekle',
             className: 'btn btn-primary btn-sm',
             action: function(e, dt, node, config ) {
-                window.location = 'teklif_ekle.php';
+                window.location = 'teklif_ekle';
             }
         }
     ],
