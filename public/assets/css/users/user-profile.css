@@ -66,8 +66,9 @@
       color: #4361ee; }
   .user-profile .widget-content-area .user-info-list ul.contacts-block {
     border: none;
-    max-width: 217px;
-    margin: 36px auto; }
+    margin: 36px;
+    margin-left:36px;
+    width: auto; }
     .user-profile .widget-content-area .user-info-list ul.contacts-block li {
       margin-bottom: 13px;
       font-weight: 600;

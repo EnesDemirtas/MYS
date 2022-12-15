@@ -275,9 +275,9 @@
     Footer
 */
 .account-settings-footer {
-  position: fixed;
   bottom: 0;
-  width: calc(100% - 96px);
+  width: 95%;
+  margin: auto;
   background: #3b3f5c;
   padding: 12px 20px;
   -webkit-box-shadow: -2px -9px 20px rgba(126, 142, 177, 0.12);

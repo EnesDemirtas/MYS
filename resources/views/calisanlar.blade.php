@@ -70,7 +70,6 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Kişi Bilgileri</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -83,7 +82,7 @@
                         <h3 class="text-center align-items-center">Kişi Bilgileri</h3>
                     </div>
                     <div class="text-center user-info">
-                        <p class="">Jimmy Turner</p>
+                        <p class="" id="modal-isim">Jimmy Turner</p>
                     </div>
                     <div class="user-info-list">
 
@@ -232,5 +231,7 @@
     <script src="{{ asset('assets/js/apps/invoice-list.js') }}"></script>
     <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
     <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+    <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
 </body>
 </html>
