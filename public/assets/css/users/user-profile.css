@@ -13,7 +13,7 @@
   box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06); }
 
 .layout-spacing {
-  padding-bottom: 25px; }
+  padding-bottom: 0px; }
 
 /* 
 ===================
@@ -49,7 +49,7 @@
       position: absolute;
       content: "";
       height: 2px;
-      width: 55px;
+      width: 120px;
       background: #4361ee;
       border-radius: 50%;
       bottom: 0px;

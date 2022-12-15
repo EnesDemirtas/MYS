@@ -31,7 +31,7 @@ Route::get('gorev_yonetimi', function () {
 });
 
 Route::get('calisanlar', [CalisanlarController::class, 'index']);
-
+Route::get('/calisanDetaylari/{csatirid}', [CalisanlarController::class, 'calisanDetaylari'])->name('calisanDetaylari');
 
 Route::get('teklif_yonetimi', function () {
     return view('teklif_yonetimi');

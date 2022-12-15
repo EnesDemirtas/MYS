@@ -77,10 +77,10 @@
         </div>
         <div class="modal-body">
 
-            <div class="user-profile layout-spacing">
+            <div class="user-profile layout-spacing shadow">
                 <div class="widget-content widget-content-area">
                     <div class="d-flex justify-content-center">
-                        <h3 class="">Info</h3>
+                        <h3 class="text-center align-items-center">Kişi Bilgileri</h3>
                     </div>
                     <div class="text-center user-info">
                         <p class="">Jimmy Turner</p>
@@ -230,6 +230,7 @@
     <script src="{{ asset('plugins/table/datatable/datatables.js') }}"></script>
     <script src="{{ asset('plugins/table/datatable/button-ext/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('assets/js/apps/invoice-list.js') }}"></script>
+    <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
     <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 </html>
