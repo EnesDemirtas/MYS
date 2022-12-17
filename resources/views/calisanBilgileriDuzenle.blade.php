@@ -11,21 +11,8 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    <link rel="stylesheet" type="text/css" href="plugins/dropify/dropify.min.css">
-    <link href="assets/css/users/account-setting.css" rel="stylesheet" type="text/css" />
-
-    <style>
-        /*
-            The below code is for DEMO purpose --- Use it if you are using this demo otherwise Remove it
-        */
-        /*.navbar .navbar-item.navbar-dropdown {
-            margin-left: auto;
-        }*/
-        .layout-px-spacing {
-            min-height: calc(100vh - 170px)!important;
-        }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/dropify/dropify.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/users/account-setting.css') }}"/>
 
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     
@@ -55,8 +42,6 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-top-spacing layout-spacing">
                         <div class="widget widget-content-area br-4">
                             <div class="widget-one">
-                                
-
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
                                     <form id="kisiBilgileri" class="section contact">
                                         <div class="info">
@@ -66,47 +51,38 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="country">Country</label>
-                                                                <select class="form-control" id="country">
-                                                                    <option>All Countries</option>
-                                                                    <option selected>United States</option>
-                                                                    <option>India</option>
-                                                                    <option>Japan</option>
-                                                                    <option>China</option>
-                                                                    <option>Brazil</option>
-                                                                    <option>Norway</option>
-                                                                    <option>Canada</option>
-                                                                </select>
+                                                                <label for="ad">Ad</label>
+                                                                <input type="text" class="form-control mb-4"  placeholder="Ad" value="{{$calisanlar->cadi}}" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="address">Address</label>
-                                                                <input type="text" class="form-control mb-4" id="address" placeholder="Address" value="New York" >
+                                                                <label for="soyad">Soyad</label>
+                                                                <input type="text" class="form-control mb-4"  placeholder="Soyad" value="{{$calisanlar->csoyadi}}" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="location">Location</label>
-                                                                <input type="text" class="form-control mb-4" id="location" placeholder="Location">
+                                                                <label for="location">Adres</label>
+                                                                <input type="text" class="form-control mb-4" id="location" placeholder="Adres" value="{{$calisanlar->cevadresil}}" >
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="phone">Phone</label>
-                                                                <input type="text" class="form-control mb-4" id="phone" placeholder="Write your phone number here" value="+1 (530) 555-12121">
+                                                                <label for="phone">Telefon Numarası</label>
+                                                                <input type="text" class="form-control mb-4" id="phone" placeholder="Telefon Numarası" value="{{$calisanlar->ctel}}">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="email">Email</label>
-                                                                <input type="text" class="form-control mb-4" id="email" placeholder="Write your email here" value="Jimmy@gmail.com">
+                                                                <label for="email">Eposta</label>
+                                                                <input type="text" class="form-control mb-4" id="email" placeholder="Eposta" value="{{$calisanlar->ceposta}}">
                                                             </div>
                                                         </div>                                    
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="website1">Website</label>
-                                                                <input type="text" class="form-control mb-4" id="website1" placeholder="Write your website here">
+                                                                <label for="website1">Ünvan</label>
+                                                                <input type="text" class="form-control mb-4" id="website1" placeholder="Ünvan" value="{{$calisanlar->cunvani}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -115,19 +91,17 @@
                                         </div>
                                     </form>
                                 </div>
-
-
-                                <div class="account-settings-footer justify-content-center fixed-bottom">
-                                <div class="as-footer-container text-center">
-
-                                <button id="multiple-reset" class="btn btn-warning">Sıfırla</button>
-                                <div class="blockui-growl-message">
-                                    <i class="flaticon-double-check"></i>&nbsp; Değişiklikler Başarıyla Kaydedildi
-                                </div>
-                                <button id="multiple-messages" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                               
 
                         </div>
+                            <div class="account-settings-footer justify-content-center fixed-bottom">
+                            <div class="as-footer-container text-center">
 
+                            <button id="multiple-reset" class="btn btn-warning">Sıfırla</button>
+                            <div class="blockui-growl-message">
+                                <i class="flaticon-double-check"></i>&nbsp; Değişiklikler Başarıyla Kaydedildi
+                            </div>
+                            <button id="multiple-messages" class="btn btn-primary">Değişiklikleri Kaydet</button>
                     </div>
                                 
                             </div>    
@@ -158,7 +132,7 @@
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    <script src="assets/js/users/account-settings.js"></script>
+    <script src="{{ asset('assets/js/users/account-settings.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 </html>

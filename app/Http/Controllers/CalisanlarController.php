@@ -14,6 +14,11 @@ class CalisanlarController extends Controller
         return view('calisanlar', ['calisanlar' => calisan::all()]);
     }
 
+    public function calisanBilgileriDegistirme($ckayitno)
+    {
+        return view('calisanBilgileriDuzenle', ['calisanlar' => calisan::where('ckayitno',$ckayitno)->first()]);
+    }
+
     // public function calisanDetaylari($csatirid){
     //     $calisan = calisan::WHERE('csatirid',$csatirid)->first();
     //     $html = $calisan->cadi;

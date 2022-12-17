@@ -30,12 +30,10 @@ Route::get('gorev_yonetimi', function () {
     return view('gorev_yonetimi');
 });
 
-Route::get('calisanBilgileriDuzenle', function () {
-    return view('calisanBilgileriDuzenle');
-});
+Route::get('/calisanBilgileriDuzenle/{ckayitno}', [CalisanlarController::class, 'calisanBilgileriDegistirme'])->name('calisanBilgileriDegistirme');
+
 
 Route::get('calisanlar', [CalisanlarController::class, 'index']);
-Route::get('/calisanDetaylari/{csatirid}', [CalisanlarController::class, 'calisanDetaylari'])->name('calisanDetaylari');
 
 Route::get('teklif_yonetimi', function () {
     return view('teklif_yonetimi');
