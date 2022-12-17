@@ -10,6 +10,7 @@
     <x-global-mandatory.styles/>
     <link href="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" type="text/css" />
     <link href="assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- END GLOBAL MANDATORY STYLES -->
     
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -78,19 +79,14 @@
 
             <div class="user-profile layout-spacing shadow">
                 <div class="widget-content widget-content-area">
-                    <div class="d-flex justify-content-center">
-                        <h3 class="text-center align-items-center">Kişi Bilgileri</h3>
-                    </div>
                     <div class="text-center user-info">
                         <p class="" id="modal-isim">Jimmy Turner</p>
+                        <span id="modal-unvan" class="text-muted">Web Developer</span>
                     </div>
                     <div class="user-info-list">
 
                         <div class="">
                             <ul class="contacts-block list-unstyled">
-                                <li class="contacts-block__item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-coffee"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg> Web Developer
-                                </li>
                                 <li class="contacts-block__item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span id="modal-dogum">Jan 20, 1989</span>
                                 </li>
@@ -143,14 +139,13 @@
                                 <thead>
                                     <tr>
                                         <th class="checkbox-column" style="width:30px !important;"> Kayıt Numarası </th>
-                                        <th style="padding-left:0px !important;">Referans No</th>
+                                        <th style="padding-left:0px !important;">Sicil No</th>
                                         <th>TCKN</th>
-                                        <th>Adı</th>
+                                        <th> Adı</th>
                                         <th>Görevi</th>
-                                        <th>Doğum Tarihi</th>
-                                        <th>İşe Giriş Tarihi</th>
-                                        <th>Telefon</th>
-                                        <th>Eposta</th>
+                                        <th>Doğum Günü</th>
+                                        <th>Giriş Tarihi</th>
+                                        <th>İletişim</th>
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>

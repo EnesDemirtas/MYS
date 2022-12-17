@@ -35,14 +35,17 @@
     var isim = $("#calisan-"+id+" p").text();
     $("#modal-isim").text(isim);    
 
+    var unvan = $("#calisan-"+id+" .unvan").attr('name');
+    $("#modal-unvan").text(unvan);
+
     var lokasyon = $("#calisan-"+id+" .lokasyon").attr('name');
     $("#modal-lokasyon").text(lokasyon);
 
-    var eposta = $("#calisan-"+id+" .inv-email").text();
+    var eposta = $("#calisan-"+id+" .eposta").attr('name');
     $("#modal-eposta").text(eposta);
 
-    var telefon = $("#calisan-"+id+" .inv-amount").text();
-    $("#modal-cep").text(telefon);
+    var cep = $("#calisan-"+id+" .cep").attr('name');
+    $("#modal-cep").text(cep);
 
     var dogumTarihi = $("#calisan-"+id+" .dogum").text();
     $("#modal-dogum").text(dogumTarihi);
