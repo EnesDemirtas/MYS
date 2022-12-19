@@ -22,6 +22,10 @@ Route::get('/musteriler', function () {
     return view('musteriler');
 });
 
+Route::get('/musteri_ekle', function () {
+    return view('musteri_ekle');
+});
+
 Route::get('randevu_yonetimi', function () {
     return view('randevu_yonetimi');
 });
