@@ -48,6 +48,7 @@ $('.dt-delete').on('click', function() {
         if (this.classList.contains('chk-parent')) {
             return;
         } else {
+            alert(this.parents('tr').text);
             $(this).parents('tr').remove();
         }
     });

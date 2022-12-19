@@ -52,57 +52,57 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="ad">Ad</label>
-                                                                <input type="text" class="form-control mb-4"  placeholder="Ad" value="{{$calisanlar->cadi}}" readonly>
+                                                                <input type="text" class="form-control mb-4"  name="ad" placeholder="Ad" value="{{$calisanlar->cadi}}" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="soyad">Soyad</label>
-                                                                <input type="text" class="form-control mb-4"  placeholder="Soyad" value="{{$calisanlar->csoyadi}}" readonly>
+                                                                <input type="text" class="form-control mb-4" name="soyad"  placeholder="Soyad" value="{{$calisanlar->csoyadi}}" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="location">Adres</label>
-                                                                <input type="text" class="form-control mb-4" id="location" placeholder="Adres" value="{{$calisanlar->cevadresil}}" >
+                                                                <input type="text" class="form-control mb-4" name="adres" id="location" placeholder="Adres" value="{{$calisanlar->cevadresil}}" >
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="phone">Telefon Numarası</label>
-                                                                <input type="text" class="form-control mb-4" id="phone" placeholder="Telefon Numarası" value="{{$calisanlar->ctel}}">
+                                                                <input type="text" class="form-control mb-4" name="telefon" id="phone" placeholder="Telefon Numarası" value="{{$calisanlar->ctel}}">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="email">Eposta</label>
-                                                                <input type="text" class="form-control mb-4" id="email" placeholder="Eposta" value="{{$calisanlar->ceposta}}">
+                                                                <input type="text" class="form-control mb-4" name="eposta" id="email" placeholder="Eposta" value="{{$calisanlar->ceposta}}">
                                                             </div>
                                                         </div>                                    
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="website1">Ünvan</label>
-                                                                <input type="text" class="form-control mb-4" id="website1" placeholder="Ünvan" value="{{$calisanlar->cunvani}}">
+                                                                <input type="text" class="form-control mb-4" name="unvan" id="website1" placeholder="Ünvan" value="{{$calisanlar->cunvani}}">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="account-settings-footer justify-content-center fixed-bottom">
+                                    <div class="as-footer-container text-center">
+        
+                                    <a href="#" id="multiple-reset" class="btn btn-warning">Sıfırla</a>
+                                        <div class="blockui-growl-message">
+                                            <i class="flaticon-double-check"></i>&nbsp; Değişiklikler Başarıyla Kaydedildi
+                                        </div>
+                                            <a href="#{{route('calisanDuzenle',$calisanlar->ckayitno)}}" id="multiple-messages" class="btn btn-primary">Değişiklikleri Kaydet</a>
+                                        </div>
                                     </form>
                                 </div>
                                
 
-                        </div>
-                            <div class="account-settings-footer justify-content-center fixed-bottom">
-                            <div class="as-footer-container text-center">
-
-                            <button id="multiple-reset" class="btn btn-warning">Sıfırla</button>
-                            <div class="blockui-growl-message">
-                                <i class="flaticon-double-check"></i>&nbsp; Değişiklikler Başarıyla Kaydedildi
-                            </div>
-                            <button id="multiple-messages" class="btn btn-primary">Değişiklikleri Kaydet</button>
-                    </div>
                                 
                             </div>    
                         </div>
@@ -133,6 +133,7 @@
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     <script src="{{ asset('assets/js/users/account-settings.js') }}"></script>
+    <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 </html>

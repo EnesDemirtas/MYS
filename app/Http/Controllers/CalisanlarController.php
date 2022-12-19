@@ -19,6 +19,13 @@ class CalisanlarController extends Controller
         return view('calisanBilgileriDuzenle', ['calisanlar' => calisan::where('ckayitno',$ckayitno)->first()]);
     }
 
+    public function calisanSil($ckayitno){
+        if($ckayitno != null){
+            calisan::delete('delete from calisanlar where ckayitno = ?',[$ckayitno]);
+        }
+    }
+
+
     // public function calisanDetaylari($csatirid){
     //     $calisan = calisan::WHERE('csatirid',$csatirid)->first();
     //     $html = $calisan->cadi;
