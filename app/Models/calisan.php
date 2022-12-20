@@ -10,6 +10,7 @@ class calisan extends Model
     use HasFactory;
 
     protected $table = 'calisanlar';
+    public $timestamps = false;
 
     protected $fillable = [
         'mysrefno',

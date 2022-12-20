@@ -60,6 +60,20 @@
             <div class="layout-px-spacing">
 
                 <!-- CONTENT AREA -->
+                @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        @if(Session::has("success"))
+            <div class="alert alert-success">
+                {{Session::get("sucess")}}
+            </div>
+        @endif
                 <div class="page-header">
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -250,6 +264,13 @@
       buttons: {
         buttons: [
           { extend: "excel", className: "btn btn-sm" },
+          {
+            text: 'Yeni Ekle',
+            className: 'btn btn-primary btn-sm',
+            action: function(e, dt, node, config ) {
+                window.location = '/calisan_ekle';
+            }
+        },
         ],
       },
       oLanguage: {

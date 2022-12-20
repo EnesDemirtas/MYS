@@ -14,15 +14,49 @@ class CalisanlarController extends Controller
         return view('calisanlar', ['calisanlar' => calisan::all()]);
     }
 
-    public function calisanBilgileriDegistirme($ckayitno)
+    public function calisanDuzenle($ckayitno)
     {
         return view('calisanBilgileriDuzenle', ['calisanlar' => calisan::where('ckayitno',$ckayitno)->first()]);
     }
 
+    public function calisanGuncelle(Request $request, $ckayitno){
+        return $ckayitno;
+    }
+
     public function calisanSil($ckayitno){
         if($ckayitno != null){
-            calisan::delete('delete from calisanlar where ckayitno = ?',[$ckayitno]);
+            calisan::delete('delete from calisanlar where ckayitno = ?',$ckayitno);
         }
+        return redirect()->route('calisanlar')->with('success','Çalışan Başarıyla Silindi!');
+    }
+
+    public function calisanEkle(Request $request){
+        $request->validate([
+            "ckayitno" => "required",
+            "mysrefno" => "required",
+            "mrefno" => "required",
+            "ctckn" => "required",
+            "cadi" => "required",
+            "csoyadi" => "required",
+            "cevadresil" => "required",
+            "ctel" => "required",
+            "ceposta" => "required",
+            "cunvani" => "required",
+        ],
+        [   
+            'cadi.required' => 'Lütfen çalışan adını giriniz',     
+            'csoyadi.required' => 'Lütfen çalışan soyadını giriniz.',
+            'ctckn.required' =>'Lütfen çalışan TCKN giriniz.',
+            'ctel.required' =>'Lütfen çalışan telefonunu giriniz.',
+            'ceposta.required' =>"Lütfen çalışan Eposta'sını giriniz.",
+            'cunvani.required' =>'Lütfen çalışanın ünvanını giriniz.',
+            'cevadresil.required' =>'Lütfen çalışanın adresini giriniz.',
+        ]
+    
+    );
+        calisan::create($request->all());
+
+        return redirect()->back()->with("success","Kayıt Başarıyla Eklendi");
     }
 
 

@@ -34,9 +34,14 @@ Route::get('gorev_yonetimi', function () {
     return view('gorev_yonetimi');
 });
 
-Route::get('/calisanBilgileriDuzenle/{ckayitno}', [CalisanlarController::class, 'calisanBilgileriDegistirme'])->name('calisanBilgileriDegistirme');
+Route::get('calisan_ekle', function () {
+    return view('calisan_ekle');
+});
+Route::post('/calisanEkle', [CalisanlarController::class,'calisanEkle'])->name('calisanEkle');
 
-
+Route::get('/calisanBilgileriDuzenle/{ckayitno}', [CalisanlarController::class, 'calisanDuzenle'])->name('calisanDuzenle');
+Route::get('/calisanGuncelle/{ckayitno}', [CalisanlarController::class, 'calisanGuncelle'])->name('calisanGuncelle');
+Route::get('/calisanSil/{ckayitno}',[CalisanlarController::class, 'calisanSil'])->name('calisanSil');
 Route::get('calisanlar', [CalisanlarController::class, 'index']);
 
 Route::get('teklif_yonetimi', function () {
