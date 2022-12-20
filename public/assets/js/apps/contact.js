@@ -38,7 +38,7 @@ $(document).ready(function() {
     $(this).parents('.searchable-container').find('.searchable-items').addClass('list');
   });
 
-  $('#btn-add-contact').on('click', function(event) {
+  $('#btn-add-hizlikayit').on('click', function(event) {
     $('#addContactModal #btn-add').show();
     $('#addContactModal #btn-edit').hide();
     $('#addContactModal').modal('show');

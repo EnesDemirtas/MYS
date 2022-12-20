@@ -55,7 +55,7 @@
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content widget-content searchable-container list">
       <div class="layout-px-spacing">
-        {{-- <div class="modal fade" id="addContactModal" tabmys_index="-1" role="dialog"
+        <div class="modal fade" id="addContactModal" tabmys_index="-1" role="dialog"
           aria-labelledby="addContactModalTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -120,7 +120,7 @@
               </div>
             </div>
           </div>
-        </div> --}}
+        </div>
         <!-- CONTENT AREA -->
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-top-spacing layout-spacing">
@@ -501,6 +501,11 @@
     }
     my_element = htmlToElement(my_element);
     desired_place[0].parentNode.insertBefore(my_element, desired_place[0]);
+
+    let new_element = "<button id='btn-add-hizlikayit' class='dt-button btn-primary mx-3 btn btn-sm' role='button'>Hızlı Kayıt</button>";
+    let place = document.getElementById("btn-add-contact");
+    new_element = htmlToElement(new_element);
+    place.parentNode.parentNode.insertBefore(new_element, place.parentNode);
   </script>
   <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>

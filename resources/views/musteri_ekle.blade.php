@@ -60,6 +60,7 @@
                                             </div>
                                         </div>
                                         <div class="widget-content widget-content-area">
+                                        <form id="musteri_ekle_form">
                                             <div id="example-basic">
                                                 <h3>Home</h3>
                                                 <section> <p>Try the keyboard navigation by clicking arrow left or right!</p> </section>
@@ -67,7 +68,10 @@
                                                 <section> <p>Wonderful transition effects.</p> </section>
                                                 <h3>Settings</h3>
                                                 <section> <p>The next and previous buttons help you to navigate through your content.</p> </section>
+                                                <h3>Deneme Section</h3>
+                                                <section> <p>Sa Deneme As.</p> </section>
                                             </div>
+                                        </form>
                                         </div>
                                     </div>
 
