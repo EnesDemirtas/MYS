@@ -36,6 +36,28 @@
   <link href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('assets/css/apps/contacts.css') }}" rel="stylesheet" type="text/css" />
   <!-- END PAGE LEVEL CUSTOM STYLES -->
+  <!--  BEGIN CUSTOM STYLE FILE  -->
+  <link href="assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="plugins/jquery-step/jquery.steps.css">
+  <style>
+      #formValidate .wizard > .content {min-height: 25em;}
+      #example-vertical.wizard > .content {min-height: 24.5em;}
+  </style>
+  <!--  END CUSTOM STYLE FILE  -->
+  <style>
+    
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type=number] {
+        -moz-appearance: textfield;
+      }
+  </style>
 </head>
 
 <body class="sidebar-noneoverflow">
@@ -63,7 +85,7 @@
                 <i class="flaticon-cancel-12 close" data-dismiss="modal"></i>
                 <div class="add-contact-box">
                   <div class="add-contact-content">
-                    <form id="addContactModalTitle">
+                    {{-- <form id="addContactModalTitle">
                       <div class="row">
                         <div class="col-md-6">
                           <div class="contact-name">
@@ -107,7 +129,103 @@
                         </div>
                       </div>
 
-                    </form>
+                    </form> --}}
+                    <div class="statbox widget box box-shadow">
+                      <div class="widget-header">
+                          <div class="row">
+                              <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                  <h4>Hızlı Kayıt</h4>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="widget-content widget-content-area">
+                      <form id="hizlikayit_form">
+                          <div id="example-basic">
+                              <h3>Ön Bilgiler</h3>
+                              <section>
+                                <div class="row py-3">
+                                <div class="col-3">
+                                  <span>Kayıt Türü</span>
+                                </div>
+                                <div class="col">
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="hk-gercek" name="hk-kayit-turu" class="custom-control-input">
+                                    <label class="custom-control-label" for="hk-gercek">Gerçek</label>
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="hk-tuzel" name="hk-kayit-turu" class="custom-control-input">
+                                    <label class="custom-control-label" for="hk-tuzel">Tüzel</label>
+                                  </div>
+                                </div>
+                                </div>
+
+                                <div class="row py-3">
+                                  <div class="col-3">
+                                    <span>Müşteri Türü</span>
+                                  </div>
+                                  <div class="col">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                      <input type="radio" id="hk-bireysel" name="hk-musteri-turu" class="custom-control-input">
+                                      <label class="custom-control-label" for="hk-bireysel">Bireysel</label>
+                                    </div>
+                                  </div>
+                                  <div class="col">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                      <input type="radio" id="hk-kurumsal" name="hk-musteri-turu" class="custom-control-input">
+                                      <label class="custom-control-label" for="hk-kurumsal">Kurumsal</label>
+                                    </div>
+                                  </div>
+                                  </div>
+
+                                  <div class="row py-3">
+                                    <div class="col">
+                                      <input id="hk-tcknvno" type="number" name="hk-tcknvno" placeholder="TCKN/Vergi No" class="form-control form-control-sm" required>
+                                    </div>
+                                    <div class="col">
+                                      <input id="hk-marka" type="text" name="hk-marka" placeholder="Marka Adı" class="form-control form-control-sm" required>
+                                    </div>
+                                  </div>
+
+
+                              </section>
+                              <h3>About</h3>
+                              <section> <p>Wonderful transition effects.</p> </section>
+                              <h3>İletişim</h3>
+                              <section>
+                                <div class="form-group mb-4">
+                                  <textarea placeholder="Adres" class="form-control" name="hk-adres" id="hk-adres" rows="3"></textarea>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-4">
+                                  <input id="hk-bolge" type="text" name="hk-bolge" placeholder="Bölge" class="form-control form-control-sm" required>
+                                </div>
+                                <div class="col-4">
+                                  <input id="hk-ilce" type="text" name="hk-ilce" placeholder="İlçe" class="form-control form-control-sm" required>
+                                </div>
+                                <div class="col-4">
+                                  <input id="hk-il" type="text" name="hk-il" placeholder="İl" class="form-control form-control-sm" required>
+                                </div>
+                              </div>
+
+                              <div class="row py-3">
+                                <div class="col-6">
+                                  <input id="ph-number" type="text" name="hk-mobil" placeholder="Mobil" class="form-control form-control-sm" required>
+                                </div>
+                                <div class="col-3">
+                                  <input id="hk-enlem" type="text" name="hk-enlem" placeholder="Enlem" class="form-control form-control-sm" required>
+                                </div>
+                                <div class="col-3">
+                                  <input id="hk-boylam" type="text" name="hk-boylam" placeholder="Boylam" class="form-control form-control-sm" required>
+                                </div>
+                              </div>
+                              </section>
+                          </div>
+                      </form>
+                      </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -446,6 +564,7 @@
       App.init();
     });
   </script>
+  <script src="plugins/highlight/highlight.pack.js"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
   <!-- END GLOBAL MANDATORY SCRIPTS -->
 
@@ -459,6 +578,15 @@
 
   <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
   <script src="{{ asset('assets/js/apps/contact.js') }}"></script>
+
+  <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+  <script src="assets/js/scrollspyNav.js"></script>
+  <script src="plugins/jquery-step/jquery.steps.min.js"></script>
+  <script src="plugins/jquery-step/custom-jquery.steps.js"></script>
+  <script src="{{ asset('assets/js/users/account-settings.js') }}"></script>
+  <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+  <script src="plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
+  <script src="plugins/input-mask/input-mask.js"></script>
   <script>
     $("#html5-extension").DataTable({
       dom:
