@@ -58,6 +58,19 @@
         -moz-appearance: textfield;
       }
   </style>
+      <link href="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" type="text/css" />
+      <link href="assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- END GLOBAL MANDATORY STYLES -->
+      
+  
+      <link href="{{ asset('assets/css/apps/invoice-list.css') }}" rel="stylesheet" type="text/css" />
+      <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+      <link rel="stylesheet" type="text/css" href="plugins/bootstrap-select/bootstrap-select.min.css">
+
+      <link href="plugins/flatpickr/flatpickr.css" rel="stylesheet" type="text/css">
+      <link href="plugins/flatpickr/custom-flatpickr.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body class="sidebar-noneoverflow">
@@ -144,54 +157,49 @@
                               <h3>Ön Bilgiler</h3>
                               <section>
                                 <div class="row py-3">
-                                <div class="col-3">
-                                  <span>Kayıt Türü</span>
+                                <div class="col-6">
+                                  <select class="form-control form-control-sm" id="hk-kayitturu" onchange="changeFields(this.value)">
+                                    <option value="Kayıt Türü">Kayıt Türü</option>
+                                    <option value="Bireysel Müşteri">Bireysel</option>
+                                    <option value="Ticari Müşteri">Ticari</option>
+                                    <option value="Tedarikçi">Tedarikçi</option>
+                                    <option value="Müşteri Adayı">Müşteri Adayı</option>
+                                    <option value="Diğer">Diğer</option>
+                                  </select>
                                 </div>
-                                <div class="col">
-                                  <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="hk-gercek" name="hk-kayit-turu" class="custom-control-input">
-                                    <label class="custom-control-label" for="hk-gercek">Gerçek</label>
-                                  </div>
-                                </div>
-                                <div class="col">
-                                  <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="hk-tuzel" name="hk-kayit-turu" class="custom-control-input">
-                                    <label class="custom-control-label" for="hk-tuzel">Tüzel</label>
-                                  </div>
+                                <div class="col-6">
+                                    <input id="hk-tcknvno" type="number" name="hk-tcknvno" placeholder="TCKN/Vergi No" class="form-control form-control-sm" required>
                                 </div>
                                 </div>
-
-                                <div class="row py-3">
-                                  <div class="col-3">
-                                    <span>Müşteri Türü</span>
-                                  </div>
-                                  <div class="col">
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                      <input type="radio" id="hk-bireysel" name="hk-musteri-turu" class="custom-control-input">
-                                      <label class="custom-control-label" for="hk-bireysel">Bireysel</label>
-                                    </div>
-                                  </div>
-                                  <div class="col">
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                      <input type="radio" id="hk-kurumsal" name="hk-musteri-turu" class="custom-control-input">
-                                      <label class="custom-control-label" for="hk-kurumsal">Kurumsal</label>
-                                    </div>
-                                  </div>
-                                  </div>
-
                                   <div class="row py-3">
-                                    <div class="col">
-                                      <input id="hk-tcknvno" type="number" name="hk-tcknvno" placeholder="TCKN/Vergi No" class="form-control form-control-sm" required>
-                                    </div>
+
                                     <div class="col">
                                       <input id="hk-marka" type="text" name="hk-marka" placeholder="Marka Adı" class="form-control form-control-sm" required>
                                     </div>
                                   </div>
 
+                                  <div class="row py-3">                                    
+                                    <div class="col">
+                                      <input id="hk-ad" type="text" name="hk-ad" placeholder="Adı" class="form-control form-control-sm" required>
+                                    </div>
+                                    
+                                    <div class="col">
+                                      <input id="hk-soyad" type="text" name="hk-soyad" placeholder="Soyadı" class="form-control form-control-sm" required>
+                                    </div>
+                                  </div>
+
+                                  <div class="row py-3">                                   
+                                    <div class="col">
+                                      <input id="hk-unvan" type="text" name="hk-unvan" placeholder="Unvanı" class="form-control form-control-sm">
+                                    </div>
+                                    
+                                    <div class="col">
+                                      <input id="basicFlatpickr" value="" class="form-control form-control-sm flatpickr flatpickr-input active" type="text" placeholder="Doğum Günü">
+                                    </div>
+                                  </div>
+
 
                               </section>
-                              <h3>About</h3>
-                              <section> <p>Wonderful transition effects.</p> </section>
                               <h3>İletişim</h3>
                               <section>
                                 <div class="form-group mb-4">
@@ -239,6 +247,71 @@
             </div>
           </div>
         </div>
+
+        <!-- Gozat Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <div class="user-profile layout-spacing shadow">
+              <div class="widget-content widget-content-area">
+                  <div class="text-center user-info">
+                      <p class="" id="modal-isim">Jimmy Turner</p>
+                      <span id="modal-unvan" class="text-muted">Web Developer</span>
+                  </div>
+                  <div class="user-info-list">
+
+                      <div class="">
+                          <ul class="contacts-block list-unstyled">
+                              <li class="contacts-block__item">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span id="modal-dogum">Jan 20, 1989</span>
+                              </li>
+                              <li class="contacts-block__item">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span id="modal-lokasyon">New York, USA</span>
+                              </li>
+                              <li class="contacts-block__item">
+                                  <a href="mailto:example@mail.com"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span id="modal-eposta">Jimmy@gmail.com</span></a>
+                              </li>
+                              <li class="contacts-block__item">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span id="modal-cep"> +1 (530) 555-12121</span>
+                              </li>
+                              <li class="contacts-block__item">
+                                  <ul class="list-inline">
+                                      <li class="list-inline-item">
+                                          <div class="social-icon">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                                          </div>
+                                      </li>
+                                      <li class="list-inline-item">
+                                          <div class="social-icon">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                                          </div>
+                                      </li>
+                                      <li class="list-inline-item">
+                                          <div class="social-icon">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                          </div>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </div>                                    
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
         <!-- CONTENT AREA -->
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-top-spacing layout-spacing">
@@ -250,285 +323,23 @@
                 <table id="html5-extension" class="table table-hover non-hover" style="width: 100%">
                   <thead>
                     <tr>
+                      <th>Kayıt Türü</th>
                       <th>Firma</th>
                       <th>Yetkili İsmi</th>
+                      <th>TCKN/Vergi No</th>
                       <th>Lokasyon</th>
-                      <th>Müşteri Kayıt Tarihi</th>
-                      <th>Alt Kuruluş</th>
+                      {{-- <th>Müşteri Kayıt Tarihi</th> --}}
+                      <th>İletişim</th>
                       <th class="dt-no-sorting">İşlemler</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Bim A.Ş.</td>
-                      <td>Caner SARI</td>
-                      <td>Döşemealtı/Antalya</td>
-                      <td>25.04.2021</td>
-                      <td>80</td>
-                      <td>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-dark btn-sm">
-                            Open
-                          </button>
-                          <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split"
-                            id="dropdownMenuReference1" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-reference="parent">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round" class="feather feather-chevron-down">
-                              <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference1">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Kaya Gıda Ltd. Şti.</td>
-                      <td>Sude YILDIZ</td>
-                      <td>Yalvaç/Isparta</td>
-                      <td>25.07.2022</td>
-                      <td>1</td>
-                      <td>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-dark btn-sm">
-                            Open
-                          </button>
-                          <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split"
-                            id="dropdownMenuReference2" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-reference="parent">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round" class="feather feather-chevron-down">
-                              <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference2">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Örnek İnşaat</td>
-                      <td>Emrah KURT</td>
-                      <td>Muratpaşa/Antalya</td>
-                      <td>12.01.2020</td>
-                      <td>0</td>
-                      <td>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-dark btn-sm">
-                            Open
-                          </button>
-                          <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split"
-                            id="dropdownMenuReference3" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-reference="parent">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round" class="feather feather-chevron-down">
-                              <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference3">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>İpragaz</td>
-                      <td>Ahmet GÜLER</td>
-                      <td>Konyaaltı/Antalya</td>
-                      <td>29.03.2021</td>
-                      <td>59</td>
-                      <td>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-dark btn-sm">
-                            Open
-                          </button>
-                          <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split"
-                            id="dropdownMenuReference4" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-reference="parent">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round" class="feather feather-chevron-down">
-                              <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference4">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Sarkuysan</td>
-                      <td>Yağmur ÜNAL</td>
-                      <td>Manavgat/Antalya</td>
-                      <td>28.11.2016</td>
-                      <td>15</td>
-                      <td>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-dark btn-sm">
-                            Open
-                          </button>
-                          <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split"
-                            id="dropdownMenuReference5" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-reference="parent">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round" class="feather feather-chevron-down">
-                              <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference5">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Unilever</td>
-                      <td>Mustafa ÖZKAN</td>
-                      <td>Merkez/Antalya</td>
-                      <td>02.12.2018</td>
-                      <td>120</td>
-                      <td>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-dark btn-sm">
-                            Open
-                          </button>
-                          <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split"
-                            id="dropdownMenuReference6" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-reference="parent">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round" class="feather feather-chevron-down">
-                              <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference6">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>ETİ</td>
-                      <td>Emel YILMAZ</td>
-                      <td>Bucak/Burdur</td>
-                      <td>06.08.2017</td>
-                      <td>48</td>
-                      <td>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-dark btn-sm">
-                            Open
-                          </button>
-                          <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split"
-                            id="dropdownMenuReference7" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-reference="parent">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round" class="feather feather-chevron-down">
-                              <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference7">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Torku</td>
-                      <td>Hakan SELİMOĞLU</td>
-                      <td>Meram/Konya</td>
-                      <td>14.10.2022</td>
-                      <td>17</td>
-                      <td>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-dark btn-sm">
-                            Open
-                          </button>
-                          <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split"
-                            id="dropdownMenuReference8" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-reference="parent">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round" class="feather feather-chevron-down">
-                              <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference8">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Caymazlar Holding</td>
-                      <td>Melek ÜNAL</td>
-                      <td>Kemer/Antalya</td>
-                      <td>15.09.2019</td>
-                      <td>2</td>
-                      <td>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-dark btn-sm">
-                            Open
-                          </button>
-                          <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split"
-                            id="dropdownMenuReference9" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-reference="parent">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round" class="feather feather-chevron-down">
-                              <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference9">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
+
+                    @unless(count($musteriler) == 0)
+                      @foreach ($musteriler as $musteri)
+                        <x-musteri :musteri="$musteri" />
+                      @endforeach
+                    @endunless
                     
                   </tbody>
                 </table>
@@ -558,16 +369,7 @@
   <script src="{{ asset('assets/js/custom.js') }}"></script>
   <!-- END GLOBAL MANDATORY SCRIPTS -->
 
-  <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-  <script src="{{ asset('plugins/table/datatable/datatables.js') }}"></script>
-  <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
-  <script src="{{ asset('plugins/table/datatable/button-ext/dataTables.buttons.min.js') }}"></script>
-  <script src="{{ asset('plugins/table/datatable/button-ext/jszip.min.js') }}"></script>
-  <script src="{{ asset('plugins/table/datatable/button-ext/buttons.html5.min.js') }}"></script>
-  <script src="{{ asset('plugins/table/datatable/button-ext/buttons.print.min.js') }}"></script>
 
-  <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-  <script src="{{ asset('assets/js/apps/contact.js') }}"></script>
 
   <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
   <script src="assets/js/scrollspyNav.js"></script>
@@ -577,6 +379,43 @@
   <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
   <script src="plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
   <script src="plugins/input-mask/input-mask.js"></script>
+
+  <script src="{{ asset('assets/js/apps/invoice-list.js') }}"></script>
+
+  <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+  <script src="{{ asset('assets/js/app.js') }}"></script>
+  
+  <script>
+      $(document).ready(function() {
+          App.init();
+      });
+  </script>
+  <script src="{{ asset('assets/js/custom.js') }}"></script>
+  <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+  <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+  <script src="{{ asset('plugins/table/datatable/datatables.js') }}"></script>
+  <script src="{{ asset('assets/js/apps/invoice-list.js') }}"></script>
+  <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
+  <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+  <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
+
+<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+<!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+<script src="{{ asset('plugins/table/datatable/button-ext/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('plugins/table/datatable/button-ext/jszip.min.js') }}"></script>
+<script src="{{ asset('plugins/table/datatable/button-ext/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('plugins/table/datatable/button-ext/buttons.print.min.js') }}"></script>
+
+<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('assets/js/apps/contact.js') }}"></script>
+
+<script src="plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="plugins/flatpickr/flatpickr.js"></script>
+<script src="plugins/flatpickr/custom-flatpickr.js"></script>
+
+
   <script>
     $("#html5-extension").DataTable({
       dom:

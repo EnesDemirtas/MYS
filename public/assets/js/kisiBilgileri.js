@@ -51,3 +51,14 @@
     $("#modal-dogum").text(dogumTarihi);
 }
 
+function musteriBilgileri(id) {
+    return;
+}
+
+function changeFields(kayit) {
+    if (kayit == "Ticari Müşteri") {
+        $("#hk-tcknvno").attr("placeholder", "Vergi No");
+    } else {
+        $("#hk-tcknvno").attr("placeholder", "TCKN/Vergi No");
+    }
+}

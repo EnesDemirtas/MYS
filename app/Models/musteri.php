@@ -9,6 +9,8 @@ class musteri extends Model
 {
     use HasFactory;
 
+    protected $table = 'musteriler';
+
     protected $fillable = [
     'mrefno',
     'mkayitturu',
