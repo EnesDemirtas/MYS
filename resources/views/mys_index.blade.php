@@ -297,9 +297,9 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="uniqueVisitors">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Update</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Download</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Gözat</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Güncelle</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Yükle</a>
                                     </div>
                                 </div>
                             </div>

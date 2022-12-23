@@ -98,13 +98,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="ad">İşe Giriş Tarihi</label>
-                                                        <input type="date" class="form-control mb-4"  name="cdogum" placeholder="İşe Giriş Tarihi" >
+                                                        <input type="date" class="form-control mb-4"  name="cisegiris" placeholder="İşe Giriş Tarihi" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="ad">Doğum Günü</label>
-                                                        <input type="date" class="form-control mb-4"  name="cisegiris" placeholder="Doğum Günü" >
+                                                        <input type="date" class="form-control mb-4"  name="cdogum" placeholder="Doğum Günü" >
                                                     </div>
                                                 </div>  
                                                 </div>
@@ -127,7 +127,7 @@
                                                 <div class="col-md-4 pl-1">
                                                     <div class="form-group">
                                                         <label for="phone">Telefon Numarası</label>
-                                                        <input type="text" maxlength="11" class="form-control mb-4" name="ctel" id="phone" placeholder="Örnek: (5**) *** ** **" >
+                                                        <input type="text" maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="ctel" id="phone" placeholder="Örnek: (5**) *** ** **" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -156,7 +156,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="website1">Ünvan</label>
-                                                            <input type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" >
+                                                            <input type="text" class="form-control mb-4" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="cunvani" id="website1" placeholder="Ünvan" >
                                                         </div>
                                                     </div>                               
                                                 </div> 

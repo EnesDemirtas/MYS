@@ -61,6 +61,8 @@ class CalisanlarController extends Controller
             "cadi" => "required",
             "csoyadi" => "required",
             "cevadresil" => "required",
+            "cdogum" => "required|before:today",
+            "cisegiris" => "required",
             "cevadresilce" => "required",
             "ctel" => "required",
             "ceposta" => "required",
@@ -68,14 +70,17 @@ class CalisanlarController extends Controller
             "ukodutel" => "required",
         ],
         [   
-            'cadi.required' => 'Lütfen çalışan adını giriniz',     
+            'cadi.required' => 'Lütfen çalışan adını giriniz.',     
             'csoyadi.required' => 'Lütfen çalışan soyadını giriniz.',
             'ctckn.required' =>'Lütfen çalışan TCKN giriniz.',
             'ctel.required' =>'Lütfen çalışan telefonunu giriniz.',
             'ceposta.required' =>"Lütfen çalışan Eposta'sını giriniz.",
             'cunvani.required' =>'Lütfen çalışanın ünvanını giriniz.',
             'cevadresil.required' =>'Lütfen çalışanın adresini giriniz.',
+            'cdogum.required' => 'Lütfen çalışanın doğum tarihini giriniz.',
+            'cdogum.before' =>'Lütfen doğum gününü bugünden önce bir tarih seçiniz.',
             'cevadresilce.required' =>'Lütfen çalışanın adresini giriniz.',
+            'cisegiris.required' => 'Lütfen çalışanın işe giriş tarihini giriniz',
             'ukodutel.required' =>'Lütfen çalışan telefonunun ülke kodunu giriniz.',
         ]
     
