@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalisanlarController;
+use App\Http\Controllers\MusterilerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,9 @@ Route::get('/', function () {
     return view('mys_index');
 });
 
-Route::get('/musteriler', function () {
-    return view('musteriler');
-});
+Route::get('/musteriler', [MusterilerController::class, 'index']);
+Route::post('/musteriler', [MusterilerController::class, 'store'])->name('musteriEkle');
+
 
 Route::get('/musteri_ekle', function () {
     return view('musteri_ekle');
