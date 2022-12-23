@@ -252,7 +252,6 @@
                     <tr>
                       <th>Firma</th>
                       <th>Yetkili İsmi</th>
-                      <th>Görevi</th>
                       <th>Lokasyon</th>
                       <th>Müşteri Kayıt Tarihi</th>
                       <th>Alt Kuruluş</th>
@@ -263,7 +262,6 @@
                     <tr>
                       <td>Bim A.Ş.</td>
                       <td>Caner SARI</td>
-                      <td>Satış Sorumlusu</td>
                       <td>Döşemealtı/Antalya</td>
                       <td>25.04.2021</td>
                       <td>80</td>
@@ -294,7 +292,6 @@
                     <tr>
                       <td>Kaya Gıda Ltd. Şti.</td>
                       <td>Sude YILDIZ</td>
-                      <td>Kalite Kontrol Sorumlusu</td>
                       <td>Yalvaç/Isparta</td>
                       <td>25.07.2022</td>
                       <td>1</td>
@@ -325,7 +322,6 @@
                     <tr>
                       <td>Örnek İnşaat</td>
                       <td>Emrah KURT</td>
-                      <td>Kıdemli İnşaat Mühendisi</td>
                       <td>Muratpaşa/Antalya</td>
                       <td>12.01.2020</td>
                       <td>0</td>
@@ -356,7 +352,6 @@
                     <tr>
                       <td>İpragaz</td>
                       <td>Ahmet GÜLER</td>
-                      <td>Satış Temsilcisi</td>
                       <td>Konyaaltı/Antalya</td>
                       <td>29.03.2021</td>
                       <td>59</td>
@@ -387,7 +382,6 @@
                     <tr>
                       <td>Sarkuysan</td>
                       <td>Yağmur ÜNAL</td>
-                      <td>Kalite Kontrol Mühendisi</td>
                       <td>Manavgat/Antalya</td>
                       <td>28.11.2016</td>
                       <td>15</td>
@@ -418,7 +412,6 @@
                     <tr>
                       <td>Unilever</td>
                       <td>Mustafa ÖZKAN</td>
-                      <td>Antalya Bölge Müdürü</td>
                       <td>Merkez/Antalya</td>
                       <td>02.12.2018</td>
                       <td>120</td>
@@ -449,7 +442,6 @@
                     <tr>
                       <td>ETİ</td>
                       <td>Emel YILMAZ</td>
-                      <td>Yönetici Asistanı</td>
                       <td>Bucak/Burdur</td>
                       <td>06.08.2017</td>
                       <td>48</td>
@@ -480,7 +472,6 @@
                     <tr>
                       <td>Torku</td>
                       <td>Hakan SELİMOĞLU</td>
-                      <td>Bakım Mühendisi</td>
                       <td>Meram/Konya</td>
                       <td>14.10.2022</td>
                       <td>17</td>
@@ -511,7 +502,6 @@
                     <tr>
                       <td>Caymazlar Holding</td>
                       <td>Melek ÜNAL</td>
-                      <td>Kalite Kontrol Mühendisi</td>
                       <td>Kemer/Antalya</td>
                       <td>15.09.2019</td>
                       <td>2</td>
