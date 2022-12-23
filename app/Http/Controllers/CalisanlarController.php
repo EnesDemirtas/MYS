@@ -11,37 +11,61 @@ class CalisanlarController extends Controller
     // Show all calisanlar
     public function index()
     {
-        return view('calisanlar', ['calisanlar' => calisan::all()]);
+        $calisanlar = calisan::All();
+        return view('calisanlar',compact("calisanlar"));
     }
 
-    public function calisanDuzenle($ckayitno)
+    public function calisanDuzenle($ctckn)
     {
-        return view('calisanBilgileriDuzenle', ['calisanlar' => calisan::where('ckayitno',$ckayitno)->first()]);
+        return view('calisanBilgileriDuzenle',['calisanlar' => calisan::where('ctckn',$ctckn)->first()]);
     }
 
-    public function calisanGuncelle(Request $request, $ckayitno){
-        return $ckayitno;
-    }
-
-    public function calisanSil($ckayitno){
-        if($ckayitno != null){
-            calisan::delete('delete from calisanlar where ckayitno = ?',$ckayitno);
-        }
-        return redirect()->route('calisanlar')->with('success','Çalışan Başarıyla Silindi!');
-    }
-
-    public function calisanEkle(Request $request){
+    public function calisanGuncelle(Request $request, $ctckn){
         $request->validate([
-            "ckayitno" => "required",
-            "mysrefno" => "required",
-            "mrefno" => "required",
             "ctckn" => "required",
             "cadi" => "required",
             "csoyadi" => "required",
             "cevadresil" => "required",
+            "cevadresilce" => "required",
             "ctel" => "required",
             "ceposta" => "required",
             "cunvani" => "required",
+            "ukodutel" => "required",
+        ]);
+        $telNoUzunlugu = strlen($request->ctel);
+        if($telNoUzunlugu != 10){ // Telefon Numarası 10 haneden az ise error döner
+            return redirect()->back()->with("eksikTel","Yanlış Bir Telefon Numarası Girdiniz.");
+        }else{
+            calisan::where('ctckn', $request->ctckn)->update( array(
+                'ctel' => $request->ctel, 
+                'ukodutel' => $request->ukodutel,
+                'ceposta' => $request->ceposta,
+                'cunvani' => $request->cunvani,
+                'cevadresil' => $request->cevadresil,
+                'cevadresilce' => $request->cevadresilce,
+             ));
+    
+            return redirect()->back()->with("success","Çalışan Başarıyla Güncellendi.");
+        }
+        
+    }
+
+    public function calisanSil($ctckn){
+        calisan::where('ctckn', $ctckn)->delete();
+        return redirect()->back()->with("success","Çalışan Başarıyla Silindi.");
+    }
+
+    public function calisanEkle(Request $request){
+        $request->validate([
+            "ctckn" => "required",
+            "cadi" => "required",
+            "csoyadi" => "required",
+            "cevadresil" => "required",
+            "cevadresilce" => "required",
+            "ctel" => "required",
+            "ceposta" => "required",
+            "cunvani" => "required",
+            "ukodutel" => "required",
         ],
         [   
             'cadi.required' => 'Lütfen çalışan adını giriniz',     
@@ -51,12 +75,28 @@ class CalisanlarController extends Controller
             'ceposta.required' =>"Lütfen çalışan Eposta'sını giriniz.",
             'cunvani.required' =>'Lütfen çalışanın ünvanını giriniz.',
             'cevadresil.required' =>'Lütfen çalışanın adresini giriniz.',
+            'cevadresilce.required' =>'Lütfen çalışanın adresini giriniz.',
+            'ukodutel.required' =>'Lütfen çalışan telefonunun ülke kodunu giriniz.',
         ]
     
     );
-        calisan::create($request->all());
+    $calisanVarMi = calisan::where('ctckn', '=', $request->ctckn)->get();
+    $calisanTckn = $calisanVarMi->count(); // Bu TCKN'ye sahip bir çalışanın olup olmadığını bulur.Eğer var ise çalışanı eklemez.
+    $calisanSayisiBul = calisan::where('csatirid', '>=', '0')->get();
+    $calisanSayisi = $calisanSayisiBul->count(); // Kaç çalışan olduğunu saydırır.
 
-        return redirect()->back()->with("success","Kayıt Başarıyla Eklendi");
+        if($calisanTckn > 0){
+            return redirect()->back()->with("calisanKayitli","Eklemeye Çalıştığınız Kişi Zaten Sisteme Kayıtlı. Lütfen Bilgileri Kontrol Ederek Tekrar Deneyiniz!");
+        }else if($calisanSayisi > 0){ // Tablo boş değilse
+            $sonCalisan = calisan::orderBy('csatirid', 'desc')->first()->csatirid; //Son Çalışanın Satır ID'sini getirir.
+            calisan::create($request->all());
+            calisan::where('ctckn', $request->ctckn)->update( array('cwhatsapp'=>'wa.me/'.$request->ukodutel.''.$request->ctel.'', 'mysrefno'=>'sbe-'.$sonCalisan++.'') );
+            return redirect()->back()->with("success","Kayıt Başarıyla Eklendi! $calisanSayisi");
+        }else{ // Tablo Boşsa
+            calisan::create($request->all());
+            calisan::where('ctckn', $request->ctckn)->update( array('cwhatsapp'=>'wa.me/'.$request->ukodutel.''.$request->ctel.'', 'mysrefno'=>'sbe-1' ) );
+            return redirect()->back()->with("success","Kayıt Başarıyla Eklendi! $calisanSayisi");
+        }
     }
 
 

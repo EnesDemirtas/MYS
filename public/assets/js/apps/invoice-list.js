@@ -37,7 +37,7 @@ var invoiceList = $('#invoice-list').DataTable({
     "pageLength": 7
 });
 
-$("div.toolbar").html('<button class="dt-button dt-delete btn btn-danger btn-sm" tabindex="0" aria-controls="invoice-list"><span>Sil</span></button>');
+$("div.toolbar").html('<button class="dt-button dt-delete btn btn-danger btn-sm w-100 text-left" tabindex="0" aria-controls="invoice-list"><span>Sil</span></button>');
 
 multiCheck(invoiceList);
 

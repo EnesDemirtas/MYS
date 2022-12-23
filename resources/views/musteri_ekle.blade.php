@@ -80,15 +80,13 @@
 
                         </div>
                             <div class="account-settings-footer justify-content-center fixed-bottom">
-                            <div class="as-footer-container text-center">
-
-                            <button id="multiple-reset" class="btn btn-warning">Sıfırla</button>
-                            <div class="blockui-growl-message">
-                                <i class="flaticon-double-check"></i>&nbsp; Değişiklikler Başarıyla Kaydedildi
-                            </div>
-                            <button id="multiple-messages" class="btn btn-primary">Değişiklikleri Kaydet</button>
-                    </div>
-                                
+                                <div class="as-footer-container text-center">
+                                    <button id="multiple-reset" class="btn btn-warning">Sıfırla</button>
+                                        <div class="blockui-growl-message">
+                                        <i class="flaticon-double-check"></i>&nbsp; Değişiklikler Başarıyla Kaydedildi
+                                        </div>
+                                    <button id="multiple-messages" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                                </div> 
                             </div>    
                         </div>
                     </div>

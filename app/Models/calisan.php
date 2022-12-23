@@ -11,10 +11,9 @@ class calisan extends Model
 
     protected $table = 'calisanlar';
     public $timestamps = false;
-
+    protected $primaryKey = 'mysrefno';
     protected $fillable = [
         'mysrefno',
-        'ckayitno',
         'ctckn',
         'cadi',
         'csoyadi',
@@ -23,9 +22,6 @@ class calisan extends Model
         'cisegiris',
         'ukodutel',
         'ctel',
-        'ukodumob',
-        'cmobil',
-        'cevadres',
         'cevadresilce',
         'cevadresil',
         'ceposta',

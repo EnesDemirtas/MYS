@@ -15,9 +15,7 @@ class CreateCalisanlarTable extends Migration
     {
         Schema::create('calisanlar', function (Blueprint $table) {
             $table->id('csatirid',11);
-            $table->string('ckayitno')->length(40);
-            $table->string('mysrefno')->length(40);
-            $table->string('mrefno')->length(20);
+            $table->string('mysrefno')->length(40)->nullable();
             $table->string('ctckn')->length(20);
             $table->string('cadi')->length(50);
             $table->string('csoyadi')->length(40);
@@ -29,7 +27,7 @@ class CreateCalisanlarTable extends Migration
             $table->string('cevadresilce')->length(50);
             $table->string('cevadresil')->length(50);
             $table->string('ceposta')->length(50);
-            $table->string('cwhatsapp')->length(50);
+            $table->string('cwhatsapp')->length(50)->nullable();
         });
     }
 

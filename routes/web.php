@@ -37,12 +37,12 @@ Route::get('gorev_yonetimi', function () {
 Route::get('calisan_ekle', function () {
     return view('calisan_ekle');
 });
-Route::post('/calisanEkle', [CalisanlarController::class,'calisanEkle'])->name('calisanEkle');
 
-Route::get('/calisanBilgileriDuzenle/{ckayitno}', [CalisanlarController::class, 'calisanDuzenle'])->name('calisanDuzenle');
-Route::get('/calisanGuncelle/{ckayitno}', [CalisanlarController::class, 'calisanGuncelle'])->name('calisanGuncelle');
-Route::get('/calisanSil/{ckayitno}',[CalisanlarController::class, 'calisanSil'])->name('calisanSil');
-Route::get('calisanlar', [CalisanlarController::class, 'index']);
+Route::post('/calisan', [CalisanlarController::class,'calisanEkle'])->name('calisan.ekle');
+Route::get('/calisan/{ctckn}', [CalisanlarController::class, 'calisanDuzenle'])->name('calisan.duzenle');
+Route::put('/calisan/{ctckn}', [CalisanlarController::class, 'calisanGuncelle'])->name('calisan.guncelle');
+Route::delete('/calisan/{ctckn}',[CalisanlarController::class, 'calisanSil'])->name('calisan.sil');
+Route::get('calisanlar', [CalisanlarController::class, 'index'])->name('calisan.index');
 
 Route::get('teklif_yonetimi', function () {
     return view('teklif_yonetimi');
@@ -87,3 +87,5 @@ Route::get('/musteri/giris_yap', function () {
 Route::get('giris_yap', function () {
     return view('firma_giris_yap');
 });
+
+

@@ -38,53 +38,116 @@
             <div class="layout-px-spacing">
 
                 <!-- CONTENT AREA -->
+                <div class="page-header">
+                    <nav class="breadcrumb-one" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">MYS</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Görev Yönetimi</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Çalışanlar</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">{{$calisanlar->cadi}} {{$calisanlar->csoyadi}}</a></li>
+                        </ol>
+                    </nav>
+                </div>
                 <div class="row">
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if(Session::has("success"))
+                        <div class="alert alert-success">
+                            {{Session::get("success")}}
+                        </div>
+                    @endif
+                    @if(Session::has("eksikTel"))
+                        <div class="alert alert-danger">
+                            {{Session::get("eksikTel")}}
+                        </div>
+                    @endif
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-top-spacing layout-spacing">
                         <div class="widget widget-content-area br-4">
                             <div class="widget-one">
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <form id="kisiBilgileri" class="section contact"  method="post" action="{{route('calisanGuncelle', $calisanlar->ckayitno)}}">
+                                    <form id="kisiBilgileri" class="section contact" method="post" action="{{route('calisan.guncelle',["ctckn" => $calisanlar->ctckn])}}" >
                                         @csrf
                                         @method("put")
                                         <div class="info">
-                                            <h5 class="">Kişi Bilgileri</h5>
+                                            <h5 style="text-decoration: underline;">Çalışan Bilgilerini Güncelleme</h5>
                                             <div class="row">
                                                 <div class="col-md-11 mx-auto">
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="ad">Ad</label>
-                                                                <input type="text" class="form-control mb-4"  name="cadi" placeholder="Ad" value="{{$calisanlar->cadi}}" readonly>
+                                                                <input type="text" class="form-control mb-4"  name="cadi"  value="{{$calisanlar->cadi}}" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="soyad">Soyad</label>
-                                                                <input type="text" class="form-control mb-4" name="csoyadi"  placeholder="Soyad" value="{{$calisanlar->csoyadi}}" readonly>
+                                                                <input type="text" class="form-control mb-4" name="csoyadi"   value="{{$calisanlar->csoyadi}}" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <label for="location">Adres</label>
-                                                                <input type="text" class="form-control mb-4" name="cevadresil" id="location" placeholder="Adres" value="{{$calisanlar->cevadresil}}" required>
+                                                                <label for="tckn">TCKN</label>
+                                                                <input type="text" class="form-control mb-4" name="ctckn"   value="{{$calisanlar->ctckn}}" readonly>
                                                             </div>
                                                         </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="dg">Doğum Günü</label>
+                                                                <input type="text" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$calisanlar->cdogum}}" readonly>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-md-1 pr-0">
+                                                                <div class="form-group">
+                                                                    <label for="phone">Ülke Kodu</label>
+                                                                    <select class="placeholder js-states form-control" name="ukodutel">
+                                                                        <option>{{$calisanlar->ukodutel}}</option>
+                                                                        <option value="90">90</option>
+                                                                        <option value="49">49</option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="7">7</option>
+                                                                        <option value="380">380</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="phone">Telefon Numarası</label>
-                                                                <input type="text" class="form-control mb-4" name="ctel" id="phone" placeholder="Telefon Numarası" value="{{$calisanlar->ctel}}" required>
+                                                                <input type="text" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="ctel" id="phone" placeholder="Telefon Numarası" value="{{$calisanlar->ctel}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="email">Eposta</label>
-                                                                <input type="text" class="form-control mb-4" name="ceposta" id="email" placeholder="Eposta" value="{{$calisanlar->ceposta}}" required>
+                                                                <input type="text" class="form-control mb-4" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="ceposta" id="email" placeholder="Eposta" value="{{$calisanlar->ceposta}}" required>
                                                             </div>
                                                         </div>                                    
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="website1">Ünvan</label>
-                                                                <input type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" value="{{$calisanlar->cunvani}}" required>
+                                                                <input type="text" class="form-control mb-4" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="cunvani" id="website1" placeholder="Ünvan" value="{{$calisanlar->cunvani}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="location">İl</label>
+                                                                <input type="text" class="form-control mb-4" id="cevadresil" onkeyup="ilAdresiBuyuk()" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="cevadresil" id="location" placeholder="Adres - İl" value="{{$calisanlar->cevadresil}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="location">İlçe</label>
+                                                                <input type="text" class="form-control mb-4" id="cevadresilce" onkeyup="ilceAdresiBuyuk()" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="cevadresilce" id="location" placeholder="Adres - İlçe" value="{{$calisanlar->cevadresilce}}" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -94,9 +157,6 @@
                                     </div>
                                     <div class="account-settings-footer justify-content-center fixed-bottom">
                                     <div class="as-footer-container justify-content-center text-center">
-                                        <div class="blockui-growl-message">
-                                            <i class="flaticon-double-check"></i>&nbsp; Değişiklikler Başarıyla Kaydedildi
-                                        </div>
                                             <button type="submit" id="multiple-messages" class="btn btn-primary">Güncelle</button>
                                         </div>
                                     </form>
@@ -133,7 +193,7 @@
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     <script src="{{ asset('assets/js/users/account-settings.js') }}"></script>
-    <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
+    <script src="{{ asset('assets/js/inputController.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 </html>
