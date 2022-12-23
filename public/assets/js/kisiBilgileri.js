@@ -58,7 +58,11 @@ function musteriBilgileri(id) {
 function changeFields(kayit) {
     if (kayit == "Ticari Müşteri") {
         $("#hk-tcknvno").attr("placeholder", "Vergi No");
+        $("#bireysel-bilgiler1").hide();
+        $("#bireysel-bilgiler2").hide();
     } else {
         $("#hk-tcknvno").attr("placeholder", "TCKN/Vergi No");
+        $("#bireysel-bilgiler1").show();
+        $("#bireysel-bilgiler2").show();
     }
 }

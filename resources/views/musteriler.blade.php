@@ -27,6 +27,7 @@
 
   <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
+
   <!-- BEGIN PAGE LEVEL CUSTOM STYLES -->
   <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/datatables.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/custom_dt_html5.css') }}" />
@@ -56,6 +57,31 @@
       /* Firefox */
       input[type=number] {
         -moz-appearance: textfield;
+      }
+
+      .btn {
+        padding: 0.4375rem 1.25rem !important;
+        text-shadow: none !important;
+        font-size: 14px !important;
+        color: #3b3f5c;
+        font-weight: normal !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        transition: .2s ease-out !important;
+        touch-action: manipulation !important;
+        cursor: pointer !important;
+        background-color: #f1f2f3;
+        box-shadow: 0px 5px 20px 0 rgb(0 0 0 / 10%);
+        will-change: opacity, transform !important;
+        transition: all 0.3s ease-out !important;
+        -webkit-transition: all 0.3s ease-out !important;
+      }
+
+      .btn-secondary {
+        color: #fff !important;
+        background-color: #805dca !important;
+        border-color: #805dca !important;
+        box-shadow: 0 10px 20px -10px #805dca !important;
       }
   </style>
       <link href="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" type="text/css" />
@@ -90,6 +116,13 @@
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content widget-content searchable-container list">
       <div class="layout-px-spacing">
+
+        @if(session()->has("success"))
+            <div class="alert alert-success">
+                {{session("success")}}
+            </div>
+        @endif
+
         <div class="modal fade" id="addContactModal" tabmys_index="-1" role="dialog"
           aria-labelledby="addContactModalTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -152,49 +185,50 @@
                           </div>
                       </div>
                       <div class="widget-content widget-content-area">
-                      <form id="hizlikayit_form">
+                      <form id="hizlikayit_form" method="POST" action="{{ route('musteriEkle') }}">
+                        @csrf
                           <div id="example-basic">
                               <h3>Ön Bilgiler</h3>
                               <section>
                                 <div class="row py-3">
                                 <div class="col-6">
-                                  <select class="form-control form-control-sm" id="hk-kayitturu" onchange="changeFields(this.value)">
+                                  <select class="form-control form-control-sm" name="mkayitturu" id="hk-kayitturu" onchange="changeFields(this.value)">
                                     <option value="Kayıt Türü">Kayıt Türü</option>
-                                    <option value="Bireysel Müşteri">Bireysel</option>
-                                    <option value="Ticari Müşteri">Ticari</option>
+                                    <option value="Bireysel">Bireysel</option>
+                                    <option value="Ticari">Ticari</option>
                                     <option value="Tedarikçi">Tedarikçi</option>
                                     <option value="Müşteri Adayı">Müşteri Adayı</option>
                                     <option value="Diğer">Diğer</option>
                                   </select>
                                 </div>
                                 <div class="col-6">
-                                    <input id="hk-tcknvno" type="number" name="hk-tcknvno" placeholder="TCKN/Vergi No" class="form-control form-control-sm" required>
+                                    <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" class="form-control form-control-sm" required>
                                 </div>
                                 </div>
                                   <div class="row py-3">
 
                                     <div class="col">
-                                      <input id="hk-marka" type="text" name="hk-marka" placeholder="Marka Adı" class="form-control form-control-sm" required>
+                                      <input id="hk-marka" type="text" name="mtmarkaadi" placeholder="Marka Adı" class="form-control form-control-sm" required>
                                     </div>
                                   </div>
 
-                                  <div class="row py-3">                                    
+                                  <div class="row py-3" id="bireysel-bilgiler1">                                    
                                     <div class="col">
-                                      <input id="hk-ad" type="text" name="hk-ad" placeholder="Adı" class="form-control form-control-sm" required>
+                                      <input id="hk-ad" type="text" name="mbadi" placeholder="Adı" class="form-control form-control-sm" required>
                                     </div>
                                     
                                     <div class="col">
-                                      <input id="hk-soyad" type="text" name="hk-soyad" placeholder="Soyadı" class="form-control form-control-sm" required>
+                                      <input id="hk-soyad" type="text" name="mbsoyadi" placeholder="Soyadı" class="form-control form-control-sm" required>
                                     </div>
                                   </div>
 
-                                  <div class="row py-3">                                   
+                                  <div class="row py-3" id="bireysel-bilgiler2">                                   
                                     <div class="col">
-                                      <input id="hk-unvan" type="text" name="hk-unvan" placeholder="Unvanı" class="form-control form-control-sm">
+                                      <input id="hk-unvan" type="text" name="mbunvani" placeholder="Unvanı" class="form-control form-control-sm">
                                     </div>
                                     
                                     <div class="col">
-                                      <input id="basicFlatpickr" value="" class="form-control form-control-sm flatpickr flatpickr-input active" type="text" placeholder="Doğum Günü">
+                                      <input id="basicFlatpickr" value="" name="mbdogumgunu" class="form-control form-control-sm flatpickr flatpickr-input active" type="text" placeholder="Doğum Günü">
                                     </div>
                                   </div>
 
@@ -203,35 +237,34 @@
                               <h3>İletişim</h3>
                               <section>
                                 <div class="form-group mb-4">
-                                  <textarea placeholder="Adres" class="form-control" name="hk-adres" id="hk-adres" rows="3"></textarea>
+                                  <textarea placeholder="Adres" class="form-control" name="madres" id="hk-adres" rows="3"></textarea>
                               </div>
 
                               <div class="row">
                                 <div class="col-4">
-                                  <input id="hk-bolge" type="text" name="hk-bolge" placeholder="Bölge" class="form-control form-control-sm" required>
+                                  <input id="hk-bolge" type="text" name="mbolge" placeholder="Bölge" class="form-control form-control-sm" required>
                                 </div>
                                 <div class="col-4">
-                                  <input id="hk-ilce" type="text" name="hk-ilce" placeholder="İlçe" class="form-control form-control-sm" required>
+                                  <input id="hk-ilce" type="text" name="milce" placeholder="İlçe" class="form-control form-control-sm" required>
                                 </div>
                                 <div class="col-4">
-                                  <input id="hk-il" type="text" name="hk-il" placeholder="İl" class="form-control form-control-sm" required>
+                                  <input id="hk-il" type="text" name="mil" placeholder="İl" class="form-control form-control-sm" required>
                                 </div>
                               </div>
 
                               <div class="row py-3">
                                 <div class="col-6">
-                                  <input id="ph-number" type="text" name="hk-mobil" placeholder="Mobil" class="form-control form-control-sm" required>
+                                  <input id="ph-number" type="text" name="mmobil" placeholder="Mobil" class="form-control form-control-sm" required>
                                 </div>
                                 <div class="col-3">
-                                  <input id="hk-enlem" type="text" name="hk-enlem" placeholder="Enlem" class="form-control form-control-sm" required>
+                                  <input id="hk-enlem" type="text" name="menlem" placeholder="Enlem" class="form-control form-control-sm" required>
                                 </div>
                                 <div class="col-3">
-                                  <input id="hk-boylam" type="text" name="hk-boylam" placeholder="Boylam" class="form-control form-control-sm" required>
+                                  <input id="hk-boylam" type="text" name="mboylam" placeholder="Boylam" class="form-control form-control-sm" required>
                                 </div>
                               </div>
                               </section>
                           </div>
-                      </form>
                       </div>
                   </div>
                   </div>
@@ -242,9 +275,10 @@
 
                 <button class="btn" data-dismiss="modal"> <i class="flaticon-delete-1"></i> İptal Et</button>
 
-                <button id="btn-add" class="btn">Ekle</button>
+                <button role="submit" id="btn-add" class="btn">Ekle</button>
               </div>
             </div>
+          </form>
           </div>
         </div>
 
