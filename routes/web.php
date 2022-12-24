@@ -20,7 +20,13 @@ Route::get('/', function () {
 });
 
 Route::get('/musteriler', [MusterilerController::class, 'index']);
-Route::post('/musteriler', [MusterilerController::class, 'store'])->name('musteriEkle');
+Route::post('/musteriler', [MusterilerController::class, 'store'])->name('musteri.hizlikayit');
+Route::post('/musteri', [MusterilerController::class, 'musteriEkle'])->name('musteri.ekle');
+Route::get('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriDuzenle'])->name('musteri.duzenle');
+Route::put('/calisan/{mtcknvno}', [MusterilerController::class, 'musteriGuncelle'])->name('musteri.guncelle');
+Route::delete('/calisan/{mtcknvno}',[MusterilerController::class, 'musteriSil'])->name('musteri.sil');
+
+
 
 
 Route::get('/musteri_ekle', function () {

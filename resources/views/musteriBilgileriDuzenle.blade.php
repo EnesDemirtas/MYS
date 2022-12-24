@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -83,8 +83,9 @@
                                     <h3 style="color:blue;text-decoration:underline;">MÜŞTERİ EKLE</h3>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <form id="kisiBilgileri" class="section contact p-4" method="post" action="{{route('musteri.ekle')}}">
+                                    <form id="kisiBilgileri" class="section contact p-4" method="post" action="{{route('musteri.guncelle',["mtcknvno" => $musteri->mtcknvno])}}">
                                         @csrf
+                                        @method("PUT")
                                         <div id="example-basic">
                                             <h3>Ön Bilgiler</h3>
                                             <section>
@@ -92,74 +93,74 @@
                                               <div class="col-3">
                                                 <select class="form-control" name="mkayitturu" id="hk-kayitturu" onchange="changeFieldsMusteri(this.value)">
                                                   <option value="Kayıt Türü">Kayıt Türü</option>
-                                                  <option value="Bireysel">Bireysel</option>
-                                                  <option value="Ticari">Ticari</option>
-                                                  <option value="Tedarikçi">Tedarikçi</option>
-                                                  <option value="Müşteri Adayı">Müşteri Adayı</option>
-                                                  <option value="Diğer">Diğer</option>
+                                                  <option value="Bireysel" {{ $musteri->mkayitturu == 'Bireysel' ? 'selected' : '' }}>Bireysel</option>
+                                                  <option value="Ticari" {{ $musteri->mkayitturu == 'Ticari' ? 'selected' : '' }}>Ticari</option>
+                                                  <option value="Tedarikçi" {{ $musteri->mkayitturu == 'Tedarikçi' ? 'selected' : '' }}>Tedarikçi</option>
+                                                  <option value="Müşteri Adayı" {{ $musteri->mkayitturu == 'Müşteri Adayı' ? 'selected' : '' }}>Müşteri Adayı</option>
+                                                  <option value="Diğer" {{ $musteri->mkayitturu == 'Diğer' ? 'selected' : '' }}>Diğer</option>
                                                 </select>
                                               </div>
                                                 <div class="col-3">
                                                     <select class="form-control" name="mturu" id="hk-mturu">
                                                         <option value="Müşteri Türü">Müşteri Türü</option>
-                                                        <option value="Gerçek">Gerçek Kişi</option>
-                                                        <option value="Tüzel">Tüzel Kişi</option>
+                                                        <option value="Gerçek" {{ $musteri->mturu == 'Gerçek' ? 'selected' : '' }}>Gerçek Kişi</option>
+                                                        <option value="Tüzel" {{ $musteri->mturu == 'Tüzel' ? 'selected' : '' }}>Tüzel Kişi</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-3">
-                                                    <input id="hk-marka" type="text" name="mtmarkaadi" placeholder="Marka Adı" class="form-control" required>
+                                                    <input id="hk-marka" type="text" name="mtmarkaadi" placeholder="Marka Adı" value="{{ $musteri->mtmarkaadi }}" class="form-control" required>
                                                   </div>
                                                 <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-onunvan" type="text" name="monunvan" placeholder="Unvanı" class="form-control">
+                                                        <input id="hk-onunvan" type="text" name="monunvan" placeholder="Unvanı" value="{{ $musteri->monunvan }}" class="form-control">
                                                 </div>
                                                 <div class="col-3 ticaribilgi">
-                                                    <input id="hk-sube" type="text" name="mtsubeadi" placeholder="Şube Adı" class="form-control">
+                                                    <input id="hk-sube" type="text" name="mtsubeadi" placeholder="Şube Adı" value="{{ $musteri->mtsubeadi }}" class="form-control">
                                               </div>
                                                 </div>
                                                 <div class="row py-3">
               
                                                     <div class="col-3">
-                                                        <input id="hk-vdaire" type="text" name="mvdairesi" placeholder="Vergi Dairesi" class="form-control">
+                                                        <input id="hk-vdaire" type="text" name="mvdairesi" placeholder="Vergi Dairesi" value="{{ $musteri->mvdairesi }}" class="form-control">
                                                     </div>
                                                   <div class="col-3">
-                                                        <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" class="form-control" required>
+                                                        <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" value="{{ $musteri->mtcknvno }}" class="form-control" required>
                                                   </div>
 
                                                   <div class="col-3 bireyselbilgi">
-                                                    <input id="hk-ad" type="text" name="mbadi" placeholder="Adı" class="form-control">
+                                                    <input id="hk-ad" type="text" name="mbadi" placeholder="Adı" value="{{ $musteri->mbadi }}" class="form-control">
                                                   </div>
                                                   <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-soyad" type="text" name="mbsoyadi" placeholder="Soyadı" class="form-control">
+                                                        <input id="hk-soyad" type="text" name="mbsoyadi" placeholder="Soyadı" value="{{ $musteri->mbsoyadi }}" class="form-control">
                                                   </div>
                                                   <div class="col-3 ticaribilgi">
-                                                    <input id="hk-kisaltma" type="text" name="mtkisaltmasi" placeholder="Kısaltma" class="form-control">
+                                                    <input id="hk-kisaltma" type="text" name="mtkisaltmasi" placeholder="Kısaltma" value="{{ $musteri->mtkisaltmasi }}" class="form-control">
                                                   </div>
                                                   <div class="col-3 ticaribilgi">
-                                                        <input id="hk-tamunvan" type="text" name="firmatamunvan" placeholder="Firma Tam Unvan" class="form-control">
+                                                        <input id="hk-tamunvan" type="text" name="firmatamunvan" placeholder="Firma Tam Unvan" value="{{ $musteri->firmatamunvan }}" class="form-control">
                                                   </div>
                                                 </div> 
                                                 <div class="row py-3">
                                                     <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-firma" type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" class="form-control">
+                                                        <input id="hk-firma" type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" value="{{ $musteri->mbfirmaadi }}" class="form-control">
                                                       </div>
                                                       <div class="col-3 bireyselbilgi">
-                                                            <input id="hk-unvan" type="text" name="mbunvani" placeholder="Unvanı/Mesleği" class="form-control">
+                                                            <input id="hk-unvan" type="text" name="mbunvani" placeholder="Unvanı/Mesleği" value="{{ $musteri->mbunvani }}" class="form-control">
                                                       </div>  
                                                       <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-dogum" type="text" name="mbdogumgunu" placeholder="Doğum Tarihi" class="form-control" onfocus="(this.type='date')">
+                                                        <input id="hk-dogum" type="text" name="mbdogumgunu" placeholder="Doğum Tarihi" value="{{ date('d.m.Y', strtotime($musteri->mbdogumgunu)) }}" class="form-control" onfocus="(this.type='date')">
                                                       </div>  
                                                       <div class="col-3 ticaribilgi">
-                                                        <input id="hk-unvandevami" type="text" name="mtunvandevami" placeholder="Unvan Devamı" class="form-control">
+                                                        <input id="hk-unvandevami" type="text" name="mtunvandevami" placeholder="Unvan Devamı" value="{{ $musteri->mtunvandevami }}" class="form-control">
                                                       </div>
                                                       <div class="col-3 ticaribilgi">
-                                                            <input id="hk-ticaretsicil" type="number" name="mtsno" placeholder="Ticaret Sicil No" class="form-control">
+                                                            <input id="hk-ticaretsicil" type="number" name="mtsno" placeholder="Ticaret Sicil No" value="{{ $musteri->mtsno }}" class="form-control">
                                                       </div>
 
                                                       <div class="col-3 ticaribilgi">
-                                                        <input id="hk-odasicil" type="number" name="mosno" placeholder="Oda Sicil No" class="form-control">
+                                                        <input id="hk-odasicil" type="number" name="mosno" placeholder="Oda Sicil No" value="{{ $musteri->mosno }}" class="form-control">
                                                       </div>
                                                       <div class="col-3 ticaribilgi">
-                                                            <input id="hk-mersis" type="number" name="mmno" placeholder="Mersis No" class="form-control">
+                                                            <input id="hk-mersis" type="number" name="mmno" placeholder="Mersis No" value="{{ $musteri->mmno }}" class="form-control">
                                                       </div>
                                                 </div>             
                                             </section>
@@ -167,40 +168,40 @@
                                             <section>
                                                 <div class="row py-3">
                                                     <div class="col-3">
-                                                        <input id="hk-banka" type="text" name="mbankadi" placeholder="Banka Adı" class="form-control">
+                                                        <input id="hk-banka" type="text" name="mbankadi" placeholder="Banka Adı" value="{{ $musteri->mbankadi }}" class="form-control">
                                                       </div>
                                                       <div class="col-3">
-                                                            <input id="hk-iban" type="text" name="miban" placeholder="IBAN" class="form-control">
+                                                            <input id="hk-iban" type="text" name="miban" placeholder="IBAN" value="{{ $musteri->miban }}" class="form-control">
                                                       </div>  
                                                     <div class="col-md-1 pr-0">
                                                         <div class="form-group">
                                                             <select class="placeholder js-states form-control" name="mukodutel">
-                                                                <option value="90">+90</option>
-                                                                <option value="49">+49</option>
-                                                                <option value="1">+1</option>
-                                                                <option value="7">+7</option>
-                                                                <option value="380">+380</option>
+                                                                <option value="90" {{ $musteri->mukodutel == '90' ? 'selected' : '' }}>+90</option>
+                                                                <option value="49" {{ $musteri->mukodutel == '49' ? 'selected' : '' }}>+49</option>
+                                                                <option value="1" {{ $musteri->mukodutel == '1' ? 'selected' : '' }}>+1</option>
+                                                                <option value="7" {{ $musteri->mukodutel == '7' ? 'selected' : '' }}>+7</option>
+                                                                <option value="380" {{ $musteri->mukodutel == '380' ? 'selected' : '' }}>+380</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 <div class="col-md-2 pl-1">
                                                     <div class="form-group">
-                                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="mmobil" id="phone" placeholder="Cep Telefonu" >
+                                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="mmobil" value="{{ str_replace($musteri->mukodutel, '', $musteri->mmobil) }}" id="phone" placeholder="Cep Telefonu" >
                                                     </div>
                                                 </div> 
                                                 <div class="col-3">
-                                                    <input id="hk-mtel" name="mtel" input="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Telefon" class="form-control">
+                                                    <input id="hk-mtel" name="mtel" input="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Telefon" value="{{ $musteri->mtel }}" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row py-3">
                                                 <div class="col-3">
-                                                    <input id="hk-eposta" type="email" name="meposta" placeholder="E-Posta" class="form-control">
+                                                    <input id="hk-eposta" type="email" name="meposta" placeholder="E-Posta" value="{{ $musteri->meposta }}" class="form-control">
                                                   </div>
                                                   <div class="col-3">
-                                                    <input id="hk-website" type="text" name="mweb" placeholder="Web Site" class="form-control">
+                                                    <input id="hk-website" type="text" name="mweb" placeholder="Web Site" value="{{ $musteri->mweb }}" class="form-control">
                                                   </div>  
                                                   <div class="col-3">
-                                                    <input id="hk-fax" type="text" name="mfaks" placeholder="Faks" class="form-control">
+                                                    <input id="hk-fax" type="text" name="mfaks" placeholder="Faks" value="{{ $musteri->mfaks }}" class="form-control">
                                                   </div>
                                                 </div>
 
@@ -210,36 +211,36 @@
                                                 <div class="row py-3">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <textarea class="form-control mb-4" id="madres" name="madres" placeholder="Adres" rows="2"></textarea>
+                                                            <textarea class="form-control mb-4" id="madres" name="madres" placeholder="Adres" rows="2">{{ $musteri->madres }}</textarea>
                                                         </div>
                                                     </div>  
                                                     
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <textarea class="form-control mb-4" id="mnot" name="mnot" placeholder="Notlar" rows="2"></textarea>
+                                                            <textarea class="form-control mb-4" id="mnot" name="mnot" placeholder="Notlar" rows="2">{{ $musteri->mnot }}</textarea>
                                                         </div>
                                                     </div>  
                                                 </div> 
                                                 <div class="row py-3">
                                                     <div class="col-2">
-                                                        <input id="hk-bolge" type="text" name="mbolge" placeholder="Bölge" class="form-control">
+                                                        <input id="hk-bolge" type="text" name="mbolge" placeholder="Bölge" value="{{ $musteri->mbolge }}" class="form-control">
                                                       </div>  
                                                     <div class="col-2">
-                                                        <input id="hk-ilce" type="text" name="milce" placeholder="İlçe" class="form-control">
+                                                        <input id="hk-ilce" type="text" name="milce" placeholder="İlçe" value="{{ $musteri->milce }}" class="form-control">
                                                       </div>  
                                                       <div class="col-2">
-                                                        <input id="hk-il" type="text" name="mil" placeholder="İl" class="form-control">
+                                                        <input id="hk-il" type="text" name="mil" placeholder="İl" value="{{ $musteri->mil }}" class="form-control">
                                                       </div>
                                                       <div class="col-3">
-                                                        <input id="hk-enlem" type="number" name="menlem" placeholder="Enlem" class="form-control">
+                                                        <input id="hk-enlem" type="number" name="menlem" placeholder="Enlem" value="{{ $musteri->menlem }}" class="form-control">
                                                       </div>  
                                                       <div class="col-3">
-                                                        <input id="hk-boylam" type="number" name="mboylam" placeholder="Boylam" class="form-control">
+                                                        <input id="hk-boylam" type="number" name="mboylam" placeholder="Boylam" value="{{ $musteri->mboylam }}" class="form-control">
                                                       </div>
                                                 </div>
                                                 <div class="account-settings-footer justify-content-center fixed-bottom">
                                                     <div class="as-footer-container text-center justify-content-center">
-                                                        <button type="submit" class="btn btn-primary">Müşteriyi Ekle</button>
+                                                        <button type="submit" id="multiple-messages" class="btn btn-primary">Müşteriyi Ekle</button>
                                                     </div> 
                                                 </div> 
                                             </section>

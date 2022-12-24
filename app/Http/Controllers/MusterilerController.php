@@ -12,12 +12,18 @@ class MusterilerController extends Controller {
         return view('musteriler', ['musteriler' => musteri::all()]);
     }
 
+    public function musteriDuzenle($mtcknvno)
+    {
+        return view('musteriBilgileriDuzenle',['musteri' => musteri::where('mtcknvno',$mtcknvno)->first()]);
+    }
+
     public function store(Request $request) {
         // Validate data
         $formFields = $request->validate([
             'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
             'mtcknvno' => 'required|numeric',
             'mtmarkaadi' => 'required',
+            'monunvan' => 'string',
             'mbadi' => 'required',
             'mbsoyadi' => 'required',
             'mbdogumgunu' => 'required|before:today',
@@ -35,4 +41,31 @@ class MusterilerController extends Controller {
     return redirect('musteriler')->with('success', 'Kayıt Başarıyla Eklendi');
     }
 
+    public function musteriEkle(Request $request) {
+        // Validate data
+        $request->validate([
+            'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
+            'mtcknvno' => 'required|numeric',
+            'mtmarkaadi' => 'required'
+        ]);
+
+        if (musteri::where('mtcknvno', $request->mtcknvno)->exists()) {
+            return redirect()->back()->with('error', 'Bu TCKN/Vergi No ile kayıtlı bir müşteri bulunmaktadır.');
+        } else {
+            musteri::create($request->all());
+            return redirect('musteriler')->with('success', 'Kayıt Başarıyla Eklendi');
+        }
+
+    }
+
+    public function musteriGuncelle(Request $request, $mtcknvno) {
+        $request['mbdogumgunu'] = date('Y-m-d H:i:s', strtotime($request['mbdogumgunu']));
+        musteri::where('mtcknvno', $mtcknvno)->update($request->except(['_token', '_method']));
+        return redirect('musteriler')->with('success', 'Kayıt Başarıyla Güncellendi');
+    }
+
+    public function musteriSil($mtcknvno){
+        musteri::where('mtcknvno', $mtcknvno)->delete();
+        return redirect()->back()->with("success","Müşteri Başarıyla Silindi.");
+    }
 }

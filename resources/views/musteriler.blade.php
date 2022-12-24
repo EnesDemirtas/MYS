@@ -9,6 +9,9 @@
   <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}" />
   <!-- BEGIN GLOBAL MANDATORY STYLES -->
   <x-global-mandatory.styles />
+  <link href="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" type="text/css" />
+  <link href="assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- END GLOBAL MANDATORY STYLES -->
 
   <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -32,6 +35,8 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/datatables.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/custom_dt_html5.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/dt-global_style.css') }}" />
+  <link href="{{ asset('assets/css/apps/invoice-list.css') }}" rel="stylesheet" type="text/css" />
+
 
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/theme-checkbox-radio.css') }}" />
   <link href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" type="text/css" />
@@ -59,7 +64,7 @@
         -moz-appearance: textfield;
       }
 
-      .btn {
+      .modal-footer > .btn {
         padding: 0.4375rem 1.25rem !important;
         text-shadow: none !important;
         font-size: 14px !important;
@@ -77,7 +82,7 @@
         -webkit-transition: all 0.3s ease-out !important;
       }
 
-      .btn-secondary {
+      .modal-footer > .btn-secondary {
         color: #fff !important;
         background-color: #805dca !important;
         border-color: #805dca !important;
@@ -185,7 +190,7 @@
                           </div>
                       </div>
                       <div class="widget-content widget-content-area">
-                      <form id="hizlikayit_form" method="POST" action="{{ route('musteriEkle') }}">
+                      <form id="hizlikayit_form" method="POST" action="{{ route('musteri.hizlikayit') }}">
                         @csrf
                           <div id="example-basic">
                               <h3>Ön Bilgiler</h3>
@@ -224,7 +229,7 @@
 
                                   <div class="row py-3" id="bireysel-bilgiler2">                                   
                                     <div class="col">
-                                      <input id="hk-unvan" type="text" name="mbunvani" placeholder="Unvanı" class="form-control form-control-sm">
+                                      <input id="hk-unvan" type="text" name="monunvan" placeholder="Unvanı" class="form-control form-control-sm">
                                     </div>
                                     
                                     <div class="col">
@@ -253,9 +258,22 @@
                               </div>
 
                               <div class="row py-3">
-                                <div class="col-6">
-                                  <input id="ph-number" type="text" name="mmobil" placeholder="Mobil" class="form-control form-control-sm" required>
+                                <div class="col-3 pr-0">
+                                  <div class="form-group">
+                                      <select class="placeholder js-states form-control form-control-sm" name="mukodutel">
+                                          <option value="90">+90</option>
+                                          <option value="49">+49</option>
+                                          <option value="1">+1</option>
+                                          <option value="7">+7</option>
+                                          <option value="380">+380</option>
+                                      </select>
+                                  </div>
                                 </div>
+                                  <div class="col-3 pl-1">
+                                    <div class="form-group">
+                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm mb-4" name="mmobil" id="phone" placeholder="Telefon" >
+                                    </div>
+                                </div> 
                                 <div class="col-3">
                                   <input id="hk-enlem" type="text" name="menlem" placeholder="Enlem" class="form-control form-control-sm" required>
                                 </div>
