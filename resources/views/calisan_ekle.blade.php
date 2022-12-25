@@ -80,19 +80,19 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="ad">Ad</label>
-                                                        <input type="text" class="form-control mb-4" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' onkeyup="ilkHarfBuyuk()" id="cadi" name="cadi" placeholder="Ad" >
+                                                        <input type="text" class="form-control mb-4" onkeyup="ilkHarfBuyuk()" id="cadi" name="cadi" placeholder="Ad" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="soyad">Soyad</label>
-                                                        <input type="text" class="form-control mb-4" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' onkeyup="soyadBuyuk()" id="csoyadi" name="csoyadi"  placeholder="Soyad" >
+                                                        <input type="text" class="form-control mb-4" onkeyup="soyadBuyuk()" id="csoyadi" name="csoyadi"  placeholder="Soyad" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="ad">TCKN</label>
-                                                        <input type="text" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="ctckn" name="ctckn" placeholder="TCKN" >
+                                                        <input type="text" maxlength="11" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="ctckn" name="ctckn" placeholder="TCKN" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -109,10 +109,10 @@
                                                 </div>  
                                                 </div>
                                             </section>
-                                            <h3>İletişim</h3>
+                                            <h3>İletişim & Pozisyon</h3>
                                             <section>
                                                 <div class="row">
-                                                    <div class="col-md-2 pr-0">
+                                                    <div class="col-md-1 pr-0">
                                                         <div class="form-group">
                                                             <label for="phone">Ülke Kodu</label>
                                                             <select class="placeholder js-states form-control" name="ukodutel">
@@ -124,41 +124,47 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                <div class="col-md-4 pl-1">
+                                                <div class="col-md-3 pl-1">
                                                     <div class="form-group">
                                                         <label for="phone">Telefon Numarası</label>
                                                         <input type="text" maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="ctel" id="phone" placeholder="Örnek: (5**) *** ** **" >
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="email">Eposta</label>
                                                         <input type="text" class="form-control mb-4" name="ceposta" id="email" placeholder="Eposta" >
                                                     </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="website1">Ünvan</label>
+                                                        <input type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" >
+                                                    </div>
                                                 </div>    
                                                 </div>
                                             </section>
-                                            <h3>Adres & Pozisyon</h3>
+                                            <h3>Adres</h3>
                                             <section>
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="location">İl</label>
-                                                            <input type="text" class="form-control mb-4" id="cevadresil" onkeyup="ilAdresiBuyuk()" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="cevadresil" placeholder="İl" >
+                                                            <input type="text" class="form-control mb-4" id="cevadresil" onkeyup="ilAdresiBuyuk()" name="cevadresil" placeholder="İl" >
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="location">İlçe</label>
-                                                            <input type="text" class="form-control mb-4" id="cevadresilce" onkeyup="ilceAdresiBuyuk()" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="cevadresilce" placeholder="İlçe" >
+                                                            <input type="text" class="form-control mb-4" id="cevadresilce" onkeyup="ilceAdresiBuyuk()" name="cevadresilce" placeholder="İlçe" >
                                                         </div>
-                                                    </div>   
+                                                    </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="website1">Ünvan</label>
-                                                            <input type="text" class="form-control mb-4" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="cunvani" id="website1" placeholder="Ünvan" >
+                                                            <label for="location">Adres</label>
+                                                            <textarea class="form-control mb-4" id="cadres" name="cadres" placeholder="Adres" rows="2"></textarea>
                                                         </div>
-                                                    </div>                               
+                                                    </div>                                  
                                                 </div> 
                                                 <div class="account-settings-footer justify-content-center fixed-bottom">
                                                     <div class="as-footer-container text-center justify-content-center">

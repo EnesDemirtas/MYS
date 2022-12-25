@@ -14,12 +14,12 @@ function soyadBuyuk() { // Kullanıcı Soyadını Büyük Yazdırır
 	x.value = x.value.toLocaleUpperCase("tr-TR");
 }
 
-function ilAdresiBuyuk() { // Kullanıcı Soyadını Büyük Yazdırır
+function ilAdresiBuyuk() { // İl Adresini Büyük Yazdırır
 	var x = document.getElementById("cevadresil");
 	x.value = x.value.toLocaleUpperCase("tr-TR");
 }
 
-function ilceAdresiBuyuk() { // Kullanıcı Soyadını Büyük Yazdırır
+function ilceAdresiBuyuk() { // İlçe Adresini Büyük Yazdırır
 	var x = document.getElementById("cevadresilce");
 	x.value = x.value.toLocaleUpperCase("tr-TR");
 }

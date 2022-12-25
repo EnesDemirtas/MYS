@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalisanlarController;
 use App\Http\Controllers\MusterilerController;
+use App\Http\Controllers\AnasayfaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,18 +16,15 @@ use App\Http\Controllers\MusterilerController;
 |
 */
 
-Route::get('/', function () {
-    return view('mys_index');
-});
+
+Route::get('/', [AnasayfaController::class, 'allData'])->name('anasayfa.index');
 
 Route::get('/musteriler', [MusterilerController::class, 'index']);
 Route::post('/musteriler', [MusterilerController::class, 'store'])->name('musteri.hizlikayit');
 Route::post('/musteri', [MusterilerController::class, 'musteriEkle'])->name('musteri.ekle');
 Route::get('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriDuzenle'])->name('musteri.duzenle');
-Route::put('/calisan/{mtcknvno}', [MusterilerController::class, 'musteriGuncelle'])->name('musteri.guncelle');
-Route::delete('/calisan/{mtcknvno}',[MusterilerController::class, 'musteriSil'])->name('musteri.sil');
-
-
+Route::put('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriGuncelle'])->name('musteri.guncelle');
+Route::delete('/musteri/{mtcknvno}',[MusterilerController::class, 'musteriSil'])->name('musteri.sil');
 
 
 Route::get('/musteri_ekle', function () {

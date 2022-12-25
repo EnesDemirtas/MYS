@@ -90,17 +90,17 @@ class CalisanlarController extends Controller
     $calisanSayisiBul = calisan::where('csatirid', '>=', '0')->get();
     $calisanSayisi = $calisanSayisiBul->count(); // Kaç çalışan olduğunu saydırır.
 
-        if($calisanTckn > 0){
+        if($calisanTckn > 0){ //Çalışan zaten sisteme kayıtlıysa error dönsün.
             return redirect()->back()->with("calisanKayitli","Eklemeye Çalıştığınız Kişi Zaten Sisteme Kayıtlı. Lütfen Bilgileri Kontrol Ederek Tekrar Deneyiniz!");
         }else if($calisanSayisi > 0){ // Tablo boş değilse
             $sonCalisan = calisan::orderBy('csatirid', 'desc')->first()->csatirid; //Son Çalışanın Satır ID'sini getirir.
             calisan::create($request->all());
             calisan::where('ctckn', $request->ctckn)->update( array('cwhatsapp'=>'wa.me/'.$request->ukodutel.''.$request->ctel.'', 'mysrefno'=>'sbe-'.$sonCalisan++.'') );
-            return redirect()->back()->with("success","Kayıt Başarıyla Eklendi! $calisanSayisi");
+            return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
         }else{ // Tablo Boşsa
             calisan::create($request->all());
             calisan::where('ctckn', $request->ctckn)->update( array('cwhatsapp'=>'wa.me/'.$request->ukodutel.''.$request->ctel.'', 'mysrefno'=>'sbe-1' ) );
-            return redirect()->back()->with("success","Kayıt Başarıyla Eklendi! $calisanSayisi");
+            return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
         }
     }
 
