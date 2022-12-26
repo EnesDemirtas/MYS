@@ -95,21 +95,27 @@
                                                         <input type="text" maxlength="11" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="ctckn" name="ctckn" placeholder="TCKN" >
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="ad">İşe Giriş Tarihi</label>
                                                         <input type="date" class="form-control mb-4"  name="cisegiris" placeholder="İşe Giriş Tarihi" >
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="ad">Doğum Günü</label>
                                                         <input type="date" class="form-control mb-4"  name="cdogum" placeholder="Doğum Günü" >
                                                     </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="website1">Ünvan</label>
+                                                        <input type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" >
+                                                    </div>
                                                 </div>  
                                                 </div>
                                             </section>
-                                            <h3>İletişim & Pozisyon</h3>
+                                            <h3>İletişim & Hesap Bilgileri</h3>
                                             <section>
                                                 <div class="row">
                                                     <div class="col-md-1 pr-0">
@@ -127,7 +133,7 @@
                                                 <div class="col-md-3 pl-1">
                                                     <div class="form-group">
                                                         <label for="phone">Telefon Numarası</label>
-                                                        <input type="text" maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="ctel" id="phone" placeholder="Örnek: (5**) *** ** **" >
+                                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="ctel" id="phone" placeholder="Örnek: (5**) *** ** **" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -138,8 +144,20 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="website1">Ünvan</label>
-                                                        <input type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" >
+                                                        <label for="cbanka">Banka Adı</label>
+                                                        <input type="text" maxlength="11" class="form-control mb-4" name="cbanka" id="cbanka" placeholder="Örnek: Yapıkredi">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="ciban">IBAN</label>
+                                                        <input type="text" maxlength="26"  class="form-control mb-4" name="ciban" id="ciban" placeholder="TR** **** **** **** **** **** **">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="chesapno">Hesap No</label>
+                                                        <input type="text" maxlength="26"  class="form-control mb-4" name="chesapno" id="chesapno" placeholder="Hesap Numarası">
                                                     </div>
                                                 </div>    
                                                 </div>
@@ -151,12 +169,18 @@
                                                         <div class="form-group">
                                                             <label for="location">İl</label>
                                                             <input type="text" class="form-control mb-4" id="cevadresil" onkeyup="ilAdresiBuyuk()" name="cevadresil" placeholder="İl" >
+                                                            <select id="Iller" class="placeholder js-states form-control">
+                                                                <option>Lütfen Bir İl Seçiniz</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="location">İlçe</label>
                                                             <input type="text" class="form-control mb-4" id="cevadresilce" onkeyup="ilceAdresiBuyuk()" name="cevadresilce" placeholder="İlçe" >
+                                                            <select id="Ilceler" disabled="disabled" class="placeholder js-states form-control">
+                                                                <option>Lütfen Bir İlçe Seçiniz</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -217,6 +241,7 @@
     <script src="assets/js/scrollspyNav.js"></script>
     <script src="plugins/jquery-step/jquery.steps.min.js"></script>
     <script src="plugins/jquery-step/custom-jquery.steps.js"></script>
+    <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>

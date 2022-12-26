@@ -13,6 +13,7 @@
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/dropify/dropify.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/users/account-setting.css') }}"/>
+    
 
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     
@@ -71,41 +72,51 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-top-spacing layout-spacing">
                         <div class="widget widget-content-area br-4">
                             <div class="widget-one">
+                                <div class="text-center"> 
+                                    <h3 style="color:blue;text-decoration:underline;">ÇALIŞAN BİLGİLERİNİ GÜNCELLE</h3>
+                                </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
                                     <form id="kisiBilgileri" class="section contact" method="post" action="{{route('calisan.guncelle',["ctckn" => $calisanlar->ctckn])}}" >
                                         @csrf
                                         @method("put")
                                         <div class="info">
-                                            <h5 style="text-decoration: underline;">Çalışan Bilgilerini Güncelleme</h5>
                                             <div class="row">
                                                 <div class="col-md-11 mx-auto">
+                                                    <h3 style="text-decoration: underline;">Kişisel Bilgiler</h3>
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="ad">Ad</label>
-                                                                <input type="text" class="form-control mb-4"  name="cadi"  value="{{$calisanlar->cadi}}" readonly>
+                                                                <input type="text" class="form-control mb-4"  name="cadi"  value="{{$calisanlar->cadi}}" required>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="soyad">Soyad</label>
-                                                                <input type="text" class="form-control mb-4" name="csoyadi"   value="{{$calisanlar->csoyadi}}" readonly>
+                                                                <input type="text" class="form-control mb-4" name="csoyadi"   value="{{$calisanlar->csoyadi}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="tckn">TCKN</label>
-                                                                <input type="text" class="form-control mb-4" name="ctckn"   value="{{$calisanlar->ctckn}}" readonly>
+                                                                <input type="text" class="form-control mb-4" name="ctckn"   value="{{$calisanlar->ctckn}}" required>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="website1">Ünvan</label>
+                                                                <input type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" value="{{$calisanlar->cunvani}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="dg">Doğum Günü</label>
-                                                                <input type="text" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$calisanlar->cdogum}}" readonly>
+                                                                <input type="date" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$calisanlar->cdogum}}" required>
                                                             </div>
                                                         </div>
                                                         </div>
                                                         <hr>
+                                                        <h3 style="text-decoration: underline;">İletişim Bilgileri</h3>
                                                         <div class="row">
                                                             <div class="col-md-1 pr-0">
                                                                 <div class="form-group">
@@ -120,37 +131,64 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="phone">Telefon Numarası</label>
-                                                                <input type="text" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="ctel" id="phone" placeholder="Telefon Numarası" value="{{$calisanlar->ctel}}" required>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    <label for="phone">Telefon Numarası</label>
+                                                                    <input type="text" maxlength="10" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="ctel" id="phone" placeholder="Telefon Numarası" value="{{$calisanlar->ctel}}" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="email">Eposta</label>
+                                                                    <input type="text" class="form-control mb-4" name="ceposta" id="email" placeholder="Eposta" value="{{$calisanlar->ceposta}}" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        <hr>
+                                                        <h3 style="text-decoration: underline;">Adres Bilgileri</h3>
+                                                        <div class="row">                                   
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="location">İl</label>
+                                                                    <input type="text" class="form-control mb-4" id="cevadresil" onkeyup="ilAdresiBuyuk()"  name="cevadresil" id="location" placeholder="Adres - İl" value="{{$calisanlar->cevadresil}}" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="location">İlçe</label>
+                                                                    <input type="text" class="form-control mb-4" id="cevadresilce" onkeyup="ilceAdresiBuyuk()" name="cevadresilce" id="location" placeholder="Adres - İlçe" value="{{$calisanlar->cevadresilce}}" required>
+                                
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="location">Adres</label>
+                                                                    <textarea class="form-control mb-4" style="resize:none;" id="cadres" name="cadres" placeholder="Adres" rows="2" value="{{$calisanlar->cevadres}}"></textarea>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="email">Eposta</label>
-                                                                <input type="text" class="form-control mb-4" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="ceposta" id="email" placeholder="Eposta" value="{{$calisanlar->ceposta}}" required>
+                                                        <hr>
+                                                        <h3 style="text-decoration: underline;">Hesap Bilgileri</h3>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="cbanka">Banka Adı</label>
+                                                                    <input type="text" maxlength="11" class="form-control mb-4" name="cbanka" id="cbanka" placeholder="Banka Adı" value="{{$calisanlar->cbanka}}">
+                                                                </div>
                                                             </div>
-                                                        </div>                                    
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="website1">Ünvan</label>
-                                                                <input type="text" class="form-control mb-4" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="cunvani" id="website1" placeholder="Ünvan" value="{{$calisanlar->cunvani}}" required>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="ciban">IBAN</label>
+                                                                    <input type="text" maxlength="26"  class="form-control mb-4" name="ciban" id="ciban" placeholder="IBAN" value="{{$calisanlar->ciban}}">
+                                                                </div>
                                                             </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="chesapno">Hesap No</label>
+                                                                    <input type="text" maxlength="26"  class="form-control mb-4" name="chesapno" id="chesapno" placeholder="Hesap Numarası" value={{$calisanlar->chesapno}}>
+                                                                </div>
+                                                            </div>   
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="location">İl</label>
-                                                                <input type="text" class="form-control mb-4" id="cevadresil" onkeyup="ilAdresiBuyuk()" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="cevadresil" id="location" placeholder="Adres - İl" value="{{$calisanlar->cevadresil}}" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="location">İlçe</label>
-                                                                <input type="text" class="form-control mb-4" id="cevadresilce" onkeyup="ilceAdresiBuyuk()" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)' name="cevadresilce" id="location" placeholder="Adres - İlçe" value="{{$calisanlar->cevadresilce}}" required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -192,6 +230,7 @@
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
     <script src="{{ asset('assets/js/users/account-settings.js') }}"></script>
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->

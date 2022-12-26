@@ -93,42 +93,54 @@
                                 
                                 <div class="w-chart-section paid-visits-content">
                                     <div class="w-detail">
-                                        <p class="w-title">Yeni Müşteri
-                                            <span class="text-muted">(
-                                                @php
-                                                    $ay = date("m");
-                                                    $yil = date("Y");
-                                                    if ($ay == 12) {
-                                                        echo 'Aralık ';
-                                                    }elseif ($ay == 11) {
-                                                        echo 'Kasım ';
-                                                    }elseif ($ay == 10) {
-                                                        echo 'Ekim ';
-                                                    }elseif ($ay == 9) {
-                                                        echo 'Eylül ';
-                                                    }elseif ($ay == 8) {
-                                                        echo 'Ağustos ';
-                                                    }elseif ($ay == 7) {
-                                                        echo 'Temmuz ';
-                                                    }elseif ($ay == 6) {
-                                                        echo 'Haziran ';
-                                                    }elseif ($ay == 5) {
-                                                        echo 'Mayıs ';
-                                                    }elseif ($ay == 4) {
-                                                        echo 'Nisan ';
-                                                    }elseif ($ay == 3) {
-                                                        echo 'Mart ';
-                                                    }elseif ($ay == 2) {
-                                                        echo 'Şubat ';
-                                                    }elseif ($ay == 1) {
-                                                        echo 'Ocak ';
-                                                    }
-                                                    echo $yil;
-                                                @endphp 
-                                            )
-                                            </span>    
-                                        </p> 
-                                        <p class="w-stats">{{$musteriler->count()}}</p>
+                                        <p class="w-title">Yeni Müşteri </p>
+                                        <span class="text-muted">(
+                                            @php
+                                                $ay = date("m");
+                                                $yil = date("Y");
+                                                if ($ay == 12) {
+                                                    echo 'Aralık ';
+                                                }elseif ($ay == 11) {
+                                                    echo 'Kasım ';
+                                                }elseif ($ay == 10) {
+                                                    echo 'Ekim ';
+                                                }elseif ($ay == 9) {
+                                                    echo 'Eylül ';
+                                                }elseif ($ay == 8) {
+                                                    echo 'Ağustos ';
+                                                }elseif ($ay == 7) {
+                                                    echo 'Temmuz ';
+                                                }elseif ($ay == 6) {
+                                                    echo 'Haziran ';
+                                                }elseif ($ay == 5) {
+                                                    echo 'Mayıs ';
+                                                }elseif ($ay == 4) {
+                                                    echo 'Nisan ';
+                                                }elseif ($ay == 3) {
+                                                    echo 'Mart ';
+                                                }elseif ($ay == 2) {
+                                                    echo 'Şubat ';
+                                                }elseif ($ay == 1) {
+                                                    echo 'Ocak ';
+                                                }
+                                                echo $yil;
+                                            @endphp 
+                                        )
+                                            </span> 
+                                        <p class="w-stats">
+                                            @php $buAyKayitOlanMusteri = 0;
+                                            @endphp
+                                            @foreach ($musteriler as $musteri)
+                                            @php
+                                            $ay = date("m"); //Bulunduğumuz ay
+                                            $musteriKayit = $musteri->created_at->format('m'); // Müşterinin kayıt olduğu ay
+                                            if($ay == $musteriKayit){
+                                                $buAyKayitOlanMusteri++; // bulunduğumuz ay ile müşterinin kayıt olduğu ay aynı ise ++
+                                            }
+                                            @endphp
+                                            @endforeach
+                                            {{$buAyKayitOlanMusteri}} 
+                                        </p>
                                     </div>
                                 </div>
                                 

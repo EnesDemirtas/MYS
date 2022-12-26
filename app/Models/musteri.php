@@ -10,7 +10,6 @@ class musteri extends Model
     use HasFactory;
 
     protected $table = 'musteriler';
-    public $timestamps = false;
 
     protected $fillable = [
     'mrefno',

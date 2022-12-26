@@ -28,6 +28,10 @@ class CreateCalisanlarTable extends Migration
             $table->string('cevadresil')->length(50);
             $table->string('ceposta')->length(50);
             $table->string('cwhatsapp')->length(50)->nullable();
+            $table->string('chesapno')->lenght(30)->nullable();
+            $table->string('cbanka')->lenght(30)->nullable();
+            $table->string('ciban')->lenght(30)->nullable();
+            $table->string('cevadres')->lenght(255)->nullable();
         });
     }
 
