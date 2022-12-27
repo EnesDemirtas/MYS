@@ -168,8 +168,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="location">İl</label>
-                                                            <input type="text" class="form-control mb-4" id="cevadresil" onkeyup="ilAdresiBuyuk()" name="cevadresil" placeholder="İl" >
-                                                            <select id="Iller" class="placeholder js-states form-control">
+                                                            <select id="Iller" name="cevadresil" class="placeholder js-states form-control">
                                                                 <option>Lütfen Bir İl Seçiniz</option>
                                                             </select>
                                                         </div>
@@ -177,16 +176,15 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="location">İlçe</label>
-                                                            <input type="text" class="form-control mb-4" id="cevadresilce" onkeyup="ilceAdresiBuyuk()" name="cevadresilce" placeholder="İlçe" >
-                                                            <select id="Ilceler" disabled="disabled" class="placeholder js-states form-control">
+                                                            <select id="Ilceler" disabled="disabled" name="cevadresilce" class="placeholder js-states form-control">
                                                                 <option>Lütfen Bir İlçe Seçiniz</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="location">Adres</label>
-                                                            <textarea class="form-control mb-4" id="cadres" name="cadres" placeholder="Adres" rows="2"></textarea>
+                                                            <label for="location">Tam Adres</label>
+                                                            <textarea class="form-control mb-4" id="cevadres" name="cevadres" placeholder="Adres" rows="2"></textarea>
                                                         </div>
                                                     </div>                                  
                                                 </div> 

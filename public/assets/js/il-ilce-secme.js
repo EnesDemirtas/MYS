@@ -1463,7 +1463,7 @@ var data = [
   ]
   function search(nameKey, myArray){
       for (var i=0; i < myArray.length; i++) {
-          if (myArray[i].plaka == nameKey) {
+          if (myArray[i].il == nameKey) {
               return myArray[i];
           }
       }
@@ -1472,14 +1472,13 @@ var data = [
   $( document ).ready(function() {
     $.each(data, function( index, value ) {
       $('#Iller').append($('<option>', {
-          value: value.plaka,
+          value: value.il,
           text:  value.il
       }));
     });
 
     $("#Iller").change(function(){
       var valueSelected = this.value;
-      if($('#Iller').val() > 0) {
         $('#Ilceler').html('');
         $('#Ilceler').prop("disabled", false);
         var resultObject = search($('#Iller').val(), data);
@@ -1490,7 +1489,6 @@ var data = [
           }));
         });
         return false;
-      }
       $('#Ilceler').prop("disabled", true);
     });
   });

@@ -43,6 +43,9 @@ class CalisanlarController extends Controller
                 'cunvani' => $request->cunvani,
                 'cevadresil' => $request->cevadresil,
                 'cevadresilce' => $request->cevadresilce,
+                'ciban' => $request->ciban,
+                'cbanka' => $request->cbanka,
+                'chesapno' => $request->chesapno,
              ));
     
             return redirect()->back()->with("success","Çalışan Başarıyla Güncellendi.");
@@ -60,10 +63,10 @@ class CalisanlarController extends Controller
             "ctckn" => "required",
             "cadi" => "required",
             "csoyadi" => "required",
-            "cevadresil" => "required",
+            "cevadresil" => "required|doesnt_start_with:Lütfen Bir İl Seçiniz",
             "cdogum" => "required|before:today",
             "cisegiris" => "required",
-            "cevadresilce" => "required",
+            "cevadresilce" => "required|doesnt_start_with:Lütfen Bir İlçe Seçiniz",
             "ctel" => "required",
             "ceposta" => "required",
             "cunvani" => "required",
@@ -73,16 +76,18 @@ class CalisanlarController extends Controller
             "ciban" => "required",
         ],
         [   
+            'cevadresil.doesnt_start_with' => 'Lütfen çalışanın ilini giriniz.',
+            'cevadresilce.doesnt_start_with' => 'Lütfen çalışanın ilçesini giriniz.',
             'cadi.required' => 'Lütfen çalışan adını giriniz.',     
             'csoyadi.required' => 'Lütfen çalışan soyadını giriniz.',
             'ctckn.required' =>'Lütfen çalışan TCKN giriniz.',
             'ctel.required' =>'Lütfen çalışan telefonunu giriniz.',
             'ceposta.required' =>"Lütfen çalışan Eposta'sını giriniz.",
             'cunvani.required' =>'Lütfen çalışanın ünvanını giriniz.',
-            'cevadresil.required' =>'Lütfen çalışanın adresini giriniz.',
+            'cevadresil.required' =>'Lütfen çalışanın ilini giriniz.',
             'cdogum.required' => 'Lütfen çalışanın doğum tarihini giriniz.',
             'cdogum.before' =>'Lütfen doğum gününü bugünden önce bir tarih seçiniz.',
-            'cevadresilce.required' =>'Lütfen çalışanın adresini giriniz.',
+            'cevadresilce.required' =>'Lütfen çalışanın ilçesini giriniz.',
             'cisegiris.required' => 'Lütfen çalışanın işe giriş tarihini giriniz',
             'ukodutel.required' =>'Lütfen çalışan telefonunun ülke kodunu giriniz.',
             'chesapno.required' =>'Lütfen çalışanın hesap numarasını giriniz.',
@@ -101,11 +106,11 @@ class CalisanlarController extends Controller
         }else if($calisanSayisi > 0){ // Tablo boş değilse
             $sonCalisan = calisan::orderBy('csatirid', 'desc')->first()->csatirid; //Son Çalışanın Satır ID'sini getirir.
             calisan::create($request->all());
-            calisan::where('ctckn', $request->ctckn)->update( array('cwhatsapp'=>'wa.me/'.$request->ukodutel.''.$request->ctel.'', 'mysrefno'=>'sbe-'.$sonCalisan++.'','ciban' => $request->ciban,'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka) );
+            calisan::where('ctckn', $request->ctckn)->update( array('cevadres' => $request->cevadres,'cwhatsapp'=>'wa.me/'.$request->ukodutel.''.$request->ctel.'', 'mysrefno'=>'sbe-'.$sonCalisan++.'','ciban' => $request->ciban,'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka) );
             return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
         }else{ // Tablo Boşsa
             calisan::create($request->all());
-            calisan::where('ctckn', $request->ctckn)->update( array('cwhatsapp'=>'wa.me/'.$request->ukodutel.''.$request->ctel.'', 'mysrefno'=>'sbe-1','ciban' => $request->ciban,'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka ) );
+            calisan::where('ctckn', $request->ctckn)->update( array('cevadres' => $request->cevadres,'cwhatsapp'=>'wa.me/'.$request->ukodutel.''.$request->ctel.'', 'mysrefno'=>'sbe-1','ciban' => $request->ciban,'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka ) );
             return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
         }
     }

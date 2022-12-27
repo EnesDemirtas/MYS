@@ -150,14 +150,17 @@
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="location">İl</label>
-                                                                    <input type="text" class="form-control mb-4" id="cevadresil" onkeyup="ilAdresiBuyuk()"  name="cevadresil" id="location" placeholder="Adres - İl" value="{{$calisanlar->cevadresil}}" required>
+                                                                    <select id="Iller" name="cevadresil" class="placeholder js-states form-control">
+                                                                        <option>{{$calisanlar->cevadresil}}</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="location">İlçe</label>
-                                                                    <input type="text" class="form-control mb-4" id="cevadresilce" onkeyup="ilceAdresiBuyuk()" name="cevadresilce" id="location" placeholder="Adres - İlçe" value="{{$calisanlar->cevadresilce}}" required>
-                                
+                                                                    <select id="Ilceler" disabled="disabled" name="cevadresilce" class="placeholder js-states form-control">
+                                                                        <option>{{$calisanlar->cevadresilce}}</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
