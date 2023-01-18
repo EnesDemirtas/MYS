@@ -85,7 +85,7 @@ Route::get('hizmet_ve_urunler', function () {
     return view('hizmet_ve_urunler');
 });
 
-Route::get('/musteri/giris_yap', function () {
+Route::get('musteri/giris_yap', function () {
     return view('musteri_giris_yap');
 });
 

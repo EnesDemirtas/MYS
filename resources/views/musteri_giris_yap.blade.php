@@ -80,7 +80,7 @@
         </div>
     </div>
 
-    .
+    
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="{{ asset('assets/js/login-register.js') }}"></script>
     <x-global-mandatory.scripts/>

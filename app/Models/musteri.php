@@ -45,5 +45,6 @@ class musteri extends Model
     'menlem',
     'mboylam',
     'mnot',
+    'aktif',
     ];
 }

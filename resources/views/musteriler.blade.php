@@ -12,6 +12,12 @@
   <link href="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" type="text/css" />
   <link href="assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    #map {
+      height: 300px;
+      width: 100%;
+     }
+  </style>
   <!-- END GLOBAL MANDATORY STYLES -->
 
   <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -213,23 +219,23 @@
                                   <div class="row py-3">
 
                                     <div class="col">
-                                      <input id="hk-marka" type="text" name="mtmarkaadi" placeholder="Marka Adı" class="form-control form-control-sm" required>
+                                      <input id="hk-marka" type="text" name="mtmarkaadi" onkeyup="hkMarkaAdiBuyuk()" placeholder="Marka Adı" class="form-control form-control-sm" required>
                                     </div>
                                   </div>
 
                                   <div class="row py-3" id="bireysel-bilgiler1">                                    
                                     <div class="col">
-                                      <input id="hk-ad" type="text" name="mbadi" placeholder="Adı" class="form-control form-control-sm" required>
+                                      <input id="hk-ad" type="text" name="mbadi" onkeyup="hkAdilkHarfBuyuk()" placeholder="Adı" class="form-control form-control-sm" required>
                                     </div>
                                     
                                     <div class="col">
-                                      <input id="hk-soyad" type="text" name="mbsoyadi" placeholder="Soyadı" class="form-control form-control-sm" required>
+                                      <input id="hk-soyad" type="text" name="mbsoyadi" onkeyup="hkSoyadBuyuk()" placeholder="Soyadı" class="form-control form-control-sm" required>
                                     </div>
                                   </div>
 
                                   <div class="row py-3" id="bireysel-bilgiler2">                                   
                                     <div class="col">
-                                      <input id="hk-unvan" type="text" name="monunvan" placeholder="Unvanı" class="form-control form-control-sm">
+                                      <input id="hk-unvan" type="text" name="monunvan" onkeyup="hkUnvanBuyuk()" placeholder="Unvanı" class="form-control form-control-sm">
                                     </div>
                                     
                                     <div class="col">
@@ -247,18 +253,18 @@
 
                               <div class="row">
                                 <div class="col-4">
-                                  <input id="hk-bolge" type="text" name="mbolge" placeholder="Bölge" class="form-control form-control-sm" required>
+                                  <input id="hk-bolge" type="text" name="mbolge" onkeyup="hkBolgeBuyuk()" placeholder="Bölge" class="form-control form-control-sm" required>
                                 </div>
                                 <div class="col-4">
-                                  <input id="hk-ilce" type="text" name="milce" placeholder="İlçe" class="form-control form-control-sm" required>
+                                  <input id="hk-ilce" type="text" name="milce" onkeyup="hkIlceBuyuk()" placeholder="İlçe" class="form-control form-control-sm" required>
                                 </div>
                                 <div class="col-4">
-                                  <input id="hk-il" type="text" name="mil" placeholder="İl" class="form-control form-control-sm" required>
+                                  <input id="hk-il" type="text" name="mil" onkeyup="hkIlBuyuk()" placeholder="İl" class="form-control form-control-sm" required>
                                 </div>
                               </div>
 
                               <div class="row py-3">
-                                <div class="col-3 pr-0">
+                                <div class="col-6 pr-0">
                                   <div class="form-group">
                                       <select class="placeholder js-states form-control form-control-sm" name="mukodutel">
                                           <option value="90">+90</option>
@@ -269,16 +275,20 @@
                                       </select>
                                   </div>
                                 </div>
-                                  <div class="col-3 pl-1">
+                                  <div class="col-6 pl-1">
                                     <div class="form-group">
                                         <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm mb-4" name="mmobil" id="phone" placeholder="Telefon" >
                                     </div>
                                 </div> 
+                                <hr>
+                                <div class="w-100 justify-content-center text-center text-muted">Konum Bilgisini Haritadan Giriniz</div>
                                 <div class="col-3">
-                                  <input id="hk-enlem" type="text" name="menlem" placeholder="Enlem" class="form-control form-control-sm" required>
+                                  <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" class="form-control form-control-sm" required>
                                 </div>
                                 <div class="col-3">
-                                  <input id="hk-boylam" type="text" name="mboylam" placeholder="Boylam" class="form-control form-control-sm" required>
+                                  <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam" class="form-control form-control-sm" required>
+                                </div>
+                                <div class="col-12" id="map"> <!-- GOOGLE HARİTALAR -->
                                 </div>
                               </div>
                               </section>
@@ -449,9 +459,8 @@
   <script src="{{ asset('plugins/table/datatable/datatables.js') }}"></script>
   <script src="{{ asset('assets/js/apps/invoice-list.js') }}"></script>
   <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
+  <script src="{{ asset('assets/js/inputController.js') }}"></script>
   <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-
-  <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
 
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
@@ -468,6 +477,43 @@
 <script src="plugins/flatpickr/custom-flatpickr.js"></script>
 
 
+  <script> // GOOGLE HARİTALAR
+  function enlemBoylamDegis(enlem,boylam){
+    $("#hk-enlem").attr("value",enlem);
+    $("#hk-boylam").attr("value",boylam);    
+  }
+
+	function initMap() {
+  const myLatlng = { lat: 36.89241570427338, lng: 30.710640679285348 };
+
+  const map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 7,
+    center: myLatlng,
+  });
+
+  let marker = new google.maps.Marker({
+    position: myLatlng,
+    map,
+    title: "KONUM",
+    });
+
+  // Configure the click listener.
+  map.addListener("click", (mapsMouseEvent) => {
+    // Close the current InfoWindow.
+    marker.setMap(null); // marker'ı sıfırlar
+    marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
+      position: mapsMouseEvent.latLng,
+    });
+
+    var lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat); // Seçilen konumun lat bilgisini alır.
+    var lng = JSON.stringify(mapsMouseEvent.latLng.toJSON().lng); // Seçilen konumun lng bilgisini alır. 
+    enlemBoylamDegis(lat,lng); // enlem ve boylam bilgilerini inputa verir.
+    marker.setMap(map);
+  });
+  }
+  </script>
+  
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
   <script>
     $("#html5-extension").DataTable({
       dom:

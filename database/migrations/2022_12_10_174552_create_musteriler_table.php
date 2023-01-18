@@ -41,6 +41,7 @@ class CreateMusterilerTable extends Migration
             $table->string('mbolge')->lenght(20);
             $table->string('milce')->lenght(20);
             $table->string('mil')->lenght(20);
+            $table->string('mukodutel')->lenght(10)->nullable();
             $table->string('mtel')->lenght(20)->nullable();
             $table->string('mfaks')->lenght(20)->nullable();
             $table->string('mmobil')->lenght(20);
@@ -49,6 +50,7 @@ class CreateMusterilerTable extends Migration
             $table->string('menlem')->lenght(20);
             $table->string('mboylam')->lenght(20);
             $table->string('mnot')->lenght(20)->nullable();
+            $table->string('aktif')->lenght(10)->nullable();
             $table->date('updated_at');
             $table->date('created_at');
         });

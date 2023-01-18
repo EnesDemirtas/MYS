@@ -29,6 +29,12 @@
         -moz-appearance: textfield;
       }
     </style>
+    <style>
+        #map {
+          height: 300px;
+          width: 100%;
+         }
+      </style>
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/dropify/dropify.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/users/account-setting.css') }}"/>
 
@@ -231,11 +237,14 @@
                                                         <input id="hk-il" type="text" name="mil" placeholder="İl" class="form-control">
                                                       </div>
                                                       <div class="col-3">
-                                                        <input id="hk-enlem" type="number" name="menlem" placeholder="Enlem" class="form-control">
+                                                        <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" class="form-control">
                                                       </div>  
-                                                      <div class="col-3">
-                                                        <input id="hk-boylam" type="number" name="mboylam" placeholder="Boylam" class="form-control">
+                                                      <div class="col-3 pb-4">
+                                                        <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam" class="form-control">
                                                       </div>
+                                                </div>
+                                                <div class="py-3 row">
+                                                    <div class="col-12" id="map"> <!-- GOOGLE HARİTALAR -->
                                                 </div>
                                                 <div class="account-settings-footer justify-content-center fixed-bottom">
                                                     <div class="as-footer-container text-center justify-content-center">
@@ -268,7 +277,43 @@
     <x-global-mandatory.scripts/>
     <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    
+    <script> // GOOGLE HARİTALAR
+        function enlemBoylamDegis(enlem,boylam){
+          $("#hk-enlem").attr("value",enlem);
+          $("#hk-boylam").attr("value",boylam);    
+        }
+      
+          function initMap() {
+        const myLatlng = { lat: 36.89241570427338, lng: 30.710640679285348 };
+      
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: myLatlng,
+        });
+      
+        let marker = new google.maps.Marker({
+          position: myLatlng,
+          map,
+          title: "KONUM",
+          });
+      
+        // Configure the click listener.
+        map.addListener("click", (mapsMouseEvent) => {
+          // Close the current InfoWindow.
+          marker.setMap(null); // marker'ı sıfırlar
+          marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
+            position: mapsMouseEvent.latLng,
+          });
+      
+          var lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat); // Seçilen konumun lat bilgisini alır.
+          var lng = JSON.stringify(mapsMouseEvent.latLng.toJSON().lng); // Seçilen konumun lng bilgisini alır. 
+          enlemBoylamDegis(lat,lng); // enlem ve boylam bilgilerini inputa verir.
+          marker.setMap(map);
+        });
+        }
+        </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
+
     <script>
         $(document).ready(function() {
             App.init();

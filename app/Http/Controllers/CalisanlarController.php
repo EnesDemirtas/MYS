@@ -31,6 +31,17 @@ class CalisanlarController extends Controller
             "ceposta" => "required",
             "cunvani" => "required",
             "ukodutel" => "required",
+        ],
+        [   
+            'ctkn.required' => 'Lütfen çalışan TCKN boş bırakmayınız.',
+            'cadi.required' => 'Lütfen çalışan adını boş bırakmayınız.',
+            'csoyadi.required' => 'Lütfen çalışan soyadını boş bırakmayınız.',
+            'cevadresil.required' => 'Lütfen il  boş bırakmayınız.',
+            'cevadresilce.required' => 'Lütfen ilçeyi boş bırakmayınız.',
+            'ctel.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
+            'ceposta.required' => 'Lütfen çalışan eposta boş bırakmayınız.',
+            'cunvani.required' => 'Lütfen çalışan ünvanını boş bırakmayınız.',
+            'ukodutel.required' => 'Lütfen telefon ülke kodunu boş bırakmayınız.',
         ]);
         $telNoUzunlugu = strlen($request->ctel);
         if($telNoUzunlugu != 10){ // Telefon Numarası 10 haneden az ise error döner
@@ -46,6 +57,7 @@ class CalisanlarController extends Controller
                 'ciban' => $request->ciban,
                 'cbanka' => $request->cbanka,
                 'chesapno' => $request->chesapno,
+                'cevadres' => $request->cevadres,
              ));
     
             return redirect()->back()->with("success","Çalışan Başarıyla Güncellendi.");

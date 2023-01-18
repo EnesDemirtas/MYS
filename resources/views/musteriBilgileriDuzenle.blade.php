@@ -28,7 +28,14 @@
       input[type=number] {
         -moz-appearance: textfield;
       }
+
     </style>
+    <style>
+        #map {
+          height: 300px;
+          width: 100%;
+         }
+      </style>
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/dropify/dropify.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/users/account-setting.css') }}"/>
 
@@ -80,7 +87,7 @@
         @endif
                             <div class="widget-one"> 
                                 <div class="text-center"> 
-                                    <h3 style="color:blue;text-decoration:underline;">MÜŞTERİ EKLE</h3>
+                                    <h3 style="color:blue;text-decoration:underline;">MÜŞTERİ BİLGİLERİ DÜZENLEME</h3>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
                                     <form id="kisiBilgileri" class="section contact p-4" method="post" action="{{route('musteri.guncelle',["mtcknvno" => $musteri->mtcknvno])}}">
@@ -232,17 +239,20 @@
                                                         <input id="hk-il" type="text" name="mil" placeholder="İl" value="{{ $musteri->mil }}" class="form-control">
                                                       </div>
                                                       <div class="col-3">
-                                                        <input id="hk-enlem" type="number" name="menlem" placeholder="Enlem" value="{{ $musteri->menlem }}" class="form-control">
+                                                        <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" value="{{ $musteri->menlem }}" class="form-control">
                                                       </div>  
                                                       <div class="col-3">
-                                                        <input id="hk-boylam" type="number" name="mboylam" placeholder="Boylam" value="{{ $musteri->mboylam }}" class="form-control">
+                                                        <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam" value="{{ $musteri->mboylam }}" class="form-control">
                                                       </div>
+                                                </div> 
+                                                <div class="py-3 row">
+                                                    <div class="col-12" id="map"> <!-- GOOGLE HARİTALAR -->
                                                 </div>
                                                 <div class="account-settings-footer justify-content-center fixed-bottom">
                                                     <div class="as-footer-container text-center justify-content-center">
-                                                        <button type="submit" id="multiple-messages" class="btn btn-primary">Müşteriyi Ekle</button>
+                                                        <button type="submit" id="multiple-messages" class="btn btn-primary">Güncelle</button>
                                                     </div> 
-                                                </div> 
+                                                </div>
                                             </section>
                                             
                                         </div>
@@ -266,6 +276,46 @@
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+
+    <script> // GOOGLE HARİTALAR
+        function enlemBoylamDegis(enlem,boylam){
+          $("#hk-enlem").attr("value",enlem);
+          $("#hk-boylam").attr("value",boylam);    
+        }
+      
+          function initMap() {
+           var enlem = document.getElementById("hk-enlem").value;
+           var boylam = document.getElementById("hk-boylam").value;
+        const myLatlng = { lat: parseFloat(enlem), lng: parseFloat(boylam) };
+      
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: myLatlng,
+        });
+      
+        let marker = new google.maps.Marker({
+          position: myLatlng,
+          map,
+          title: "KONUM",
+          });
+      
+        // Configure the click listener.
+        map.addListener("click", (mapsMouseEvent) => {
+          // Close the current InfoWindow.
+          marker.setMap(null); // marker'ı sıfırlar
+          marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
+            position: mapsMouseEvent.latLng,
+          });
+      
+          var lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat); // Seçilen konumun lat bilgisini alır.
+          var lng = JSON.stringify(mapsMouseEvent.latLng.toJSON().lng); // Seçilen konumun lng bilgisini alır. 
+          enlemBoylamDegis(lat,lng); // enlem ve boylam bilgilerini inputa verir.
+          marker.setMap(map);
+        });
+        }
+        </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
     <x-global-mandatory.scripts/>
     <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>

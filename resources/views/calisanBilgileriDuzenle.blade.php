@@ -99,7 +99,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="tckn">TCKN</label>
-                                                                <input type="text" class="form-control mb-4" name="ctckn"   value="{{$calisanlar->ctckn}}" required>
+                                                                <input type="text" class="form-control mb-4" name="ctckn" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$calisanlar->ctckn}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
@@ -158,15 +158,15 @@
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="location">İlçe</label>
-                                                                    <select id="Ilceler" disabled="disabled" name="cevadresilce" class="placeholder js-states form-control">
-                                                                        <option>{{$calisanlar->cevadresilce}}</option>
+                                                                    <select id="Ilceler" name="cevadresilce" class="placeholder js-states form-control">
+                                                                        <option value="{{$calisanlar->cevadresilce}}" selected>{{$calisanlar->cevadresilce}}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="location">Adres</label>
-                                                                    <textarea class="form-control mb-4" style="resize:none;" id="cadres" name="cadres" placeholder="Adres" rows="2" value="{{$calisanlar->cevadres}}"></textarea>
+                                                                    <textarea class="form-control mb-4" style="resize:none;" id="cevadres" name="cevadres" placeholder="Adres" rows="2">{{$calisanlar->cevadres}}</textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -233,7 +233,7 @@
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
+    <script src="{{ asset('assets/js/il-ilce-secme-duzenle.js') }}"></script>
     <script src="{{ asset('assets/js/users/account-settings.js') }}"></script>
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
