@@ -9,7 +9,7 @@ class MusterilerController extends Controller {
     // Show all musteriler
     public function index()
     {
-        return view('musteriler', ['musteriler' => musteri::all()]);
+        return view('musteriler', ['musteriler' => musteri::where('aktif',1)->get()]);
     }
 
     public function musteriDuzenle($mtcknvno)
@@ -65,7 +65,10 @@ class MusterilerController extends Controller {
     }
 
     public function musteriSil($mtcknvno){
-        musteri::where('mtcknvno', $mtcknvno)->delete();
+        // musteri::where('mtcknvno', $mtcknvno)->delete();
+        $musteri = musteri::where('mtcknvno', $mtcknvno)->first();
+        $musteri->aktif = 0;
+        $musteri->save();
         return redirect()->back()->with("success","Müşteri Başarıyla Silindi.");
     }
 }
