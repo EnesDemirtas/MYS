@@ -15,6 +15,10 @@ class calisan extends Model
     protected $fillable = [
         'mysrefno',
         'ctckn',
+        'ckullaniciadi',
+        'csifre',
+        'csistemkullanicisimi',
+        'cyetki',
         'cadi',
         'csoyadi',
         'cunvani',

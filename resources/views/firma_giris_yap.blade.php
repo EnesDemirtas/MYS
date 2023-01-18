@@ -24,18 +24,27 @@
 
                         <h1 class=""><a href="#"><span class="brand-name">HOŞGELDİNİZ</span></a></h1>
                         <p class="signup-link">Burada yeni misiniz? <a href="/kayit_ol">Yeni bir hesap oluşturun</a></p>
-                        <form class="text-left">
+                        <form class="text-left" method="POST" action=" {{route('login') }} ">
+                            @csrf
                             <div class="">
                                 <!--Kurumsal Girişi-->
                                 <div id="kurumsal">
                                 <div class="field-wrapper input">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                    <input id="username" name="username" type="text" class="form-control" placeholder="Kurumsal Kullanıcı Adı">
+                                    <input id="username" name="username" type="text" class="form-control" value="{{ old('username') }}" placeholder="Kurumsal Kullanıcı Adı">
+
+                                    @error('username')
+                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="field-wrapper input mb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                                     <input id="password" name="password" type="password" class="form-control" placeholder="Şifre">
+
+                                    @error('password')
+                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 </div>
                                 <!--Kurumsal Girişi-->
@@ -56,7 +65,7 @@
                                 <div class="field-wrapper text-center keep-logged-in">
                                     <div class="n-chk new-checkbox checkbox-outline-primary">
                                         <label class="new-control new-checkbox checkbox-outline-primary">
-                                          <input type="checkbox" class="new-control-input">
+                                          <input type="checkbox" class="new-control-input" name="remember">
                                           <span class="new-control-indicator"></span>Oturumu açık tut
                                         </label>
                                     </div>

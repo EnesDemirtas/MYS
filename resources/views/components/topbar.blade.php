@@ -12,8 +12,8 @@
                 <a href="#" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media">
                         <div class="media-body align-self-center">
-                            <h6>Andy King</h6>
-                            <p>Yönetici</p>
+                            <h6>{{ session('kullanici')->cadi . " " . session('kullanici')->csoyadi }}</h6>
+                            <p>{{ session('kullanici')->cunvani }}</p>
                         </div>
                         <img src="{{ asset('assets/img/90x90.jpg') }}" class="img-fluid" alt="admin-profile">
                         <span class="badge badge-success"></span>

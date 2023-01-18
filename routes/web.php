@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalisanlarController;
 use App\Http\Controllers\MusterilerController;
 use App\Http\Controllers\AnasayfaController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,4 +94,5 @@ Route::get('giris_yap', function () {
     return view('firma_giris_yap');
 });
 
+Route::post('giris_yap', [UserController::class, 'login'])->name('login');
 
