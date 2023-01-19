@@ -30,8 +30,6 @@
 
  function kisiBilgileri(id){
      var element = document.getElementById("calisan-"+id).children;
-     var isim = $("#calisan-"+id+" p").text();
-     $("#modal-isim").text(isim);
     var isim = $("#calisan-"+id+" p").text();
     $("#modal-isim").text(isim);    
 
@@ -51,8 +49,24 @@
     $("#modal-dogum").text(dogumTarihi);
 }
 
-function musteriBilgileri(id) {
-    return;
+function musteriBilgileri(id){
+   var isim = $("#musteri-"+id+" p").text();
+   $("#modal-isim").text(isim);    
+
+   var unvan = $("#musteri-"+id+" .unvan").attr('name');
+   $("#modal-unvan").text(unvan);
+
+   var lokasyon = $("#musteri-"+id+" .lokasyon").attr('name');
+   $("#modal-lokasyon").text(lokasyon);
+
+   var eposta = $("#musteri-"+id+" .eposta").attr('name');
+   $("#modal-eposta").text(eposta);
+
+   var cep = $("#musteri-"+id+" .cep").attr('name');
+   $("#modal-cep").text(cep);
+
+   var dogumTarihi = $("#musteri-"+id+" .dogum").text();
+   $("#modal-dogum").text(dogumTarihi);
 }
 
 function changeFields(kayit) {
