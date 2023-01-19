@@ -26,4 +26,9 @@ class UserController extends Controller
         }
     }
 
+    public function logout(Request $request) {
+        $request->session()->flush();
+        return redirect()->route('giris_yap');
+    }
+
 }

@@ -92,7 +92,9 @@ Route::get('musteri/giris_yap', function () {
 
 Route::get('giris_yap', function () {
     return view('firma_giris_yap');
-});
+})->name('giris_yap');
 
 Route::post('giris_yap', [UserController::class, 'login'])->name('login');
+
+Route::post('cikis_yap', [UserController::class, 'logout'])->name('logout');
 

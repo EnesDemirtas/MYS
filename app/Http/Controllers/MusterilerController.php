@@ -53,7 +53,7 @@ class MusterilerController extends Controller {
             return redirect()->back()->with('error', 'Bu TCKN/Vergi No ile kayıtlı bir müşteri bulunmaktadır.');
         } else {
             musteri::create($request->all());
-            musteri::where('ctckn', $request->mtcknvno)->update( array('aktif' => 1) );
+            musteri::where('mtcknvno', $request->mtcknvno)->update( array('aktif' => 1) );
             return redirect('musteriler')->with('success', 'Kayıt Başarıyla Eklendi');
         }
 
