@@ -54,7 +54,9 @@ class MusterilerController extends Controller {
             'mboylam.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
         ]
     );
+    $request->mbdogumgunu = date('Y-m-d', strtotime($request->mbdogumgunu));
     musteri::create($request->all());
+    musteri::where('mtcknvno', $request->mtcknvno)->update( array('aktif' => 1) );
     return redirect('musteriler')->with('success', 'Kayıt Başarıyla Eklendi');
     }
 

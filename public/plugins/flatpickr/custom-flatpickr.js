@@ -1,7 +1,7 @@
 // Flatpickr
 
 var f1 = flatpickr(document.getElementById('basicFlatpickr'), {
-    dateFormat: "d.m.Y",
+    dateFormat: "Y-m-d",
     appendTo: document.getElementById('addContactModal')
 });
 f1.element.style.zIndex = 9999;
