@@ -267,11 +267,12 @@
                                 <div class="col-4">
                                   <select id="Iller" name="mil" class="placeholder js-states form-control">
                                     <option>Lütfen Bir İl Seçiniz</option>
-                                </select>                                </div>
+                                  </select>                                
+                                </div>
                                 <div class="col-4">
                                   <select id="Ilceler" disabled="disabled" name="milce" class="placeholder js-states form-control">
                                     <option>Lütfen Bir İlçe Seçiniz</option>
-                                </select>
+                                  </select>
                                 </div>
                               </div>
 
@@ -414,15 +415,26 @@
                       <tr id="musteri-{{ $musteri->mtcknvno }}">
                         <td >{{ $musteri->mkayitturu }}</td>
                         <td class="checkbox-column" style=" width:px !important;"> {{ $musteri->mtmarkaadi }} </td>
-                        <td style="padding-left:0px !important;">@if ($musteri->mbadi != null)
+                        <td style="padding-left:0px !important;">
+                        @if ($musteri->mbadi != null)
                             {{ $musteri->mbadi . " " . $musteri->mbsoyadi}}
                         @else
                             {{ $musteri->mtmarkaadi }}
-                        @endif</td>
+                        @endif
+                        </td>
                         <td>{{ $musteri->mtcknvno }}</td>
                         <td>{{ $musteri->milce . "/" . $musteri->mil }}</td>
-                        <td><a href="tel:{{ $musteri->mtel }}"><span class="inv-email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span></a><a href="mailto:{{$musteri->meposta}}"><span style="margin-left: 2px;" class="inv-email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span></a> <span style="margin-left: 2px;"><a target="_blank" href="https://wa.me/{{$musteri->mmobil}}"><i style="color: #805dca;" class="fa fa-lg fa-whatsapp"></i></a></span></td>
-                        <input class="lokasyon" type="hidden" name="{{ $musteri->milce . "/" . $musteri->mil }}">
+                        <td>
+                          @if ( $musteri->mmobil != null)
+                          <a href="tel:{{ $musteri->mmobil }}"><span class="inv-email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span></a>
+                          @endif
+                          @if ( $musteri->meposta != null)
+                          <a href="mailto:{{$musteri->meposta}}"><span style="margin-left: 2px;" class="inv-email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span></a> <span style="margin-left: 2px;">
+                          @endif
+                          @if ( $musteri->mmobil != null)
+                          <a target="_blank" href="https://wa.me/{{$musteri->mmobil}}"><i style="color: #805dca;" class="fa fa-lg fa-whatsapp"></i></a></span></td>
+                          <input class="lokasyon" type="hidden" name="{{ $musteri->milce . "/" . $musteri->mil }}">
+                          @endif
                         <input class="whatsapp" type="hidden" name="{{ $musteri->mmobil }}">
                         <input class="kayitno" type="hidden" name="{{ $musteri->mkayitturu }}">
                         <input class="eposta" type="hidden" name="{{ $musteri->meposta }}">

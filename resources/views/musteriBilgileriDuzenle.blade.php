@@ -66,7 +66,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-top-spacing layout-spacing">
                         <div class="widget widget-content-area br-4">
-                            @if($errors->any())
+        @if($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach($errors->all() as $error)
@@ -115,10 +115,10 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-3">
-                                                    <input id="hk-marka" type="text" name="mtmarkaadi" placeholder="Marka Adı" value="{{ $musteri->mtmarkaadi }}" class="form-control" required>
+                                                    <input id="hk-marka" onkeyup="hkMarkaAdiBuyuk()" type="text" name="mtmarkaadi" placeholder="Marka Adı" value="{{ $musteri->mtmarkaadi }}" class="form-control" required>
                                                   </div>
                                                 <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-onunvan" type="text" name="monunvan" placeholder="Unvanı" value="{{ $musteri->monunvan }}" class="form-control">
+                                                        <input id="hk-onunvan" type="text" onkeyup="hkOnUnvanBuyuk()" name="monunvan" placeholder="Unvanı" value="{{ $musteri->monunvan }}" class="form-control">
                                                 </div>
                                                 <div class="col-3 ticaribilgi">
                                                     <input id="hk-sube" type="text" name="mtsubeadi" placeholder="Şube Adı" value="{{ $musteri->mtsubeadi }}" class="form-control">
@@ -134,10 +134,10 @@
                                                   </div>
 
                                                   <div class="col-3 bireyselbilgi">
-                                                    <input id="hk-ad" type="text" name="mbadi" placeholder="Adı" value="{{ $musteri->mbadi }}" class="form-control">
+                                                    <input id="hk-ad" type="text" name="mbadi" onkeyup="hkAdilkHarfBuyuk()" placeholder="Adı" value="{{ $musteri->mbadi }}" class="form-control">
                                                   </div>
                                                   <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-soyad" type="text" name="mbsoyadi" placeholder="Soyadı" value="{{ $musteri->mbsoyadi }}" class="form-control">
+                                                        <input id="hk-soyad" type="text" onkeyup="hkSoyadBuyuk()" name="mbsoyadi" placeholder="Soyadı" value="{{ $musteri->mbsoyadi }}" class="form-control">
                                                   </div>
                                                   <div class="col-3 ticaribilgi">
                                                     <input id="hk-kisaltma" type="text" name="mtkisaltmasi" placeholder="Kısaltma" value="{{ $musteri->mtkisaltmasi }}" class="form-control">
@@ -148,16 +148,16 @@
                                                 </div> 
                                                 <div class="row py-3">
                                                     <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-firma" type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" value="{{ $musteri->mbfirmaadi }}" class="form-control">
+                                                        <input id="hk-firma" onkeyup="hkCalistigiFirmaBuyuk()" type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" value="{{ $musteri->mbfirmaadi }}" class="form-control">
                                                       </div>
                                                       <div class="col-3 bireyselbilgi">
-                                                            <input id="hk-unvan" type="text" name="mbunvani" placeholder="Unvanı/Mesleği" value="{{ $musteri->mbunvani }}" class="form-control">
+                                                            <input id="hk-unvan" type="text" onkeyup="hkUnvanBuyuk()" name="mbunvani" placeholder="Unvanı/Mesleği" value="{{ $musteri->mbunvani }}" class="form-control">
                                                       </div>  
                                                       <div class="col-3 bireyselbilgi">
                                                         <input id="hk-dogum" type="text" name="mbdogumgunu" placeholder="Doğum Tarihi" value="{{ date('d.m.Y', strtotime($musteri->mbdogumgunu)) }}" class="form-control" onfocus="(this.type='date')">
                                                       </div>  
                                                       <div class="col-3 ticaribilgi">
-                                                        <input id="hk-unvandevami" type="text" name="mtunvandevami" placeholder="Unvan Devamı" value="{{ $musteri->mtunvandevami }}" class="form-control">
+                                                        <input id="hk-unvandevami" type="text" name="mtunvandevami"  placeholder="Unvan Devamı" value="{{ $musteri->mtunvandevami }}" class="form-control">
                                                       </div>
                                                       <div class="col-3 ticaribilgi">
                                                             <input id="hk-ticaretsicil" type="number" name="mtsno" placeholder="Ticaret Sicil No" value="{{ $musteri->mtsno }}" class="form-control">
@@ -175,7 +175,7 @@
                                             <section>
                                                 <div class="row py-3">
                                                     <div class="col-3">
-                                                        <input id="hk-banka" type="text" name="mbankadi" placeholder="Banka Adı" value="{{ $musteri->mbankadi }}" class="form-control">
+                                                        <input id="hk-banka" onkeyup="hkBankaAdiBuyuk()" type="text" name="mbankadi" placeholder="Banka Adı" value="{{ $musteri->mbankadi }}" class="form-control">
                                                       </div>
                                                       <div class="col-3">
                                                             <input id="hk-iban" type="text" name="miban" placeholder="IBAN" value="{{ $musteri->miban }}" class="form-control">
@@ -230,13 +230,17 @@
                                                 </div> 
                                                 <div class="row py-3">
                                                     <div class="col-2">
-                                                        <input id="hk-bolge" type="text" name="mbolge" placeholder="Bölge" value="{{ $musteri->mbolge }}" class="form-control">
-                                                      </div>  
-                                                    <div class="col-2">
-                                                        <input id="hk-ilce" type="text" name="milce" placeholder="İlçe" value="{{ $musteri->milce }}" class="form-control">
+                                                        <input id="hk-bolge" type="text" onkeyup="hkBolgeBuyuk()" name="mbolge" placeholder="Bölge" value="{{ $musteri->mbolge }}" class="form-control">
                                                       </div>  
                                                       <div class="col-2">
-                                                        <input id="hk-il" type="text" name="mil" placeholder="İl" value="{{ $musteri->mil }}" class="form-control">
+                                                        <select id="Iller" name="mil" class="placeholder js-states form-control">
+                                                          <option>{{ $musteri->mil }}</option>
+                                                        </select>
+                                                      </div>  
+                                                      <div class="col-2">
+                                                        <select id="Ilceler" disabled="disabled" name="milce" class="placeholder js-states form-control">
+                                                          <option>{{ $musteri->milce }}</option>
+                                                        </select>
                                                       </div>
                                                       <div class="col-3">
                                                         <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" value="{{ $musteri->menlem }}" class="form-control">
@@ -341,8 +345,8 @@
     <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
-
     <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
+    <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 </html>
