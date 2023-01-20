@@ -19,6 +19,39 @@ class MusterilerController extends Controller {
 
     public function store(Request $request) {
         // Validate data
+        if ($request->mkayitturu == 'Ticari') {
+            $request->validate([
+                'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
+                'mtcknvno' => 'required|numeric',
+                'mtmarkaadi' => 'required',
+                'madres' => 'required',
+                'mbolge' => 'required',
+                'milce' => 'required|doesnt_start_with:Lütfen Bir İlçe Seçiniz"',
+                'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz"',
+                'mmobil' => 'required',
+                'menlem' => 'required',
+                'meposta' => 'required|email'
+            ],
+            [   
+                'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
+                'mil.doesnt_start_with' => 'Lütfen müşterinin ilini giriniz.',
+                'milce.doesnt_start_with' => 'Lütfen müşterinin ilçesini giriniz.',
+                'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
+                'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
+                'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
+                'mbunvani.required' => 'Lütfen müşterinin ünvanını boş bırakmayınız.',
+                'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
+                'mbsoyadi.required' => 'Lütfen müşteri soyadını boş bırakmayınız.',
+                'mbdogumgunu.required' => 'Lütfen doğum gününü boş bırakmayınız.',
+                'mbdogumgunu.before' => 'Lütfen müşterinin doğum tarihini doğru girdiğinizden emin olunuz.',
+                'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
+                'milce.required' => 'Lütfen ilçeyi seçiniz.',
+                'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
+                'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
+                'meposta.required' => 'Lütfen müşterinin eposta adresini giriniz.',
+            ]
+        );
+        } else {
         $request->validate([
             'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
             'mtcknvno' => 'required|numeric',
@@ -33,7 +66,7 @@ class MusterilerController extends Controller {
             'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz"',
             'mmobil' => 'required',
             'menlem' => 'required',
-            'meposta' => 'required'
+            'meposta' => 'required|email'
         ],
         [   
             'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
@@ -44,7 +77,7 @@ class MusterilerController extends Controller {
             'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
             'mbunvani.required' => 'Lütfen müşterinin ünvanını boş bırakmayınız.',
             'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
-            'mbsoyadi.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
+            'mbsoyadi.required' => 'Lütfen müşteri soyadını boş bırakmayınız.',
             'mbdogumgunu.required' => 'Lütfen doğum gününü boş bırakmayınız.',
             'mbdogumgunu.before' => 'Lütfen müşterinin doğum tarihini doğru girdiğinizden emin olunuz.',
             'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
@@ -54,6 +87,7 @@ class MusterilerController extends Controller {
             'meposta.required' => 'Lütfen müşterinin eposta adresini giriniz.',
         ]
     );
+    }
 
     $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
     $musteriSayisiBul = musteri::where('satirid', '>', '0')->get();

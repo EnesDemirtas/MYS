@@ -234,11 +234,11 @@
 
                                   <div class="row py-3" id="bireysel-bilgiler1">                                    
                                     <div class="col">
-                                      <input id="hk-ad" type="text" name="mbadi" onkeyup="hkAdilkHarfBuyuk()" placeholder="Adı" class="form-control form-control-sm" required value="{{ old('mbadi') }}">
+                                      <input id="hk-ad" type="text" name="mbadi" onkeyup="hkAdilkHarfBuyuk()" placeholder="Adı" class="form-control form-control-sm" value="{{ old('mbadi') }}">
                                     </div>
                                     
                                     <div class="col">
-                                      <input id="hk-soyad" type="text" name="mbsoyadi" onkeyup="hkSoyadBuyuk()" placeholder="Soyadı" class="form-control form-control-sm" required value="{{ old('mbsoyadi') }}">
+                                      <input id="hk-soyad" type="text" name="mbsoyadi" onkeyup="hkSoyadBuyuk()" placeholder="Soyadı" class="form-control form-control-sm" value="{{ old('mbsoyadi') }}">
                                     </div>
                                   </div>
 
