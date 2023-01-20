@@ -384,7 +384,7 @@
                   <h6>BURASI MÜŞTERİLER SAYFASI OLACAK</h6>
                 </div> -->
               <div class="widget-two">
-                <table id="html5-extension" class="table table-hover non-hover" style="width: 100%">
+                <table id="html5-extension" class="table table-hover non-hover" data-cols-width="5, 20, 20, 20, 20, 20" style="width: 100%">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -395,7 +395,7 @@
                       <th>Lokasyon</th>
                       {{-- <th>Müşteri Kayıt Tarihi</th> --}}
                       <th>İletişim</th>
-                      <th class="dt-no-sorting">İşlemler</th>
+                      <th class="dt-no-sorting" data-exclude="true">İşlemler</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -433,7 +433,7 @@
                         <input class="cep" type="hidden" name="{{ $musteri->mmobil }}">
                         <input class="unvan" type="hidden" name="{{ $musteri->mbunvani }}">
                         <input class="dogum" type="hidden" name="{{$musteri->mbdogumgunu[8]}}{{ $musteri->mbdogumgunu[9]}}.{{$musteri->mbdogumgunu[5]}}{{ $musteri->mbdogumgunu[6]}}.{{$musteri->mbdogumgunu[0]}}{{ $musteri->mbdogumgunu[1]}}{{$musteri->mbdogumgunu[2]}}{{ $musteri->mbdogumgunu[3]}}">
-                        <td>
+                        <td data-exclude="true">
                             <div class="row">
                                 <div class="col">
                                     <a data-toggle="modal" role="button" data-target="#exampleModalLong" onclick="musteriBilgileri({{$musteri->mtcknvno}})"><svg style="width:23px; fill:#0e63ec !important;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M160 256C160 185.3 217.3 128 288 128C358.7 128 416 185.3 416 256C416 326.7 358.7 384 288 384C217.3 384 160 326.7 160 256zM288 336C332.2 336 368 300.2 368 256C368 211.8 332.2 176 288 176C287.3 176 286.7 176 285.1 176C287.3 181.1 288 186.5 288 192C288 227.3 259.3 256 224 256C218.5 256 213.1 255.3 208 253.1C208 254.7 208 255.3 208 255.1C208 300.2 243.8 336 288 336L288 336zM95.42 112.6C142.5 68.84 207.2 32 288 32C368.8 32 433.5 68.84 480.6 112.6C527.4 156 558.7 207.1 573.5 243.7C576.8 251.6 576.8 260.4 573.5 268.3C558.7 304 527.4 355.1 480.6 399.4C433.5 443.2 368.8 480 288 480C207.2 480 142.5 443.2 95.42 399.4C48.62 355.1 17.34 304 2.461 268.3C-.8205 260.4-.8205 251.6 2.461 243.7C17.34 207.1 48.62 156 95.42 112.6V112.6zM288 80C222.8 80 169.2 109.6 128.1 147.7C89.6 183.5 63.02 225.1 49.44 256C63.02 286 89.6 328.5 128.1 364.3C169.2 402.4 222.8 432 288 432C353.2 432 406.8 402.4 447.9 364.3C486.4 328.5 512.1 286 526.6 256C512.1 225.1 486.4 183.5 447.9 147.7C406.8 109.6 353.2 80 288 80V80z"/></svg></a> 
@@ -572,6 +572,7 @@
   </script>
   
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
+  <script src="{{ asset('plugins/table-to-excel/dist/tableToExcel.js') }}"></script>
   <script>
     $("#html5-extension").DataTable({
       dom:
@@ -580,7 +581,7 @@
         "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
       buttons: {
         buttons: [
-          { extend: "excel", className: "btn btn-sm" },
+          // { extend: "excel", className: "btn btn-sm" },
         ],
       },
       oLanguage: {
@@ -619,6 +620,13 @@
     let place = document.getElementById("btn-add-contact");
     new_element = htmlToElement(new_element);
     place.parentNode.parentNode.insertBefore(new_element, place.parentNode);
+
+    let my_table = document.getElementById('html5-extension');
+    let excel_button = "<button id='excel-btn' class='btn-primary mx-3 btn btn-sm' role='button' onclick='TableToExcel.convert(my_table)'>Excel</button>";
+    let my_var = document.getElementsByClassName('dt-buttons')[0];
+    excel_button = htmlToElement(excel_button);
+    my_var.appendChild(excel_button);
+
   </script>
   <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
