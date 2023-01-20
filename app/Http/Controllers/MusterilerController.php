@@ -54,7 +54,7 @@ class MusterilerController extends Controller {
             'mboylam.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
         ]
     );
-    $request->mbdogumgunu = date('Y-m-d', strtotime($request->mbdogumgunu));
+    $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
     musteri::create($request->all());
     musteri::where('mtcknvno', $request->mtcknvno)->update( array('aktif' => 1) );
     return redirect('musteriler')->with('success', 'Kayıt Başarıyla Eklendi');
@@ -79,7 +79,36 @@ class MusterilerController extends Controller {
     }
 
     public function musteriGuncelle(Request $request, $mtcknvno) {
-        $request['mbdogumgunu'] = date('Y-m-d H:i:s', strtotime($request['mbdogumgunu']));
+        $request->validate([
+            'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
+            'mtcknvno' => 'required|numeric',
+            'mtmarkaadi' => 'required',
+            'monunvan' => 'string',
+            'mbadi' => 'required',
+            'mbsoyadi' => 'required',
+            'mbdogumgunu' => 'required|before:today',
+            'madres' => 'required',
+            'mbolge' => 'required',
+            'mmobil' => 'required',
+            'menlem' => 'required',
+            'mboylam' => 'required',
+        ],
+        [   
+            'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
+            'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
+            'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
+            'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
+            'monunvan.required' => 'Lütfen müşterinin ünvanını boş bırakmayınız.',
+            'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
+            'mbsoyadi.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
+            'mbdogumgunu.required' => 'Lütfen doğum gününü boş bırakmayınız.',
+            'mbdogumgunu.before' => 'Lütfen müşterinin doğum tarihini doğru girdiğinizden emin olunuz.',
+            'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
+            'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
+            'mboylam.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
+        ]
+    );
+        $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
         musteri::where('mtcknvno', $mtcknvno)->update($request->except(['_token', '_method']));
         return redirect('musteriler')->with('success', 'Kayıt Başarıyla Güncellendi');
     }

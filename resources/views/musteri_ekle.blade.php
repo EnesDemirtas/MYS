@@ -113,10 +113,10 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-3">
-                                                    <input id="hk-marka" type="text" name="mtmarkaadi" placeholder="Marka Adı" class="form-control" required>
+                                                    <input id="hk-marka" onkeyup="hkMarkaAdiBuyuk()" type="text" name="mtmarkaadi" placeholder="Marka Adı" class="form-control" required>
                                                   </div>
                                                 <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-onunvan" type="text" name="monunvan" placeholder="Unvanı" class="form-control">
+                                                        <input id="hk-onunvan" onkeyup="hkOnUnvanBuyuk()" type="text" name="monunvan" placeholder="Unvanı" class="form-control">
                                                 </div>
                                                 <div class="col-3 ticaribilgi">
                                                     <input id="hk-sube" type="text" name="mtsubeadi" placeholder="Şube Adı" class="form-control">
@@ -132,10 +132,10 @@
                                                   </div>
 
                                                   <div class="col-3 bireyselbilgi">
-                                                    <input id="hk-ad" type="text" name="mbadi" placeholder="Adı" class="form-control">
+                                                    <input id="hk-ad" type="text" onkeyup="hkAdilkHarfBuyuk()" name="mbadi" placeholder="Adı" class="form-control">
                                                   </div>
                                                   <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-soyad" type="text" name="mbsoyadi" placeholder="Soyadı" class="form-control">
+                                                        <input id="hk-soyad" type="text" onkeyup="hkSoyadBuyuk()" name="mbsoyadi" placeholder="Soyadı" class="form-control">
                                                   </div>
                                                   <div class="col-3 ticaribilgi">
                                                     <input id="hk-kisaltma" type="text" name="mtkisaltmasi" placeholder="Kısaltma" class="form-control">
@@ -146,10 +146,10 @@
                                                 </div> 
                                                 <div class="row py-3">
                                                     <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-firma" type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" class="form-control">
+                                                        <input id="hk-firma" onkeyup="hkCalistigiFirmaBuyuk() type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" class="form-control">
                                                       </div>
                                                       <div class="col-3 bireyselbilgi">
-                                                            <input id="hk-unvan" type="text" name="mbunvani" placeholder="Unvanı/Mesleği" class="form-control">
+                                                            <input id="hk-unvan" onkeyup="hkUnvanBuyuk()" type="text" name="mbunvani" placeholder="Unvanı/Mesleği" class="form-control">
                                                       </div>  
                                                       <div class="col-3 bireyselbilgi">
                                                         <input id="hk-dogum" type="text" name="mbdogumgunu" placeholder="Doğum Tarihi" class="form-control" onfocus="(this.type='date')">
@@ -173,7 +173,7 @@
                                             <section>
                                                 <div class="row py-3">
                                                     <div class="col-3">
-                                                        <input id="hk-banka" type="text" name="mbankadi" placeholder="Banka Adı" class="form-control">
+                                                        <input id="hk-banka" onkeyup="hkBankaAdiBuyuk()" type="text" name="mbankadi" placeholder="Banka Adı" class="form-control">
                                                       </div>
                                                       <div class="col-3">
                                                             <input id="hk-iban" type="text" name="miban" placeholder="IBAN" class="form-control">
@@ -228,13 +228,17 @@
                                                 </div> 
                                                 <div class="row py-3">
                                                     <div class="col-2">
-                                                        <input id="hk-bolge" type="text" name="mbolge" placeholder="Bölge" class="form-control">
+                                                        <input id="hk-bolge" type="text" onkeyup="hkBolgeBuyuk()" name="mbolge" placeholder="Bölge" class="form-control">
                                                       </div>  
                                                     <div class="col-2">
-                                                        <input id="hk-ilce" type="text" name="milce" placeholder="İlçe" class="form-control">
+                                                      <select id="Iller" name="mil" class="placeholder js-states form-control">
+                                                        <option>Lütfen Bir İl Seçiniz</option>
+                                                      </select>
                                                       </div>  
                                                       <div class="col-2">
-                                                        <input id="hk-il" type="text" name="mil" placeholder="İl" class="form-control">
+                                                        <select id="Ilceler" disabled="disabled" name="milce" class="placeholder js-states form-control">
+                                                          <option>Lütfen Bir İlçe Seçiniz</option>
+                                                        </select>
                                                       </div>
                                                       <div class="col-3">
                                                         <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" class="form-control">
@@ -335,7 +339,7 @@
     <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
-
+    <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
     <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>

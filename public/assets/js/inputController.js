@@ -45,23 +45,30 @@ function hkUnvanBuyuk() { // Kullanıcı Ünvanını Büyük Yazdırır
 	x.value = x.value.toLocaleUpperCase("tr-TR");
 }
 
-function hkMarkaAdiBuyuk() {
+function hkMarkaAdiBuyuk() { // Kullanıcı Marka Adını Büyük Yazdırır
 	var x = document.getElementById("hk-marka");
 	x.value = x.value.toLocaleUpperCase("tr-TR");
 }
 
-function hkIlBuyuk() {
-	var x = document.getElementById("hk-il");
-	x.value = x.value.toLocaleUpperCase("tr-TR");
-}
-
-function hkIlceBuyuk() {
-	var x = document.getElementById("hk-ilce");
-	x.value = x.value.toLocaleUpperCase("tr-TR");
-}
-
-function hkBolgeBuyuk() {
+function hkBolgeBuyuk() { // Kullanıcı Bölge Adını Büyük Yazdırır
 	var x = document.getElementById("hk-bolge");
 	x.value = x.value.toLocaleUpperCase("tr-TR");
 }
+
+function hkOnUnvanBuyuk() { // Kullanıcı Bölge Adını Büyük Yazdırır
+	var x = document.getElementById("hk-onunvan");
+	x.value = x.value.toLocaleUpperCase("tr-TR");
+}
+
+function hkBankaAdiBuyuk() { // Kullanıcı Bölge Adını Büyük Yazdırır
+	var x = document.getElementById("hk-banka");
+	x.value = x.value.toLocaleUpperCase("tr-TR");
+}
+
+function hkCalistigiFirmaBuyuk() { // Kullanıcı Bölge Adını Büyük Yazdırır
+	var x = document.getElementById("hk-firma");
+	x.value = x.value.toLocaleUpperCase("tr-TR");
+}
+
+
 
