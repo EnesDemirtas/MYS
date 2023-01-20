@@ -273,7 +273,7 @@
                               </div>
 
                               <div class="row py-3">
-                                <div class="col-3 pr-0">
+                                <div class="col-4 pr-0">
                                   <div class="form-group">
                                       <select class="placeholder js-states form-control form-control-sm" name="mukodutel">
                                           <option value="90">+90</option>
@@ -284,16 +284,16 @@
                                       </select>
                                   </div>
                                 </div>
-                                <div class="col-4 pl-1">
+                                <div class="col-8 pl-1">
                                     <div class="form-group">
                                         <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm mb-4" name="mmobil" id="phone" placeholder="Telefon" value="{{ old('mmobil') }}">
                                     </div>
                                 </div>
-                                <div class="col-5 pl-1">
+                                <div class="col-12 pl-3">
                                   <div class="form-group">
                                     <input id="hk-eposta" type="email" name="meposta" placeholder="Eposta" class="form-control" value="{{ old('meposta') }}">
                                   </div>
-                              </div> 
+                                </div>
                                   <hr>
                                 <div class="w-100 text-center text-muted">Konum Bilgisini Haritadan Giriniz</div>
                                 <div role="button" id="anlikKonum" class="btn btn-light"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#de1717" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 395.71 395.71" xml:space="preserve" stroke="#006eff"><g id="SVGRepo_bgCarrier" stroke-width="0"/><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/><g id="SVGRepo_iconCarrier"> <g> <path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738 c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388 C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191 c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"/> </g> </g></svg>                            
