@@ -286,35 +286,73 @@
           $("#hk-enlem").attr("value",enlem);
           $("#hk-boylam").attr("value",boylam);    
         }
+        let map, infoWindow;
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          infoWindow.setPosition(pos);
+          infoWindow.setContent(
+            browserHasGeolocation
+              ? "Error: Konum bilgileri alınamadı"
+              : "Error: Tarayıcınız konum bilgilerinin alınmasına izin vermedi."
+          );
+          infoWindow.open(map);
+        }
       
           function initMap() {
-        const myLatlng = { lat: 36.89241570427338, lng: 30.710640679285348 };
-      
-        const map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 7,
-          center: myLatlng,
-        });
-      
-        let marker = new google.maps.Marker({
-          position: myLatlng,
-          map,
-          title: "KONUM",
-          });
-      
-        // Configure the click listener.
-        map.addListener("click", (mapsMouseEvent) => {
-          // Close the current InfoWindow.
-          marker.setMap(null); // marker'ı sıfırlar
+            map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 36.89241570427338, lng: 30.710640679285348 },
+    zoom: 6,
+  });
+  infoWindow = new google.maps.InfoWindow();
+  let marker = new google.maps.Marker();
+
+  const locationButton = document.createElement("button");
+
+  locationButton.textContent = "Bulunduğunuz konumu almak için tıklayınız.";
+  locationButton.classList.add("custom-map-control-button");
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+  locationButton.addEventListener("click", () => {
+
+    marker.setMap(null); // marker'ı sıfırlar
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
           marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
-            position: mapsMouseEvent.latLng,
+            position: pos,
           });
-      
-          var lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat); // Seçilen konumun lat bilgisini alır.
-          var lng = JSON.stringify(mapsMouseEvent.latLng.toJSON().lng); // Seçilen konumun lng bilgisini alır. 
-          enlemBoylamDegis(lat,lng); // enlem ve boylam bilgilerini inputa verir.
+
+          enlemBoylamDegis(pos.lat,pos.lng); // enlem ve boylam bilgilerini inputa verir.
           marker.setMap(map);
-        });
+          map.setCenter(pos);
+        },
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
         }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  });
+
+  map.addListener("click", (mapsMouseEvent) => {
+    // Close the current InfoWindow.
+    marker.setMap(null); // marker'ı sıfırlar
+    marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
+      position: mapsMouseEvent.latLng,
+    });
+
+    var lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat); // Seçilen konumun lat bilgisini alır.
+    var lng = JSON.stringify(mapsMouseEvent.latLng.toJSON().lng); // Seçilen konumun lng bilgisini alır. 
+    enlemBoylamDegis(lat,lng); // enlem ve boylam bilgilerini inputa verir.
+    marker.setMap(map);
+  });
+}
+        
         </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
 
