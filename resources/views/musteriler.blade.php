@@ -222,33 +222,33 @@
                                   </select>
                                 </div>
                                 <div class="col-6">
-                                    <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" class="form-control form-control-sm" value="{{ old('mtcknvno') }}" required>
+                                    <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" class="form-control form-control-sm" value="{{ old('mtcknvno') }}" required readonly>
                                 </div>
                                 </div>
                                   <div class="row py-3">
 
                                     <div class="col">
-                                      <input id="hk-marka" type="text" name="mtmarkaadi" onkeyup="hkMarkaAdiBuyuk()" placeholder="Marka Adı" class="form-control form-control-sm" required value="{{ old('mtmarkaadi') }}">
+                                      <input id="hk-marka" type="text" name="mtmarkaadi" onkeyup="hkMarkaAdiBuyuk()" placeholder="Marka Adı" class="form-control form-control-sm" required value="{{ old('mtmarkaadi') }}" required readonly>
                                     </div>
                                   </div>
 
                                   <div class="row py-3" id="bireysel-bilgiler1">                                    
                                     <div class="col">
-                                      <input id="hk-ad" type="text" name="mbadi" onkeyup="hkAdilkHarfBuyuk()" placeholder="Adı" class="form-control form-control-sm" value="{{ old('mbadi') }}">
+                                      <input id="hk-ad" type="text" name="mbadi" onkeyup="hkAdilkHarfBuyuk()" placeholder="Adı" class="form-control form-control-sm" value="{{ old('mbadi') }}" readonly>
                                     </div>
                                     
                                     <div class="col">
-                                      <input id="hk-soyad" type="text" name="mbsoyadi" onkeyup="hkSoyadBuyuk()" placeholder="Soyadı" class="form-control form-control-sm" value="{{ old('mbsoyadi') }}">
+                                      <input id="hk-soyad" type="text" name="mbsoyadi" onkeyup="hkSoyadBuyuk()" placeholder="Soyadı" class="form-control form-control-sm" value="{{ old('mbsoyadi') }}" readonly>
                                     </div>
                                   </div>
 
                                   <div class="row py-3" id="bireysel-bilgiler2">                                   
                                     <div class="col">
-                                      <input id="hk-unvan" type="text" name="mbunvani" onkeyup="hkUnvanBuyuk()" placeholder="Unvanı" class="form-control form-control-sm" value="{{ old('mbunvani') }}">
+                                      <input id="hk-unvan" type="text" name="mbunvani" onkeyup="hkUnvanBuyuk()" placeholder="Unvanı" class="form-control form-control-sm" value="{{ old('mbunvani') }}" readonly>
                                     </div>
                                     
                                     <div class="col">
-                                      <input id="basicFlatpickr" value="{{ old('mbdogumgunu') }}" name="mbdogumgunu" class="form-control form-control-sm flatpickr flatpickr-input active" type="text" placeholder="Doğum Günü">
+                                      <input id="basicFlatpickr" value="{{ old('mbdogumgunu') }}" name="mbdogumgunu" class="form-control form-control-sm flatpickr flatpickr-input active" type="text" placeholder="Doğum Günü" readonly>
                                     </div>
                                   </div>
 

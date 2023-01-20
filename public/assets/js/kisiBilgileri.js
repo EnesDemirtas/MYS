@@ -73,15 +73,30 @@ function musteriBilgileri(id){
 }
 
 function changeFields(kayit) {
-    if (kayit == "Ticari") {
+    if (kayit == "Kayıt Türü") {
+        $("#hk-tcknvno").prop("readonly", true);
+        $("#hk-marka").prop("readonly", true);
+        $("#bireysel-bilgiler1 input").prop("readonly", true);
+        $("#bireysel-bilgiler2 input").prop("readonly", true);
+    } else if (kayit == "Ticari") {
         $("#hk-tcknvno").attr("placeholder", "Vergi No");
         $("#bireysel-bilgiler1").hide();
         $("#bireysel-bilgiler2").hide();
+
+        $("#hk-tcknvno").prop("readonly", false);
+        $("#hk-marka").prop("readonly", false);
     } else {
         $("#hk-tcknvno").attr("placeholder", "TCKN/Vergi No");
         $("#bireysel-bilgiler1").show();
         $("#bireysel-bilgiler2").show();
+
+        $("#hk-tcknvno").prop("readonly", false);
+        $("#hk-marka").prop("readonly", false);
+        $("#bireysel-bilgiler1 input").prop("readonly", false);
+        $("#bireysel-bilgiler2 input").prop("readonly", false);
     }
+
+
 }
 
 function changeFieldsMusteri(kayit) {
