@@ -112,7 +112,27 @@ class MusterilerController extends Controller {
         $request->validate([
             'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
             'mtcknvno' => 'required|numeric',
-            'mtmarkaadi' => 'required'
+            'mtmarkaadi' => 'required',
+            'milce' => 'required|doesnt_start_with:Lütfen Bir İlçe Seçiniz',
+            'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz',
+            'mbadi' => 'required',
+            'mbsoyadi' => 'required',
+            'mbolge' => 'required',
+            'menlem' => 'required',
+        ],
+        [   
+            'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
+            'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
+            'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
+            'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
+            'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
+            'mbsoyadi.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
+            'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
+            'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
+            'milce.required' => 'Lütfen ilçeyi seçiniz.',
+            'milce.doesnt_start_with' => 'Lütfen ilçeyi seçiniz.',
+            'mil.required' => 'Lütfen il seçiniz.',
+            'mil.doesnt_start_with' => 'Lütfen il seçiniz.',
         ]);
 
         $musteriSayisiBul = musteri::where('satirid', '>', '0')->get();
@@ -147,6 +167,8 @@ class MusterilerController extends Controller {
             'mmobil' => 'required',
             'menlem' => 'required',
             'mboylam' => 'required',
+            'milce' => 'required|doesnt_start_with:Lütfen Bir İlçe Seçiniz',
+            'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz',
         ],
         [   
             'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
@@ -161,6 +183,8 @@ class MusterilerController extends Controller {
             'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
             'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
             'mboylam.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
+            'milce.required' => 'Lütfen ilçeyi seçiniz.',
+            'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
         ]
     );
         $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
