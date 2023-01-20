@@ -19,7 +19,7 @@ class MusterilerController extends Controller {
 
     public function store(Request $request) {
         // Validate data
-        $formFields = $request->validate([
+        $request->validate([
             'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
             'mtcknvno' => 'required|numeric',
             'mtmarkaadi' => 'required',
@@ -29,15 +29,32 @@ class MusterilerController extends Controller {
             'mbdogumgunu' => 'required|before:today',
             'madres' => 'required',
             'mbolge' => 'required',
-            'milce' => 'required',
-            'mil' => 'required',
+            'milce' => 'required|doesnt_start_with:Lütfen Bir İlçe Seçiniz"',
+            'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz"',
             'mmobil' => 'required',
             'menlem' => 'required',
             'mboylam' => 'required'
+        ],
+        [   
+            'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
+            'mil.doesnt_start_with' => 'Lütfen müşterinin ilini giriniz.',
+            'milce.doesnt_start_with' => 'Lütfen müşterinin ilçesini giriniz.',
+            'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
+            'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
+            'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
+            'monunvan.required' => 'Lütfen müşterinin ünvanını boş bırakmayınız.',
+            'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
+            'mbsoyadi.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
+            'mbdogumgunu.required' => 'Lütfen doğum gününü boş bırakmayınız.',
+            'mbdogumgunu.before' => 'Lütfen müşterinin doğum tarihini doğru girdiğinizden emin olunuz.',
+            'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
+            'milce.required' => 'Lütfen ilçeyi seçiniz.',
+            'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
+            'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
+            'mboylam.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
         ]
     );
-    $formFields['mbdogumgunu'] = date('Y-m-d H:i:s', strtotime($formFields['mbdogumgunu']));
-    musteri::create($formFields);
+    musteri::create($request->all());
     return redirect('musteriler')->with('success', 'Kayıt Başarıyla Eklendi');
     }
 

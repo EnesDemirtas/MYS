@@ -128,7 +128,15 @@
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content widget-content searchable-container list">
       <div class="layout-px-spacing">
-
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @if(session()->has("success"))
             <div class="alert alert-success">
                 {{session("success")}}
@@ -257,10 +265,13 @@
                                   <input id="hk-bolge" type="text" name="mbolge" onkeyup="hkBolgeBuyuk()" placeholder="Bölge" class="form-control form-control-sm" required>
                                 </div>
                                 <div class="col-4">
-                                  <input id="hk-ilce" type="text" name="milce" onkeyup="hkIlceBuyuk()" placeholder="İlçe" class="form-control form-control-sm" required>
-                                </div>
+                                  <select id="Iller" name="mil" class="placeholder js-states form-control">
+                                    <option>Lütfen Bir İl Seçiniz</option>
+                                </select>                                </div>
                                 <div class="col-4">
-                                  <input id="hk-il" type="text" name="mil" onkeyup="hkIlBuyuk()" placeholder="İl" class="form-control form-control-sm" required>
+                                  <select id="Ilceler" disabled="disabled" name="milce" class="placeholder js-states form-control">
+                                    <option>Lütfen Bir İlçe Seçiniz</option>
+                                </select>
                                 </div>
                               </div>
 
@@ -502,6 +513,7 @@
   <script src="{{ asset('assets/js/apps/invoice-list.js') }}"></script>
   <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
   <script src="{{ asset('assets/js/inputController.js') }}"></script>
+  <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
   <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
