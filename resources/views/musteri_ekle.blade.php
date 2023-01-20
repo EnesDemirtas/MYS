@@ -146,7 +146,7 @@
                                                 </div> 
                                                 <div class="row py-3">
                                                     <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-firma" onkeyup="hkCalistigiFirmaBuyuk() type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" class="form-control">
+                                                        <input id="hk-firma" onkeyup="hkCalistigiFirmaBuyuk()" type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" class="form-control">
                                                       </div>
                                                       <div class="col-3 bireyselbilgi">
                                                             <input id="hk-unvan" onkeyup="hkUnvanBuyuk()" type="text" name="mbunvani" placeholder="Unvanı/Mesleği" class="form-control">
@@ -199,7 +199,7 @@
                                                 </div>
                                             </div>
                                             <div class="row py-3">
-                                                <div class="col-3">
+                                                  <div class="col-3">
                                                     <input id="hk-eposta" type="email" name="meposta" placeholder="E-Posta" class="form-control">
                                                   </div>
                                                   <div class="col-3">

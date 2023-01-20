@@ -68,12 +68,20 @@ class MusterilerController extends Controller {
             'mtmarkaadi' => 'required'
         ]);
 
+        $musteriSayisiBul = musteri::where('satirid', '>', '0')->get();
+        $musteriSayisi = $musteriSayisiBul->count(); // Kaç çalışan olduğunu saydırır.
+
         if (musteri::where('mtcknvno', $request->mtcknvno)->exists()) {
             return redirect()->back()->with('error', 'Bu TCKN/Vergi No ile kayıtlı bir müşteri bulunmaktadır.');
-        } else {
+        }else if($musteriSayisi > 0){ // Tablo boş değilse
+            $sonmusteri = musteri::orderBy('satirid', 'desc')->first()->satirid; //Son Çalışanın Satır ID'sini getirir.
             musteri::create($request->all());
-            musteri::where('mtcknvno', $request->mtcknvno)->update( array('aktif' => 1) );
-            return redirect('musteriler')->with('success', 'Kayıt Başarıyla Eklendi');
+            musteri::where('mtcknvno', $request->mtcknvno)->update( array('mrefno'=>'sbe-'.$sonmusteri++.'','aktif' => 1) );
+            return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
+        }else{ // Tablo Boşsa
+            musteri::create($request->all());
+            musteri::where('mtcknvno', $request->mtcknvno)->update( array('mrefno'=>'sbe-1','aktif' => 1) );
+            return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
         }
 
     }
