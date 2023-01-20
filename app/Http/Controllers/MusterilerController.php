@@ -26,8 +26,8 @@ class MusterilerController extends Controller {
                 'mtmarkaadi' => 'required',
                 'madres' => 'required',
                 'mbolge' => 'required',
-                'milce' => 'required|doesnt_start_with:Lütfen Bir İlçe Seçiniz"',
-                'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz"',
+                'milce' => 'required|doesnt_start_with:Lütfen Bir İlçe Seçiniz',
+                'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz',
                 'mmobil' => 'required',
                 'menlem' => 'required',
                 'meposta' => 'required|email'

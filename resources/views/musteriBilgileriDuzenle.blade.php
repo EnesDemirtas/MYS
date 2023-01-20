@@ -86,9 +86,6 @@
             </div>
         @endif
                             <div class="widget-one"> 
-                                <div class="text-center"> 
-                                    <h3 style="color:blue;text-decoration:underline;">MÜŞTERİ BİLGİLERİ DÜZENLEME</h3>
-                                </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
                                     <form id="kisiBilgileri" class="section contact p-4" method="post" action="{{route('musteri.guncelle',["mtcknvno" => $musteri->mtcknvno])}}">
                                         @csrf

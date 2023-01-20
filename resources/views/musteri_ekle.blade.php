@@ -85,9 +85,6 @@
             </div>
         @endif
                             <div class="widget-one"> 
-                                <div class="text-center"> 
-                                    <h3 style="color:blue;text-decoration:underline;">MÜŞTERİ EKLE</h3>
-                                </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
                                     <form id="kisiBilgileri" class="section contact p-4" method="post" action="{{route('musteri.ekle')}}">
                                         @csrf
@@ -167,18 +164,7 @@
                                                       <div class="col-3 ticaribilgi">
                                                             <input id="hk-mersis" type="number" name="mmno" placeholder="Mersis No" class="form-control" value="{{ old('mmno') }}">
                                                       </div>
-                                                </div>             
-                                            </section>
-                                            <h3>Banka ve İletişim Bilgileri</h3>
-                                            <section>
-                                                <div class="row py-3">
-                                                    <div class="col-3">
-                                                        <input id="hk-banka" onkeyup="hkBankaAdiBuyuk()" type="text" name="mbankadi" placeholder="Banka Adı" class="form-control" value="{{ old('mbankadi') }}">
-                                                      </div>
-                                                      <div class="col-3">
-                                                            <input id="hk-iban" type="text" name="miban" placeholder="IBAN" class="form-control" value="{{ old('miban') }}">
-                                                      </div>  
-                                                    <div class="col-md-1 pr-0">
+                                                      <div class="col-md-1 pr-0">
                                                         <div class="form-group">
                                                             <select class="placeholder js-states form-control" name="mukodutel">
                                                                 <option value="90">+90</option>
@@ -197,18 +183,32 @@
                                                 <div class="col-3">
                                                     <input id="hk-mtel" name="mtel" input="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Telefon" class="form-control" value="{{ old('mtel') }}">
                                                 </div>
-                                            </div>
-                                            <div class="row py-3">
-                                                  <div class="col-3">
-                                                    <input id="hk-eposta" type="email" name="meposta" placeholder="E-Posta" class="form-control" value="{{ old('meposta') }}">
-                                                  </div>
-                                                  <div class="col-3">
-                                                    <input id="hk-website" type="text" name="mweb" placeholder="Web Site" class="form-control" value="{{ old('mweb') }}">
-                                                  </div>  
-                                                  <div class="col-3">
-                                                    <input id="hk-fax" type="text" name="mfaks" placeholder="Faks" class="form-control" value="{{ old('mfaks') }}">
-                                                  </div>
+                                                <div class="col-3">
+                                                  <input id="hk-eposta" type="email" name="meposta" placeholder="E-Posta" class="form-control" value="{{ old('meposta') }}">
                                                 </div>
+                                                <div class="col-3">
+                                                  <input id="hk-website" type="text" name="mweb" placeholder="Web Site" class="form-control" value="{{ old('mweb') }}">
+                                                </div>  
+                                                <div class="col-3">
+                                                  <input id="hk-fax" type="text" name="mfaks" placeholder="Faks" class="form-control" value="{{ old('mfaks') }}">
+                                                </div>
+                                              </div>             
+                                            </section>
+                                            <h3>Ödeme Bilgileri</h3>
+                                            <section>
+                                                <div class="row py-3">
+                                                    <div class="col-3">
+                                                        <input id="hk-banka" onkeyup="hkBankaAdiBuyuk()" type="text" name="mbankadi" placeholder="Banka Adı" class="form-control" value="{{ old('mbankadi') }}">
+                                                      </div>
+                                                      <div class="col-3">
+                                                            <input id="hk-iban" type="text" name="miban" placeholder="IBAN" class="form-control" value="{{ old('miban') }}">
+                                                      </div>  
+                                                      <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control mb-4" id="mnot" name="mnot" placeholder="Notlar" rows="2" value="{{ old('mnot') }}"></textarea>
+                                                        </div>
+                                                      </div>
+                                            </div>
 
                                             </section>
                                             <h3>Adres Bilgileri</h3>
@@ -219,14 +219,6 @@
                                                             <textarea class="form-control mb-4" id="madres" name="madres" placeholder="Adres" rows="2" value="{{ old('madres') }}"></textarea>
                                                         </div>
                                                     </div>  
-                                                    
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control mb-4" id="mnot" name="mnot" placeholder="Notlar" rows="2" value="{{ old('mnot') }}"></textarea>
-                                                        </div>
-                                                    </div>  
-                                                </div> 
-                                                <div class="row py-3">
                                                     <div class="col-2">
                                                         <input id="hk-bolge" type="text" onkeyup="hkBolgeBuyuk()" name="mbolge" placeholder="Bölge" class="form-control" value="{{ old('mbolge') }}">
                                                       </div>  
@@ -306,6 +298,7 @@
   let marker = new google.maps.Marker();
 
   const locationButton = document.createElement("button");
+  locationButton.setAttribute("role", "button");
 
   locationButton.textContent = "Bulunduğunuz konumu almak için tıklayınız.";
   locationButton.classList.add("custom-map-control-button");

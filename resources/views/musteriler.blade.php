@@ -256,10 +256,6 @@
                               </section>
                               <h3>İletişim</h3>
                               <section>
-                                <div class="form-group mb-4">
-                                  <textarea placeholder="Adres" class="form-control" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}"></textarea>
-                              </div>
-
                               <div class="row">
                                 <div class="col-4">
                                   <input id="hk-bolge" type="text" name="mbolge" onkeyup="hkBolgeBuyuk()" placeholder="Bölge" class="form-control form-control-sm" required value="{{ old('mbolge') }}">
@@ -308,6 +304,9 @@
                                 </div>
                                 <div class="col-12" id="map"> <!-- GOOGLE HARİTALAR -->
                                 </div>
+                              </div>
+                              <div class="form-group mb-4">
+                                <textarea placeholder="Adres" class="form-control" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}"></textarea>
                               </div>
                               </section>
                           </div>
@@ -560,6 +559,7 @@
   let marker = new google.maps.Marker();
 
   const locationButton = document.createElement("button");
+  locationButton.setAttribute("role", "button");
 
   locationButton.textContent = "Bulunduğunuz konumu almak için tıklayınız.";
   locationButton.classList.add("custom-map-control-button");
