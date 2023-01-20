@@ -2,6 +2,8 @@
 
 var f1 = flatpickr(document.getElementById('basicFlatpickr'), {
     dateFormat: "d.m.Y",
+    allowInput: true,
+    defaultDate: "01.01.1980",
     appendTo: document.getElementById('addContactModal')
 });
 f1.element.style.zIndex = 9999;

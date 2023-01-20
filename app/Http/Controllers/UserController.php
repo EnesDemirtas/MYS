@@ -13,7 +13,7 @@ class UserController extends Controller
             'username' => 'required',
             'password' => 'required'
         ], [
-            'username.required' => 'Kullanıcı adı boş bırakılamaz',
+            'username.required' => 'Kullanıcı adı/TCKN boş bırakılamaz',
             'password.required' => 'Şifre boş bırakılamaz'
         ]);
 
@@ -26,7 +26,7 @@ class UserController extends Controller
             $request->session()->put('kullanici', $tckn);
             return redirect()->route('musteriler');
         } else {
-            return back()->withErrors(['username' => 'Kullanıcı adı veya şifre hatalı!'])->onlyInput('username');
+            return back()->withErrors(['username' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('username');
         }
     }
 
