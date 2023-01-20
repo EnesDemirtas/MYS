@@ -115,9 +115,7 @@ class MusterilerController extends Controller {
 
     public function musteriSil($mtcknvno){
         // musteri::where('mtcknvno', $mtcknvno)->delete();
-        $musteri = musteri::where('mtcknvno', $mtcknvno)->first();
-        $musteri->aktif = 0;
-        $musteri->save();
+        musteri::where('mtcknvno', $mtcknvno)->update(['aktif' => 0]);
         return redirect()->back()->with("success","Müşteri Başarıyla Silindi.");
     }
 }
