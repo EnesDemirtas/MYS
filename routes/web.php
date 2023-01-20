@@ -18,57 +18,57 @@ use App\Http\Controllers\UserController;
 */
 
 
-Route::get('/', [AnasayfaController::class, 'allData'])->name('anasayfa.index');
+Route::get('/', [AnasayfaController::class, 'allData'])->name('anasayfa.index')->middleware('isAuthenticated');
 
-Route::get('/musteriler', [MusterilerController::class, 'index']);
-Route::post('/musteriler', [MusterilerController::class, 'store'])->name('musteri.hizlikayit');
-Route::post('/musteri', [MusterilerController::class, 'musteriEkle'])->name('musteri.ekle');
-Route::get('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriDuzenle'])->name('musteri.duzenle');
-Route::put('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriGuncelle'])->name('musteri.guncelle');
-Route::delete('/musteri/{mtcknvno}',[MusterilerController::class, 'musteriSil'])->name('musteri.sil');
+Route::get('/musteriler', [MusterilerController::class, 'index'])->middleware('isAuthenticated');
+Route::post('/musteriler', [MusterilerController::class, 'store'])->name('musteri.hizlikayit')->middleware('isAuthenticated');
+Route::post('/musteri', [MusterilerController::class, 'musteriEkle'])->name('musteri.ekle')->middleware('isAuthenticated');
+Route::get('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriDuzenle'])->name('musteri.duzenle')->middleware('isAuthenticated');
+Route::put('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriGuncelle'])->name('musteri.guncelle')->middleware('isAuthenticated');
+Route::delete('/musteri/{mtcknvno}',[MusterilerController::class, 'musteriSil'])->name('musteri.sil')->middleware('isAuthenticated');
 
 
 Route::get('/musteri_ekle', function () {
     return view('musteri_ekle');
-});
+})->middleware('isAuthenticated');
 
 Route::get('randevu_yonetimi', function () {
     return view('randevu_yonetimi');
-});
+})->middleware('isAuthenticated');
 
 Route::get('gorev_yonetimi', function () {
     return view('gorev_yonetimi');
-});
+})->middleware('isAuthenticated');
 
 Route::get('calisan_ekle', function () {
     return view('calisan_ekle');
-});
+})->middleware('isAuthenticated');
 
-Route::post('/calisan', [CalisanlarController::class,'calisanEkle'])->name('calisan.ekle');
-Route::get('/calisan/{ctckn}', [CalisanlarController::class, 'calisanDuzenle'])->name('calisan.duzenle');
-Route::put('/calisan/{ctckn}', [CalisanlarController::class, 'calisanGuncelle'])->name('calisan.guncelle');
-Route::delete('/calisan/{ctckn}',[CalisanlarController::class, 'calisanSil'])->name('calisan.sil');
-Route::get('calisanlar', [CalisanlarController::class, 'index'])->name('calisan.index');
+Route::post('/calisan', [CalisanlarController::class,'calisanEkle'])->name('calisan.ekle')->middleware('isAuthenticated');
+Route::get('/calisan/{ctckn}', [CalisanlarController::class, 'calisanDuzenle'])->name('calisan.duzenle')->middleware('isAuthenticated');
+Route::put('/calisan/{ctckn}', [CalisanlarController::class, 'calisanGuncelle'])->name('calisan.guncelle')->middleware('isAuthenticated');
+Route::delete('/calisan/{ctckn}',[CalisanlarController::class, 'calisanSil'])->name('calisan.sil')->middleware('isAuthenticated');
+Route::get('calisanlar', [CalisanlarController::class, 'index'])->name('calisan.index')->middleware('isAuthenticated');
 
 Route::get('teklif_yonetimi', function () {
     return view('teklif_yonetimi');
-});
+})->middleware('isAuthenticated');
 
 Route::get('teklif_ekle', function () {
     return view('teklif_ekle');
-});
+})->middleware('isAuthenticated');
 
 Route::get('teklif_duzenle', function () {
     return view('teklif_duzenle');
-});
+})->middleware('isAuthenticated');
 
 Route::get('teklifler', function () {
     return view('teklifler');
-});
+})->middleware('isAuthenticated');
 
 Route::get('teklif_onizle', function () {
     return view('teklif_onizle');
-});
+})->middleware('isAuthenticated');
 
 Route::get('sifre_yenileme', function () {
     return view('sifre_yenileme');
@@ -76,7 +76,7 @@ Route::get('sifre_yenileme', function () {
 
 Route::get('on_muhasebe', function () {
     return view('on_muhasebe');
-});
+})->middleware('isAuthenticated');
 
 Route::get('kayit_ol', function () {
     return view('kayit_ol');
@@ -84,7 +84,7 @@ Route::get('kayit_ol', function () {
 
 Route::get('hizmet_ve_urunler', function () {
     return view('hizmet_ve_urunler');
-});
+})->middleware('isAuthenticated');
 
 Route::get('musteri/giris_yap', function () {
     return view('musteri_giris_yap');
@@ -96,5 +96,5 @@ Route::get('giris_yap', function () {
 
 Route::post('giris_yap', [UserController::class, 'login'])->name('login');
 
-Route::post('cikis_yap', [UserController::class, 'logout'])->name('logout');
+Route::post('cikis_yap', [UserController::class, 'logout'])->name('logout')->middleware('isAuthenticated');
 
