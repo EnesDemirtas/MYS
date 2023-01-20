@@ -113,59 +113,59 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-3">
-                                                    <input id="hk-marka" onkeyup="hkMarkaAdiBuyuk()" type="text" name="mtmarkaadi" placeholder="Marka Adı" class="form-control" required>
+                                                    <input id="hk-marka" onkeyup="hkMarkaAdiBuyuk()" type="text" name="mtmarkaadi" placeholder="Marka Adı" class="form-control" required value="{{ old('mtmarkaadi') }}">
                                                   </div>
                                                 <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-onunvan" onkeyup="hkOnUnvanBuyuk()" type="text" name="monunvan" placeholder="Unvanı" class="form-control">
+                                                        <input id="hk-onunvan" onkeyup="hkOnUnvanBuyuk()" type="text" name="monunvan" placeholder="Unvanı" class="form-control" value="{{ old('monunvan') }}">
                                                 </div>
                                                 <div class="col-3 ticaribilgi">
-                                                    <input id="hk-sube" type="text" name="mtsubeadi" placeholder="Şube Adı" class="form-control">
+                                                    <input id="hk-sube" type="text" name="mtsubeadi" placeholder="Şube Adı" class="form-control" value="{{ old('mtsubeadi') }}">
                                               </div>
                                                 </div>
                                                 <div class="row py-3">
               
                                                     <div class="col-3">
-                                                        <input id="hk-vdaire" type="text" name="mvdairesi" placeholder="Vergi Dairesi" class="form-control">
+                                                        <input id="hk-vdaire" type="text" name="mvdairesi" placeholder="Vergi Dairesi" class="form-control" value="{{ old('mvdairesi') }}">
                                                     </div>
                                                   <div class="col-3">
-                                                        <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" class="form-control" required>
+                                                        <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" class="form-control" required value="{{ old('mtcknvno') }}">
                                                   </div>
 
                                                   <div class="col-3 bireyselbilgi">
-                                                    <input id="hk-ad" type="text" onkeyup="hkAdilkHarfBuyuk()" name="mbadi" placeholder="Adı" class="form-control">
+                                                    <input id="hk-ad" type="text" onkeyup="hkAdilkHarfBuyuk()" name="mbadi" placeholder="Adı" class="form-control" value="{{ old('mbadi') }}">
                                                   </div>
                                                   <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-soyad" type="text" onkeyup="hkSoyadBuyuk()" name="mbsoyadi" placeholder="Soyadı" class="form-control">
+                                                        <input id="hk-soyad" type="text" onkeyup="hkSoyadBuyuk()" name="mbsoyadi" placeholder="Soyadı" class="form-control" value="{{ old('mbsoyadi') }}">
                                                   </div>
                                                   <div class="col-3 ticaribilgi">
-                                                    <input id="hk-kisaltma" type="text" name="mtkisaltmasi" placeholder="Kısaltma" class="form-control">
+                                                    <input id="hk-kisaltma" type="text" name="mtkisaltmasi" placeholder="Kısaltma" class="form-control" value="{{ old('mtkisaltmasi') }}">
                                                   </div>
                                                   <div class="col-3 ticaribilgi">
-                                                        <input id="hk-tamunvan" type="text" name="firmatamunvan" placeholder="Firma Tam Unvan" class="form-control">
+                                                        <input id="hk-tamunvan" type="text" name="firmatamunvan" placeholder="Firma Tam Unvan" class="form-control" value="{{ old('firmatamunvan') }}">
                                                   </div>
                                                 </div> 
                                                 <div class="row py-3">
                                                     <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-firma" onkeyup="hkCalistigiFirmaBuyuk()" type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" class="form-control">
+                                                        <input id="hk-firma" onkeyup="hkCalistigiFirmaBuyuk()" type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" class="form-control" value="{{ old('mbfirmaadi') }}">
                                                       </div>
                                                       <div class="col-3 bireyselbilgi">
-                                                            <input id="hk-unvan" onkeyup="hkUnvanBuyuk()" type="text" name="mbunvani" placeholder="Unvanı/Mesleği" class="form-control">
+                                                            <input id="hk-unvan" onkeyup="hkUnvanBuyuk()" type="text" name="mbunvani" placeholder="Unvanı/Mesleği" class="form-control" value="{{ old('mbunvani') }}">
                                                       </div>  
                                                       <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-dogum" type="text" name="mbdogumgunu" placeholder="Doğum Tarihi" class="form-control" onfocus="(this.type='date')">
+                                                        <input id="hk-dogum" type="text" name="mbdogumgunu" placeholder="Doğum Tarihi" class="form-control" onfocus="(this.type='date')" value="{{ old('mbdogumgunu') }}">
                                                       </div>  
                                                       <div class="col-3 ticaribilgi">
-                                                        <input id="hk-unvandevami" type="text" name="mtunvandevami" placeholder="Unvan Devamı" class="form-control">
+                                                        <input id="hk-unvandevami" type="text" name="mtunvandevami" placeholder="Unvan Devamı" class="form-control" value="{{ old('mtunvandevami') }}">
                                                       </div>
                                                       <div class="col-3 ticaribilgi">
-                                                            <input id="hk-ticaretsicil" type="number" name="mtsno" placeholder="Ticaret Sicil No" class="form-control">
+                                                            <input id="hk-ticaretsicil" type="number" name="mtsno" placeholder="Ticaret Sicil No" class="form-control" value="{{ old('mtsno') }}">
                                                       </div>
 
                                                       <div class="col-3 ticaribilgi">
-                                                        <input id="hk-odasicil" type="number" name="mosno" placeholder="Oda Sicil No" class="form-control">
+                                                        <input id="hk-odasicil" type="number" name="mosno" placeholder="Oda Sicil No" class="form-control" value="{{ old('mosno') }}">
                                                       </div>
                                                       <div class="col-3 ticaribilgi">
-                                                            <input id="hk-mersis" type="number" name="mmno" placeholder="Mersis No" class="form-control">
+                                                            <input id="hk-mersis" type="number" name="mmno" placeholder="Mersis No" class="form-control" value="{{ old('mmno') }}">
                                                       </div>
                                                 </div>             
                                             </section>
@@ -173,10 +173,10 @@
                                             <section>
                                                 <div class="row py-3">
                                                     <div class="col-3">
-                                                        <input id="hk-banka" onkeyup="hkBankaAdiBuyuk()" type="text" name="mbankadi" placeholder="Banka Adı" class="form-control">
+                                                        <input id="hk-banka" onkeyup="hkBankaAdiBuyuk()" type="text" name="mbankadi" placeholder="Banka Adı" class="form-control" value="{{ old('mbankadi') }}">
                                                       </div>
                                                       <div class="col-3">
-                                                            <input id="hk-iban" type="text" name="miban" placeholder="IBAN" class="form-control">
+                                                            <input id="hk-iban" type="text" name="miban" placeholder="IBAN" class="form-control" value="{{ old('miban') }}">
                                                       </div>  
                                                     <div class="col-md-1 pr-0">
                                                         <div class="form-group">
@@ -191,22 +191,22 @@
                                                     </div>
                                                 <div class="col-md-2 pl-1">
                                                     <div class="form-group">
-                                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="mmobil" id="phone" placeholder="Cep Telefonu" >
+                                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="mmobil" id="phone" placeholder="Cep Telefonu" value="{{ old('mmobil') }}">
                                                     </div>
                                                 </div> 
                                                 <div class="col-3">
-                                                    <input id="hk-mtel" name="mtel" input="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Telefon" class="form-control">
+                                                    <input id="hk-mtel" name="mtel" input="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Telefon" class="form-control" value="{{ old('mtel') }}">
                                                 </div>
                                             </div>
                                             <div class="row py-3">
                                                   <div class="col-3">
-                                                    <input id="hk-eposta" type="email" name="meposta" placeholder="E-Posta" class="form-control">
+                                                    <input id="hk-eposta" type="email" name="meposta" placeholder="E-Posta" class="form-control" value="{{ old('meposta') }}">
                                                   </div>
                                                   <div class="col-3">
-                                                    <input id="hk-website" type="text" name="mweb" placeholder="Web Site" class="form-control">
+                                                    <input id="hk-website" type="text" name="mweb" placeholder="Web Site" class="form-control" value="{{ old('mweb') }}">
                                                   </div>  
                                                   <div class="col-3">
-                                                    <input id="hk-fax" type="text" name="mfaks" placeholder="Faks" class="form-control">
+                                                    <input id="hk-fax" type="text" name="mfaks" placeholder="Faks" class="form-control" value="{{ old('mfaks') }}">
                                                   </div>
                                                 </div>
 
@@ -216,19 +216,19 @@
                                                 <div class="row py-3">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <textarea class="form-control mb-4" id="madres" name="madres" placeholder="Adres" rows="2"></textarea>
+                                                            <textarea class="form-control mb-4" id="madres" name="madres" placeholder="Adres" rows="2" value="{{ old('madres') }}"></textarea>
                                                         </div>
                                                     </div>  
                                                     
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <textarea class="form-control mb-4" id="mnot" name="mnot" placeholder="Notlar" rows="2"></textarea>
+                                                            <textarea class="form-control mb-4" id="mnot" name="mnot" placeholder="Notlar" rows="2" value="{{ old('mnot') }}"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div> 
                                                 <div class="row py-3">
                                                     <div class="col-2">
-                                                        <input id="hk-bolge" type="text" onkeyup="hkBolgeBuyuk()" name="mbolge" placeholder="Bölge" class="form-control">
+                                                        <input id="hk-bolge" type="text" onkeyup="hkBolgeBuyuk()" name="mbolge" placeholder="Bölge" class="form-control" value="{{ old('mbolge') }}">
                                                       </div>  
                                                     <div class="col-2">
                                                       <select id="Iller" name="mil" class="placeholder js-states form-control">
@@ -241,10 +241,10 @@
                                                         </select>
                                                       </div>
                                                       <div class="col-3">
-                                                        <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" class="form-control">
+                                                        <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" class="form-control" value="{{ old('menlem') }}">
                                                       </div>  
                                                       <div class="col-3 pb-4">
-                                                        <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam" class="form-control">
+                                                        <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam" class="form-control" value="{{ old('mboylam') }}">
                                                       </div>
                                                 </div>
                                                 <div class="py-3 row">

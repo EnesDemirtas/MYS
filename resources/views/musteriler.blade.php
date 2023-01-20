@@ -222,33 +222,33 @@
                                   </select>
                                 </div>
                                 <div class="col-6">
-                                    <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" class="form-control form-control-sm" required>
+                                    <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" class="form-control form-control-sm" value="{{ old('mtcknvno') }}" required>
                                 </div>
                                 </div>
                                   <div class="row py-3">
 
                                     <div class="col">
-                                      <input id="hk-marka" type="text" name="mtmarkaadi" onkeyup="hkMarkaAdiBuyuk()" placeholder="Marka Adı" class="form-control form-control-sm" required>
+                                      <input id="hk-marka" type="text" name="mtmarkaadi" onkeyup="hkMarkaAdiBuyuk()" placeholder="Marka Adı" class="form-control form-control-sm" required value="{{ old('mtmarkaadi') }}">
                                     </div>
                                   </div>
 
                                   <div class="row py-3" id="bireysel-bilgiler1">                                    
                                     <div class="col">
-                                      <input id="hk-ad" type="text" name="mbadi" onkeyup="hkAdilkHarfBuyuk()" placeholder="Adı" class="form-control form-control-sm" required>
+                                      <input id="hk-ad" type="text" name="mbadi" onkeyup="hkAdilkHarfBuyuk()" placeholder="Adı" class="form-control form-control-sm" value="{{ old('mbadi') }}">
                                     </div>
                                     
                                     <div class="col">
-                                      <input id="hk-soyad" type="text" name="mbsoyadi" onkeyup="hkSoyadBuyuk()" placeholder="Soyadı" class="form-control form-control-sm" required>
+                                      <input id="hk-soyad" type="text" name="mbsoyadi" onkeyup="hkSoyadBuyuk()" placeholder="Soyadı" class="form-control form-control-sm" value="{{ old('mbsoyadi') }}">
                                     </div>
                                   </div>
 
                                   <div class="row py-3" id="bireysel-bilgiler2">                                   
                                     <div class="col">
-                                      <input id="hk-unvan" type="text" name="mbunvani" onkeyup="hkUnvanBuyuk()" placeholder="Unvanı" class="form-control form-control-sm">
+                                      <input id="hk-unvan" type="text" name="mbunvani" onkeyup="hkUnvanBuyuk()" placeholder="Unvanı" class="form-control form-control-sm" value="{{ old('mbunvani') }}">
                                     </div>
                                     
                                     <div class="col">
-                                      <input id="basicFlatpickr" value="" name="mbdogumgunu" class="form-control form-control-sm flatpickr flatpickr-input active" type="text" placeholder="Doğum Günü">
+                                      <input id="basicFlatpickr" value="{{ old('mbdogumgunu') }}" name="mbdogumgunu" class="form-control form-control-sm flatpickr flatpickr-input active" type="text" placeholder="Doğum Günü">
                                     </div>
                                   </div>
 
@@ -257,12 +257,12 @@
                               <h3>İletişim</h3>
                               <section>
                                 <div class="form-group mb-4">
-                                  <textarea placeholder="Adres" class="form-control" name="madres" id="hk-adres" rows="3"></textarea>
+                                  <textarea placeholder="Adres" class="form-control" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}"></textarea>
                               </div>
 
                               <div class="row">
                                 <div class="col-4">
-                                  <input id="hk-bolge" type="text" name="mbolge" onkeyup="hkBolgeBuyuk()" placeholder="Bölge" class="form-control form-control-sm" required>
+                                  <input id="hk-bolge" type="text" name="mbolge" onkeyup="hkBolgeBuyuk()" placeholder="Bölge" class="form-control form-control-sm" required value="{{ old('mbolge') }}">
                                 </div>
                                 <div class="col-4">
                                   <select id="Iller" name="mil" class="placeholder js-states form-control">
@@ -290,21 +290,21 @@
                                 </div>
                                 <div class="col-4 pl-1">
                                     <div class="form-group">
-                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm mb-4" name="mmobil" id="phone" placeholder="Telefon" >
+                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm mb-4" name="mmobil" id="phone" placeholder="Telefon" value="{{ old('mmobil') }}">
                                     </div>
                                 </div>
                                 <div class="col-5 pl-1">
                                   <div class="form-group">
-                                    <input id="hk-eposta" type="email" name="meposta" placeholder="Eposta" class="form-control">
+                                    <input id="hk-eposta" type="email" name="meposta" placeholder="Eposta" class="form-control" value="{{ old('meposta') }}">
                                   </div>
                               </div> 
                                   <hr>
                                 <div class="w-100 text-center text-muted">Konum Bilgisini Haritadan Giriniz</div>
                                 <div class="col-3">
-                                  <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" class="form-control form-control-sm" required>
+                                  <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" class="form-control form-control-sm" required value="{{ old('menlem') }}">
                                 </div>
                                 <div class="col-3">
-                                  <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam" class="form-control form-control-sm" required>
+                                  <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam" class="form-control form-control-sm" required value="{{ old('mboylam') }}">
                                 </div>
                                 <div class="col-12" id="map"> <!-- GOOGLE HARİTALAR -->
                                 </div>
