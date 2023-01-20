@@ -29,7 +29,7 @@ class CreateMusterilerTable extends Migration
             $table->string('mtsno')->lenght(20)->nullable();
             $table->string('mosno')->lenght(20)->nullable();
             $table->string('mmno')->lenght(20)->nullable();
-            $table->string('monunvan')->lenght(20);
+            $table->string('monunvan')->lenght(20)->nullable();
             $table->string('mbadi')->lenght(20);
             $table->string('mbsoyadi')->lenght(20);
             $table->date('mbdogumgunu');

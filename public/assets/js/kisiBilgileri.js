@@ -50,7 +50,7 @@
 }
 
 function musteriBilgileri(id){
-   var isim = $("#musteri-"+id+" p").text();
+   var isim = $("#musteri-"+id+" .isim").attr('name');
    $("#modal-isim").text(isim);    
 
    var unvan = $("#musteri-"+id+" .unvan").attr('name');
@@ -65,8 +65,11 @@ function musteriBilgileri(id){
    var cep = $("#musteri-"+id+" .cep").attr('name');
    $("#modal-cep").text(cep);
 
-   var dogumTarihi = $("#musteri-"+id+" .dogum").text();
+   var dogumTarihi = $("#musteri-"+id+" .dogum").attr('name');
    $("#modal-dogum").text(dogumTarihi);
+
+   var markaAdi = $("#musteri-"+id+" .markaAdi").attr('name');
+   $("#modal-marka").text("Firma: "+markaAdi);
 }
 
 function changeFields(kayit) {

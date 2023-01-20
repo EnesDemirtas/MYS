@@ -171,7 +171,7 @@
                                     @unless(count($calisanlar) == 0)
                                         @foreach ($calisanlar as $calisan)
                                         <tr id="calisan-{{ $calisan->ctckn }}">
-                                            <td class="checkbox-column" style=" width:px !important;"> {{$loop->iteration }} </td>
+                                            <td class="checkbox-column" style=" width:0px !important;"> {{$loop->iteration }} </td>
                                             <td style="padding-left:0px !important;"><a><span>{{ $calisan->mysrefno }}</span></a></td>
                                             <td><a><span class="tckn">{{ $calisan->ctckn }}</span></a></td>
                                             <td>

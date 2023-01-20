@@ -23,7 +23,7 @@ class MusterilerController extends Controller {
             'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
             'mtcknvno' => 'required|numeric',
             'mtmarkaadi' => 'required',
-            'monunvan' => 'string',
+            'mbunvani' => 'string|required',
             'mbadi' => 'required',
             'mbsoyadi' => 'required',
             'mbdogumgunu' => 'required|before:today',
@@ -33,7 +33,7 @@ class MusterilerController extends Controller {
             'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz"',
             'mmobil' => 'required',
             'menlem' => 'required',
-            'mboylam' => 'required'
+            'meposta' => 'required'
         ],
         [   
             'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
@@ -42,7 +42,7 @@ class MusterilerController extends Controller {
             'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
             'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
             'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
-            'monunvan.required' => 'Lütfen müşterinin ünvanını boş bırakmayınız.',
+            'mbunvani.required' => 'Lütfen müşterinin ünvanını boş bırakmayınız.',
             'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
             'mbsoyadi.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
             'mbdogumgunu.required' => 'Lütfen doğum gününü boş bırakmayınız.',
@@ -51,13 +51,26 @@ class MusterilerController extends Controller {
             'milce.required' => 'Lütfen ilçeyi seçiniz.',
             'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
             'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
-            'mboylam.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
+            'meposta.required' => 'Lütfen müşterinin eposta adresini giriniz.',
         ]
     );
+
     $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
-    musteri::create($request->all());
-    musteri::where('mtcknvno', $request->mtcknvno)->update( array('aktif' => 1) );
-    return redirect('musteriler')->with('success', 'Kayıt Başarıyla Eklendi');
+    $musteriSayisiBul = musteri::where('satirid', '>', '0')->get();
+    $musteriSayisi = $musteriSayisiBul->count(); // Kaç çalışan olduğunu saydırır.
+
+    if (musteri::where('mtcknvno', $request->mtcknvno)->exists()) {
+        return redirect()->back()->with('error', 'Bu TCKN/Vergi No ile kayıtlı bir müşteri bulunmaktadır.');
+    }else if($musteriSayisi > 0){ // Tablo boş değilse
+        $sonmusteri = musteri::orderBy('satirid', 'desc')->first()->satirid; //Son Çalışanın Satır ID'sini getirir.
+        musteri::create($request->all());
+        musteri::where('mtcknvno', $request->mtcknvno)->update( array('mrefno'=>'sbe-'.$sonmusteri++.'','aktif' => 1) );
+        return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
+    }else{ // Tablo Boşsa
+        musteri::create($request->all());
+        musteri::where('mtcknvno', $request->mtcknvno)->update( array('mrefno'=>'sbe-1','aktif' => 1) );
+        return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
+    }
     }
 
     public function musteriEkle(Request $request) {
@@ -80,7 +93,7 @@ class MusterilerController extends Controller {
             return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
         }else{ // Tablo Boşsa
             musteri::create($request->all());
-            musteri::where('mtcknvno', $request->mtcknvno)->update( array('mrefno'=>'sbe-1','aktif' => 1) );
+            musteri::where('mtcknvno', $request->mtcknvno)->update( array('mrefno'=>'sbe-0','aktif' => 1) );
             return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
         }
 

@@ -244,7 +244,7 @@
 
                                   <div class="row py-3" id="bireysel-bilgiler2">                                   
                                     <div class="col">
-                                      <input id="hk-unvan" type="text" name="monunvan" onkeyup="hkUnvanBuyuk()" placeholder="Unvanı" class="form-control form-control-sm">
+                                      <input id="hk-unvan" type="text" name="mbunvani" onkeyup="hkUnvanBuyuk()" placeholder="Unvanı" class="form-control form-control-sm">
                                     </div>
                                     
                                     <div class="col">
@@ -277,7 +277,7 @@
                               </div>
 
                               <div class="row py-3">
-                                <div class="col-6 pr-0">
+                                <div class="col-3 pr-0">
                                   <div class="form-group">
                                       <select class="placeholder js-states form-control form-control-sm" name="mukodutel">
                                           <option value="90">+90</option>
@@ -288,12 +288,17 @@
                                       </select>
                                   </div>
                                 </div>
-                                  <div class="col-6 pl-1">
+                                <div class="col-4 pl-1">
                                     <div class="form-group">
                                         <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm mb-4" name="mmobil" id="phone" placeholder="Telefon" >
                                     </div>
-                                </div> 
-                                <hr>
+                                </div>
+                                <div class="col-5 pl-1">
+                                  <div class="form-group">
+                                    <input id="hk-eposta" type="email" name="meposta" placeholder="Eposta" class="form-control">
+                                  </div>
+                              </div> 
+                                  <hr>
                                 <div class="w-100 text-center text-muted">Konum Bilgisini Haritadan Giriniz</div>
                                 <div class="col-3">
                                   <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" class="form-control form-control-sm" required>
@@ -345,6 +350,9 @@
                       <div class="">
                           <ul class="contacts-block list-unstyled">
                               <li class="contacts-block__item">
+                                </span><div class="col-8" style="padding-left: 0px;" id="modal-marka">Şirket Adı</div>
+                              </li>
+                              <li class="contacts-block__item">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span id="modal-dogum">Jan 20, 1989</span>
                               </li>
                               <li class="contacts-block__item">
@@ -355,25 +363,6 @@
                               </li>
                               <li class="contacts-block__item">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span id="modal-cep"> +1 (530) 555-12121</span>
-                              </li>
-                              <li class="contacts-block__item">
-                                  <ul class="list-inline">
-                                      <li class="list-inline-item">
-                                          <div class="social-icon">
-                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                                          </div>
-                                      </li>
-                                      <li class="list-inline-item">
-                                          <div class="social-icon">
-                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-                                          </div>
-                                      </li>
-                                      <li class="list-inline-item">
-                                          <div class="social-icon">
-                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                                          </div>
-                                      </li>
-                                  </ul>
                               </li>
                           </ul>
                       </div>                                    
@@ -398,6 +387,7 @@
                 <table id="html5-extension" class="table table-hover non-hover" style="width: 100%">
                   <thead>
                     <tr>
+                      <th>#</th>
                       <th>Kayıt Türü</th>
                       <th>Firma</th>
                       <th>Yetkili İsmi</th>
@@ -413,6 +403,7 @@
                     @unless(count($musteriler) == 0)
                       @foreach ($musteriler as $musteri)
                       <tr id="musteri-{{ $musteri->mtcknvno }}">
+                        <td class="checkbox-column" style=" width:0px !important;"> {{$loop->iteration }} </td>
                         <td >{{ $musteri->mkayitturu }}</td>
                         <td class="checkbox-column" style=" width:px !important;"> {{ $musteri->mtmarkaadi }} </td>
                         <td style="padding-left:0px !important;">
@@ -435,12 +426,13 @@
                           <a target="_blank" href="https://wa.me/{{$musteri->mmobil}}"><i style="color: #805dca;" class="fa fa-lg fa-whatsapp"></i></a></span></td>
                           <input class="lokasyon" type="hidden" name="{{ $musteri->milce . "/" . $musteri->mil }}">
                           @endif
-                        <input class="whatsapp" type="hidden" name="{{ $musteri->mmobil }}">
+                        <input class="isim" type="hidden" name="{{ $musteri->mbadi." ".$musteri->mbsoyadi }}">
+                        <input class="markaAdi" type="hidden" name="{{ $musteri->mtmarkaadi }}">
                         <input class="kayitno" type="hidden" name="{{ $musteri->mkayitturu }}">
                         <input class="eposta" type="hidden" name="{{ $musteri->meposta }}">
-                        <input class="cep" type="hidden" name="5542071777">
+                        <input class="cep" type="hidden" name="{{ $musteri->mmobil }}">
                         <input class="unvan" type="hidden" name="{{ $musteri->mbunvani }}">
-                        <input class="dogum" type="hidden" name="{{ $musteri->mbdogumgunu }}">
+                        <input class="dogum" type="hidden" name="{{$musteri->mbdogumgunu[8]}}{{ $musteri->mbdogumgunu[9]}}.{{$musteri->mbdogumgunu[5]}}{{ $musteri->mbdogumgunu[6]}}.{{$musteri->mbdogumgunu[0]}}{{ $musteri->mbdogumgunu[1]}}{{$musteri->mbdogumgunu[2]}}{{ $musteri->mbdogumgunu[3]}}">
                         <td>
                             <div class="row">
                                 <div class="col">
