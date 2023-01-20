@@ -56,8 +56,14 @@ function musteriBilgileri(id){
    var unvan = $("#musteri-"+id+" .unvan").attr('name');
    $("#modal-unvan").text(unvan);
 
+   var lokasyonHref = $("#musteri-"+id+" .lokasyonHref").attr('name');
+   $("#modal-lokasyon-href").attr('href',lokasyonHref);
+
    var lokasyon = $("#musteri-"+id+" .lokasyon").attr('name');
    $("#modal-lokasyon").text(lokasyon);
+
+   var epostaHref = $("#musteri-"+id+" .epostaHref").attr('name');
+   $("#modal-eposta-href").attr('href',epostaHref);
 
    var eposta = $("#musteri-"+id+" .eposta").attr('name');
    $("#modal-eposta").text(eposta);
