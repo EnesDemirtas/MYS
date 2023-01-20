@@ -20,7 +20,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [AnasayfaController::class, 'allData'])->name('anasayfa.index')->middleware('isAuthenticated');
 
-Route::get('/musteriler', [MusterilerController::class, 'index'])->middleware('isAuthenticated');
+Route::get('/musteriler', [MusterilerController::class, 'index'])->name('musteriler')->middleware('isAuthenticated');
 Route::post('/musteriler', [MusterilerController::class, 'store'])->name('musteri.hizlikayit')->middleware('isAuthenticated');
 Route::post('/musteri', [MusterilerController::class, 'musteriEkle'])->name('musteri.ekle')->middleware('isAuthenticated');
 Route::get('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriDuzenle'])->name('musteri.duzenle')->middleware('isAuthenticated');

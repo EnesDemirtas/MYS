@@ -18,9 +18,13 @@ class UserController extends Controller
         ]);
 
         $kullanici = calisan::where('ckullaniciadi', $request->input('username'))->first();
+        $tckn = calisan::where('ctckn', $request->input('username'))->first();
         if ($kullanici && $kullanici->csifre == $request->input('password')) {
             $request->session()->put('kullanici', $kullanici);
-            return redirect()->route('anasayfa.index'); 
+            return redirect()->route('musteriler'); 
+        } else if ($tckn && $tckn->csifre == $request->input('password')) {
+            $request->session()->put('kullanici', $tckn);
+            return redirect()->route('musteriler');
         } else {
             return back()->withErrors(['username' => 'Kullanıcı adı veya şifre hatalı!'])->onlyInput('username');
         }
