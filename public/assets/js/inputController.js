@@ -70,5 +70,16 @@ function hkCalistigiFirmaBuyuk() { // Kullanıcı Bölge Adını Büyük Yazdır
 	x.value = x.value.toLocaleUpperCase("tr-TR");
 }
 
+function madresBuyuk() { // Kullanıcı Bölge Adını Büyük Yazdırır
+	var x = document.getElementById("madres");
+	x.value = x.value.toLocaleUpperCase("tr-TR");
+}
+
+function hkmadresBuyuk() { // Kullanıcı Bölge Adını Büyük Yazdırır
+	var x = document.getElementById("hk-adres");
+	x.value = x.value.toLocaleUpperCase("tr-TR");
+}
+
+
 
 

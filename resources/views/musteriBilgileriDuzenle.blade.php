@@ -215,7 +215,7 @@
                                                 <div class="row py-3">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <textarea class="form-control mb-4" id="madres" name="madres" placeholder="Adres" rows="2">{{ $musteri->madres }}</textarea>
+                                                            <textarea class="form-control mb-4" onkeyup="madresBuyuk()" id="madres" name="madres" placeholder="Adres" rows="2">{{ $musteri->madres }}</textarea>
                                                         </div>
                                                     </div>  
                                                     
@@ -235,7 +235,7 @@
                                                         </select>
                                                       </div>  
                                                       <div class="col-2">
-                                                        <select id="Ilceler" disabled="disabled" name="milce" class="placeholder js-states form-control">
+                                                        <select id="Ilceler" name="milce" class="placeholder js-states form-control">
                                                           <option>{{ $musteri->milce }}</option>
                                                         </select>
                                                       </div>

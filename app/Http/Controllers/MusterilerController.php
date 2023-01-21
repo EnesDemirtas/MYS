@@ -184,7 +184,10 @@ class MusterilerController extends Controller {
             'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
             'mboylam.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
             'milce.required' => 'Lütfen ilçeyi seçiniz.',
+            'milce.doesnt_start_with' => 'Lütfen ilçeyi seçiniz.',
             'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
+            'mil.doesnt_start_with' => 'Lütfen il alanını boş bırakmayınız.',
+
         ]
     );
         $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));

@@ -308,7 +308,7 @@
                                 </div>
                               </div>
                               <div class="form-group mb-4">
-                                <textarea placeholder="Adres" class="form-control" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}"></textarea>
+                                <textarea placeholder="Adres" onkeyup="hkmadresBuyuk()" class="form-control" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}"></textarea>
                               </div>
                               </section>
                           </div>

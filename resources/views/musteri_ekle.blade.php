@@ -164,24 +164,10 @@
                                                       <div class="col-3 ticaribilgi">
                                                             <input id="hk-mersis" type="number" name="mmno" placeholder="Mersis No" class="form-control" value="{{ old('mmno') }}">
                                                       </div>
-                                                      <div class="col-md-1 pr-0">
-                                                        <div class="form-group">
-                                                            <select class="placeholder js-states form-control" name="mukodutel">
-                                                                <option value="90">+90</option>
-                                                                <option value="49">+49</option>
-                                                                <option value="1">+1</option>
-                                                                <option value="7">+7</option>
-                                                                <option value="380">+380</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                <div class="col-md-2 pl-1">
-                                                    <div class="form-group">
-                                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="mmobil" id="phone" placeholder="Cep Telefonu" value="{{ old('mmobil') }}">
-                                                    </div>
-                                                </div> 
+                                              </div>    
+                                              <div class="row py-3">
                                                 <div class="col-3">
-                                                    <input id="hk-mtel" name="mtel" input="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Telefon" class="form-control" value="{{ old('mtel') }}">
+                                                  <input id="hk-mtel" name="mtel" input="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Telefon" class="form-control" value="{{ old('mtel') }}">
                                                 </div>
                                                 <div class="col-3">
                                                   <input id="hk-eposta" type="email" name="meposta" placeholder="E-Posta" class="form-control" value="{{ old('meposta') }}">
@@ -192,7 +178,25 @@
                                                 <div class="col-3">
                                                   <input id="hk-fax" type="text" name="mfaks" placeholder="Faks" class="form-control" value="{{ old('mfaks') }}">
                                                 </div>
-                                              </div>             
+                                              </div>
+                                              <div class="row py-3">
+                                                <div class="col-md-1 pr-0">
+                                                  <div class="form-group">
+                                                      <select class="placeholder js-states form-control" name="mukodutel">
+                                                          <option value="90">+90</option>
+                                                          <option value="49">+49</option>
+                                                          <option value="1">+1</option>
+                                                          <option value="7">+7</option>
+                                                          <option value="380">+380</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                          <div class="col-md-2 pl-1">
+                                              <div class="form-group">
+                                                  <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="mmobil" id="phone" placeholder="Cep Telefonu" value="{{ old('mmobil') }}">
+                                              </div>
+                                          </div> 
+                                              </div>
                                             </section>
                                             <h3>Ödeme Bilgileri</h3>
                                             <section>
@@ -209,14 +213,13 @@
                                                         </div>
                                                       </div>
                                             </div>
-
                                             </section>
                                             <h3>Adres Bilgileri</h3>
                                             <section>
                                                 <div class="row py-3">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <textarea class="form-control mb-4" id="madres" name="madres" placeholder="Adres" rows="2" value="{{ old('madres') }}"></textarea>
+                                                            <textarea class="form-control mb-4" onkeyup="madresBuyuk()" id="madres" name="madres" placeholder="Adres" rows="2" value="{{ old('madres') }}"></textarea>
                                                         </div>
                                                     </div>  
                                                     <div class="col-2">
