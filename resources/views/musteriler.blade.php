@@ -255,13 +255,13 @@
 
                               </section>
                               <h3>İletişim</h3>
-                              <section>
+                              <section class="iletisim-bilgileri">
                               <div class="row">
                                 <div class="col-4">
-                                  <input id="hk-bolge" type="text" name="mbolge" onkeyup="hkBolgeBuyuk()" placeholder="Bölge" class="form-control form-control-sm" required value="{{ old('mbolge') }}">
+                                  <input id="hk-bolge" type="text" name="mbolge" onkeyup="hkBolgeBuyuk()" placeholder="Bölge" class="form-control form-control-sm" required value="{{ old('mbolge') }}" readonly>
                                 </div>
                                 <div class="col-4">
-                                  <select id="Iller" name="mil" class="placeholder js-states form-control">
+                                  <select id="Iller" name="mil" class="placeholder js-states form-control" disabled>
                                     <option>Lütfen Bir İl Seçiniz</option>
                                   </select>                                
                                 </div>
@@ -275,7 +275,7 @@
                               <div class="row py-3">
                                 <div class="col-4 pr-0">
                                   <div class="form-group">
-                                      <select class="placeholder js-states form-control form-control-sm" name="mukodutel">
+                                      <select class="placeholder js-states form-control form-control-sm" name="mukodutel" disabled>
                                           <option value="90">+90</option>
                                           <option value="49">+49</option>
                                           <option value="1">+1</option>
@@ -286,12 +286,12 @@
                                 </div>
                                 <div class="col-8 pl-1">
                                     <div class="form-group">
-                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm mb-4" name="mmobil" id="phone" placeholder="Telefon" value="{{ old('mmobil') }}">
+                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm mb-4" name="mmobil" id="phone" placeholder="Telefon" value="{{ old('mmobil') }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-12 pl-3">
                                   <div class="form-group">
-                                    <input id="hk-eposta" type="email" name="meposta" placeholder="Eposta" class="form-control" value="{{ old('meposta') }}">
+                                    <input id="hk-eposta" type="email" name="meposta" placeholder="Eposta" class="form-control" value="{{ old('meposta') }}" readonly>
                                   </div>
                                 </div>
                                   <hr>
@@ -308,7 +308,7 @@
                                 </div>
                               </div>
                               <div class="form-group mb-4">
-                                <textarea placeholder="Adres" onkeyup="hkmadresBuyuk()" class="form-control" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}"></textarea>
+                                <textarea placeholder="Adres" onkeyup="hkmadresBuyuk()" class="form-control" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}" readonly></textarea>
                               </div>
                               </section>
                           </div>
