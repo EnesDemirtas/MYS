@@ -372,9 +372,11 @@
               </div>
           </div>
       </div>
+      {{-- 
       <div class="modal-footer justify-content-center">
-        <a id="modal-detayliGoruntule-href" href="#"><button type="button" class="btn btn-secondary">Detaylı Görüntüle</button></a>
+        <button type="button" class="btn btn-secondary">Detaylı Görüntüle</button>
       </div>
+      --}}
     </div>
   </div>
 </div>
@@ -434,7 +436,7 @@
                         <input class="markaAdi" type="hidden" name="{{ $musteri->mtmarkaadi }}">
                         <input class="kayitno" type="hidden" name="{{ $musteri->mkayitturu }}">
                         <input class="eposta" type="hidden" name="{{ $musteri->meposta }}">
-                        <input class="mtcknvno" type="hidden" name="{{ $musteri->mtcknvno }}">
+                        <input class="mtcknvno" type="hidden" name="{{$musteri->mtcknvno}}">
                         <input class="cep" type="hidden" name="{{ $musteri->mmobil }}">
                         <input class="ulkekodu" type="hidden" name="{{ $musteri->mukodutel }}"
                         <input class="unvan" type="hidden" name="{{ $musteri->mbunvani }}">

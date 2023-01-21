@@ -82,8 +82,10 @@ function musteriBilgileri(id){
    $("#modal-marka").text(markaAdi);
 
    //var detayliGoruntule =  $("#musteri-"+id+" .mtcknvno").attr('name');
-   //$("#modal-detayliGoruntule-href").attr('href',"{{route('musteri.duzenle',['mtcknvno' => '"+detayliGoruntule+"'])}}");
+   //$("#modal-detayliGoruntule-href").attr('href',detayliGoruntule);
 }
+
+
 
 function changeFields(kayit) {
     if (kayit == "Kayıt Türü") {

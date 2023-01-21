@@ -90,6 +90,7 @@ class MusterilerController extends Controller {
             'mukodutel.required' => 'Lütfen müşteri telefonunun ülke kodunu giriniz.',
             'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
             'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
+            'madres.required' => 'Lütfen müşterinin adresini giriniz.',
         ]
     );
     }
@@ -127,6 +128,7 @@ class MusterilerController extends Controller {
             'mmobil' => 'required',
             'mukodutel' => 'required',
             'meposta' => 'email',
+            'madres' => 'reqired',
         ],
         [   
             'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
@@ -144,6 +146,7 @@ class MusterilerController extends Controller {
             'mukodutel.required' => 'Lütfen müşteri telefonunun ülke kodunu giriniz.',
             'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
             'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
+            'madres.required' => 'Lütfen müşterinin adresini giriniz.',
         ]);
 
         $musteriSayisiBul = musteri::where('satirid', '>', '0')->get();
@@ -201,6 +204,7 @@ class MusterilerController extends Controller {
             'mukodutel.required' => 'Lütfen müşteri telefonunun ülke kodunu giriniz.',
             'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
             'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
+            'madres.required' => 'Lütfen müşterinin adresini giriniz.',
         ]
     );
         $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
