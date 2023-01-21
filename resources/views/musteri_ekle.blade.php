@@ -93,7 +93,7 @@
                                             <section>
                                               <div class="row py-3">
                                               <div class="col-3">
-                                                <select class="form-control" name="mkayitturu" id="hk-kayitturu" onchange="changeFieldsMusteri(this.value)">
+                                                <select class="form-control" name="mkayitturu" id="hk-kayitturu" onchange="changeFieldsMusteri(this.value); checkKayitMusteriFields(this.value)">
                                                   <option value="Kayıt Türü">Kayıt Türü</option>
                                                   <option value="Bireysel">Bireysel</option>
                                                   <option value="Ticari">Ticari</option>
@@ -103,7 +103,7 @@
                                                 </select>
                                               </div>
                                                 <div class="col-3">
-                                                    <select class="form-control" name="mturu" id="hk-mturu">
+                                                    <select class="form-control" name="mturu" id="hk-mturu" onchange="checkKayitMusteriFields(this.value)">
                                                         <option value="Müşteri Türü">Müşteri Türü</option>
                                                         <option value="Gerçek">Gerçek Kişi</option>
                                                         <option value="Tüzel">Tüzel Kişi</option>
@@ -330,6 +330,13 @@
     var lng = JSON.stringify(mapsMouseEvent.latLng.toJSON().lng); // Seçilen konumun lng bilgisini alır. 
     enlemBoylamDegis(lat,lng); // enlem ve boylam bilgilerini inputa verir.
     marker.setMap(map);
+  });
+
+  // Readonly/Disabled input
+  $(document).ready(function() {
+    $(".form-control").attr("readonly", true);
+    $("#hk-kayitturu").attr("readonly", false);
+    $("#hk-mturu").attr("readonly", false);
   });
 }
         

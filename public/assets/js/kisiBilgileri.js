@@ -91,6 +91,14 @@ function changeFields(kayit) {
         $("#hk-marka").prop("readonly", true);
         $("#bireysel-bilgiler1 input").prop("readonly", true);
         $("#bireysel-bilgiler2 input").prop("readonly", true);
+        $("#iletisim-bilgileri input").prop("readonly", true);
+        $("[name='mil']").prop("disabled", true);
+        $("[name='mukodutel']").prop("disabled", true);
+
+        $("#hk-eposta").prop("readonly", true);
+        $("#hk-bolge").prop("readonly", true);
+        $("#phone").prop("readonly", true);
+        $("#hk-adres").prop("readonly", true);
     } else if (kayit == "Ticari") {
         $("#hk-tcknvno").attr("placeholder", "Vergi No");
         $("#bireysel-bilgiler1").hide();
@@ -98,6 +106,13 @@ function changeFields(kayit) {
 
         $("#hk-tcknvno").prop("readonly", false);
         $("#hk-marka").prop("readonly", false);
+        $("#iletisim-bilgileri input").prop("readonly", false);
+        $("[name='mil']").prop("disabled", false);
+        $("[name='mukodutel']").prop("disabled", false);
+        $("#hk-eposta").prop("readonly", false);
+        $("#hk-bolge").prop("readonly", false);
+        $("#phone").prop("readonly", false);
+        $("#hk-adres").prop("readonly", false);
     } else {
         $("#hk-tcknvno").attr("placeholder", "TCKN/Vergi No");
         $("#bireysel-bilgiler1").show();
@@ -107,6 +122,13 @@ function changeFields(kayit) {
         $("#hk-marka").prop("readonly", false);
         $("#bireysel-bilgiler1 input").prop("readonly", false);
         $("#bireysel-bilgiler2 input").prop("readonly", false);
+
+        $("[name='mil']").prop("disabled", false);
+        $("[name='mukodutel']").prop("disabled", false);
+        $("#hk-eposta").prop("readonly", false);
+        $("#hk-bolge").prop("readonly", false);
+        $("#phone").prop("readonly", false);
+        $("#hk-adres").prop("readonly", false);
     }
 
 
@@ -122,4 +144,20 @@ function changeFieldsMusteri(kayit) {
         $(".ticaribilgi").hide();   
         $(".bireyselbilgi").show();
     }
+}
+
+function checkKayitMusteriFields(kayit) {
+  if (kayit == "Kayıt Türü") {
+    $(".form-control").attr("readonly", true);
+    $("#hk-kayitturu").attr("readonly", false);
+    $("#hk-mturu").attr("readonly", false);
+  } else if (kayit == "Müşteri Türü") {
+    $(".form-control").attr("readonly", true);
+    $("#hk-kayitturu").attr("readonly", false);
+    $("#hk-mturu").attr("readonly", false);
+  } else {
+    if (document.getElementById("hk-kayitturu").value != "Kayıt Türü" && document.getElementById("hk-mturu").value != "Müşteri Türü") {
+      $(".form-control").attr("readonly", false);
+    }
+  }
 }
