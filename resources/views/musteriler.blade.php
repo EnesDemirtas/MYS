@@ -248,7 +248,7 @@
                                     </div>
                                     
                                     <div class="col">
-                                      <input id="basicFlatpickr" value="{{ old('mbdogumgunu') }}" name="mbdogumgunu" class="form-control form-control-sm flatpickr flatpickr-input active" type="text" placeholder="Doğum Günü" readonly>
+                                      <input onfocus="(this.type='date')" class="form-control" value="{{ old('mbdogumgunu') }}" name="mbdogumgunu" class="form-control form-control-sm flatpickr flatpickr-input active" type="text" placeholder="Doğum Günü" readonly>
                                     </div>
                                   </div>
 
@@ -343,8 +343,8 @@
           <div class="user-profile layout-spacing shadow">
               <div class="widget-content widget-content-area">
                   <div class="text-center user-info">
-                      <p class="" id="modal-isim">Jimmy Turner</p>
-                      <span id="modal-unvan" class="text-muted">Web Developer</span>
+                      <p class="" id="modal-isim"></p>
+                      <span id="modal-unvan" class="text-muted"></span>
                   </div>
                   <div class="user-info-list">
 
@@ -358,13 +358,13 @@
                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span id="modal-dogum">Jan 20, 1989</span>
                               </li>
                               <li class="contacts-block__item">
-                                  <a href="#" id="modal-lokasyon-href" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span id="modal-lokasyon">New York, USA</span>
+                                  <a href="#" id="modal-lokasyon-href" target="_blank" style="color: #888EA8; font-size: 13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span id="modal-lokasyon">New York, USA</span>
                               </li>
                               <li class="contacts-block__item">
                                   <a href="mailto:example@mail.com" style="color: #888EA8; font-size: 13px;" id="modal-eposta-href"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span id="modal-eposta">Jimmy@gmail.com</span></a>
                               </li>
                               <li class="contacts-block__item">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span id="modal-cep"> +1 (530) 555-12121</span>
+                                <a id="modal-cep-href" href="tel:" style="color: #888EA8; font-size: 13px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span id="modal-cep"> +1 (530) 555-12121</span></a> <span id="modal-whatsapp" class="pl-3"> <a target="_blank" id="modal-whatsapp-href" href="#"><i style="color: #25D366;" class="fa fa-lg fa-whatsapp"></i></a></span>
                               </li>
                           </ul>
                       </div>                                    

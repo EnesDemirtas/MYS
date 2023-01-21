@@ -30,7 +30,8 @@ class MusterilerController extends Controller {
                 'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz',
                 'mmobil' => 'required',
                 'menlem' => 'required',
-                'meposta' => 'required|email'
+                'meposta' => 'email',
+                'mukodutel' => 'required',
             ],
             [   
                 'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
@@ -39,16 +40,17 @@ class MusterilerController extends Controller {
                 'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
                 'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
                 'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
-                'mbunvani.required' => 'Lütfen müşterinin ünvanını boş bırakmayınız.',
                 'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
                 'mbsoyadi.required' => 'Lütfen müşteri soyadını boş bırakmayınız.',
-                'mbdogumgunu.required' => 'Lütfen doğum gününü boş bırakmayınız.',
-                'mbdogumgunu.before' => 'Lütfen müşterinin doğum tarihini doğru girdiğinizden emin olunuz.',
                 'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
                 'milce.required' => 'Lütfen ilçeyi seçiniz.',
                 'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
+                'madres.required' => 'Lütfen müşterinin adresini giriniz.',
                 'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
                 'meposta.required' => 'Lütfen müşterinin eposta adresini giriniz.',
+                'mukodutel.required' => 'Lütfen müşteri telefonunun ülke kodunu giriniz.',
+                'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
+                'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
             ]
         );
         } else {
@@ -56,17 +58,18 @@ class MusterilerController extends Controller {
             'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
             'mtcknvno' => 'required|numeric',
             'mtmarkaadi' => 'required',
-            'mbunvani' => 'string|required',
+            'mbunvani' => 'string',
             'mbadi' => 'required',
             'mbsoyadi' => 'required',
-            'mbdogumgunu' => 'required|before:today',
+            'mbdogumgunu' => 'before:today',
             'madres' => 'required',
             'mbolge' => 'required',
             'milce' => 'required|doesnt_start_with:Lütfen Bir İlçe Seçiniz',
             'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz',
             'mmobil' => 'required',
+            'mukodutel' => 'required',
             'menlem' => 'required',
-            'meposta' => 'required|email'
+            'meposta' => 'email'
         ],
         [   
             'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
@@ -75,16 +78,18 @@ class MusterilerController extends Controller {
             'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
             'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
             'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
-            'mbunvani.required' => 'Lütfen müşterinin ünvanını boş bırakmayınız.',
+            'mbunvani.string' => 'Lütfen müşterinin ünvanını doğru girdiğinizden emin olunuz.',
             'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
             'mbsoyadi.required' => 'Lütfen müşteri soyadını boş bırakmayınız.',
-            'mbdogumgunu.required' => 'Lütfen doğum gününü boş bırakmayınız.',
             'mbdogumgunu.before' => 'Lütfen müşterinin doğum tarihini doğru girdiğinizden emin olunuz.',
             'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
             'milce.required' => 'Lütfen ilçeyi seçiniz.',
             'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
             'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
             'meposta.required' => 'Lütfen müşterinin eposta adresini giriniz.',
+            'mukodutel.required' => 'Lütfen müşteri telefonunun ülke kodunu giriniz.',
+            'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
+            'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
         ]
     );
     }
@@ -119,6 +124,9 @@ class MusterilerController extends Controller {
             'mbsoyadi' => 'required',
             'mbolge' => 'required',
             'menlem' => 'required',
+            'mmobil' => 'required',
+            'mukodutel' => 'required',
+            'meposta' => 'email',
         ],
         [   
             'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
@@ -133,6 +141,9 @@ class MusterilerController extends Controller {
             'milce.doesnt_start_with' => 'Lütfen ilçeyi seçiniz.',
             'mil.required' => 'Lütfen il seçiniz.',
             'mil.doesnt_start_with' => 'Lütfen il seçiniz.',
+            'mukodutel.required' => 'Lütfen müşteri telefonunun ülke kodunu giriniz.',
+            'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
+            'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
         ]);
 
         $musteriSayisiBul = musteri::where('satirid', '>', '0')->get();
@@ -161,7 +172,7 @@ class MusterilerController extends Controller {
             'monunvan' => 'string',
             'mbadi' => 'required',
             'mbsoyadi' => 'required',
-            'mbdogumgunu' => 'required|before:today',
+            'mbdogumgunu' => 'before:today',
             'madres' => 'required',
             'mbolge' => 'required',
             'mmobil' => 'required',
@@ -169,16 +180,18 @@ class MusterilerController extends Controller {
             'mboylam' => 'required',
             'milce' => 'required|doesnt_start_with:Lütfen Bir İlçe Seçiniz',
             'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz',
+            'mmobil' => 'required',
+            'mukodutel' => 'required',
+            'meposta' => 'email',
         ],
         [   
             'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
             'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
             'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
             'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
-            'monunvan.required' => 'Lütfen müşterinin ünvanını boş bırakmayınız.',
+            'monunvan.string' => 'Lütfen müşterinin ünvanını doğru girdiğinizden emin olunuz.',
             'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
             'mbsoyadi.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
-            'mbdogumgunu.required' => 'Lütfen doğum gününü boş bırakmayınız.',
             'mbdogumgunu.before' => 'Lütfen müşterinin doğum tarihini doğru girdiğinizden emin olunuz.',
             'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
             'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
@@ -187,7 +200,9 @@ class MusterilerController extends Controller {
             'milce.doesnt_start_with' => 'Lütfen ilçeyi seçiniz.',
             'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
             'mil.doesnt_start_with' => 'Lütfen il alanını boş bırakmayınız.',
-
+            'mukodutel.required' => 'Lütfen müşteri telefonunun ülke kodunu giriniz.',
+            'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
+            'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
         ]
     );
         $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));

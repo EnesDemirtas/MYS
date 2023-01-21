@@ -68,8 +68,12 @@ function musteriBilgileri(id){
    var eposta = $("#musteri-"+id+" .eposta").attr('name');
    $("#modal-eposta").text(eposta);
 
-   var cep = "+" + $("#musteri-"+id+" .ulkekodu").attr('name') + $("#musteri-"+id+" .cep").attr('name');
+   var cep = "+" + $("#musteri-"+id+" .ulkekodu").attr('name') +" "+ $("#musteri-"+id+" .cep").attr('name');
    $("#modal-cep").text(cep);
+
+   var cepHref = $("#musteri-"+id+" .ulkekodu").attr('name') + $("#musteri-"+id+" .cep").attr('name');
+   $("#modal-cep-href").attr('href',"tel:"+cepHref);
+   $("#modal-whatsapp-href").attr('href',"https://wa.me/"+cepHref);
 
    var dogumTarihi = $("#musteri-"+id+" .dogum").attr('name');
    $("#modal-dogum").text(dogumTarihi);
