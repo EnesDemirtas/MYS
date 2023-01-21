@@ -335,7 +335,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" style="font-size: 1.5em; padding: 0">&times;</span>
+          <span aria-hidden="true" style="font-size: 1.6em; padding: 0; color:red;">&times;</span>
         </button>
       </div>
       <div class="modal-body">
@@ -372,8 +372,8 @@
               </div>
           </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+      <div class="modal-footer justify-content-center">
+        <a id="modal-detayliGoruntule-href" href="#"><button type="button" class="btn btn-secondary">Detaylı Görüntüle</button></a>
       </div>
     </div>
   </div>
@@ -434,6 +434,7 @@
                         <input class="markaAdi" type="hidden" name="{{ $musteri->mtmarkaadi }}">
                         <input class="kayitno" type="hidden" name="{{ $musteri->mkayitturu }}">
                         <input class="eposta" type="hidden" name="{{ $musteri->meposta }}">
+                        <input class="mtcknvno" type="hidden" name="{{ $musteri->mtcknvno }}">
                         <input class="cep" type="hidden" name="{{ $musteri->mmobil }}">
                         <input class="ulkekodu" type="hidden" name="{{ $musteri->mukodutel }}"
                         <input class="unvan" type="hidden" name="{{ $musteri->mbunvani }}">
