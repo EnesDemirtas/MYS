@@ -68,14 +68,14 @@ function musteriBilgileri(id){
    var eposta = $("#musteri-"+id+" .eposta").attr('name');
    $("#modal-eposta").text(eposta);
 
-   var cep = $("#musteri-"+id+" .cep").attr('name');
+   var cep = "+" + $("#musteri-"+id+" .ulkekodu").attr('name') + $("#musteri-"+id+" .cep").attr('name');
    $("#modal-cep").text(cep);
 
    var dogumTarihi = $("#musteri-"+id+" .dogum").attr('name');
    $("#modal-dogum").text(dogumTarihi);
 
    var markaAdi = $("#musteri-"+id+" .markaAdi").attr('name');
-   $("#modal-marka").text("Firma: "+markaAdi);
+   $("#modal-marka").text(markaAdi);
 }
 
 function changeFields(kayit) {
