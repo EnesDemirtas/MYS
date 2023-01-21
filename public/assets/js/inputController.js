@@ -80,6 +80,10 @@ function hkmadresBuyuk() { // Kullanıcı Bölge Adını Büyük Yazdırır
 	x.value = x.value.toLocaleUpperCase("tr-TR");
 }
 
+function guncelleGoster(){
+	$(".account-settings-footer").removeClass("d-none");
+}
+
 
 
 

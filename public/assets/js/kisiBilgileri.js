@@ -81,8 +81,8 @@ function musteriBilgileri(id){
    var markaAdi = $("#musteri-"+id+" .markaAdi").attr('name');
    $("#modal-marka").text(markaAdi);
 
-   var detayliGoruntule =  $("#musteri-"+id+" .mtcknvno").attr('name');
-   $("#modal-detayliGoruntule-href").attr('href',"{{route('musteri.duzenle',['mtcknvno' => '"+detayliGoruntule+"'])}}");
+   //var detayliGoruntule =  $("#musteri-"+id+" .mtcknvno").attr('name');
+   //$("#modal-detayliGoruntule-href").attr('href',"{{route('musteri.duzenle',['mtcknvno' => '"+detayliGoruntule+"'])}}");
 }
 
 function changeFields(kayit) {

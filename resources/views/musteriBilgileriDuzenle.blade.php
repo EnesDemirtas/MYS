@@ -95,7 +95,7 @@
                                             <section>
                                               <div class="row py-3">
                                               <div class="col-3">
-                                                <select class="form-control" name="mkayitturu" id="hk-kayitturu" onchange="changeFieldsMusteri(this.value)">
+                                                <select class="form-control" name="mkayitturu" id="hk-kayitturu" onchange="guncelleGoster()" onchange="changeFieldsMusteri(this.value)">
                                                   <option value="Kayıt Türü">Kayıt Türü</option>
                                                   <option value="Bireysel" {{ $musteri->mkayitturu == 'Bireysel' ? 'selected' : '' }}>Bireysel</option>
                                                   <option value="Ticari" {{ $musteri->mkayitturu == 'Ticari' ? 'selected' : '' }}>Ticari</option>
@@ -105,66 +105,66 @@
                                                 </select>
                                               </div>
                                                 <div class="col-3">
-                                                    <select class="form-control" name="mturu" id="hk-mturu">
+                                                    <select class="form-control" name="mturu" onchange="guncelleGoster()" id="hk-mturu">
                                                         <option value="Müşteri Türü">Müşteri Türü</option>
                                                         <option value="Gerçek" {{ $musteri->mturu == 'Gerçek' ? 'selected' : '' }}>Gerçek Kişi</option>
                                                         <option value="Tüzel" {{ $musteri->mturu == 'Tüzel' ? 'selected' : '' }}>Tüzel Kişi</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-3">
-                                                    <input id="hk-marka" onkeyup="hkMarkaAdiBuyuk()" type="text" name="mtmarkaadi" placeholder="Marka Adı" value="{{ $musteri->mtmarkaadi }}" class="form-control" required>
+                                                    <input id="hk-marka" onkeyup="hkMarkaAdiBuyuk()" onchange="guncelleGoster()" type="text" name="mtmarkaadi" placeholder="Marka Adı" value="{{ $musteri->mtmarkaadi }}" class="form-control" required>
                                                   </div>
                                                 <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-onunvan" type="text" onkeyup="hkOnUnvanBuyuk()" name="monunvan" placeholder="Unvanı" value="{{ $musteri->monunvan }}" class="form-control">
+                                                        <input id="hk-onunvan" type="text" onkeyup="hkOnUnvanBuyuk()" onchange="guncelleGoster()" name="monunvan" placeholder="Unvanı" value="{{ $musteri->monunvan }}" class="form-control">
                                                 </div>
                                                 <div class="col-3 ticaribilgi">
-                                                    <input id="hk-sube" type="text" name="mtsubeadi" placeholder="Şube Adı" value="{{ $musteri->mtsubeadi }}" class="form-control">
+                                                    <input id="hk-sube" type="text" name="mtsubeadi" onchange="guncelleGoster()" placeholder="Şube Adı" value="{{ $musteri->mtsubeadi }}" class="form-control">
                                               </div>
                                                 </div>
                                                 <div class="row py-3">
               
                                                     <div class="col-3">
-                                                        <input id="hk-vdaire" type="text" name="mvdairesi" placeholder="Vergi Dairesi" value="{{ $musteri->mvdairesi }}" class="form-control">
+                                                        <input id="hk-vdaire" type="text" name="mvdairesi" onchange="guncelleGoster()" placeholder="Vergi Dairesi" value="{{ $musteri->mvdairesi }}" class="form-control">
                                                     </div>
                                                   <div class="col-3">
-                                                        <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" value="{{ $musteri->mtcknvno }}" class="form-control" required>
+                                                        <input id="hk-tcknvno" type="number" name="mtcknvno" onchange="guncelleGoster()" placeholder="TCKN/Vergi No" value="{{ $musteri->mtcknvno }}" class="form-control" required>
                                                   </div>
 
                                                   <div class="col-3 bireyselbilgi">
-                                                    <input id="hk-ad" type="text" name="mbadi" onkeyup="hkAdilkHarfBuyuk()" placeholder="Adı" value="{{ $musteri->mbadi }}" class="form-control">
+                                                    <input id="hk-ad" type="text" name="mbadi" onkeyup="hkAdilkHarfBuyuk()" onchange="guncelleGoster()" placeholder="Adı" value="{{ $musteri->mbadi }}" class="form-control">
                                                   </div>
                                                   <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-soyad" type="text" onkeyup="hkSoyadBuyuk()" name="mbsoyadi" placeholder="Soyadı" value="{{ $musteri->mbsoyadi }}" class="form-control">
+                                                        <input id="hk-soyad" type="text" onkeyup="hkSoyadBuyuk()" onchange="guncelleGoster()" name="mbsoyadi" placeholder="Soyadı" value="{{ $musteri->mbsoyadi }}" class="form-control">
                                                   </div>
                                                   <div class="col-3 ticaribilgi">
-                                                    <input id="hk-kisaltma" type="text" name="mtkisaltmasi" placeholder="Kısaltma" value="{{ $musteri->mtkisaltmasi }}" class="form-control">
+                                                    <input id="hk-kisaltma" type="text" name="mtkisaltmasi" onchange="guncelleGoster()" placeholder="Kısaltma" value="{{ $musteri->mtkisaltmasi }}" class="form-control">
                                                   </div>
                                                   <div class="col-3 ticaribilgi">
-                                                        <input id="hk-tamunvan" type="text" name="firmatamunvan" placeholder="Firma Tam Unvan" value="{{ $musteri->firmatamunvan }}" class="form-control">
+                                                        <input id="hk-tamunvan" type="text" name="firmatamunvan" onchange="guncelleGoster()" placeholder="Firma Tam Unvan" value="{{ $musteri->firmatamunvan }}" class="form-control">
                                                   </div>
                                                 </div> 
                                                 <div class="row py-3">
                                                     <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-firma" onkeyup="hkCalistigiFirmaBuyuk()" type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" value="{{ $musteri->mbfirmaadi }}" class="form-control">
+                                                        <input id="hk-firma" onkeyup="hkCalistigiFirmaBuyuk()" onchange="guncelleGoster()" type="text" name="mbfirmaadi" placeholder="Çalıştığı Firma" value="{{ $musteri->mbfirmaadi }}" class="form-control">
                                                       </div>
                                                       <div class="col-3 bireyselbilgi">
-                                                            <input id="hk-unvan" type="text" onkeyup="hkUnvanBuyuk()" name="mbunvani" placeholder="Unvanı/Mesleği" value="{{ $musteri->mbunvani }}" class="form-control">
+                                                            <input id="hk-unvan" type="text" onkeyup="hkUnvanBuyuk()" onchange="guncelleGoster()" name="mbunvani" placeholder="Unvanı/Mesleği" value="{{ $musteri->mbunvani }}" class="form-control">
                                                       </div>  
                                                       <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-dogum" type="text" name="mbdogumgunu" placeholder="Doğum Tarihi" value="{{ date('d.m.Y', strtotime($musteri->mbdogumgunu)) }}" class="form-control" onfocus="(this.type='date')">
+                                                        <input id="hk-dogum" type="text" name="mbdogumgunu" onchange="guncelleGoster()" placeholder="Doğum Tarihi" value="{{ date('d.m.Y', strtotime($musteri->mbdogumgunu)) }}" class="form-control" onfocus="(this.type='date')">
                                                       </div>  
                                                       <div class="col-3 ticaribilgi">
-                                                        <input id="hk-unvandevami" type="text" name="mtunvandevami"  placeholder="Unvan Devamı" value="{{ $musteri->mtunvandevami }}" class="form-control">
+                                                        <input id="hk-unvandevami" type="text" onchange="guncelleGoster()" name="mtunvandevami"  placeholder="Unvan Devamı" value="{{ $musteri->mtunvandevami }}" class="form-control">
                                                       </div>
                                                       <div class="col-3 ticaribilgi">
-                                                            <input id="hk-ticaretsicil" type="number" name="mtsno" placeholder="Ticaret Sicil No" value="{{ $musteri->mtsno }}" class="form-control">
+                                                            <input id="hk-ticaretsicil" type="number" onchange="guncelleGoster()" name="mtsno" placeholder="Ticaret Sicil No" value="{{ $musteri->mtsno }}" class="form-control">
                                                       </div>
 
                                                       <div class="col-3 ticaribilgi">
-                                                        <input id="hk-odasicil" type="number" name="mosno" placeholder="Oda Sicil No" value="{{ $musteri->mosno }}" class="form-control">
+                                                        <input id="hk-odasicil" type="number" onchange="guncelleGoster()" name="mosno" placeholder="Oda Sicil No" value="{{ $musteri->mosno }}" class="form-control">
                                                       </div>
                                                       <div class="col-3 ticaribilgi">
-                                                            <input id="hk-mersis" type="number" name="mmno" placeholder="Mersis No" value="{{ $musteri->mmno }}" class="form-control">
+                                                            <input id="hk-mersis" type="number" onchange="guncelleGoster()" name="mmno" placeholder="Mersis No" value="{{ $musteri->mmno }}" class="form-control">
                                                       </div>
                                                 </div>             
                                             </section>
@@ -172,14 +172,14 @@
                                             <section>
                                                 <div class="row py-3">
                                                     <div class="col-3">
-                                                        <input id="hk-banka" onkeyup="hkBankaAdiBuyuk()" type="text" name="mbankadi" placeholder="Banka Adı" value="{{ $musteri->mbankadi }}" class="form-control">
+                                                        <input id="hk-banka" onkeyup="hkBankaAdiBuyuk()" onchange="guncelleGoster()" type="text" name="mbankadi" placeholder="Banka Adı" value="{{ $musteri->mbankadi }}" class="form-control">
                                                       </div>
                                                       <div class="col-3">
-                                                            <input id="hk-iban" type="text" name="miban" placeholder="IBAN" value="{{ $musteri->miban }}" class="form-control">
+                                                            <input id="hk-iban" type="text" name="miban" onchange="guncelleGoster()" placeholder="IBAN" value="{{ $musteri->miban }}" class="form-control">
                                                       </div>  
                                                     <div class="col-md-1 pr-0">
                                                         <div class="form-group">
-                                                            <select class="placeholder js-states form-control" name="mukodutel">
+                                                            <select class="placeholder js-states form-control" onchange="guncelleGoster()" name="mukodutel">
                                                                 <option value="90" {{ $musteri->mukodutel == '90' ? 'selected' : '' }}>+90</option>
                                                                 <option value="49" {{ $musteri->mukodutel == '49' ? 'selected' : '' }}>+49</option>
                                                                 <option value="1" {{ $musteri->mukodutel == '1' ? 'selected' : '' }}>+1</option>
@@ -190,22 +190,22 @@
                                                     </div>
                                                 <div class="col-md-2 pl-1">
                                                     <div class="form-group">
-                                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="mmobil" value="{{ str_replace($musteri->mukodutel, '', $musteri->mmobil) }}" id="phone" placeholder="Cep Telefonu" >
+                                                        <input type="text" maxlength="10" onchange="guncelleGoster()" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="mmobil" value="{{ str_replace($musteri->mukodutel, '', $musteri->mmobil) }}" id="phone" placeholder="Cep Telefonu" >
                                                     </div>
                                                 </div> 
                                                 <div class="col-3">
-                                                    <input id="hk-mtel" name="mtel" input="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Telefon" value="{{ $musteri->mtel }}" class="form-control">
+                                                    <input id="hk-mtel" name="mtel" input="text" onchange="guncelleGoster()" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Telefon" value="{{ $musteri->mtel }}" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row py-3">
                                                 <div class="col-3">
-                                                    <input id="hk-eposta" type="email" name="meposta" placeholder="E-Posta" value="{{ $musteri->meposta }}" class="form-control">
+                                                    <input id="hk-eposta" type="email" name="meposta" onchange="guncelleGoster()" placeholder="E-Posta" value="{{ $musteri->meposta }}" class="form-control">
                                                   </div>
                                                   <div class="col-3">
-                                                    <input id="hk-website" type="text" name="mweb" placeholder="Web Site" value="{{ $musteri->mweb }}" class="form-control">
+                                                    <input id="hk-website" type="text" name="mweb" onchange="guncelleGoster()" placeholder="Web Site" value="{{ $musteri->mweb }}" class="form-control">
                                                   </div>  
                                                   <div class="col-3">
-                                                    <input id="hk-fax" type="text" name="mfaks" placeholder="Faks" value="{{ $musteri->mfaks }}" class="form-control">
+                                                    <input id="hk-fax" type="text" name="mfaks" onchange="guncelleGoster()" placeholder="Faks" value="{{ $musteri->mfaks }}" class="form-control">
                                                   </div>
                                                 </div>
 
@@ -215,27 +215,27 @@
                                                 <div class="row py-3">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <textarea class="form-control mb-4" onkeyup="madresBuyuk()" id="madres" name="madres" placeholder="Adres" rows="2">{{ $musteri->madres }}</textarea>
+                                                            <textarea class="form-control mb-4" onkeypress="guncelleGoster()" onkeyup="madresBuyuk()" id="madres" name="madres" placeholder="Adres" rows="2">{{ $musteri->madres }}</textarea>
                                                         </div>
                                                     </div>  
                                                     
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <textarea class="form-control mb-4" id="mnot" name="mnot" placeholder="Notlar" rows="2">{{ $musteri->mnot }}</textarea>
+                                                            <textarea class="form-control mb-4" onkeypress="guncelleGoster()" id="mnot" name="mnot" placeholder="Notlar" rows="2">{{ $musteri->mnot }}</textarea>
                                                         </div>
                                                     </div>  
                                                 </div> 
                                                 <div class="row py-3">
                                                     <div class="col-2">
-                                                        <input id="hk-bolge" type="text" onkeyup="hkBolgeBuyuk()" name="mbolge" placeholder="Bölge" value="{{ $musteri->mbolge }}" class="form-control">
+                                                        <input id="hk-bolge" onkeypress="guncelleGoster()" type="text" onkeyup="hkBolgeBuyuk()" name="mbolge" placeholder="Bölge" value="{{ $musteri->mbolge }}" class="form-control">
                                                       </div>  
                                                       <div class="col-2">
-                                                        <select id="Iller" name="mil" class="placeholder js-states form-control">
+                                                        <select id="Iller" onchange="guncelleGoster()" name="mil" class="placeholder js-states form-control">
                                                           <option>{{ $musteri->mil }}</option>
                                                         </select>
                                                       </div>  
                                                       <div class="col-2">
-                                                        <select id="Ilceler" name="milce" class="placeholder js-states form-control">
+                                                        <select id="Ilceler" onchange="guncelleGoster()" name="milce" class="placeholder js-states form-control">
                                                           <option>{{ $musteri->milce }}</option>
                                                         </select>
                                                       </div>
@@ -249,16 +249,16 @@
                                                 <div role="button" id="anlikKonum" class="btn btn-light"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#de1717" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 395.71 395.71" xml:space="preserve" stroke="#006eff"><g id="SVGRepo_bgCarrier" stroke-width="0"/><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/><g id="SVGRepo_iconCarrier"> <g> <path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738 c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388 C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191 c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"/> </g> </g></svg>                            
                                                 </div>
                                                 <div class="py-3 row">
-                                                    <div class="col-12" id="map"> <!-- GOOGLE HARİTALAR -->
-                                                </div>
-                                                <div class="account-settings-footer justify-content-center fixed-bottom">
-                                                    <div class="as-footer-container text-center justify-content-center">
-                                                        <button type="submit" id="multiple-messages" class="btn btn-primary">Güncelle</button>
-                                                    </div> 
+                                                    <div class="col-12" onclick="guncelleGoster()" id="map"> </div><!-- GOOGLE HARİTALAR -->
                                                 </div>
                                             </section>
                                             
                                         </div>
+                                        <div class="account-settings-footer justify-content-center fixed-bottom hide d-none">
+                                          <div class="as-footer-container text-center justify-content-center">
+                                              <button type="submit" id="multiple-messages" class="btn btn-primary">Güncelle</button>
+                                          </div> 
+                                      </div>
                                     </form>
                                 </div>
                                

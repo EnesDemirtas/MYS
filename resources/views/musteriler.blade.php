@@ -276,7 +276,7 @@
                                 <div class="col-4 pr-0">
                                   <div class="form-group">
                                       <select class="placeholder js-states form-control form-control-sm" name="mukodutel">
-                                          <option value="90">+90</option>
+                                          <option value="90" selected>+90</option>
                                           <option value="49">+49</option>
                                           <option value="1">+1</option>
                                           <option value="7">+7</option>
@@ -438,7 +438,9 @@
                         <input class="cep" type="hidden" name="{{ $musteri->mmobil }}">
                         <input class="ulkekodu" type="hidden" name="{{ $musteri->mukodutel }}"
                         <input class="unvan" type="hidden" name="{{ $musteri->mbunvani }}">
+                        @if ( $musteri->mbdogumgunu != null)
                         <input class="dogum" type="hidden" name="{{$musteri->mbdogumgunu[8]}}{{ $musteri->mbdogumgunu[9]}}.{{$musteri->mbdogumgunu[5]}}{{ $musteri->mbdogumgunu[6]}}.{{$musteri->mbdogumgunu[0]}}{{ $musteri->mbdogumgunu[1]}}{{$musteri->mbdogumgunu[2]}}{{ $musteri->mbdogumgunu[3]}}">
+                        @endif
                         <td data-exclude="true">
                             <div class="row">
                                 <div class="col">
