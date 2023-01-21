@@ -145,3 +145,19 @@ function changeFieldsMusteri(kayit) {
         $(".bireyselbilgi").show();
     }
 }
+
+function checkKayitMusteriFields(kayit) {
+  if (kayit == "Kayıt Türü") {
+    $(".form-control").attr("readonly", true);
+    $("#hk-kayitturu").attr("readonly", false);
+    $("#hk-mturu").attr("readonly", false);
+  } else if (kayit == "Müşteri Türü") {
+    $(".form-control").attr("readonly", true);
+    $("#hk-kayitturu").attr("readonly", false);
+    $("#hk-mturu").attr("readonly", false);
+  } else {
+    if (document.getElementById("hk-kayitturu").value != "Kayıt Türü" && document.getElementById("hk-mturu").value != "Müşteri Türü") {
+      $(".form-control").attr("readonly", false);
+    }
+  }
+}
