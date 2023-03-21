@@ -98,3 +98,5 @@ Route::post('giris_yap', [UserController::class, 'login'])->name('login');
 
 Route::post('cikis_yap', [UserController::class, 'logout'])->name('logout')->middleware('isAuthenticated');
 
+Route::post('kayit_ol', [UserController::class, 'register'])->name('register');
+

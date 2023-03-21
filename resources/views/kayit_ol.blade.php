@@ -24,7 +24,8 @@
                     <div class="form-content">
                         <h1 class="">Anında yeni hesabınızı oluşturun</h1>
                         <p class="signup-link">Zaten bir hesabınız var mı? <a href="/musteri/giris_yap">Giriş yapın</a></p>
-                        <form class="text-left">
+                        <form class="text-left" method="POST" action=" {{route('register') }} ">
+                            @csrf
                             <div class="form">
                                 <div class="kurumsal-bireysel-secme">
                                     <button type="button" id="kurumsal_buton" class="btn btn-primary btn-rounded mb-2" onclick="kurumsal_bireysel(3)">Kurumsal</button>
@@ -41,6 +42,9 @@
                                     </svg>
                                     <input id="username" name="username" type="text" class="form-control"
                                         placeholder="Kullanıcı Adı">
+                                        @error('username')
+                                        <p class="text-danger mt-1">{{ $message }}</p>
+                                        @enderror
                                 </div>
                                 <div id="email-field" class="field-wrapper input">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -50,6 +54,9 @@
                                         <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
                                     </svg>
                                     <input id="email" name="email" type="text" value="" placeholder="Email">
+                                    @error('email')
+                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div id="password-field" class="field-wrapper input mb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -59,6 +66,9 @@
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                     </svg>
                                     <input id="password" name="password" type="password" value="" placeholder="Şifre">
+                                    @error('password')
+                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="field-wrapper terms_condition">
                                     <div class="n-chk new-checkbox checkbox-outline-primary">
