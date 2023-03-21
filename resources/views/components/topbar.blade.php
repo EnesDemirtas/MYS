@@ -4,7 +4,7 @@
         <a href="#" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
 
         <div class="nav-logo align-self-center">
-            <a class="navbar-brand" href="#"> <span class="navbar-brand-name">SBE Mühendislik - Müşteri Yönetim Sistemi</span></a>
+            <a class="navbar-brand" href="{{route('anasayfa.index')}}"> <span class="navbar-brand-name">SBE Mühendislik - Müşteri Yönetim Sistemi</span></a>
         </div>
         
         <ul class="navbar-item flex-row nav-dropdowns ml-auto">
@@ -12,8 +12,12 @@
                 <a href="#" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media">
                         <div class="media-body align-self-center">
+                            @if (session('kullanici')->cadi == null)
+                                <h6>{{ session('kullanici')->ckullaniciadi }}</h6>
+                            @else
                             <h6>{{ session('kullanici')->cadi . " " . session('kullanici')->csoyadi }}</h6>
                             <p>{{ session('kullanici')->cunvani }}</p>
+                            @endif
                         </div>
                         <img src="{{ asset('assets/img/90x90.jpg') }}" class="img-fluid" alt="admin-profile">
                         <span class="badge badge-success"></span>

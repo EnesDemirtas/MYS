@@ -21,10 +21,10 @@ class UserController extends Controller
         $tckn = calisan::where('ctckn', $request->input('username'))->first();
         if ($kullanici && $kullanici->csifre == $request->input('password')) {
             $request->session()->put('kullanici', $kullanici);
-            return redirect()->route('musteriler'); 
+            return redirect()->route('anasayfa.index'); 
         } else if ($tckn && $tckn->csifre == $request->input('password')) {
             $request->session()->put('kullanici', $tckn);
-            return redirect()->route('musteriler');
+            return redirect()->route('anasayfa.index');
         } else {
             return back()->withErrors(['username' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('username');
         }
