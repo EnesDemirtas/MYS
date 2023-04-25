@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\calisan;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -59,6 +60,26 @@ class UserController extends Controller
     public function logout(Request $request) {
         $request->session()->flush();
         return redirect()->route('giris_yap');
+    }
+
+    public function GetProfile(Request $request) {
+        $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
+        if ($kullanici->cphoto != null or $kullanici->cphoto != ''){
+            $kullanici->cphoto = Storage::url('photos/') . $kullanici->cphoto;
+        }
+        else {
+            $kullanici->cphoto = asset('assets/img/img_avatar.png');
+        }
+        // dd($kullanici->cphoto);
+        return view('profile', ['kullanici' => $kullanici]);
+    }
+
+    public function UploadPP(Request $request) {
+        $path = $request->file('photo')->store('public/photos');
+        $filename = explode('/', $path)[2];
+        $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
+        $kullanici->update(['cphoto' => $filename]);
+        return view('profile', ['kullanici' => $kullanici]);
     }
 
 }

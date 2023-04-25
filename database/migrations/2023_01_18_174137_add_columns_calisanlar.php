@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('ctel')->nullable()->change();
             $table->string('cevadresilce')->nullable()->change();
             $table->string('cevadresil')->nullable()->change();
+            $table->string('cphoto')->nullable();
         });
     }
 

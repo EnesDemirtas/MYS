@@ -100,3 +100,5 @@ Route::post('cikis_yap', [UserController::class, 'logout'])->name('logout')->mid
 
 Route::post('kayit_ol', [UserController::class, 'register'])->name('register');
 
+Route::get('profile', [UserController::class, 'GetProfile'])->name('profile');
+Route::post('uploadPP', [UserController::class, 'UploadPP'])->name('uploadPP');
