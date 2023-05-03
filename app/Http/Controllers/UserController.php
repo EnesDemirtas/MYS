@@ -79,7 +79,7 @@ class UserController extends Controller
         $filename = explode('/', $path)[2];
         $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
         $kullanici->update(['cphoto' => $filename]);
-        return view('profile', ['kullanici' => $kullanici]);
+        return redirect()->route('profile', ['kullanici' => $kullanici]);
     }
 
 }
