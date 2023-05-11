@@ -45,6 +45,11 @@
                                     @error('password')
                                     <p class="text-danger mt-1">{{ $message }}</p>
                                     @enderror
+                                    @if(Session::has("sifre_degistirme_basarili"))
+                                    <div class="alert alert-success">
+                                        {{Session::get("sifre_degistirme_basarili")}}
+                                    </div>
+                                @endif
                                 </div>
                                 </div>
                                 <!--Kurumsal Girişi-->

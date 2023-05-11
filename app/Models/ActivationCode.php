@@ -9,7 +9,7 @@ class ActivationCode extends Model
 {
     use HasFactory;
 
-    protected $table = 'aktivasyonkodlari';
+    protected $table = 'aktivasyonkodu';
     public $timestamps = true;
     protected $fillable = [
         'eposta',

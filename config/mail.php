@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    'default' => env('MAIL_MAILER', 'postmark'),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,13 +36,13 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'host' => env('MAIL_HOST', 'smtp.postmarkapp.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'username' => env('58326171-17f7-4fee-9c5b-5f7f881b6aff'),
+            'password' => env('58326171-17f7-4fee-9c5b-5f7f881b6aff'),
             'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN'),
+            'local_domain' => env('ogr.akdeniz.edu.tr'),
         ],
 
         'ses' => [

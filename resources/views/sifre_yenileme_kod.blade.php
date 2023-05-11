@@ -23,22 +23,37 @@
                     <div class="form-content">
 
                         <h1 class="">Şifre Yenileme</h1>
-                        <p class="signup-link">Şifrenizi yenilemek için lütfen E-posta adresinizi giriniz.</p>
-                        <form class="text-left" action="{{ route('reset_activation_code') }}" method="POST">
+                        <p class="signup-link">E-posta adresinize gelen aktivasyon kodunu giriniz.</p>
+                        <form class="text-left" action="{{ route('new_password') }}" method="POST">
                             @csrf
                             @method('POST')
                             <div class="form">
 
                                 <div id="email-field" class="field-wrapper input">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-at-sign"><circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path></svg>
-                                    <input id="email" name="email" type="text" value="" placeholder="E-posta">
+                                    <input id="aktivasyonkodu" name="aktivasyonkodu" type="text" value="{{ old('aktivasyonkodu') }}" placeholder="Aktivasyon Kodu">
                                 </div>
-                                @error('email')
+                                @error('aktivasyonkodu')
                                 <p class="text-danger mt-1">{{ $message }}</p>
                                 @enderror
+                                <div id="p1-field" class="field-wrapper input">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    <input id="password" name="password" type="text" value="" placeholder="Şifre">
+                                </div>
+                                @error('password')
+                                <p class="text-danger mt-1">{{ $message }}</p>
+                                @enderror
+                                <div id="p2-field" class="field-wrapper input">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    <input id="password_confirmation" name="password_confirmation" type="text" value="" placeholder="Şifre Tekrar">
+                                </div>
+                                @error('password_confirmation')
+                                <p class="text-danger mt-1">{{ $message }}</p>
+                                @enderror
+                                <input name="email" type="hidden" value="{{ $eposta }}">
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper">
-                                        <button type="submit" class="btn btn-primary" value="">Devam</button>
+                                        <button type="submit" class="btn btn-primary" value="">Yenile</button>
                                     </div>                                    
                                 </div>
 
