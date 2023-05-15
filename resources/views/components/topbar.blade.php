@@ -19,7 +19,7 @@
                             <p>{{ session('kullanici')->cunvani }}</p>
                             @endif
                         </div>
-                        <img src="{{ asset('assets/img/90x90.jpg') }}" class="img-fluid" alt="admin-profile">
+                        <img src="@if (is_null(session('kullanici')->cphoto)) {{ asset('assets/img/90x90.jpg') }} @else {{ Storage::url('photos/') . session('kullanici')->cphoto }} @endif" class="img-fluid" alt="admin-profile">
                         <span class="badge badge-success"></span>
                     </div>
                 </a>
