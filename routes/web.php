@@ -70,6 +70,10 @@ Route::get('teklif_onizle', function () {
     return view('teklif_onizle');
 })->middleware('isAuthenticated');
 
+Route::get('teklif_onizle_giris', function () {
+    return view('teklif_onizle_giris');
+});
+
 Route::get('sifre_yenileme', function () {
     return view('sifre_yenileme');
 });
@@ -80,6 +84,10 @@ Route::get('on_muhasebe', function () {
 
 Route::get('kayit_ol', function () {
     return view('kayit_ol');
+});
+
+Route::get('teklif_ekle_giris', function () {
+    return view('teklif_ekle_giris');
 });
 
 Route::get('hizmet_ve_urunler', function () {
