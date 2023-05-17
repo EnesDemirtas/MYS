@@ -258,7 +258,7 @@
                                           <div class="as-footer-container text-center justify-content-center">
                                               <button type="submit" id="multiple-messages" class="btn btn-primary">Güncelle</button>
                                           </div> 
-                                      </div>
+                                        </div>
                                     </form>
                                 </div>
                                

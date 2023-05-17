@@ -73,7 +73,8 @@
                         <div class="widget widget-content-area br-4">
                             <div class="widget-one">
                                 <div class="text-center"> 
-                                    <h3 style="color:blue;text-decoration:underline;">ÇALIŞAN BİLGİLERİNİ GÜNCELLE</h3>
+                                    <h3>ÇALIŞAN BİLGİLERİNİ GÜNCELLE</h3>
+                                    <hr>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
                                     <form id="kisiBilgileri" class="section contact" method="post" action="{{route('calisan.guncelle',["ctckn" => $calisanlar->ctckn])}}" >
@@ -196,9 +197,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="account-settings-footer justify-content-center fixed-bottom">
-                                    <div class="as-footer-container justify-content-center text-center">
+                                        <div class="account-settings-footer justify-content-center fixed-bottom">
+                                        <div class="as-footer-container justify-content-center text-center">
                                             <button type="submit" id="multiple-messages" class="btn btn-primary">Güncelle</button>
+                                        </div>
                                         </div>
                                     </form>
                                 </div>

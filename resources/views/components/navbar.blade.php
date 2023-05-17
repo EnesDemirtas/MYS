@@ -83,9 +83,6 @@
                     <li>
                         <a href="{{route('calisan.index')}}"> Çalışanlar </a>
                     </li>
-                    <li>
-                        <a href="#"> Submenu 2 </a>
-                    </li>
                 </ul>
             </li>
 
@@ -107,7 +104,7 @@
                 </ul>
             </li>
 
-            <li class="menu single-menu">
+            <!-- <li class="menu single-menu">
                 <a href="/on_muhasebe"  aria-expanded="false" class="dropdown-toggle autodroprown">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
@@ -123,7 +120,7 @@
                         <a href="#"> Submenu 2 </a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
 
             <li class="menu single-menu">
                 <a href="/hizmet_ve_urunler"  aria-expanded="false" class="dropdown-toggle autodroprown">
@@ -133,14 +130,6 @@
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="menu1" data-parent="#topAccordion">
-                    <li>
-                        <a href="#"> Submenu 1 </a>
-                    </li>
-                    <li>
-                        <a href="#"> Submenu 2 </a>
-                    </li>
-                </ul>
             </li>
         </ul>
     </nav>
