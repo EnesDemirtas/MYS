@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('aktivasyonkodu', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('eposta')->length(50)->nullable();
+            $table->string('aktivasyonkodu')->length(32)->nullable();
+            $table->dateTime('sure')->nullable();
         });
     }
 
