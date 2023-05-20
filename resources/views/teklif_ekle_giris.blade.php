@@ -230,8 +230,8 @@
                                                                     <div class="dropdown selectable-dropdown invoice-select">
                                                                         <a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="selectable-text"> Vinç Periyodik Kontrol</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>
                                                                         <div class="dropdown-menu" aria-labelledby="currencyDropdown">
-                                                                            <a class="dropdown-item" data-value="USD - Amerikan Doları" href="javascript:void(0);"> Vinç Periyodik Kontrol</a>
-                                                                            <a class="dropdown-item" data-value="GBP - İngiliz Sterlini" href="javascript:void(0);"> Kalorifer Kazanı Periyodik Kontrol</a>
+                                                                            <a class="dropdown-item" data-value="Vinç Periyodik Kontrol" href="javascript:void(0);"> Vinç Periyodik Kontrol</a>
+                                                                            <a class="dropdown-item" data-value="Kalorifer Kazanı Periyodik Kontrol" href="javascript:void(0);"> Kalorifer Kazanı Periyodik Kontrol</a>
                                                                         </div>
                                                                     </div>
                                                                        <textarea class="form-control" placeholder="Ek Detaylar (Eklemek istediğiniz herhangi birşey varsa)"></textarea></td>
