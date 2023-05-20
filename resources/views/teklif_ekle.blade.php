@@ -86,7 +86,7 @@
                                                 </div>
                                                 
                                                 <div class="invoice-title">
-                                                    <input type="text" class="form-control" placeholder="Invoice Label" value="Invoice Label">
+                                                    <input type="text" class="form-control" placeholder="Şirketinizin İsmi">
                                                 </div>
 
                                             </div>
@@ -101,30 +101,30 @@
                                                         <div class="invoice-address-company-fields">
 
                                                             <div class="form-group row">
-                                                                <label for="company-name" class="col-sm-3 col-form-label col-form-label-sm">Name</label>
+                                                                <label for="company-name" class="col-sm-3 col-form-label col-form-label-sm">Yetkili İsim</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="company-name" placeholder="Business Name">
+                                                                    <input type="text" class="form-control form-control-sm" id="company-name" placeholder="İsim">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Email</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="company-email" placeholder="name@company.com">
+                                                                    <input type="text" class="form-control form-control-sm" id="company-email" placeholder="isim@firma.com">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label for="company-address" class="col-sm-3 col-form-label col-form-label-sm">Address</label>
+                                                                <label for="company-address" class="col-sm-3 col-form-label col-form-label-sm">Adres</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="company-address" placeholder="XYZ Street">
+                                                                    <input type="text" class="form-control form-control-sm" id="company-address" placeholder="abc Sokak">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label for="company-phone" class="col-sm-3 col-form-label col-form-label-sm">Phone</label>
+                                                                <label for="company-phone" class="col-sm-3 col-form-label col-form-label-sm">Telefon</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="company-phone" placeholder="(123) 456 789">
+                                                                    <input type="text" class="form-control form-control-sm" id="company-phone" placeholder="+90 (242) 326 10 11">
                                                                 </div>
                                                             </div>                                                                
                                                             
@@ -135,35 +135,35 @@
 
                                                     <div class="col-xl-5 invoice-address-client">
 
-                                                        <h4>Teklif Verilen:-</h4>
+                                                        <h4>Teklif Verilen: SBE Mühendislik</h4>
 
                                                         <div class="invoice-address-client-fields">
 
                                                             <div class="form-group row">
-                                                                <label for="client-name" class="col-sm-3 col-form-label col-form-label-sm">İsim</label>
+                                                                <label for="client-name" class="col-sm-3 col-form-label col-form-label-sm">Yetkili İsim</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="client-name" placeholder="Client Name">
+                                                                    <input type="text" class="form-control form-control-sm" id="client-name" placeholder="Sadık BOZDEMİR" readonly>
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="client-email" class="col-sm-3 col-form-label col-form-label-sm">Eposta</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="client-email" placeholder="name@company.com">
+                                                                    <input type="text" class="form-control form-control-sm" id="client-email" placeholder="business@sbe.com" readonly>
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="client-address" class="col-sm-3 col-form-label col-form-label-sm">Adres</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="client-address" placeholder="XYZ Street">
+                                                                <div class="col-sm-9 w-2">
+                                                                    <textarea style="resize: none;" cols="30" rows="3" class="form-control form-control-sm input-lg" id="client-address" placeholder="Muratpaşa, Kızılarık Mah. Yanık Apt. No: 5/11, Köroğlu Bulvarı, 07310 Antalya" readonly></textarea>
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="client-phone" class="col-sm-3 col-form-label col-form-label-sm">Telefon</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="client-phone" placeholder="(123) 456 789">
+                                                                    <input type="text" class="form-control form-control-sm" id="client-phone" placeholder="+90 (242) 326 10 11" readonly>
                                                                 </div>
                                                             </div>
                                                             
@@ -218,10 +218,9 @@
                                                             <tr>
                                                                 <th class=""></th>
                                                                 <th>Açıklama</th>
-                                                                <th class="">Oran</th>
+                                                                <th class="">Fiyat</th>
                                                                 <th class="">Miktar</th>
-                                                                <th class="text-right">Ücret</th>
-                                                                <th class="text-center">Vergi</th>
+                                                                <th class="text-right">Toplam</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -231,20 +230,20 @@
                                                                         <li><a href="javascript:void(0);" class="delete-item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></a></li>
                                                                     </ul>
                                                                 </td>
-                                                                <td class="description"><input type="text" class="form-control form-control-sm" placeholder="Item Description"> <textarea class="form-control" placeholder="Additional Details"></textarea></td>
-                                                                <td class="rate">
-                                                                    <input type="text" class="form-control form-control-sm" placeholder="Price">
-                                                                </td>
-                                                                <td class="text-right qty"><input type="text" class="form-control form-control-sm" placeholder="Quantity"></td>
-                                                                <td class="text-right amount"><span class="editable-amount"><span class="currency">$</span> <span class="amount">100.00</span></td>
-                                                                <td class="text-center tax">
-                                                                    <div class="n-chk">
-                                                                        <label class="new-control new-checkbox new-checkbox-text checkbox-primary" style="height: 18px; margin: 0 auto;">
-                                                                            <input type="checkbox" class="new-control-input">
-                                                                            <span class="new-control-indicator"></span><span class="new-chk-content">Vergi</span>
-                                                                        </label>
+                                                                <td class="description">
+                                                                    <div class="dropdown selectable-dropdown invoice-select">
+                                                                        <a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="selectable-text"> Vinç Periyodik Kontrol</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>
+                                                                        <div class="dropdown-menu" aria-labelledby="currencyDropdown">
+                                                                            <a class="dropdown-item" data-value="USD - Amerikan Doları" href="javascript:void(0);"> Vinç Periyodik Kontrol</a>
+                                                                            <a class="dropdown-item" data-value="GBP - İngiliz Sterlini" href="javascript:void(0);"> Kalorifer Kazanı Periyodik Kontrol</a>
+                                                                        </div>
                                                                     </div>
+                                                                       <textarea class="form-control" placeholder="Ek Detaylar (Eklemek istediğiniz herhangi birşey varsa)"></textarea></td>
+                                                                <td class="rate">
+                                                                      <input type="text" class="form-control  form-control-sm" placeholder="Fiyat">
                                                                 </td>
+                                                                <td class="text-right qty"><input type="text" class="form-control  form-control-sm" placeholder="Miktar"></td>
+                                                                  <td class="text-right amount"><span class="editable-amount"><span class="currency">$</span> <span class="amount">0.00</span></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -262,23 +261,23 @@
                                                     <div class="col-md-6">
                                                         
                                                         <div class="form-group row invoice-created-by">
-                                                            <label for="payment-method-account" class="col-sm-3 col-form-label col-form-label-sm">Hesap #:</label>
+                                                            <label for="payment-method-account" class="col-sm-3 col-form-label col-form-label-sm">Hesap No:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control form-control-sm" id="payment-method-account" placeholder="Bank Account Number">
+                                                                <input type="text" class="form-control form-control-sm" id="payment-method-account" placeholder="Hesap Numarası">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row invoice-created-by">
                                                             <label for="payment-method-bank-name" class="col-sm-3 col-form-label col-form-label-sm">Banka Adı:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control form-control-sm" id="payment-method-bank-name" placeholder="Insert Bank Name">
+                                                                <input type="text" class="form-control form-control-sm" id="payment-method-bank-name" placeholder="Banka Adı">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row invoice-created-by">
                                                             <label for="payment-method-code" class="col-sm-3 col-form-label col-form-label-sm">SWIFT kodu:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control form-control-sm" id="payment-method-code" placeholder="Insert Code">
+                                                                <input type="text" class="form-control form-control-sm" id="payment-method-code" placeholder="Kodu Giriniz">
                                                             </div>
                                                         </div>
 
@@ -511,18 +510,6 @@
 
                                                             </div>
 
-                                                            <div class="invoice-totals-row invoice-summary-tax">
-
-                                                                <div class="invoice-summary-label">Vergi</div>
-
-                                                                <div class="invoice-summary-value">
-                                                                    <div class="tax-amount">
-                                                                        <span>0%</span>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-
                                                             <div class="invoice-totals-row invoice-summary-balance-due">
 
                                                                 <div class="invoice-summary-label">Toplam</div>
@@ -591,53 +578,7 @@
 
                                         </div>
 
-                                        <div class="invoice-action-tax">
                                         
-                                            <h5>Vergi</h5>
-
-                                            <div class="invoice-action-tax-fields">
-
-                                                <div class="row">
-                                            
-                                                    <div class="col-6">
-
-                                                        <div class="form-group mb-0">
-                                                            <label for="type">Tip</label>
-
-                                                            <div class="dropdown selectable-dropdown invoice-tax-select">
-                                                                <a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="selectable-text">Yok</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>
-                                                                <div class="dropdown-menu" aria-labelledby="currencyDropdown">
-                                                                    <a class="dropdown-item" data-value="Deducted" href="javascript:void(0);">Deducted</a>
-                                                                    <a class="dropdown-item" data-value="Per Item" href="javascript:void(0);">Kalem Başına</a>
-                                                                    <a class="dropdown-item" data-value="On Total" href="javascript:void(0);">Toplamda</a>
-                                                                    <a class="dropdown-item" data-value="None" href="javascript:void(0);">Yok</a>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="col-6">
-                                                        <div class="form-group mb-0 tax-rate-deducted" style="display: none;">
-                                                            <label for="rate">Oran (%)</label>
-                                                            <input type="number" class="form-control input-rate" id="rate" placeholder="Rate" value="10">
-                                                        </div>
-
-                                                        <div class="form-group mb-0 tax-rate-per-item" style="display: none;">
-                                                            <label for="rate">Oran (%)</label>
-                                                            <input type="number" class="form-control input-rate" id="rate" placeholder="Rate" value="5">
-                                                        </div>
-
-                                                        <div class="form-group mb-0 tax-rate-on-total" style="display: none;">
-                                                            <label for="rate">Oran (%)</label>
-                                                            <input type="number" class="form-control input-rate" id="rate" placeholder="Rate" value="25">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
 
 
                                         <div class="invoice-action-discount">
@@ -655,9 +596,9 @@
                                                             <div class="dropdown selectable-dropdown invoice-discount-select">
                                                                 <a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="selectable-text">Yok</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>
                                                                 <div class="dropdown-menu" aria-labelledby="currencyDropdown">
-                                                                    <a class="dropdown-item" data-value="Percent" href="javascript:void(0);">Yüzde</a>
-                                                                    <a class="dropdown-item" data-value="Flat Amount" href="javascript:void(0);">Miktar</a>
-                                                                    <a class="dropdown-item" data-value="None" href="javascript:void(0);">Yok</a>
+                                                                    <a class="dropdown-item" data-value="Yüzde" href="javascript:void(0);">Yüzde</a>
+                                                                    <a class="dropdown-item" data-value="Belirli Miktar" href="javascript:void(0);">Belirli Miktar</a>
+                                                                    <a class="dropdown-item" data-value="Yok" href="javascript:void(0);">Yok</a>
                                                                 </div>
                                                             </div>
                                                             
@@ -694,7 +635,7 @@
                                                     <a href="javascript:void(0);" class="btn btn-primary btn-send">Teklifi Gönder</a>
                                                 </div>
                                                 <div class="col-xl-12 col-md-4">
-                                                    <a href="/teklif_onizle" class="btn btn-dark btn-preview">Önizle</a>
+                                                    <a href="/teklif_onizle_giris" class="btn btn-dark btn-preview">Önizle</a>
                                                 </div>
                                                 <div class="col-xl-12 col-md-4">
                                                     <a href="javascript:void(0);" class="btn btn-success btn-download">Kaydet</a>
