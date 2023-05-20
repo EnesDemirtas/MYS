@@ -83,10 +83,11 @@
                                     <a href="/sifre_yenileme" class="forgot-pass-link">Şifrenizi mi unuttunuz?</a>
                                 </div>
 
-                            </div>
-                        </form>                        
-                        <p class="terms-conditions">© 2022 Tüm hakları saklıdır. <a href="#">DAKIK</a> 
-
+                            </div>  
+                        </form>
+                        <div class="d-flex align-item-center"> <!-- Terms and conditions -->
+                            <p class="terms-conditions" style="bottom: 5px;">© 2022 Tüm hakları saklıdır. <a href="#">DAKIK</a> 
+                        </div>    
                     </div>                    
                 </div>
             </div>

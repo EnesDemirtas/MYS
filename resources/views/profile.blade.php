@@ -182,7 +182,7 @@
                                             <form id="kisiBilgileri" class="section contact" method="post" action="{{route('calisan.guncelle',["ctckn" => $kullanici->ctckn])}}" >
                                                 @csrf
                                                 @method("put")
-                                                <div class="info">
+                                                <div class="info bg-light">
                                                     <div class="row">
                                                         <div class="col-md-11 mx-auto">
                                                                 <h3 style="text-decoration: underline;">Kişisel Bilgiler</h3>
@@ -234,13 +234,13 @@
                                                                             </select>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-2">
+                                                                    <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="phone">Telefon Numarası</label>
                                                                             <input onkeypress="guncelleGoster()" type="text" maxlength="10" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="ctel" id="phone" placeholder="Telefon Numarası" value="{{$kullanici->ctel}}" required>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-3">
+                                                                    <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="email">Eposta</label>
                                                                             <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="ceposta" id="email" placeholder="Eposta" value="{{$kullanici->ceposta}}" required>

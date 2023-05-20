@@ -101,7 +101,9 @@
 
                             </div>
                         </form>
-                        <p class="terms-conditions">© 2022 Tüm Hakları Saklıdır. <a href="#">DAKIK</a>
+                        <div class="d-flex align-item-center"> <!-- Terms and conditions -->
+                            <p class="terms-conditions" style="bottom: 5px;">© 2022 Tüm hakları saklıdır. <a href="#">DAKIK</a> 
+                        </div> 
 
                     </div>
                 </div>
