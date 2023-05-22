@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\calisan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Validation\Rule;
+
 
 class CalisanlarController extends Controller
 {
@@ -125,6 +127,40 @@ class CalisanlarController extends Controller
             calisan::where('ctckn', $request->ctckn)->update( array('cevadres' => $request->cevadres,'cwhatsapp'=>'wa.me/'.$request->ukodutel.''.$request->ctel.'', 'mysrefno'=>'sbe-1','ciban' => $request->ciban,'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka ) );
             return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
         }
+    }
+
+    public function ExportFormPDF() {
+        $data = array();
+        for ($i=0; $i < 25; $i++) { 
+            $kontrol = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, facilis?";
+            $durum_int = random_int(0, 3);
+            $durum = "";
+            switch ($durum_int) {
+                case 0:
+                    $durum = "uygun";
+                    break;
+                case 1:
+                    $durum = "uygun_degil";
+                    break;
+                case 2:
+                    $durum = "onarildi";
+                    break;
+                case 3:
+                    $durum = "yenilendi";
+                    break;
+            }
+            $aciklama = "";
+            if ($i % 4 == 0) {
+                $aciklama = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
+            }
+            array_push($data, [
+                "kontrol" => $kontrol,
+                "durum" => $durum,
+                "aciklama" => $aciklama
+            ]);
+        }
+        $pdf = PDF::loadView('form', ['data' => $data]);
+        return $pdf->download('form.pdf');
     }
 
 

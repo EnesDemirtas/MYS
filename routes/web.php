@@ -114,3 +114,5 @@ Route::post('uploadPP', [UserController::class, 'UploadPP'])->name('uploadPP');
 Route::post('reset_activation_code', [ActivationCodeController::class, 'SendResetActivationCode'])->name('reset_activation_code');
 Route::get('new_password', [UserController::class, 'GetNewPassword'])->name('get_new_password');
 Route::post('new_password', [ActivationCodeController::class, 'NewPassword'])->name('new_password');
+
+Route::get('export_form_pdf', [CalisanlarController::class, 'ExportFormPDF'])->name('export_form_pdf');
