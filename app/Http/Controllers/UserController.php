@@ -36,22 +36,30 @@ class UserController extends Controller
             'username' => 'required',
             'email' => 'required|email',
             'password' => 'required',
+            'tckn' => 'required',
+            'dogumgunu' => 'required',
         ], [
             'username.required' => 'Kullanıcı adı boş bırakılamaz',
             'email.required' => 'E-posta boş bırakılamaz',
             'email.email' => 'Geçerli bir e-posta adresi giriniz',
-            'password.required' => 'Şifre boş bırakılamaz'
+            'password.required' => 'Şifre boş bırakılamaz',
+            'tckn.required' => 'TCKN boş bırakılamaz',
+            'dogumgunu.required' => 'Doğum günü boş bırakılamaz'
         ]);
 
         $kullanici = calisan::where('ckullaniciadi', $request->input('username'))->first();
-        $tckn = calisan::where('ctckn', $request->input('username'))->first();
-        if ($kullanici || $tckn) {
+        $tckn = calisan::where('ctckn', $request->input('tckn'))->first();
+        if ($kullanici) {
             return back()->withErrors(['username' => 'Kullanıcı adı/TCKN kullanımda!'])->onlyInput('username');
-        } else {
+        }elseif($tckn){
+            return back()->withErrors(['tckn' => 'TCKN kullanımda!'])->onlyInput('tckn');
+        }else {
             $kullanici = new calisan();
             $kullanici->ckullaniciadi = $request->input('username');
             $kullanici->csifre = $request->input('password');
             $kullanici->ceposta = $request->input('email');
+            $kullanici->ctckn = $request->input('tckn');
+            $kullanici->cdogum = $request->input('dogumgunu');
             $kullanici->save();
             return redirect()->route('giris_yap');
         }
