@@ -134,15 +134,52 @@
                                         <label class="new-control new-checkbox checkbox-outline-primary">
                                             <input type="checkbox" class="new-control-input">
                                             <span class="new-control-indicator"></span><span><a
-                                                    href="javascript:void(0);"> Üyelik koşullarını </a>kabul  ediyorum.</span>
+                                                onclick="kurumsal_bireysel(5)"> Üyelik koşullarını </a>kabul  ediyorum.</span>
                                         </label>
                                     </div>
                                 </div>
+                                <div id="modal_default" class="modal fade" tabindex="-1"
+										style="display: none; padding-right: 17px;">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title"><b>Çalışan Adayı Aydınlatma Metni</b>
+													</h5>
+												</div>
+
+												<div class="modal-body" style="height: 400px;overflow-y: scroll;">
+													<p style="text-align: justify;">
+														<b>dakik Davranış ve Kişilik Envanter Tespit Sistemi</b>
+														olarak, veri sorumlusu sıfatıyla, kişisel verilerinizin
+														güvenliği hususuna verdiğimiz önem doğrultusunda bünyemizde
+														barındırdığımız her türlü kişisel veri 6698 sayılı Kişisel
+														Verilerin Korunması Kanunu (“KVKK”)’na uygun olarak
+														işlenmekte, saklanmakta ve aktarılmaktadır. Bu bilinçle,
+														Şirket olarak, çalışan adayları ve stajyer adaylarının
+														kişisel verilerinin 6698 sayılı Kişisel Verilerin Korunması
+														Kanununa uygun olarak işlenmesine ve korunmasına büyük önem
+														veriyoruz. Bu sorumluluğumuzun bilinciyle Kişisel Verilerin
+														Korunması Kanununda tanımlı şekli ile “Veri Sorumlusu”
+														sıfatıyla, kişisel verilerinizi aşağıda açıklandığı surette
+														ve mevzuatta yer alan sınırlar çerçevesinde
+														işlemekteyiz.<br>
+													</p>
+												</div>
+
+												<div class="modal-footer">
+													<button type="button" class="btn bg-primary py-0"
+														onclick="modelKapat()">Onayla</button>
+												</div>
+
+
+											</div>
+										</div>
+									</div> <!-- Modal Bitiş -->
                                 </div>
                                 <!-- Kurumsal Kayıt-->
                                 <!-- Bireysel Kayıt-->
                                 <div id="bireysel">
-                                    </div>
+                                </div>
                                 <!-- Bireysel Kayıt-->
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper toggle-pass">

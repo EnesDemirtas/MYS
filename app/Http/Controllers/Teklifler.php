@@ -12,4 +12,37 @@ class Teklifler extends Controller
         $teklifler = teklif::All();
         return view('teklifler',compact("teklifler"));
     }
+
+    public function teklif_ekle(Request $request) {
+        $request->validate([
+            'yetkiliismi' => 'required',
+            'yetkiliemail' => 'required|email',
+            'musteriadres' => 'required',
+            'musteritelefon' => 'required',
+            'tekliftarihi' => 'required',
+            'teklifbitistarihi' => 'required',
+            'sirketismi' => 'required',
+        ], [
+            'yetkiliismi.required' => 'Lütfen isminizi giriniz',
+            'yetkiliemail.required' => 'E-posta boş bırakılamaz',
+            'musteriadres.email' => 'Adres boş bırakılamaz',
+            'musteritelefon.required' => 'Telefon numarası boş bırakılamaz',
+            'tekliftarihi.required' => 'Teklif tarihi boş bırakılamaz',
+            'teklifbitistarihi.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
+            'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
+        ]);
+
+            $teklif = new teklif();
+            $teklif->teklif_veren_isim = $request->input('yetkiliismi');
+            $teklif->teklif_veren_email = $request->input('yetkiliemail');
+            $teklif->teklif_veren_adres = $request->input('musteriadres');
+            $teklif->teklif_veren_telefon = $request->input('musteritelefon');
+            $teklif->teklif_baslangic_tarihi = $request->input('tekliftarihi');
+            $teklif->teklif_bitis_tarihi = $request->input('teklifbitistarihi');
+            $teklif->teklif_veren_sirket = $request->input('sirketismi');
+            $teklif->teklif_veren_not = $request->input('not');
+            $teklif->save();
+            return redirect()->back()->with("success","Teklif başarıyla oluşturuldu!");
+        
+    }
 }

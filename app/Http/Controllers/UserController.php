@@ -38,13 +38,15 @@ class UserController extends Controller
             'password' => 'required',
             'tckn' => 'required',
             'dogumgunu' => 'required',
+            'telefon' => 'required',
         ], [
             'username.required' => 'Kullanıcı adı boş bırakılamaz',
             'email.required' => 'E-posta boş bırakılamaz',
             'email.email' => 'Geçerli bir e-posta adresi giriniz',
             'password.required' => 'Şifre boş bırakılamaz',
             'tckn.required' => 'TCKN boş bırakılamaz',
-            'dogumgunu.required' => 'Doğum günü boş bırakılamaz'
+            'dogumgunu.required' => 'Doğum günü boş bırakılamaz',
+            'telefon.required' => 'Telefon numarası boş bırakılamaz',
         ]);
 
         $kullanici = calisan::where('ckullaniciadi', $request->input('username'))->first();

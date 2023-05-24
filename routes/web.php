@@ -5,6 +5,7 @@ use App\Http\Controllers\CalisanlarController;
 use App\Http\Controllers\MusterilerController;
 use App\Http\Controllers\AnasayfaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Teklifler;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,3 +117,5 @@ Route::get('new_password', [UserController::class, 'GetNewPassword'])->name('get
 Route::post('new_password', [ActivationCodeController::class, 'NewPassword'])->name('new_password');
 
 Route::get('export_form_pdf', [CalisanlarController::class, 'ExportFormPDF'])->name('export_form_pdf');
+
+Route::post('teklif_ekle', [Teklifler::class, 'teklif_ekle'])->name('teklif_ekle');
