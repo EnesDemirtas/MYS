@@ -26,12 +26,9 @@
                 <th>Açıklamalar</th>
             </tr>
         </thead>
-        <form method="POST" action="">
-            @csrf
-            <tbody>
-                @each('components.bakim_formu_row', $sorular, 'soru')
-            </tbody>
-        </form>
+        <tbody>
+            @each('components.bakim_formu_sonucu_row', $sorular, 'data')
+        </tbody>
     </table>
 </body>
 
