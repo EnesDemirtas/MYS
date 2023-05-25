@@ -69,7 +69,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         
                         <div class="doc-container">
-                            <form id="kisiBilgileri" class="section contact p-4" method="post" action="">
+                            <form id="teklifekle" class="section contact p-4" method="post" action="{{route('teklif.ekle')}}">
                                 @csrf
                             <div class="row">
                                 <div class="col-xl-9">
@@ -87,7 +87,7 @@
                                                 </div>
                                                 
                                                 <div class="invoice-title">
-                                                    <input type="text" class="form-control" placeholder="Şirketinizin İsmi">
+                                                    <input type="text" class="form-control" id="sirketismi" name="sirketismi" placeholder="Şirketinizin İsmi">
                                                 </div>
 
                                             </div>
@@ -104,28 +104,28 @@
                                                             <div class="form-group row">
                                                                 <label for="company-name" class="col-sm-3 col-form-label col-form-label-sm">Yetkili İsim</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" name="yetkiliismi" id="yetkiliisim" placeholder="İsim"> 
+                                                                    <input type="text" class="form-control form-control-sm" name="yetkiliismi" id="yetkiliismi" placeholder="İsim"> 
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Email</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="company-email" placeholder="isim@firma.com">
+                                                                    <input type="text" class="form-control form-control-sm" name="yetkiliemail" id="yetkiliemail" placeholder="isim@firma.com">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="company-address" class="col-sm-3 col-form-label col-form-label-sm">Adres</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="company-address" placeholder="abc Sokak">
+                                                                    <input type="text" class="form-control form-control-sm" name="musteriadres" id="musteriadres" placeholder="abc Sokak">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="company-phone" class="col-sm-3 col-form-label col-form-label-sm">Telefon</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="company-phone" placeholder="+90 (242) 326 10 11">
+                                                                    <input type="text" class="form-control form-control-sm" name="musteritelefon" id="musteritelefon" placeholder="+90 (242) 326 10 11">
                                                                 </div>
                                                             </div>                                                                
                                                             
@@ -194,14 +194,14 @@
 
                                                         <div class="form-group mb-4">
                                                             <label for="date">Teklif Tarihi</label>
-                                                            <input type="text" class="form-control form-control-sm" id="date" placeholder="Add date picker">
+                                                            <input type="text" class="form-control form-control-sm" name="date" id="date" placeholder="Add date picker">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group mb-4">
                                                             <label for="due">Bitiş Tarihi</label>
-                                                            <input type="text" class="form-control form-control-sm" id="due" placeholder="None">
+                                                            <input type="text" class="form-control form-control-sm" name="due" id="due" placeholder="None">
                                                         </div>
                                                         
                                                     </div>
@@ -637,7 +637,7 @@
 
                                             <div class="row">
                                                 <div class="col-xl-12 col-md-4">
-                                                    <a href="javascript:void(0);" class="btn btn-primary btn-send">Teklifi Gönder</a>
+                                                    <button type="submit" class="btn btn-primary btn-send w-100 mb-2">Teklifi Gönder</button>
                                                 </div>
                                                 <div class="col-xl-12 col-md-4">
                                                     <a href="{{route('teklif.onizle')}}" class="btn btn-dark btn-preview">Önizle</a>

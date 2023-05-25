@@ -13,7 +13,7 @@ class Teklifler extends Controller
         return view('teklifler',compact("teklifler"));
     }
 
-    public function teklif_ekle(Request $request) {
+    public function teklifEkle(Request $request) {
         $request->validate([
             'yetkiliismi' => 'required',
             'yetkiliemail' => 'required|email',
@@ -47,7 +47,24 @@ class Teklifler extends Controller
     }
 
     public function teklif_onizle(Request $request){
+        $request->validate([
+            'yetkiliismi' => 'required',
+            'yetkiliemail' => 'required|email',
+            'musteriadres' => 'required',
+            'musteritelefon' => 'required',
+            'date' => 'required',
+            'due' => 'required',
+            'sirketismi' => 'required',
+        ], [
+            'yetkiliismi.required' => 'Lütfen isminizi giriniz',
+            'yetkiliemail.required' => 'E-posta boş bırakılamaz',
+            'musteriadres.email' => 'Adres boş bırakılamaz',
+            'musteritelefon.required' => 'Telefon numarası boş bırakılamaz',
+            'date.required' => 'Teklif tarihi boş bırakılamaz',
+            'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
+            'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
+        ]);
 
-        return redirect()->route('teklizOnizle')->with('basarili', 'BAŞIRILI!');
+            return redirect()->route('teklif_onizle')->with("success","Teklif!");
     }
 }
