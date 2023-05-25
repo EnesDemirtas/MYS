@@ -64,20 +64,18 @@
                         </ol>
                     </nav>
                 </div>
-                @if(Session::has("success"))
-                    <div class="alert alert-success">
-                        {{Session::get("success")}}
-                    </div>
-                @endif
+
                 <div class="row invoice layout-spacing layout-top-spacing">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         
                         <div class="doc-container">
-                            <form class="text-left" method="POST" action=" {{route('teklif_ekle') }} ">
+                            <form id="kisiBilgileri" class="section contact p-4" method="post" action="">
                                 @csrf
                             <div class="row">
                                 <div class="col-xl-9">
+
                                     <div class="invoice-content">
+
                                         <div class="invoice-detail-body">
 
                                             <div class="invoice-detail-title">
@@ -89,7 +87,7 @@
                                                 </div>
                                                 
                                                 <div class="invoice-title">
-                                                    <input type="text" id="sirketismi" class="form-control" placeholder="Şirketinizin İsmi">
+                                                    <input type="text" class="form-control" placeholder="Şirketinizin İsmi">
                                                 </div>
 
                                             </div>
@@ -106,28 +104,28 @@
                                                             <div class="form-group row">
                                                                 <label for="company-name" class="col-sm-3 col-form-label col-form-label-sm">Yetkili İsim</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="yetkiliismi" placeholder="İsim">
+                                                                    <input type="text" class="form-control form-control-sm" name="yetkiliismi" id="yetkiliisim" placeholder="İsim"> 
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Email</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="yetkiliemail" placeholder="isim@firma.com">
+                                                                    <input type="text" class="form-control form-control-sm" id="company-email" placeholder="isim@firma.com">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="company-address" class="col-sm-3 col-form-label col-form-label-sm">Adres</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="musteriadres" placeholder="abc Sokak">
+                                                                    <input type="text" class="form-control form-control-sm" id="company-address" placeholder="abc Sokak">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="company-phone" class="col-sm-3 col-form-label col-form-label-sm">Telefon</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" id="musteritelefon" placeholder="+90 (242) 326 10 11">
+                                                                    <input type="text" class="form-control form-control-sm" id="company-phone" placeholder="+90 (242) 326 10 11">
                                                                 </div>
                                                             </div>                                                                
                                                             
@@ -196,14 +194,14 @@
 
                                                         <div class="form-group mb-4">
                                                             <label for="date">Teklif Tarihi</label>
-                                                            <input type="date" class="form-control form-control-sm" id="tekliftarihi">
+                                                            <input type="text" class="form-control form-control-sm" id="date" placeholder="Add date picker">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3">
                                                         <div class="form-group mb-4">
                                                             <label for="due">Bitiş Tarihi</label>
-                                                            <input type="date" class="form-control form-control-sm" id="teklifbitistarihi">
+                                                            <input type="text" class="form-control form-control-sm" id="due" placeholder="None">
                                                         </div>
                                                         
                                                     </div>
@@ -230,7 +228,7 @@
                                                             <tr>
                                                                 <td class="delete-item-row">
                                                                     <ul class="table-controls">
-                                                                        <li><a href="javascript:void(0);" class="delete-item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></a></li>
+                                                                        <li><a href="javascript:void(0);"  class="delete-item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></a></li>
                                                                     </ul>
                                                                 </td>
                                                                 <td class="description">
@@ -243,16 +241,19 @@
                                                                     </div>
                                                                        <textarea class="form-control" placeholder="Ek Detaylar (Eklemek istediğiniz herhangi birşey varsa)"></textarea></td>
                                                                 <td class="rate">
-                                                                      <input type="text" class="form-control  form-control-sm" placeholder="Fiyat">
+                                                                      <input type="text" class="form-control  form-control-sm" placeholder="Fiyat" id="urun_fiyati1" value="0" onchange="hesapla(1)">
                                                                 </td>
-                                                                <td class="text-right qty"><input type="text" class="form-control  form-control-sm" placeholder="Miktar"></td>
-                                                                  <td class="text-right amount"><span class="editable-amount"><span class="currency">$</span> <span class="amount">0.00</span></td>
+                                                                <td class="text-right qty"><input type="text" class="form-control  form-control-sm" placeholder="Miktar" id="urun_miktari1" onchange="hesapla(1)" value="1" ></td>
+                                                                  <td class="text-right amount"><span class="editable-amount"><span class="currency">$</span> <span class="1" id="toplam_tutar1">0.00</span></span></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
-
-                                                <a class="btn btn-secondary additem btn-sm">Ekle</a>
+                                                <input type="text" style="display:block;" id="yenisi" value="1">
+                                                <div class="tekSilinen" id="tekSilinen"></div>
+                                                <div id="silinenler"></div>
+                                                <input type="text" style="display:block;" id="counter" value="2">
+                                                <a href="javascript:void(0);" class="btn btn-secondary additem btn-sm" id="ekle">Ekle</a>
                                                 
                                             </div>
 
@@ -485,15 +486,16 @@
                                                         
                                                     </div>
 
-                                                    <div class="col-md-6">
-                                                        <div class="totals-row">
+                                                    <div class="col-md-6 fiyat_hesapla">
+                                                        <a href="javascript:void(0);" class="btn btn-primary" onclick="totalFiyatHesapla(1)">Total Fiyat Hesapla</a>
+                                                        <div id="totalrow" style="display:none;">
                                                             <div class="invoice-totals-row invoice-summary-subtotal">
 
                                                                 <div class="invoice-summary-label">Ara Toplam</div>
 
                                                                 <div class="invoice-summary-value">
                                                                     <div class="subtotal-amount">
-                                                                        <span class="currency">$</span><span class="amount">100</span>
+                                                                        <span class="currency">$</span><span class="amount" id="ara_toplam">100</span>
                                                                     </div>
                                                                 </div>
 
@@ -507,7 +509,7 @@
 
                                                                 <div class="invoice-summary-value">
                                                                     <div class="total-amount">
-                                                                        <span class="currency">$</span><span>10</span>
+                                                                        <span class="currency">$</span><span id="indirim_miktari">0</span>
                                                                     </div>
                                                                 </div>
 
@@ -519,7 +521,7 @@
 
                                                                 <div class="invoice-summary-value">
                                                                     <div class="balance-due-amount">
-                                                                        <span class="currency">$</span><span>90</span>
+                                                                        <span class="currency">$</span><span id="toplam_ucret">90</span>
                                                                     </div>
                                                                 </div>
 
@@ -551,7 +553,7 @@
                                             </div>
                                             
                                             
-                                        </div> <!-- Detail body bitişi -->
+                                        </div>
                                         
                                     </div>
                                     
@@ -635,13 +637,10 @@
 
                                             <div class="row">
                                                 <div class="col-xl-12 col-md-4">
-                                                    <button type="submit" class="btn btn-primary btn-send">Teklifi Gönder</button>
+                                                    <a href="javascript:void(0);" class="btn btn-primary btn-send">Teklifi Gönder</a>
                                                 </div>
                                                 <div class="col-xl-12 col-md-4">
-                                                    <a href="/teklif_onizle_giris" class="btn btn-dark btn-preview">Önizle</a>
-                                                </div>
-                                                <div class="col-xl-12 col-md-4">
-                                                    <a href="javascript:void(0);" class="btn btn-success btn-download">Kaydet</a>
+                                                    <a href="{{route('teklif.onizle')}}" class="btn btn-dark btn-preview">Önizle</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -651,7 +650,7 @@
                                 </div>
                             </div>
                             
-                        </form> <!-- form bitişi -->
+                            </form>
                         </div>
 
                     </div>
@@ -682,7 +681,7 @@
     <script src="{{ asset('plugins/dropify/dropify.min.js') }}"></script>
     <script src="{{ asset('plugins/flatpickr/flatpickr.js') }}"></script>
     <script src="{{ asset('assets/js/apps/invoice-add.js') }}"></script>
-    <script src="{{ asset('assets/js/apps/teklifler.js') }}"></script>
+    <script src="{{ asset('assets/js/teklifler.js') }}"></script>
     <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 </html>

@@ -60,7 +60,11 @@
                         </ol>
                     </nav>
                 </div>
-                
+                @if(Session::has("basarili"))
+                    <div class="alert alert-success">
+                        {{Session::get("basarili")}}
+                    </div>
+                @endif
                 <div class="row invoice  layout-spacing layout-top-spacing">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         
@@ -120,7 +124,7 @@
                                                                 </div>
                                                                 
                                                                 <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
-                                                                    <p class="inv-customer-name">Jesse Cory</p>
+                                                                    <p class="inv-customer-name">{{Session::get('yetkiliismi')}} Süleyman Türker GÜNER</p>
                                                                     <p class="inv-street-addr">405 Mulberry Rd. Mc Grady, NC, 28649</p>
                                                                     <p class="inv-email-address">redq@company.com</p>
                                                                     <p class="inv-email-address">(128) 666 070</p>
@@ -198,7 +202,7 @@
                                                                                 <p class="">Ara Toplam: </p>
                                                                             </div>
                                                                             <div class="col-sm-4 col-5">
-                                                                                <p class="">$3155</p>
+                                                                                <p class="">{{Session::get('yetkiliismi')}}</p>
                                                                             </div>
                                                                             <div class="col-sm-8 col-7">
                                                                                 <p class="">Vergi Miktarı: </p>
@@ -265,6 +269,9 @@
                                                 </div>
                                                 <div class="col-xl-12 col-md-3 col-sm-6">
                                                     <a href="/teklif_duzenle" class="btn btn-dark btn-edit">Düzenle</a>
+                                                </div>
+                                                <div class="col-xl-12 col-md-4 pt-3">
+                                                    <a href="javascript:void(0);" class="btn btn-danger btn-edit">Çıkış</a>
                                                 </div>
                                             </div>
                                         </div>

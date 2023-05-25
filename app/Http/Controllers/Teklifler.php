@@ -19,16 +19,16 @@ class Teklifler extends Controller
             'yetkiliemail' => 'required|email',
             'musteriadres' => 'required',
             'musteritelefon' => 'required',
-            'tekliftarihi' => 'required',
-            'teklifbitistarihi' => 'required',
+            'date' => 'required',
+            'due' => 'required',
             'sirketismi' => 'required',
         ], [
             'yetkiliismi.required' => 'Lütfen isminizi giriniz',
             'yetkiliemail.required' => 'E-posta boş bırakılamaz',
             'musteriadres.email' => 'Adres boş bırakılamaz',
             'musteritelefon.required' => 'Telefon numarası boş bırakılamaz',
-            'tekliftarihi.required' => 'Teklif tarihi boş bırakılamaz',
-            'teklifbitistarihi.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
+            'date.required' => 'Teklif tarihi boş bırakılamaz',
+            'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
         ]);
 
@@ -37,12 +37,17 @@ class Teklifler extends Controller
             $teklif->teklif_veren_email = $request->input('yetkiliemail');
             $teklif->teklif_veren_adres = $request->input('musteriadres');
             $teklif->teklif_veren_telefon = $request->input('musteritelefon');
-            $teklif->teklif_baslangic_tarihi = $request->input('tekliftarihi');
-            $teklif->teklif_bitis_tarihi = $request->input('teklifbitistarihi');
+            $teklif->teklif_baslangic_tarihi = $request->input('date');
+            $teklif->teklif_bitis_tarihi = $request->input('due');
             $teklif->teklif_veren_sirket = $request->input('sirketismi');
             $teklif->teklif_veren_not = $request->input('not');
             $teklif->save();
             return redirect()->back()->with("success","Teklif başarıyla oluşturuldu!");
         
+    }
+
+    public function teklif_onizle(Request $request){
+
+        return redirect()->route('teklizOnizle')->with('basarili', 'BAŞIRILI!');
     }
 }
