@@ -118,3 +118,5 @@ Route::post('new_password', [ActivationCodeController::class, 'NewPassword'])->n
 Route::get('export_form_pdf', [CalisanlarController::class, 'ExportFormPDF'])->name('export_form_pdf');
 
 Route::get('load_bakim_formu/{form_adi}', [CalisanlarController::class, 'LoadBakimFormu'])->name('load_bakim_formu');
+
+Route::get('example_form', [CalisanlarController::class, 'ExampleForm'])->name('example_form');

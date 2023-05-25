@@ -59,6 +59,7 @@
                                 <a class="btn btn-danger"
                                     href="{{ route('load_bakim_formu', ['form_adi' => 'kalorifer_kazani']) }}">Kalorifer
                                     Kazanı Formu</a>
+                                <a class="btn btn-info" href="{{ route('example_form') }}">Form deneme</a>
                             </div>
                         </div>
                     </div>

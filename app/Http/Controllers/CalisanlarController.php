@@ -172,6 +172,14 @@ class CalisanlarController extends Controller
         return view('form', ['sorular' => $sorular]);
     }
 
+    public function ExampleForm() {
+        $raw_sorular = bakimformu::where('form_adi', 'kalorifer_kazani')->get('sorular');
+        $raw_sorular = $raw_sorular[0]->sorular;
+        $sorular = explode(";", $raw_sorular);
+        $sorular = array_slice($sorular, 0, -1);
+        return view('example_form', ['sorular' => $sorular]);
+    }
+
 
     // public function calisanDetaylari($csatirid){
     //     $calisan = calisan::WHERE('csatirid',$csatirid)->first();

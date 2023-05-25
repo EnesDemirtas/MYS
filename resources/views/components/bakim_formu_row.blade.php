@@ -1,5 +1,5 @@
 <tr>
-    <td>{{ $soru }}</td>
+    <th scope="row">{{ $soru }}</th>
     <td><input type="radio" name="soru_{{ $key + 1 }}" id="uygun" value="uygun"></td>
     <td><input type="radio" name="soru_{{ $key + 1 }}" id="uygun_degil" value="uygun_degil"></td>
     <td><input type="radio" name="soru_{{ $key + 1 }}" id="onarildi" value="onarildi"></td>
