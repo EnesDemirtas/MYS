@@ -119,8 +119,9 @@ Route::post('new_password', [ActivationCodeController::class, 'NewPassword'])->n
 Route::get('export_form_pdf', [CalisanlarController::class, 'ExportFormPDF'])->name('export_form_pdf');
 
 Route::post('teklif_ekle', [Teklifler::class, 'teklifEkle'])->name('teklif.ekle');
+
 Route::post('teklif_onizle', [Teklifler::class, 'teklifOnizle'])->name('teklif.onizle');
 
-Route::get('teklifOnizle', function () {
+Route::get('teklifOnizlemeyeGit', function () {
     return view('teklif_onizle');
-})->name('teklifOnizle');
+})->name('teklifOnizlemeyeGit');

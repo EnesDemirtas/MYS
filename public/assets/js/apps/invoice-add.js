@@ -1,5 +1,8 @@
 var currentDate = new Date();
 
+$('.dropify').dropify({
+  messages: { 'default': 'Fotoğraf/Logo Yüklemek İçin Tıklayınız', 'replace': 'Yükleyin veya Sürükleyip Bırakın' }
+});
 
 var f1 = flatpickr(document.getElementById('date'), {
   defaultDate: currentDate,

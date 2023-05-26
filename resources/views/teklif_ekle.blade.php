@@ -104,7 +104,7 @@
                                                             <div class="form-group row">
                                                                 <label for="company-name" class="col-sm-3 col-form-label col-form-label-sm">Yetkili İsim</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" name="yetkiliismi" id="yetkiliismi" placeholder="İsim"> 
+                                                                    <input type="text" class="form-control form-control-sm" name="yetkiliismi" id="yetkiliismi" placeholder="İsim" required> 
                                                                 </div>
                                                             </div>
 

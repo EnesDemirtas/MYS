@@ -46,7 +46,7 @@ class Teklifler extends Controller
         
     }
 
-    public function teklif_onizle(Request $request){
+    public function teklifOnizle(Request $request){
         $request->validate([
             'yetkiliismi' => 'required',
             'yetkiliemail' => 'required|email',
@@ -64,7 +64,7 @@ class Teklifler extends Controller
             'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
         ]);
-
-            return redirect()->route('teklif_onizle')->with("success","Teklif!");
+            session()->put('yetkiliismi', $request->input('yetkiliismi'));
+            return redirect()->route('teklifOnizlemeyeGit')->with("success","Teklif!");
     }
 }
