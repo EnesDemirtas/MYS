@@ -1,10 +1,10 @@
 <tr>
-    <td>{{ $data['kontrol'] }}</td>
-    <td><input type="checkbox" name="uygun" id="uygun" @checked($data['durum'] == 'uygun')></td>
-    <td><input type="checkbox" name="uygun_degil" id="uygun_degil" @checked($data['durum'] == 'uygun_degil')></td>
-    <td><input type="checkbox" name="onarildi" id="onarildi" @checked($data['durum'] == 'onarildi')></td>
-    <td><input type="checkbox" name="yenilendi" id="yenilendi" @checked($data['durum'] == 'yenilendi')></td>
+    <th scope="row">{{ $soru }}</th>
+    <td><input type="radio" name="soru_{{ $key + 1 }}" id="uygun" value="uygun"></td>
+    <td><input type="radio" name="soru_{{ $key + 1 }}" id="uygun_degil" value="uygun_degil"></td>
+    <td><input type="radio" name="soru_{{ $key + 1 }}" id="onarildi" value="onarildi"></td>
+    <td><input type="radio" name="soru_{{ $key + 1 }}" id="yenilendi" value="yenilendi"></td>
     <td>
-        <textarea type="textarea" name="aciklamalar" id="aciklamalar">{{ $data['aciklama'] }}</textarea>
+        <textarea type="textarea" name="aciklama_{{ $key + 1 }}" id="aciklamalar"></textarea>
     </td>
 </tr>

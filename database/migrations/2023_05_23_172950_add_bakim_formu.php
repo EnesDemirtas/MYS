@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teklifler', function (Blueprint $table) {
+        Schema::create('bakimformlari', function (Blueprint $table) {
             $table->id();
             $table->string('form_adi')->length(255);
             $table->text('sorular');

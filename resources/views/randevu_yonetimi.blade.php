@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>MYS - RANDEVU YÖNETİMİ</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <x-global-mandatory.styles/>
+    <x-global-mandatory.styles />
     <!-- END GLOBAL MANDATORY STYLES -->
-    
+
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     <style>
@@ -20,18 +21,18 @@
             margin-left: auto;
         }*/
         .layout-px-spacing {
-            min-height: calc(100vh - 170px)!important;
+            min-height: calc(100vh - 170px) !important;
         }
-
     </style>
 
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    
+
 </head>
+
 <body class="sidebar-noneoverflow">
-    
+
     <!--  BEGIN NAVBAR  -->
-    <x-topbar/>
+    <x-topbar />
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
@@ -41,9 +42,9 @@
         <div class="search-overlay"></div>
 
         <!--  BEGIN TOPBAR  -->
-        <x-navbar/>
+        <x-navbar />
         <!--  END TOPBAR  -->
-        
+
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
@@ -55,14 +56,18 @@
                             <div class="widget-one">
                                 <h6>BURASI RANDEVU YÖNETİMİ SAYFASI OLACAK</h6>
                                 <a class="btn btn-success" href="{{ route('export_form_pdf') }}">Export PDF</a>
-                            </div>    
+                                <a class="btn btn-danger"
+                                    href="{{ route('load_bakim_formu', ['form_adi' => 'kalorifer_kazani']) }}">Kalorifer
+                                    Kazanı Formu</a>
+                                <a class="btn btn-info" href="{{ route('example_form') }}">Form deneme</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- CONTENT AREA -->
-                
+
             </div>
-            <x-footer/>
+            <x-footer />
         </div>
         <!--  END CONTENT AREA  -->
 
@@ -70,10 +75,9 @@
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <x-global-mandatory.scripts /
-    <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <x-global-mandatory.scripts / <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    
+
     <script>
         $(document).ready(function() {
             App.init();
@@ -86,4 +90,5 @@
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
+
 </html>

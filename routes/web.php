@@ -116,7 +116,9 @@ Route::post('reset_activation_code', [ActivationCodeController::class, 'SendRese
 Route::get('new_password', [UserController::class, 'GetNewPassword'])->name('get_new_password');
 Route::post('new_password', [ActivationCodeController::class, 'NewPassword'])->name('new_password');
 
-Route::get('export_form_pdf', [CalisanlarController::class, 'ExportFormPDF'])->name('export_form_pdf');
+Route::get('load_bakim_formu/{form_adi}', [CalisanlarController::class, 'LoadBakimFormu'])->name('load_bakim_formu');
+
+Route::get('example_form', [CalisanlarController::class, 'ExampleForm'])->name('example_form');
 
 Route::post('teklif_ekle', [Teklifler::class, 'teklifEkle'])->name('teklif.ekle');
 
@@ -125,3 +127,4 @@ Route::post('teklif_onizle', [Teklifler::class, 'teklifOnizle'])->name('teklif.o
 Route::get('teklifOnizlemeyeGit', function () {
     return view('teklif_onizle');
 })->name('teklifOnizlemeyeGit');
+

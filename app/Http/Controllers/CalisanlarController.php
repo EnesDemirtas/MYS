@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\calisan;
+use App\Models\bakimformu;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Validation\Rule;
 
@@ -159,8 +160,24 @@ class CalisanlarController extends Controller
                 "aciklama" => $aciklama
             ]);
         }
-        $pdf = PDF::loadView('form', ['data' => $data]);
+        $pdf = PDF::loadView('form_sonucu', ['data' => $data]);
         return $pdf->download('form.pdf');
+    }
+
+    public function LoadBakimFormu(Request $request) {
+        $raw_sorular = bakimformu::where('form_adi', $request->form_adi)->get('sorular');
+        $raw_sorular = $raw_sorular[0]->sorular;
+        $sorular = explode(";", $raw_sorular);
+        $sorular = array_slice($sorular, 0, -1);
+        return view('form', ['sorular' => $sorular]);
+    }
+
+    public function ExampleForm() {
+        $raw_sorular = bakimformu::where('form_adi', 'kalorifer_kazani')->get('sorular');
+        $raw_sorular = $raw_sorular[0]->sorular;
+        $sorular = explode(";", $raw_sorular);
+        $sorular = array_slice($sorular, 0, -1);
+        return view('example_form', ['sorular' => $sorular]);
     }
 
 
