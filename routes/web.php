@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalisanlarController;
 use App\Http\Controllers\MusterilerController;
 use App\Http\Controllers\AnasayfaController;
+use App\Http\Controllers\ActivationCodeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Teklifler;
 
@@ -51,29 +52,6 @@ Route::put('/calisan/{ctckn}', [CalisanlarController::class, 'calisanGuncelle'])
 Route::delete('/calisan/{ctckn}',[CalisanlarController::class, 'calisanSil'])->name('calisan.sil')->middleware('isAuthenticated');
 Route::get('calisanlar', [CalisanlarController::class, 'index'])->name('calisan.index')->middleware('isAuthenticated');
 
-Route::get('teklif_yonetimi', function () {
-    return view('teklif_yonetimi');
-})->middleware('isAuthenticated');
-
-Route::get('teklif_ekle', function () {
-    return view('teklif_ekle');
-})->middleware('isAuthenticated');
-
-Route::get('teklif_duzenle', function () {
-    return view('teklif_duzenle');
-})->middleware('isAuthenticated');
-
-Route::get('teklifler', function () {
-    return view('teklifler');
-})->middleware('isAuthenticated');
-
-Route::get('teklif_onizle', function () {
-    return view('teklif_onizle');
-})->middleware('isAuthenticated');
-
-Route::get('teklif_onizle_giris', function () {
-    return view('teklif_onizle_giris');
-});
 
 Route::get('sifre_yenileme', function () {
     return view('sifre_yenileme');
@@ -120,11 +98,23 @@ Route::get('load_bakim_formu/{form_adi}', [CalisanlarController::class, 'LoadBak
 
 Route::get('example_form', [CalisanlarController::class, 'ExampleForm'])->name('example_form');
 
-Route::post('teklif_ekle', [Teklifler::class, 'teklifEkle'])->name('teklif.ekle');
+Route::post('teklif_ekleme_yap', [Teklifler::class, 'teklifEkle'])->name('teklif.ekleme.yap');
 
-Route::post('teklif_onizle', [Teklifler::class, 'teklifOnizle'])->name('teklif.onizle');
+Route::get('teklif_onizle/{yetkiliismi}', [Teklifler::class, 'teklifOnizle'])->name('teklif_onizle');
 
-Route::get('teklifOnizlemeyeGit', function () {
-    return view('teklif_onizle');
-})->name('teklifOnizlemeyeGit');
+Route::get('teklif_yonetimi', function () {
+    return view('teklif_yonetimi');
+})->middleware('isAuthenticated');
 
+Route::get('teklifler', function () {
+    return view('teklifler');
+})->middleware('isAuthenticated');
+
+
+Route::get('teklif_ekle', function () {
+    return view('teklif_ekle');
+})->middleware('isAuthenticated');
+
+Route::get('teklif_onizle', function () {
+    return view('teklif_yonetimi');
+})->middleware('isAuthenticated');

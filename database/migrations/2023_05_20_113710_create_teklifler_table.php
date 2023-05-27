@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->date('teklif_baslangic_tarihi');
             $table->date('teklif_bitis_tarihi');
-            $table->timestamp('islemsaati');
             $table->string('teklif_veren_isim')->length(25);
             $table->string('teklif_veren_email')->length(50);
             $table->string('teklif_veren_adres')->length(100);
@@ -26,6 +25,11 @@ return new class extends Migration
             $table->string('istenilen_hizmetler')->lenght(255);
             $table->string('istenilen_hizmet_fiyat')->lenght(5);
             $table->string('istenilen_hizmet_miktar')->lenght(5);
+            $table->string('teklif_veren_sirket')->lenght(50);
+            $table->string('teklif_veren_not')->lenght(255);
+            $table->string('istenilen_hizmet_not')->lenght(255);
+            $table->date('updated_at');
+            $table->date('created_at');
         });
     }
 

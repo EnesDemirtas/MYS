@@ -64,16 +64,24 @@
                         </ol>
                     </nav>
                 </div>
-
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="row invoice layout-spacing layout-top-spacing">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         
                         <div class="doc-container">
-                            <form id="teklifekle" class="section contact p-4" method="post" action="{{route('teklif.ekle')}}">
+                            <form id="teklifekle" class="section contact p-4" method="post" action="{{route('')}}">
                                 @csrf
                             <div class="row">
                                 <div class="col-xl-9">
-
+                                    
                                     <div class="invoice-content">
 
                                         <div class="invoice-detail-body">
@@ -87,7 +95,7 @@
                                                 </div>
                                                 
                                                 <div class="invoice-title">
-                                                    <input type="text" class="form-control" id="sirketismi" name="sirketismi" placeholder="Şirketinizin İsmi">
+                                                    <input type="text" class="form-control" id="sirketismi" value="{{old('sirketismi')}}" name="sirketismi" placeholder="Şirketinizin İsmi">
                                                 </div>
 
                                             </div>
@@ -104,28 +112,28 @@
                                                             <div class="form-group row">
                                                                 <label for="company-name" class="col-sm-3 col-form-label col-form-label-sm">Yetkili İsim</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" name="yetkiliismi" id="yetkiliismi" placeholder="İsim" required> 
+                                                                    <input type="text" class="form-control form-control-sm" value="{{old('yetkiliismi')}}" name="yetkiliismi" id="yetkiliismi" placeholder="İsim"> 
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="company-email" class="col-sm-3 col-form-label col-form-label-sm">Email</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" name="yetkiliemail" id="yetkiliemail" placeholder="isim@firma.com">
+                                                                    <input type="text" class="form-control form-control-sm" value="{{old('yetkiliemail')}}" name="yetkiliemail" id="yetkiliemail" placeholder="isim@firma.com">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="company-address" class="col-sm-3 col-form-label col-form-label-sm">Adres</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" name="musteriadres" id="musteriadres" placeholder="abc Sokak">
+                                                                    <input type="text" class="form-control form-control-sm" value="{{old('musteriadres')}}" name="musteriadres" id="musteriadres" placeholder="abc Sokak">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group row">
                                                                 <label for="company-phone" class="col-sm-3 col-form-label col-form-label-sm">Telefon</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" class="form-control form-control-sm" name="musteritelefon" id="musteritelefon" placeholder="+90 (242) 326 10 11">
+                                                                    <input type="text" class="form-control form-control-sm" value="{{old('musteritelefon')}}" name="musteritelefon" id="musteritelefon" placeholder="+90 (242) 326 10 11">
                                                                 </div>
                                                             </div>                                                                
                                                             
@@ -239,7 +247,7 @@
                                                                             <a class="dropdown-item" data-value="Kalorifer Kazanı Periyodik Kontrol" href="javascript:void(0);"> Kalorifer Kazanı Periyodik Kontrol</a>
                                                                         </div>
                                                                     </div>
-                                                                       <textarea class="form-control" placeholder="Ek Detaylar (Eklemek istediğiniz herhangi birşey varsa)"></textarea></td>
+                                                                       <textarea id="ek_detaylar" class="form-control" placeholder="Ek Detaylar (Eklemek istediğiniz herhangi birşey varsa)"></textarea></td>
                                                                 <td class="rate">
                                                                       <input type="text" class="form-control  form-control-sm" placeholder="Fiyat" id="urun_fiyati1" value="0" onchange="hesapla(1)">
                                                                 </td>
@@ -249,12 +257,14 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <input type="text" style="display:block;" id="yenisi" value="1">
-                                                <div class="tekSilinen" id="tekSilinen"></div>
-                                                <div id="silinenler"></div>
-                                                <input type="text" style="display:block;" id="counter" value="2">
-                                                <a href="javascript:void(0);" class="btn btn-secondary additem btn-sm" id="ekle">Ekle</a>
-                                                
+                                                <!-- Arkadan işlem yapmak için gerekli alanlar -->
+                                                <input type="text" style="display:none;" id="yenisi" value="1">
+                                                <div class="tekSilinen" id="tekSilinen" style="display:none;"></div>
+                                                <div id="silinenler" style="display:none;"></div>
+                                                <input type="text" style="display:none;" id="counter" value="2">
+                                                <!-- Arkadan işlem yapmak için gerekli alanlar -->
+                                                <a href="javascript:void(0);" class="btn btn-secondary additem btn-sm" style="width: 100px;" id="ekle">Ekle</a>
+                                                <div class="alert alert-danger" id="fazla_teklif" style="display:none;"> Daha fazla teklif ekleyebilmek için bizimle irtibata geçiniz.</div>
                                             </div>
 
 

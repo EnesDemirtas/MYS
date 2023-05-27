@@ -5,6 +5,11 @@
     <x-global-mandatory.styles />
     <link href="{{ asset('plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('plugins/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css">
+    <style>
+        textarea {
+        resize: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -139,6 +144,7 @@
     <x-global-mandatory.scripts />
 
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/js/form.js') }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->

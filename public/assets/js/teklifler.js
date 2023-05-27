@@ -5,15 +5,14 @@ function hesapla(counter){
         document.getElementById("toplam_tutar"+counter+"").innerHTML = toplamTutar;
 }
 
-function totalFiyatHesapla(counter){
+function totalFiyatHesapla(counter, selectedItem){
     document.getElementById("totalrow").style.display = "block";
     var hepsiniTopla = 0;
-    var innerCounter = 1;
     for (let i = 0; i < counter; i++) {
-        hepsiniTopla += parseInt(document.getElementById("toplam_tutar"+innerCounter+"").innerHTML);
-        innerCounter++;
+      console.log(document.getElementsByClassName("editable-amount").parentNode.className)
       }
       document.getElementById("ara_toplam").innerHTML = String(hepsiniTopla);
+      console.log(document.getElementsByClassName("editable-amount").parentNode);
 }
 
 function changeCounter(deger){

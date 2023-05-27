@@ -14,6 +14,7 @@ class Teklifler extends Controller
     }
 
     public function teklifEkle(Request $request) {
+        dd($request);
         $request->validate([
             'yetkiliismi' => 'required',
             'yetkiliemail' => 'required|email',
@@ -22,6 +23,7 @@ class Teklifler extends Controller
             'date' => 'required',
             'due' => 'required',
             'sirketismi' => 'required',
+            ''
         ], [
             'yetkiliismi.required' => 'Lütfen isminizi giriniz',
             'yetkiliemail.required' => 'E-posta boş bırakılamaz',
@@ -32,17 +34,8 @@ class Teklifler extends Controller
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
         ]);
 
-            $teklif = new teklif();
-            $teklif->teklif_veren_isim = $request->input('yetkiliismi');
-            $teklif->teklif_veren_email = $request->input('yetkiliemail');
-            $teklif->teklif_veren_adres = $request->input('musteriadres');
-            $teklif->teklif_veren_telefon = $request->input('musteritelefon');
-            $teklif->teklif_baslangic_tarihi = $request->input('date');
-            $teklif->teklif_bitis_tarihi = $request->input('due');
-            $teklif->teklif_veren_sirket = $request->input('sirketismi');
-            $teklif->teklif_veren_not = $request->input('not');
-            $teklif->save();
-            return redirect()->back()->with("success","Teklif başarıyla oluşturuldu!");
+            teklif::create(array('teklif_baslangic_tarihi' => $request->date,'teklif_bitis_tarihi'=>$request->due, 'teklif_veren_isim' => $request->yetkiliismi,'teklif_veren_email' => $request->yetkiliemail,'teklif_veren_adres' => $request->musteriadres,'teklif_veren_telefon' => $request->musteritelefon));
+            return redirect('teklifler')->with("success","Teklif başarıyla oluşturuldu!");
         
     }
 
@@ -63,8 +56,7 @@ class Teklifler extends Controller
             'date.required' => 'Teklif tarihi boş bırakılamaz',
             'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
-        ]);
-            session()->put('yetkiliismi', $request->input('yetkiliismi'));
-            return redirect()->route('teklifOnizlemeyeGit')->with("success","Teklif!");
+        ]); 
+        return view('teklif_onizle', ['yetkiliismi' => $request->query('yetkiliismi')]);
     }
 }

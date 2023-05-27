@@ -43,10 +43,12 @@ function deleteItemRow() {
             $("#silinenler").html(silinenler);
 
 
-            if(parseInt(document.getElementById("counter").value) == 5){ // 5 taneden fazla teklif eklenemez
+            if(parseInt(document.getElementById("counter").value) == 3){ // 3 taneden fazla teklif eklenemez
               document.getElementById("ekle").style.display = "none";
-            }else if(parseInt(document.getElementById("counter").value) < 5){
+              document.getElementById("fazla_teklif").style.display = "block";
+            }else if(parseInt(document.getElementById("counter").value) < 3){
               document.getElementById("ekle").style.display = "block";
+              document.getElementById("fazla_teklif").style.display = "none";
             }else{
               console.log("Hata var");
             }
@@ -56,10 +58,12 @@ function deleteItemRow() {
     }
     console.log("i:"+i+" TekSilinen:"+document.getElementById("tekSilinen").innerHTML+" Silinenler:"+document.getElementById("silinenler").innerHTML+" DeleteItem.lenght: "+ deleteItem.length );
     
-    if(parseInt(document.getElementById("counter").value) == 5){
+    if(parseInt(document.getElementById("counter").value) == 3){ // 3 taneden fazla teklif eklenemez
       document.getElementById("ekle").style.display = "none";
-    }else if(parseInt(document.getElementById("counter").value) < 5){
+      document.getElementById("fazla_teklif").style.display = "block";
+    }else if(parseInt(document.getElementById("counter").value) < 3){
       document.getElementById("ekle").style.display = "block";
+      document.getElementById("fazla_teklif").style.display = "none";
     }else{
       console.log("Hata var");
     }
@@ -150,11 +154,11 @@ document.getElementsByClassName('additem')[0].addEventListener('click', function
       '</ul>'+
     '</td>'+
     '<td class="description">'+
-    '<div class="dropdown selectable-dropdown invoice-select">'+
-    '<a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="selectable-text"> Vinç Periyodik Kontrol</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>'+
+    '<div class="dropdown selectable-dropdown invoice-select'+yenisi+'">'+
+    '<a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="selectable-text"> Vinç Periyodik Kontrol - '+yenisi+'</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>'+
     '<div class="dropdown-menu" aria-labelledby="currencyDropdown">'+
-      '<a class="dropdown-item" data-value="Vinç Periyodik Kontrol" href="javascript:void(0);"> Vinç Periyodik Kontrol('+yenisi+')</a>'+
-      '<a class="dropdown-item" data-value="Kalorifer Kazanı Periyodik Kontrol" href="javascript:void(0);"> Kalorifer Kazanı Periyodik Kontrol('+yenisi+')</a>'+
+      '<a class="dropdown-item" data-value="Vinç Periyodik Kontrol - '+yenisi+'" href="javascript:void(0);"> Vinç Periyodik Kontrol - '+yenisi+'</a>'+
+      '<a class="dropdown-item" data-value="Kalorifer Kazanı Periyodik Kontrol - '+yenisi+'" href="javascript:void(0);"> Kalorifer Kazanı Periyodik Kontrol - '+yenisi+'</a>'+
     '</div></div>'+
          '<textarea class="form-control" placeholder="Ek Detaylar (Eklemek istediğiniz herhangi birşey varsa)"></textarea></td>'+
     '<td class="rate">'+
@@ -165,7 +169,7 @@ document.getElementsByClassName('additem')[0].addEventListener('click', function
     '</tr>';
 
 
-    $fiyat_hesapla = '<button class="btn btn-primary" onclick="totalFiyatHesapla('+counter+')">Total Fiyat Hesapla</button>'+
+    $fiyat_hesapla = '<a href="javascript:void(0);" class="btn btn-primary" onclick="totalFiyatHesapla('+counter+')">Total Fiyat Hesapla</a>'+
     '<div id="totalrow" style="display:none;">'+
         '<div class="invoice-totals-row invoice-summary-subtotal">'+
             '<div class="invoice-summary-label">Ara Toplam</div>'+
@@ -196,6 +200,7 @@ document.getElementsByClassName('additem')[0].addEventListener('click', function
   $(".fiyat_hesapla").html($fiyat_hesapla);
   $(".item-table tbody").append($html);
   deleteItemRow();
+  selectableDropdown(document.querySelectorAll('.invoice-select'+yenisi+' .dropdown-item'));
 })
 
 deleteItemRow();
