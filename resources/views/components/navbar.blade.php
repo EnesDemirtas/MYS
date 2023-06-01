@@ -154,7 +154,7 @@
                         <a href="/teklif_ekle"> Teklif Ekle </a>
                     </li>
                     <li>
-                        <a href="/teklifler"> Teklifler </a>
+                        <a href="{{ route('teklifler.index') }}"> Teklifler </a>
                     </li>
                 </ul>
             </li>

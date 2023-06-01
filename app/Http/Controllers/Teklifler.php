@@ -13,6 +13,11 @@ class Teklifler extends Controller
         return view('teklifler',compact("teklifler"));
     }
 
+    public function teklifSil($id){
+        teklif::where('id', $id)->delete();
+        return redirect()->back()->with("success","Teklif Başarıyla Silindi.");
+    }
+
     public function teklifEkle(Request $request) {
         $request->validate([
             'yetkiliismi' => 'required',
@@ -22,7 +27,6 @@ class Teklifler extends Controller
             'date' => 'required',
             'due' => 'required',
             'sirketismi' => 'required',
-            ''
         ], [
             'yetkiliismi.required' => 'Lütfen isminizi giriniz',
             'yetkiliemail.required' => 'E-posta boş bırakılamaz',

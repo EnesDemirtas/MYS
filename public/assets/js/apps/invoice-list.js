@@ -2,19 +2,6 @@ var invoiceList = $('#invoice-list').DataTable({
     "dom": "<'inv-list-top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'l<'dt-action-buttons align-self-center'B>><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f<'toolbar align-self-center'>>>>" +
         "<'table-responsive'tr>" +
         "<'inv-list-bottom-section d-sm-flex justify-content-sm-between text-center'<'inv-list-pages-count  mb-sm-0 mb-3'i><'inv-list-pagination'p>>",
-
-    headerCallback:function(e, a, t, n, s) {
-        e.getElementsByTagName("th")[0].innerHTML='<label class="new-control new-checkbox checkbox-primary m-auto">\n<input type="checkbox" class="new-control-input chk-parent select-customers-info" id="customer-all-info">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
-    },
-    columnDefs:[ {
-        targets:0,
-        width:"30px",
-        className:"",
-        orderable:!1,
-        render:function(e, a, t, n) {
-            return'<label class="new-control new-checkbox checkbox-primary  m-auto">\n<input type="checkbox" class="new-control-input child-chk select-customers-info" id="customer-all-info">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
-        },
-    }],
     buttons: [
         {
             text: 'Yeni Ekle',
@@ -36,26 +23,3 @@ var invoiceList = $('#invoice-list').DataTable({
     "lengthMenu": [7, 10, 20, 50],
     "pageLength": 7
 });
-
-$("div.toolbar").html('<button class="dt-button dt-delete btn btn-danger btn-sm w-100 text-left" tabindex="0" aria-controls="invoice-list"><span>Sil</span></button>');
-
-multiCheck(invoiceList);
-
-
-$('.dt-delete').on('click', function() {
-      // Read all checked checkboxes
-    $(".select-customers-info:checked").each(function () {
-        if (this.classList.contains('chk-parent')) {
-            return;
-        } else {
-            alert(this.parents('tr').text);
-            $(this).parents('tr').remove();
-        }
-    });
-    
-})
-
-
-$('.action-delete').on('click', function() {
-    $(this).parents('tr').remove();
-})

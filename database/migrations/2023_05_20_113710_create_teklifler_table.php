@@ -28,8 +28,10 @@ return new class extends Migration
             $table->string('teklif_veren_sirket')->lenght(50);
             $table->string('teklif_veren_not')->lenght(255);
             $table->string('istenilen_hizmet_not')->lenght(255);
+            $table->string('teklif_edilen_para')->lenght(20);
             $table->date('updated_at');
             $table->date('created_at');
+            $table->timestamp('islemsaati');
         });
     }
 

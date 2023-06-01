@@ -95,17 +95,13 @@ Route::post('new_password', [ActivationCodeController::class, 'NewPassword'])->n
 Route::get('load_bakim_formu/{form_adi}', [CalisanlarController::class, 'LoadBakimFormu'])->name('load_bakim_formu');
 
 Route::get('example_form/{form_adi}', [CalisanlarController::class, 'ExampleForm'])->name('example_form');
-
-Route::post('teklif_ekleme_yap', [Teklifler::class, 'teklifEkle'])->name('teklif.ekleme.yap');
-
-Route::post('teklif_onizle', [Teklifler::class, 'teklifOnizle'])->name('teklif_onizle');
+Route::post('teklif_ekleme_yap', [Teklifler::class, 'teklifEkle'])->name('teklif.ekleme.yap')->middleware('isAuthenticated');
+Route::delete('/teklif/{id}',[Teklifler::class, 'teklifSil'])->name('teklif.sil')->middleware('isAuthenticated');
+Route::post('teklif_onizle', [Teklifler::class, 'teklifOnizle'])->name('teklif_onizle')->middleware('isAuthenticated');
+Route::get('teklifler', [Teklifler::class, 'index'])->name('teklifler.index')->middleware('isAuthenticated');
 
 Route::get('teklif_yonetimi', function () {
     return view('teklif_yonetimi');
-})->middleware('isAuthenticated');
-
-Route::get('teklifler', function () {
-    return view('teklifler');
 })->middleware('isAuthenticated');
 
 Route::get('teklif_ekle', function () {
