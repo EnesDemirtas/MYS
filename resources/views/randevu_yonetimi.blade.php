@@ -55,7 +55,7 @@
                         <div class="widget widget-content-area br-4">
                             <div class="widget-one">
                                 <h6>BURASI RANDEVU YÖNETİMİ SAYFASI OLACAK</h6>
-                                <a class="btn btn-success" href="{{ route('export_form_pdf') }}">Export PDF</a>
+                                {{-- <a class="btn btn-success" href="{{ route('export_form_pdf') }}">Export PDF</a> --}}
                                 <a class="btn btn-danger"
                                     href="{{ route('load_bakim_formu', ['form_adi' => 'kalorifer_kazani']) }}">Kalorifer
                                     Kazanı Formu</a>

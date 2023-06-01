@@ -14,7 +14,6 @@ class Teklifler extends Controller
     }
 
     public function teklifEkle(Request $request) {
-        dd($request);
         $request->validate([
             'yetkiliismi' => 'required',
             'yetkiliemail' => 'required|email',
@@ -34,9 +33,9 @@ class Teklifler extends Controller
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
         ]);
 
+            
             teklif::create(array('teklif_baslangic_tarihi' => $request->date,'teklif_bitis_tarihi'=>$request->due, 'teklif_veren_isim' => $request->yetkiliismi,'teklif_veren_email' => $request->yetkiliemail,'teklif_veren_adres' => $request->musteriadres,'teklif_veren_telefon' => $request->musteritelefon));
             return redirect('teklifler')->with("success","Teklif başarıyla oluşturuldu!");
-        
     }
 
     public function teklifOnizle(Request $request){
@@ -56,7 +55,8 @@ class Teklifler extends Controller
             'date.required' => 'Teklif tarihi boş bırakılamaz',
             'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
-        ]); 
-        return view('teklif_onizle', ['yetkiliismi' => $request->query('yetkiliismi')]);
+        ]);
+        
+        return view('teklif_onizle',['yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi]);
     }
 }

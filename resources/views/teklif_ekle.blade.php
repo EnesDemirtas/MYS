@@ -77,7 +77,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         
                         <div class="doc-container">
-                            <form id="teklifekle" class="section contact p-4" method="post" action="{{route('')}}">
+                            <form id="teklifekle" class="section contact p-4" method="post" action="{{route('teklif.ekleme.yap')}}">
                                 @csrf
                             <div class="row">
                                 <div class="col-xl-9">
@@ -650,7 +650,7 @@
                                                     <button type="submit" class="btn btn-primary btn-send w-100 mb-2">Teklifi Gönder</button>
                                                 </div>
                                                 <div class="col-xl-12 col-md-4">
-                                                    <a href="{{route('teklif.onizle')}}" class="btn btn-dark btn-preview">Önizle</a>
+                                                    <button formaction="{{route('teklif_onizle')}}" type="submit" class="btn btn-dark btn-preview">Önizle</a>
                                                 </div>
                                             </div>
                                         </div>

@@ -100,7 +100,7 @@ Route::get('example_form', [CalisanlarController::class, 'ExampleForm'])->name('
 
 Route::post('teklif_ekleme_yap', [Teklifler::class, 'teklifEkle'])->name('teklif.ekleme.yap');
 
-Route::get('teklif_onizle/{yetkiliismi}', [Teklifler::class, 'teklifOnizle'])->name('teklif_onizle');
+Route::post('teklif_onizle', [Teklifler::class, 'teklifOnizle'])->name('teklif_onizle');
 
 Route::get('teklif_yonetimi', function () {
     return view('teklif_yonetimi');
@@ -110,10 +110,9 @@ Route::get('teklifler', function () {
     return view('teklifler');
 })->middleware('isAuthenticated');
 
-
 Route::get('teklif_ekle', function () {
     return view('teklif_ekle');
-})->middleware('isAuthenticated');
+})->name('teklif_ekle')->middleware('isAuthenticated');
 
 Route::get('teklif_onizle', function () {
     return view('teklif_yonetimi');

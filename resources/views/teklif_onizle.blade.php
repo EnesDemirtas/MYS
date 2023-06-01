@@ -124,7 +124,7 @@
                                                                 </div>
                                                                 
                                                                 <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
-                                                                    <p class="inv-customer-name">{{Session::get('yetkiliismi')}}</p>
+                                                                    <p class="inv-customer-name">{{$yetkiliismi}}</p>
                                                                     <p class="inv-street-addr">405 Mulberry Rd. Mc Grady, NC, 28649</p>
                                                                     <p class="inv-email-address">redq@company.com</p>
                                                                     <p class="inv-email-address">(128) 666 070</p>
