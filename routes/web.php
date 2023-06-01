@@ -34,9 +34,7 @@ Route::get('/musteri_ekle', function () {
     return view('musteri_ekle');
 })->middleware('isAuthenticated');
 
-Route::get('randevu_yonetimi', function () {
-    return view('randevu_yonetimi');
-})->middleware('isAuthenticated');
+Route::get('randevu_yonetimi', [CalisanlarController::class, 'GetRandevuYonetimi'])->middleware('isAuthenticated')->name('randevu_yonetimi');
 
 Route::get('gorev_yonetimi', function () {
     return view('gorev_yonetimi');
@@ -96,7 +94,7 @@ Route::post('new_password', [ActivationCodeController::class, 'NewPassword'])->n
 
 Route::get('load_bakim_formu/{form_adi}', [CalisanlarController::class, 'LoadBakimFormu'])->name('load_bakim_formu');
 
-Route::get('example_form', [CalisanlarController::class, 'ExampleForm'])->name('example_form');
+Route::get('example_form/{form_adi}', [CalisanlarController::class, 'ExampleForm'])->name('example_form');
 
 Route::post('teklif_ekleme_yap', [Teklifler::class, 'teklifEkle'])->name('teklif.ekleme.yap');
 

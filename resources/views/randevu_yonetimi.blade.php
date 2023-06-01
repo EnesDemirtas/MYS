@@ -30,7 +30,6 @@
 </head>
 
 <body class="sidebar-noneoverflow">
-
     <!--  BEGIN NAVBAR  -->
     <x-topbar />
     <!--  END NAVBAR  -->
@@ -55,11 +54,10 @@
                         <div class="widget widget-content-area br-4">
                             <div class="widget-one">
                                 <h6>BURASI RANDEVU YÖNETİMİ SAYFASI OLACAK</h6>
-                                {{-- <a class="btn btn-success" href="{{ route('export_form_pdf') }}">Export PDF</a> --}}
-                                <a class="btn btn-danger"
-                                    href="{{ route('load_bakim_formu', ['form_adi' => 'kalorifer_kazani']) }}">Kalorifer
-                                    Kazanı Formu</a>
-                                <a class="btn btn-info" href="{{ route('example_form') }}">Form deneme</a>
+                                @for ($i = 0; $i < count($form_isimleri_raw); $i++)
+                                    <a class="btn btn-danger"
+                                        href="{{ route('example_form', ['form_adi' => $form_isimleri_slug[$i] . ';' . $i + 1]) }}">{{ $form_isimleri_raw[$i]->form_adi }}</a>
+                                @endfor
                             </div>
                         </div>
                     </div>
@@ -86,7 +84,7 @@
     </script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
-    
+
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
