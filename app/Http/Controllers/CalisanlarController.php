@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\calisan;
 use App\Models\bakimformu;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 
@@ -164,20 +165,23 @@ class CalisanlarController extends Controller
         return $pdf->download('form.pdf');
     }
 
-    public function LoadBakimFormu(Request $request) {
-        $raw_sorular = bakimformu::where('form_adi', $request->form_adi)->get('sorular');
-        $raw_sorular = $raw_sorular[0]->sorular;
+    public function ExampleForm(Request $request) {
+        $form_adi_slug = explode(';', $request->form_adi)[0];
+        $form_id = explode(';', $request->form_adi)[1];
+        $form = bakimformu::where('id', $form_id)->first();
+        $form_adi = $form->form_adi;
+        $raw_sorular = $form->sorular;
         $sorular = explode(";", $raw_sorular);
         $sorular = array_slice($sorular, 0, -1);
-        return view('form', ['sorular' => $sorular]);
+        return view('example_form', ['sorular' => $sorular, 'form_adi' => $form_adi]);
     }
 
-    public function ExampleForm() {
-        $raw_sorular = bakimformu::where('form_adi', 'kalorifer_kazani')->get('sorular');
-        $raw_sorular = $raw_sorular[0]->sorular;
-        $sorular = explode(";", $raw_sorular);
-        $sorular = array_slice($sorular, 0, -1);
-        return view('example_form', ['sorular' => $sorular]);
+    public function GetRandevuYonetimi(Request $request) {
+        $form_isimleri_raw = bakimformu::all('form_adi');
+        $form_isimleri_slug = $form_isimleri_raw->map(function ($item, $key) {
+            return Str::slug($item->form_adi, '-', 'tr');
+        });
+        return view('randevu_yonetimi', ['form_isimleri_raw' => $form_isimleri_raw, 'form_isimleri_slug' => $form_isimleri_slug]);
     }
 
 
