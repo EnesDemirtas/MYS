@@ -81,7 +81,7 @@
                                                                 <div class="col-sm-6 col-12 mr-auto">
                                                                     <div class="d-flex">
                                                                         <img class="company-logo" src="assets/img/cork-logo.png" alt="company">
-                                                                        <h3 class="in-heading align-self-center">DAKIK</h3>
+                                                                        <h3 class="in-heading align-self-center">{{$sirketismi}}</h3>
                                                                     </div>
                                                                 </div>
 
@@ -90,13 +90,13 @@
                                                                 </div>
 
                                                                 <div class="col-sm-6 align-self-center mt-3">
-                                                                    <p class="inv-street-addr">XYZ Delta Street</p>
-                                                                    <p class="inv-email-address">info@company.com</p>
-                                                                    <p class="inv-email-address">(120) 456 789</p>
+                                                                    <p class="inv-street-addr">{{$musteriadres}}</p>
+                                                                    <p class="inv-email-address">{{$yetkiliemail}}</p>
+                                                                    <p class="inv-email-address">{{$musteritelefon}}</p>
                                                                 </div>
                                                                 <div class="col-sm-6 align-self-center mt-3 text-sm-right">
-                                                                    <p class="inv-created-date"><span class="inv-title">Teklif Tarihi : </span> <span class="inv-date">20 Aug 2020</span></p>
-                                                                    <p class="inv-due-date"><span class="inv-title">Bitiş Tarihi : </span> <span class="inv-date">26 Aug 2020</span></p>
+                                                                    <p class="inv-created-date"><span class="inv-title">Teklif Tarihi : </span> <span class="inv-date">{{$date}}</span></p>
+                                                                    <p class="inv-due-date"><span class="inv-title">Bitiş Tarihi : </span> <span class="inv-date">{{$due}}</span></p>
                                                                 </div>
                                                             
                                                             </div>
@@ -108,7 +108,7 @@
                                                             <div class="row">
     
                                                                 <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 align-self-center">
-                                                                    <p class="inv-to">Teklif Verilen</p>
+                                                                    <p class="inv-to">Teklif Veren</p>
                                                                 </div>
 
                                                                 <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 align-self-center order-sm-0 order-1 inv--payment-info">
@@ -116,10 +116,10 @@
                                                                 </div>
                                                                 
                                                                 <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
-                                                                    <p class="inv-customer-name">Jesse Cory</p>
-                                                                    <p class="inv-street-addr">405 Mulberry Rd. Mc Grady, NC, 28649</p>
+                                                                    <p class="inv-customer-name">{{$yetkiliismi}}</p>
+                                                                    <p class="inv-street-addr">{{$musteriadres}}</p>
                                                                     <p class="inv-email-address">redq@company.com</p>
-                                                                    <p class="inv-email-address">(128) 666 070</p>
+                                                                    <p class="inv-email-address">{{$musteritelefon}}</p>
                                                                 </div>
                                                                 
                                                                 <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 order-sm-0 order-1">
@@ -141,11 +141,11 @@
                                                                 <table class="table">
                                                                     <thead class="">
                                                                         <tr>
-                                                                            <th scope="col">S.No</th>
-                                                                            <th scope="col">Items</th>
-                                                                            <th class="text-right" scope="col">Qty</th>
-                                                                            <th class="text-right" scope="col">Price</th>
-                                                                            <th class="text-right" scope="col">Amount</th>
+                                                                            <th scope="col">#</th>
+                                                                            <th scope="col">Hizmet Adı</th>
+                                                                            <th class="text-right" scope="col">Adet</th>
+                                                                            <th class="text-right" scope="col">Ücret</th>
+                                                                            <th class="text-right" scope="col">Toplam</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -197,12 +197,6 @@
                                                                                 <p class="">$3155</p>
                                                                             </div>
                                                                             <div class="col-sm-8 col-7">
-                                                                                <p class="">Vergi Miktarı: </p>
-                                                                            </div>
-                                                                            <div class="col-sm-4 col-5">
-                                                                                <p class="">$700</p>
-                                                                            </div>
-                                                                            <div class="col-sm-8 col-7">
                                                                                 <p class=" discount-rate">İndirim : <span class="discount-percentage">5%</span> </p>
                                                                             </div>
                                                                             <div class="col-sm-4 col-5">
@@ -222,10 +216,13 @@
                                                         </div>
 
                                                         <div class="inv--note">
-
-                                                            <div class="row mt-4">
+                                                            <div class="row mt-1">
+                                                                <label for="invoice-detail-notes" class="col-sm-12 col-form-label col-form-label-sm">Müşteri Notu:</label>
                                                                 <div class="col-sm-12 col-12 order-sm-0 order-1">
-                                                                    <p>Bizimle çalıştığınız için teşekkürler.</p>
+                                                                    <p>@if($not == NULL) Müşteri notu yok. 
+                                                                        @else {{$not}}
+                                                                        @endif
+                                                                    </p>
                                                                 </div>
                                                             </div>
 
@@ -255,12 +252,6 @@
                                                 </div>
                                                 <div class="col-xl-12 col-md-3 col-sm-6">
                                                     <a href="javascript:void(0);" class="btn btn-secondary btn-print  action-print">Yazdır</a>
-                                                </div>
-                                                <div class="col-xl-12 col-md-3 col-sm-6">
-                                                    <a href="javascript:void(0);" class="btn btn-success btn-download">Yükle</a>
-                                                </div>
-                                                <div class="col-xl-12 col-md-3 col-sm-6">
-                                                    <a href="/teklif_duzenle" class="btn btn-dark btn-edit">Düzenle</a>
                                                 </div>
                                             </div>
                                         </div>

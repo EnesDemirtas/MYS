@@ -89,7 +89,7 @@
                                                                 <div class="col-sm-6 col-12 mr-auto">
                                                                     <div class="d-flex">
                                                                         <img class="company-logo" src="assets/img/cork-logo.png" alt="company">
-                                                                        <h3 class="in-heading align-self-center">DAKIK</h3>
+                                                                        <h3 class="in-heading align-self-center">{{$teklifler->teklif_veren_sirket}}</h3>
                                                                     </div>
                                                                 </div>
 

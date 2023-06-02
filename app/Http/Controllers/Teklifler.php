@@ -35,7 +35,7 @@ class Teklifler extends Controller
         ], [
             'yetkiliismi.required' => 'Lütfen isminizi giriniz',
             'yetkiliemail.required' => 'E-posta boş bırakılamaz',
-            'yetkiliemail.email' => 'Lütfen geçerli bir eposta hesabı girdiğinizden emin olunuz.',
+            'yetkiliemail.email' => 'Lütfen geçerli bir E-posta girdiğinizden emin olunuz',
             'musteriadres.required' => 'Adres boş bırakılamaz',
             'musteritelefon.required' => 'Telefon numarası boş bırakılamaz',
             'date.required' => 'Teklif tarihi boş bırakılamaz',
@@ -60,7 +60,8 @@ class Teklifler extends Controller
         ], [
             'yetkiliismi.required' => 'Lütfen isminizi giriniz',
             'yetkiliemail.required' => 'E-posta boş bırakılamaz',
-            'musteriadres.email' => 'Adres boş bırakılamaz',
+            'yetkiliemail.email' => 'Lütfen geçerli bir E-posta girdiğinizden emin olunuz',
+            'musteriadres.required' => 'Adres boş bırakılamaz',
             'musteritelefon.required' => 'Telefon numarası boş bırakılamaz',
             'date.required' => 'Teklif tarihi boş bırakılamaz',
             'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
@@ -69,4 +70,28 @@ class Teklifler extends Controller
         
         return view('teklif_onizle',['yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi]);
     }
+
+    public function teklifOnizleGiris(Request $request){
+        $request->validate([
+            'yetkiliismi' => 'required',
+            'yetkiliemail' => 'required|email',
+            'musteriadres' => 'required',
+            'musteritelefon' => 'required',
+            'date' => 'required',
+            'due' => 'required',
+            'sirketismi' => 'required',
+        ], [
+            'yetkiliismi.required' => 'Lütfen isminizi giriniz',
+            'yetkiliemail.required' => 'E-posta boş bırakılamaz',
+            'yetkiliemail.email' => 'Lütfen geçerli bir E-posta girdiğinizden emin olunuz',
+            'musteriadres.required' => 'Adres boş bırakılamaz',
+            'musteritelefon.required' => 'Telefon numarası boş bırakılamaz',
+            'date.required' => 'Teklif tarihi boş bırakılamaz',
+            'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
+            'sirketismi.required' => 'Şirket ismi boş bırakılamaz.',
+        ]);
+        
+        return view('teklif_onizle_giris',['yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi , 'not' => $request->not ,]);
+    }
+
 }

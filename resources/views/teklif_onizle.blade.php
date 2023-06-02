@@ -231,9 +231,13 @@
 
                                                         <div class="inv--note">
 
-                                                            <div class="row mt-4">
+                                                            <div class="row mt-1">
+                                                                <label for="invoice-detail-notes" class="col-sm-12 col-form-label col-form-label-sm">Müşteri Notu:</label>
                                                                 <div class="col-sm-12 col-12 order-sm-0 order-1">
-                                                                    <p>Bizimle çalıştığınız için teşekkürler.</p>
+                                                                    <p>@if($not == NULL) Müşteri notu yok. 
+                                                                        @else {{$not}}
+                                                                        @endif
+                                                                    </p>
                                                                 </div>
                                                             </div>
 
@@ -265,13 +269,7 @@
                                                     <a href="javascript:void(0);" class="btn btn-secondary btn-print  action-print">Yazdır</a>
                                                 </div>
                                                 <div class="col-xl-12 col-md-3 col-sm-6">
-                                                    <a href="javascript:void(0);" class="btn btn-success btn-download">Yükle</a>
-                                                </div>
-                                                <div class="col-xl-12 col-md-3 col-sm-6">
                                                     <a href="/teklif_duzenle" class="btn btn-dark btn-edit">Düzenle</a>
-                                                </div>
-                                                <div class="col-xl-12 col-md-4 pt-3">
-                                                    <a href="javascript:void(0);" class="btn btn-danger btn-edit">Çıkış</a>
                                                 </div>
                                             </div>
                                         </div>

@@ -496,11 +496,11 @@
                                                         
                                                     </div>
 
-                                                    <div class="col-md-6 fiyat_hesapla">
+                                                    <div class="col-md-6 fiyat_hesapla text-center">
                                                         <a href="javascript:void(0);" class="btn btn-primary" onclick="totalFiyatHesapla(1)">Total Fiyat Hesapla</a>
                                                         <div id="totalrow" style="display:none;">
+                                                            <p class="text-danger font-weight-bold">Lütfen öncelikle fiyat bilgilerini giriniz!</p>
                                                             <div class="invoice-totals-row invoice-summary-subtotal">
-
                                                                 <div class="invoice-summary-label">Ara Toplam</div>
 
                                                                 <div class="invoice-summary-value">
@@ -552,7 +552,7 @@
                                                         <div class="form-group row invoice-note">
                                                             <label for="invoice-detail-notes" class="col-sm-12 col-form-label col-form-label-sm">Not:</label>
                                                             <div class="col-sm-12">
-                                                                <textarea class="form-control" id="not" placeholder='Not - Örneğin, "Bizimle çalıştığınız için teşekkürler."' style="height: 88px;"></textarea>
+                                                                <textarea class="form-control" name="not" id="not" placeholder='Not - Örneğin, "Bizimle çalıştığınız için teşekkürler."' style="height: 88px;"></textarea>
                                                             </div>
                                                         </div>
                                                         
@@ -650,7 +650,7 @@
                                                     <button type="submit" class="btn btn-primary btn-send w-100 mb-2">Teklifi Gönder</button>
                                                 </div>
                                                 <div class="col-xl-12 col-md-4">
-                                                    <button formaction="{{route('teklif_onizle')}}" type="submit" class="btn btn-dark btn-preview">Önizle</a>
+                                                    <button formaction="{{route('teklif_onizle')}}" type="submit" class="btn btn-dark btn-preview w-100">Önizle</a>
                                                 </div>
                                             </div>
                                         </div>

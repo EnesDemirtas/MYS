@@ -98,8 +98,10 @@ Route::get('example_form/{form_adi}', [CalisanlarController::class, 'ExampleForm
 Route::post('teklif_ekleme_yap', [Teklifler::class, 'teklifEkle'])->name('teklif.ekleme.yap')->middleware('isAuthenticated');
 Route::delete('/teklif/{id}',[Teklifler::class, 'teklifSil'])->name('teklif.sil')->middleware('isAuthenticated');
 Route::get('/teklif/{id}', [Teklifler::class, 'teklifGozat'])->name('teklif.gozat')->middleware('isAuthenticated');
-Route::post('teklif_onizle', [Teklifler::class, 'teklifOnizle'])->name('teklif_onizle')->middleware('isAuthenticated');
+Route::post('teklif_onizle', [Teklifler::class, 'teklifOnizle'])->name('teklif_onizle');
+Route::post('teklif_onizle_giris', [Teklifler::class, 'teklifOnizleGiris'])->name('teklif_onizle_giris');
 Route::get('teklifler', [Teklifler::class, 'index'])->name('teklifler.index')->middleware('isAuthenticated');
+Route::get('teklif_duzenle', [Teklifler::class, 'teklifDuzenlemeyeDon'])->name('teklif.duzenle');
 
 Route::get('teklif_yonetimi', function () {
     return view('teklif_yonetimi');
