@@ -18,6 +18,11 @@ class Teklifler extends Controller
         return redirect()->back()->with("success","Teklif Başarıyla Silindi.");
     }
 
+    public function teklifGozat($id)
+    {
+        return view('teklif_gozat',['teklifler' => teklif::where('id',$id)->first()]);
+    }
+
     public function teklifEkle(Request $request) {
         $request->validate([
             'yetkiliismi' => 'required',
@@ -30,7 +35,8 @@ class Teklifler extends Controller
         ], [
             'yetkiliismi.required' => 'Lütfen isminizi giriniz',
             'yetkiliemail.required' => 'E-posta boş bırakılamaz',
-            'musteriadres.email' => 'Adres boş bırakılamaz',
+            'yetkiliemail.email' => 'Lütfen geçerli bir eposta hesabı girdiğinizden emin olunuz.',
+            'musteriadres.required' => 'Adres boş bırakılamaz',
             'musteritelefon.required' => 'Telefon numarası boş bırakılamaz',
             'date.required' => 'Teklif tarihi boş bırakılamaz',
             'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',

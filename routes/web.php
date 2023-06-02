@@ -97,6 +97,7 @@ Route::get('load_bakim_formu/{form_adi}', [CalisanlarController::class, 'LoadBak
 Route::get('example_form/{form_adi}', [CalisanlarController::class, 'ExampleForm'])->name('example_form');
 Route::post('teklif_ekleme_yap', [Teklifler::class, 'teklifEkle'])->name('teklif.ekleme.yap')->middleware('isAuthenticated');
 Route::delete('/teklif/{id}',[Teklifler::class, 'teklifSil'])->name('teklif.sil')->middleware('isAuthenticated');
+Route::get('/teklif/{id}', [Teklifler::class, 'teklifGozat'])->name('teklif.gozat')->middleware('isAuthenticated');
 Route::post('teklif_onizle', [Teklifler::class, 'teklifOnizle'])->name('teklif_onizle')->middleware('isAuthenticated');
 Route::get('teklifler', [Teklifler::class, 'index'])->name('teklifler.index')->middleware('isAuthenticated');
 
