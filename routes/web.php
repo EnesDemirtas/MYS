@@ -101,6 +101,7 @@ Route::get('/teklif/{id}', [Teklifler::class, 'teklifGozat'])->name('teklif.goza
 Route::post('teklif_onizle', [Teklifler::class, 'teklifOnizle'])->name('teklif_onizle');
 Route::post('teklif_onizle_giris', [Teklifler::class, 'teklifOnizleGiris'])->name('teklif_onizle_giris');
 Route::get('teklifler', [Teklifler::class, 'index'])->name('teklifler.index')->middleware('isAuthenticated');
+Route::post('teklif_ekleme_yap_giris', [Teklifler::class, 'teklifEkleGiris'])->name('teklif.ekleme.yap.giris');
 Route::get('teklif_duzenle', [Teklifler::class, 'teklifDuzenlemeyeDon'])->name('teklif.duzenle');
 
 Route::get('teklif_yonetimi', function () {

@@ -73,7 +73,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         
                         <div class="doc-container">
-                            <form id="teklifekle" class="section contact p-4" method="post" action="{{route('teklif.ekleme.yap')}}">
+                            <form id="teklifekle" class="section contact p-4" method="post" action="{{route('teklif.ekleme.yap.giris')}}">
                                 @csrf
                             <div class="row">
                                 <div class="col-xl-9">

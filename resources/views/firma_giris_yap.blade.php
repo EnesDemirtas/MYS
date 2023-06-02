@@ -27,6 +27,11 @@
                         <div class="field-wrapper">
                             <p class="signup-link mb-3">Hizmetlerimizden yararlanmak mı istiyorsunuz? <a href="/teklif_ekle_giris">Teklif Oluşturun </a> </p>
                         </div>
+                        @if(Session::has("success"))
+                            <div class="alert alert-success">
+                                {{Session::get("success")}}
+                            </div>
+                        @endif
                         <form class="text-left" method="POST" action=" {{route('login') }} ">
                             @csrf
                             <div class="">

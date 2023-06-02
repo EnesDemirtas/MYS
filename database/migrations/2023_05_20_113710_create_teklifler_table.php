@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('teklif_veren_email')->length(50);
             $table->string('teklif_veren_adres')->length(100);
             $table->string('teklif_veren_telefon')->length(25);
-            $table->string('teklif_veren_not')->length(255);
+            $table->string('teklif_veren_not')->length(255)->nullable();
             $table->string('istenilen_hizmetler')->lenght(255);
             $table->string('istenilen_hizmet_fiyat')->lenght(5);
             $table->string('istenilen_hizmet_miktar')->lenght(5);

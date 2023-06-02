@@ -44,7 +44,7 @@ class Teklifler extends Controller
         ]);
 
             
-            teklif::create(array('teklif_baslangic_tarihi' => $request->date,'teklif_bitis_tarihi'=>$request->due, 'teklif_veren_isim' => $request->yetkiliismi,'teklif_veren_email' => $request->yetkiliemail,'teklif_veren_adres' => $request->musteriadres,'teklif_veren_telefon' => $request->musteritelefon));
+            teklif::create(array('teklif_baslangic_tarihi' => $request->date,'teklif_bitis_tarihi'=>$request->due, 'teklif_veren_isim' => $request->yetkiliismi,'teklif_veren_email' => $request->yetkiliemail,'teklif_veren_adres' => $request->musteriadres,'teklif_veren_telefon' => $request->musteritelefon ,'teklif_veren_sirket' => $request->sirketismi));
             return redirect('teklifler')->with("success","Teklif başarıyla oluşturuldu!");
     }
 
@@ -68,7 +68,32 @@ class Teklifler extends Controller
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
         ]);
         
-        return view('teklif_onizle',['yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi]);
+        return view('teklif_onizle',['yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi, 'not' => $request->not]);
+    }
+
+    public function teklifEkleGiris(Request $request) {
+        $request->validate([
+            'yetkiliismi' => 'required',
+            'yetkiliemail' => 'required|email',
+            'musteriadres' => 'required',
+            'musteritelefon' => 'required',
+            'date' => 'required',
+            'due' => 'required',
+            'sirketismi' => 'required',
+        ], [
+            'yetkiliismi.required' => 'Lütfen isminizi giriniz',
+            'yetkiliemail.required' => 'E-posta boş bırakılamaz',
+            'yetkiliemail.email' => 'Lütfen geçerli bir E-posta girdiğinizden emin olunuz',
+            'musteriadres.required' => 'Adres boş bırakılamaz',
+            'musteritelefon.required' => 'Telefon numarası boş bırakılamaz',
+            'date.required' => 'Teklif tarihi boş bırakılamaz',
+            'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
+            'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
+        ]);
+
+            
+            teklif::create(array('teklif_baslangic_tarihi' => $request->date,'teklif_bitis_tarihi'=>$request->due, 'teklif_veren_isim' => $request->yetkiliismi,'teklif_veren_email' => $request->yetkiliemail,'teklif_veren_adres' => $request->musteriadres,'teklif_veren_telefon' => $request->musteritelefon ,'teklif_veren_sirket' => $request->sirketismi));
+            return redirect('giris_yap')->with("success","Teklif başarıyla oluşturuldu!");
     }
 
     public function teklifOnizleGiris(Request $request){
@@ -91,7 +116,7 @@ class Teklifler extends Controller
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.',
         ]);
         
-        return view('teklif_onizle_giris',['yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi , 'not' => $request->not ,]);
+        return view('teklif_onizle_giris',['yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi , 'not' => $request->not]);
     }
 
 }
