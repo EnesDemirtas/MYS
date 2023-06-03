@@ -26,8 +26,9 @@
 
 <body>
     <div class="container mt-4">
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('submit_bakim_formu') }}">
             @csrf
+            @method('POST')
 
             {{-- Header --}}
             <div class="row justify-center">
@@ -46,6 +47,16 @@
                         placeholder="Add date picker" name="tarih">
                 </div>
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             {{-- 1. Genel Bilgiler --}}
             <div class="col-md my-4">
@@ -305,6 +316,7 @@
                 .value), 1);
             document.getElementById('date').value = format(new Date(document.getElementById(
                 'date').value));
+
 
             document.getElementById('date').addEventListener('change', function() {
                 document.getElementById('sonuc_kanaat_date').innerHTML = format(new Date(this.value),

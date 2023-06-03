@@ -93,6 +93,7 @@ Route::get('new_password', [UserController::class, 'GetNewPassword'])->name('get
 Route::post('new_password', [ActivationCodeController::class, 'NewPassword'])->name('new_password');
 
 Route::get('load_bakim_formu/{form_adi}', [CalisanlarController::class, 'LoadBakimFormu'])->name('load_bakim_formu');
+Route::post('submit_bakim_formu', [CalisanlarController::class, 'SubmitBakimFormu'])->name('submit_bakim_formu');
 
 Route::get('example_form/{form_adi}', [CalisanlarController::class, 'ExampleForm'])->name('example_form');
 Route::post('teklif_ekleme_yap', [Teklifler::class, 'teklifEkle'])->name('teklif.ekleme.yap')->middleware('isAuthenticated');
