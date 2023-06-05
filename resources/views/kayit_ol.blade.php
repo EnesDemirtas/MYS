@@ -28,8 +28,8 @@
                             @csrf
                             <div class="form">
                                 <div class="kurumsal-bireysel-secme">
-                                    <button type="button" id="kurumsal_buton" class="btn btn-primary btn-rounded mb-2" onclick="kurumsal_bireysel(3)">Kurumsal</button>
-                                    <button type="button" id="bireysel_buton" class="btn btn-outline-primary btn-rounded mb-2" onclick="kurumsal_bireysel(4)">Bireysel</button>
+                                    <button type="button" id="kurumsal_buton" class="btn btn-primary btn-rounded mb-2" onclick="kurumsal_bireysel(3)">Müşteri</button>
+                                    <button type="button" id="bireysel_buton" class="btn btn-outline-primary btn-rounded mb-2" onclick="kurumsal_bireysel(4)">Çalışan</button>
                                 </div>
                                 <!-- Kurumsal Kayıt-->
                                 <div id="kurumsal">

@@ -187,7 +187,6 @@ class MusterilerController extends Controller {
             'meposta' => 'email',
         ],
         [   
-            'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
             'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
             'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
             'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
