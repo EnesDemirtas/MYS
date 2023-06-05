@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\calisan;
 use App\Models\bakimformu;
+use App\Models\bakimformusonucu;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Carbon;
 
 
 class CalisanlarController extends Controller
@@ -16,43 +17,46 @@ class CalisanlarController extends Controller
     public function index()
     {
         $calisanlar = calisan::All();
-        return view('calisanlar',compact("calisanlar"));
+        return view('calisanlar', compact("calisanlar"));
     }
 
     public function calisanDuzenle($ctckn)
     {
-        return view('calisanBilgileriDuzenle',['calisanlar' => calisan::where('ctckn',$ctckn)->first()]);
+        return view('calisanBilgileriDuzenle', ['calisanlar' => calisan::where('ctckn', $ctckn)->first()]);
     }
 
-    public function calisanGuncelle(Request $request, $ctckn){
-        $request->validate([
-            "ctckn" => "required",
-            "cadi" => "required",
-            "csoyadi" => "required",
-            "cevadresil" => "required",
-            "cevadresilce" => "required",
-            "ctel" => "required",
-            "ceposta" => "required",
-            "cunvani" => "required",
-            "ukodutel" => "required",
-        ],
-        [   
-            'ctkn.required' => 'Lütfen çalışan TCKN boş bırakmayınız.',
-            'cadi.required' => 'Lütfen çalışan adını boş bırakmayınız.',
-            'csoyadi.required' => 'Lütfen çalışan soyadını boş bırakmayınız.',
-            'cevadresil.required' => 'Lütfen il  boş bırakmayınız.',
-            'cevadresilce.required' => 'Lütfen ilçeyi boş bırakmayınız.',
-            'ctel.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
-            'ceposta.required' => 'Lütfen çalışan eposta boş bırakmayınız.',
-            'cunvani.required' => 'Lütfen çalışan ünvanını boş bırakmayınız.',
-            'ukodutel.required' => 'Lütfen telefon ülke kodunu boş bırakmayınız.',
-        ]);
+    public function calisanGuncelle(Request $request, $ctckn)
+    {
+        $request->validate(
+            [
+                "ctckn" => "required",
+                "cadi" => "required",
+                "csoyadi" => "required",
+                "cevadresil" => "required",
+                "cevadresilce" => "required",
+                "ctel" => "required",
+                "ceposta" => "required",
+                "cunvani" => "required",
+                "ukodutel" => "required",
+            ],
+            [
+                'ctkn.required' => 'Lütfen çalışan TCKN boş bırakmayınız.',
+                'cadi.required' => 'Lütfen çalışan adını boş bırakmayınız.',
+                'csoyadi.required' => 'Lütfen çalışan soyadını boş bırakmayınız.',
+                'cevadresil.required' => 'Lütfen il  boş bırakmayınız.',
+                'cevadresilce.required' => 'Lütfen ilçeyi boş bırakmayınız.',
+                'ctel.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
+                'ceposta.required' => 'Lütfen çalışan eposta boş bırakmayınız.',
+                'cunvani.required' => 'Lütfen çalışan ünvanını boş bırakmayınız.',
+                'ukodutel.required' => 'Lütfen telefon ülke kodunu boş bırakmayınız.',
+            ]
+        );
         $telNoUzunlugu = strlen($request->ctel);
-        if($telNoUzunlugu != 10){ // Telefon Numarası 10 haneden az ise error döner
-            return redirect()->back()->with("eksikTel","Yanlış Bir Telefon Numarası Girdiniz.");
-        }else{
-            calisan::where('ctckn', $request->ctckn)->update( array(
-                'ctel' => $request->ctel, 
+        if ($telNoUzunlugu != 10) { // Telefon Numarası 10 haneden az ise error döner
+            return redirect()->back()->with("eksikTel", "Yanlış Bir Telefon Numarası Girdiniz.");
+        } else {
+            calisan::where('ctckn', $request->ctckn)->update(array(
+                'ctel' => $request->ctel,
                 'ukodutel' => $request->ukodutel,
                 'ceposta' => $request->ceposta,
                 'cunvani' => $request->cunvani,
@@ -62,78 +66,81 @@ class CalisanlarController extends Controller
                 'cbanka' => $request->cbanka,
                 'chesapno' => $request->chesapno,
                 'cevadres' => $request->cevadres,
-             ));
-    
-            return redirect()->back()->with("success","Çalışan Başarıyla Güncellendi.");
+            ));
+
+            return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
         }
-        
     }
 
-    public function calisanSil($ctckn){
+    public function calisanSil($ctckn)
+    {
         calisan::where('ctckn', $ctckn)->delete();
-        return redirect()->back()->with("success","Çalışan Başarıyla Silindi.");
+        return redirect()->back()->with("success", "Çalışan Başarıyla Silindi.");
     }
 
-    public function calisanEkle(Request $request){
-        $request->validate([
-            "ctckn" => "required",
-            "cadi" => "required",
-            "csoyadi" => "required",
-            "cevadresil" => "required|doesnt_start_with:Lütfen Bir İl Seçiniz",
-            "cdogum" => "required|before:today",
-            "cisegiris" => "required",
-            "cevadresilce" => "required|doesnt_start_with:Lütfen Bir İlçe Seçiniz",
-            "ctel" => "required",
-            "ceposta" => "required",
-            "cunvani" => "required",
-            "ukodutel" => "required",
-            "chesapno" => "required",
-            "cbanka" => "required",
-            "ciban" => "required",
-        ],
-        [   
-            'cevadresil.doesnt_start_with' => 'Lütfen çalışanın ilini giriniz.',
-            'cevadresilce.doesnt_start_with' => 'Lütfen çalışanın ilçesini giriniz.',
-            'cadi.required' => 'Lütfen çalışan adını giriniz.',     
-            'csoyadi.required' => 'Lütfen çalışan soyadını giriniz.',
-            'ctckn.required' =>'Lütfen çalışan TCKN giriniz.',
-            'ctel.required' =>'Lütfen çalışan telefonunu giriniz.',
-            'ceposta.required' =>"Lütfen çalışan Eposta'sını giriniz.",
-            'cunvani.required' =>'Lütfen çalışanın ünvanını giriniz.',
-            'cevadresil.required' =>'Lütfen çalışanın ilini giriniz.',
-            'cdogum.required' => 'Lütfen çalışanın doğum tarihini giriniz.',
-            'cdogum.before' =>'Lütfen doğum gününü bugünden önce bir tarih seçiniz.',
-            'cevadresilce.required' =>'Lütfen çalışanın ilçesini giriniz.',
-            'cisegiris.required' => 'Lütfen çalışanın işe giriş tarihini giriniz',
-            'ukodutel.required' =>'Lütfen çalışan telefonunun ülke kodunu giriniz.',
-            'chesapno.required' =>'Lütfen çalışanın hesap numarasını giriniz.',
-            'cbanka.required' =>'Lütfen çalışanın kullandığı banka adını giriniz.',
-            'ciban.required' =>'Lütfen çalışanın ibanını giriniz.',
-        ]
-    
-    );
-    $calisanVarMi = calisan::where('ctckn', '=', $request->ctckn)->get();
-    $calisanTckn = $calisanVarMi->count(); // Bu TCKN'ye sahip bir çalışanın olup olmadığını bulur.Eğer var ise çalışanı eklemez.
-    $calisanSayisiBul = calisan::where('csatirid', '>', '0')->get();
-    $calisanSayisi = $calisanSayisiBul->count(); // Kaç çalışan olduğunu saydırır.
+    public function calisanEkle(Request $request)
+    {
+        $request->validate(
+            [
+                "ctckn" => "required",
+                "cadi" => "required",
+                "csoyadi" => "required",
+                "cevadresil" => "required|doesnt_start_with:Lütfen Bir İl Seçiniz",
+                "cdogum" => "required|before:today",
+                "cisegiris" => "required",
+                "cevadresilce" => "required|doesnt_start_with:Lütfen Bir İlçe Seçiniz",
+                "ctel" => "required",
+                "ceposta" => "required",
+                "cunvani" => "required",
+                "ukodutel" => "required",
+                "chesapno" => "required",
+                "cbanka" => "required",
+                "ciban" => "required",
+            ],
+            [
+                'cevadresil.doesnt_start_with' => 'Lütfen çalışanın ilini giriniz.',
+                'cevadresilce.doesnt_start_with' => 'Lütfen çalışanın ilçesini giriniz.',
+                'cadi.required' => 'Lütfen çalışan adını giriniz.',
+                'csoyadi.required' => 'Lütfen çalışan soyadını giriniz.',
+                'ctckn.required' => 'Lütfen çalışan TCKN giriniz.',
+                'ctel.required' => 'Lütfen çalışan telefonunu giriniz.',
+                'ceposta.required' => "Lütfen çalışan Eposta'sını giriniz.",
+                'cunvani.required' => 'Lütfen çalışanın ünvanını giriniz.',
+                'cevadresil.required' => 'Lütfen çalışanın ilini giriniz.',
+                'cdogum.required' => 'Lütfen çalışanın doğum tarihini giriniz.',
+                'cdogum.before' => 'Lütfen doğum gününü bugünden önce bir tarih seçiniz.',
+                'cevadresilce.required' => 'Lütfen çalışanın ilçesini giriniz.',
+                'cisegiris.required' => 'Lütfen çalışanın işe giriş tarihini giriniz',
+                'ukodutel.required' => 'Lütfen çalışan telefonunun ülke kodunu giriniz.',
+                'chesapno.required' => 'Lütfen çalışanın hesap numarasını giriniz.',
+                'cbanka.required' => 'Lütfen çalışanın kullandığı banka adını giriniz.',
+                'ciban.required' => 'Lütfen çalışanın ibanını giriniz.',
+            ]
 
-        if($calisanTckn > 0){ //Çalışan zaten sisteme kayıtlıysa error dönsün.
-            return redirect()->back()->with("calisanKayitli","Eklemeye Çalıştığınız Kişi Zaten Sisteme Kayıtlı. Lütfen Bilgileri Kontrol Ederek Tekrar Deneyiniz!");
-        }else if($calisanSayisi > 0){ // Tablo boş değilse
+        );
+        $calisanVarMi = calisan::where('ctckn', '=', $request->ctckn)->get();
+        $calisanTckn = $calisanVarMi->count(); // Bu TCKN'ye sahip bir çalışanın olup olmadığını bulur.Eğer var ise çalışanı eklemez.
+        $calisanSayisiBul = calisan::where('csatirid', '>', '0')->get();
+        $calisanSayisi = $calisanSayisiBul->count(); // Kaç çalışan olduğunu saydırır.
+
+        if ($calisanTckn > 0) { //Çalışan zaten sisteme kayıtlıysa error dönsün.
+            return redirect()->back()->with("calisanKayitli", "Eklemeye Çalıştığınız Kişi Zaten Sisteme Kayıtlı. Lütfen Bilgileri Kontrol Ederek Tekrar Deneyiniz!");
+        } else if ($calisanSayisi > 0) { // Tablo boş değilse
             $sonCalisan = calisan::orderBy('csatirid', 'desc')->first()->csatirid; //Son Çalışanın Satır ID'sini getirir.
             calisan::create($request->all());
-            calisan::where('ctckn', $request->ctckn)->update( array('cevadres' => $request->cevadres,'cwhatsapp'=>'wa.me/'.$request->ukodutel.''.$request->ctel.'', 'mysrefno'=>'sbe-'.$sonCalisan++.'','ciban' => $request->ciban,'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka) );
-            return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
-        }else{ // Tablo Boşsa
+            calisan::where('ctckn', $request->ctckn)->update(array('cevadres' => $request->cevadres, 'cwhatsapp' => 'wa.me/' . $request->ukodutel . '' . $request->ctel . '', 'mysrefno' => 'sbe-' . $sonCalisan++ . '', 'ciban' => $request->ciban, 'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka));
+            return redirect()->back()->with("success", "Kayıt Başarıyla Eklendi!");
+        } else { // Tablo Boşsa
             calisan::create($request->all());
-            calisan::where('ctckn', $request->ctckn)->update( array('cevadres' => $request->cevadres,'cwhatsapp'=>'wa.me/'.$request->ukodutel.''.$request->ctel.'', 'mysrefno'=>'sbe-1','ciban' => $request->ciban,'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka ) );
-            return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
+            calisan::where('ctckn', $request->ctckn)->update(array('cevadres' => $request->cevadres, 'cwhatsapp' => 'wa.me/' . $request->ukodutel . '' . $request->ctel . '', 'mysrefno' => 'sbe-1', 'ciban' => $request->ciban, 'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka));
+            return redirect()->back()->with("success", "Kayıt Başarıyla Eklendi!");
         }
     }
 
-    public function ExportFormPDF() {
+    public function ExportFormPDF()
+    {
         $data = array();
-        for ($i=0; $i < 25; $i++) { 
+        for ($i = 0; $i < 25; $i++) {
             $kontrol = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, facilis?";
             $durum_int = random_int(0, 3);
             $durum = "";
@@ -165,7 +172,8 @@ class CalisanlarController extends Controller
         return $pdf->download('form.pdf');
     }
 
-    public function ExampleForm(Request $request) {
+    public function ExampleForm(Request $request)
+    {
         $form_adi_slug = explode(';', $request->form_adi)[0];
         $form_id = explode(';', $request->form_adi)[1];
         $form = bakimformu::where('id', $form_id)->first();
@@ -176,7 +184,8 @@ class CalisanlarController extends Controller
         return view('example_form', ['sorular' => $sorular, 'form_adi' => $form_adi]);
     }
 
-    public function GetRandevuYonetimi(Request $request) {
+    public function GetRandevuYonetimi(Request $request)
+    {
         $form_isimleri_raw = bakimformu::all('form_adi');
         $form_isimleri_slug = $form_isimleri_raw->map(function ($item, $key) {
             return Str::slug($item->form_adi, '-', 'tr');
@@ -184,11 +193,96 @@ class CalisanlarController extends Controller
         return view('randevu_yonetimi', ['form_isimleri_raw' => $form_isimleri_raw, 'form_isimleri_slug' => $form_isimleri_slug]);
     }
 
+    public function SubmitBakimFormu(Request $request)
+    {
+        // Validations
+        $rules = [
+            'kurum_adi' => 'required|min:3|max:100',
+            'faaliyet_alani' => 'required|min:3|max:100',
+            'adres' => 'required|min:5|max:255',
+            'telefon' => 'required|min:10|max:11',
+            'eposta' => 'required|email',
+            'yapimci_firma' => 'required|min:3|max:100',
+            'hacmi' => 'required|min:1|max:20',
+            'markasi' => 'required|min:3|max:100',
+            'isitma_yuzeyi' => 'required|min:3|max:100',
+            'modeli_tipi' => 'required|min:3|max:100',
+            'isitma_kapasitesi' => 'required|min:3|max:100',
+            'uretim_tarihi' => 'required|min:3|max:100',
+            'isletme_basinci' => 'required|min:3|max:100',
+            'ozel_bilgiler_seri_no' => 'required|min:3|max:20',
+            'test_basinci' => 'required|min:3|max:20',
+            'kullanilan_metod' => 'required|min:3|max:100',
+            'olcum_cihazi' => 'required|min:3|max:100',
+            'marka_model' => 'required|min:3|max:100',
+            'seri_no' => 'required|min:3|max:20',
+            'ikaz_oneriler' => 'nullable|max:255',
+            'sonuc_kanaat' => 'nullable|max:255',
+            'sonraki_bakim_tarihi' => 'required|after:tarih',
+            'kontrol_yapan_tckn' => 'required|min:11|max:11',
+            'kontrol_yapan_adsoyad' => 'required|min:6|max:50',
+            'kontrol_yapan_meslek' => 'required|min:2|max:50',
+            'kontrol_yapan_diploma_tarihi_no' => 'required|min:10|max:50',
+            'kurum_yetkilisi_tckn' => 'required|min:11|max:11',
+            'kurum_yetkilisi_adsoyad' => 'required|min:6|max:50',
+            'kurum_yetkilisi_unvan' => 'required|min:2|max:100'
+        ];
+        $data = $request->except(['_token', '_method']);
+        foreach ($data as $key => $value) {
+            if (Str::startsWith($key, 'soru')) {
+                $rules[$key] = 'required';
+            }
+        }
+        $request->validate($rules);
+
+        // Cevaplari birlestir
+        $cevaplar = array();
+        foreach ($data as $key => $value) {
+            if (Str::startsWith($key, 'soru')) {
+                array_push($cevaplar, $value);
+            }
+        }
+        $cevaplar = implode(';', $cevaplar);
+
+        // ozel_bilgiler
+        $ozel_bilgiler = array();
+        $ozel_bilgiler_keys = ['yapimci_firma', 'markasi', 'modeli_tipi', 'uretim_tarihi', 'ozel_bilgiler_seri_no'];
+        foreach ($ozel_bilgiler_keys as $key) {
+            array_push($ozel_bilgiler, $data[$key]);
+        }
+        $ozel_bilgiler = implode(';', $ozel_bilgiler);
+
+        // teknik_bilgiler
+        $teknik_bilgiler = array();
+        $teknik_bilgiler_keys = ['hacmi', 'isitma_yuzeyi', 'isitma_kapasitesi', 'isletme_basinci', 'test_basinci'];
+        foreach ($teknik_bilgiler_keys as $key) {
+            array_push($teknik_bilgiler, $data[$key]);
+        }
+        $teknik_bilgiler = implode(';', $teknik_bilgiler);
+
+        // Formu kaydet
+        $exclude_keys = array_merge(
+            $ozel_bilgiler_keys,
+            $teknik_bilgiler_keys,
+            ['_token', '_method', 'tarih', 'sonraki_bakim_tarihi']
+        );
+        $form = bakimformusonucu::create(array_merge(
+            $request->except($exclude_keys),
+            [
+                'ozel_bilgiler' => $ozel_bilgiler, 'teknik_bilgiler' => $teknik_bilgiler,
+                'cevaplar' => $cevaplar, 'tarih' => date('Y-m-d', strtotime($request->tarih)),
+                'sonraki_bakim_tarihi' => date('Y-m-d', strtotime($request->sonraki_bakim_tarihi))
+            ]
+        ));
+        $form->save();
+        return redirect()->route('randevu_yonetimi')->with('success', 'Form başarıyla kaydedildi.');
+    }
+
 
     // public function calisanDetaylari($csatirid){
     //     $calisan = calisan::WHERE('csatirid',$csatirid)->first();
     //     $html = $calisan->cadi;
-        
+
     //     if(!empty($calisan)){
     //         $html = '
     //         <div class="user-profile layout-spacing shadow">
@@ -245,9 +339,9 @@ class CalisanlarController extends Controller
     //         ';
     //      }
     //      $response['html'] = $html;
-   
+
     //      return response()->json($response);
     // }
 
-    
+
 }
