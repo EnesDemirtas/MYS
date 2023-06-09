@@ -27,7 +27,7 @@ Route::post('/musteriler', [MusterilerController::class, 'store'])->name('muster
 Route::post('/musteri', [MusterilerController::class, 'musteriEkle'])->name('musteri.ekle')->middleware('isAuthenticated');
 Route::get('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriDuzenle'])->name('musteri.duzenle')->middleware('isAuthenticated');
 Route::put('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriGuncelle'])->name('musteri.guncelle')->middleware('isAuthenticated');
-Route::delete('/musteri/{mtcknvno}',[MusterilerController::class, 'musteriSil'])->name('musteri.sil')->middleware('isAuthenticated');
+Route::delete('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriSil'])->name('musteri.sil')->middleware('isAuthenticated');
 
 
 Route::get('/musteri_ekle', function () {
@@ -44,10 +44,10 @@ Route::get('calisan_ekle', function () {
     return view('calisan_ekle');
 })->middleware('isAuthenticated');
 
-Route::post('/calisan', [CalisanlarController::class,'calisanEkle'])->name('calisan.ekle')->middleware('isAuthenticated');
+Route::post('/calisan', [CalisanlarController::class, 'calisanEkle'])->name('calisan.ekle')->middleware('isAuthenticated');
 Route::get('/calisan/{ctckn}', [CalisanlarController::class, 'calisanDuzenle'])->name('calisan.duzenle')->middleware('isAuthenticated');
 Route::put('/calisan/{ctckn}', [CalisanlarController::class, 'calisanGuncelle'])->name('calisan.guncelle')->middleware('isAuthenticated');
-Route::delete('/calisan/{ctckn}',[CalisanlarController::class, 'calisanSil'])->name('calisan.sil')->middleware('isAuthenticated');
+Route::delete('/calisan/{ctckn}', [CalisanlarController::class, 'calisanSil'])->name('calisan.sil')->middleware('isAuthenticated');
 Route::get('calisanlar', [CalisanlarController::class, 'index'])->name('calisan.index')->middleware('isAuthenticated');
 
 
@@ -94,10 +94,12 @@ Route::post('new_password', [ActivationCodeController::class, 'NewPassword'])->n
 
 Route::get('load_bakim_formu/{form_adi}', [CalisanlarController::class, 'LoadBakimFormu'])->name('load_bakim_formu');
 Route::post('submit_bakim_formu', [CalisanlarController::class, 'SubmitBakimFormu'])->name('submit_bakim_formu');
+Route::get('bakim_formu_sonuclari', [CalisanlarController::class, 'BakimFormuSonuclari'])->name('bakim_formu_sonuclari');
+Route::get('load_bakim_formu_sonucu/{form_id}', [CalisanlarController::class, 'LoadBakimFormuSonucu'])->name('load_bakim_formu_sonucu');
 
 Route::get('example_form/{form_adi}', [CalisanlarController::class, 'ExampleForm'])->name('example_form');
 Route::post('teklif_ekleme_yap', [Teklifler::class, 'teklifEkle'])->name('teklif.ekleme.yap')->middleware('isAuthenticated');
-Route::delete('/teklif/{id}',[Teklifler::class, 'teklifSil'])->name('teklif.sil')->middleware('isAuthenticated');
+Route::delete('/teklif/{id}', [Teklifler::class, 'teklifSil'])->name('teklif.sil')->middleware('isAuthenticated');
 Route::get('/teklif/{id}', [Teklifler::class, 'teklifGozat'])->name('teklif.gozat')->middleware('isAuthenticated');
 Route::post('teklif_onizle', [Teklifler::class, 'teklifOnizle'])->name('teklif_onizle');
 Route::post('teklif_onizle_giris', [Teklifler::class, 'teklifOnizleGiris'])->name('teklif_onizle_giris');

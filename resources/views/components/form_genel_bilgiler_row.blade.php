@@ -3,5 +3,5 @@
         <span class="input-group-text" id="inputGroup-sizing-default">{{ $field }}</span>
     </div>
     <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-        name="{{ $name }}">
+        value="{{ $value }}" readonly>
 </div>

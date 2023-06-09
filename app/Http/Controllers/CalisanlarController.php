@@ -278,6 +278,24 @@ class CalisanlarController extends Controller
         return redirect()->route('randevu_yonetimi')->with('success', 'Form başarıyla kaydedildi.');
     }
 
+    public function BakimFormuSonuclari(Request $request)
+    {
+        $forms = bakimformusonucu::all();
+        return view('bakim_formu_sonuclari', compact('forms'));
+    }
+
+    public function LoadBakimFormuSonucu(Request $request)
+    {
+        $id = $request->form_id;
+        $form = bakimformusonucu::find($id);
+        $sorular = bakimformu::where('form_adi', $form->form_adi)->get('sorular');
+        $sorular = explode(';', $sorular[0]->sorular);
+        $form->ozel_bilgiler = explode(';', $form->ozel_bilgiler);
+        $form->teknik_bilgiler = explode(';', $form->teknik_bilgiler);
+        $form->cevaplar = explode(';', $form->cevaplar);
+        return view('form_sonucu', ['form' => $form, 'sorular' => $sorular]);
+    }
+
 
     // public function calisanDetaylari($csatirid){
     //     $calisan = calisan::WHERE('csatirid',$csatirid)->first();
