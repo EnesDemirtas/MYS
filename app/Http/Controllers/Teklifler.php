@@ -68,7 +68,7 @@ class Teklifler extends Controller
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
         ]);
         
-        return view('teklif_onizle',['yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi, 'not' => $request->not]);
+        return view('teklif_onizle',['indirim_miktari_input' => $request->indirim_miktari_input, 'yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi, 'not' => $request->not]);
     }
 
     public function teklifEkleGiris(Request $request) {

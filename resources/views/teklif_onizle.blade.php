@@ -205,16 +205,10 @@
                                                                                 <p class="">{{Session::get('yetkiliismi')}}</p>
                                                                             </div>
                                                                             <div class="col-sm-8 col-7">
-                                                                                <p class="">Vergi Miktarı: </p>
+                                                                                <p class="">İndirim: </p>
                                                                             </div>
                                                                             <div class="col-sm-4 col-5">
-                                                                                <p class="">$700</p>
-                                                                            </div>
-                                                                            <div class="col-sm-8 col-7">
-                                                                                <p class=" discount-rate">İndirim : <span class="discount-percentage">5%</span> </p>
-                                                                            </div>
-                                                                            <div class="col-sm-4 col-5">
-                                                                                <p class="">$10</p>
+                                                                                <p class="">{{$indirim_miktari_input}}</p>
                                                                             </div>
                                                                             <div class="col-sm-8 col-7 grand-total-title">
                                                                                 <h4 class="">Net Toplam : </h4>

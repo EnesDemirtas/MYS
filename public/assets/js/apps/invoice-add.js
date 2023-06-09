@@ -126,16 +126,24 @@ function getDiscountValue(value) { //İndirim Miktarını Düzenler
     if (value == 'Yüzde' && document.getElementById('toplam_tutar1') != 0) {
         document.getElementById('discount-amount').style.display = 'none';
         document.getElementById('discount-percent').style.display = 'block';
+        document.getElementById('discount-amount').value = 0;
         document.getElementById('selectable-text-indirim').innerHTML = 'Yüzde';
     } else if (value == 'Belirli Miktar' && document.getElementById('toplam_tutar1') != 0) {
         document.getElementById('discount-percent').style.display = 'none';
+        document.getElementById('discount-percent').value = 0;
         document.getElementById('discount-amount').style.display = 'block';
         document.getElementById('selectable-text-indirim').innerHTML = 'Belirli Miktar';
     } else if (value == 'Yok') {
         document.getElementById('discount-percent').style.display = 'none';
         document.getElementById('discount-amount').style.display = 'none';
         document.getElementById('selectable-text-indirim').innerHTML = 'Yok';
+        document.getElementById('discount-amount-rate').value = 0;
+        document.getElementById('discount-percent-rate').value = 0;
     }
+}
+
+function teklifGonderSil(){
+  document.getElementById('teklif_gonder').style.display = "none";
 }
 
 function indirimYap(value){
@@ -143,6 +151,7 @@ function indirimYap(value){
     document.getElementById('indirim_miktari').innerHTML = (parseInt(document.getElementById('toplam_tutar1').innerHTML) * document.getElementById('discount-percent-rate').value ) / 100 ;
   }else if (value == 'Miktar'){
     document.getElementById('indirim_miktari').innerHTML = document.getElementById('discount-amount-rate').value;
+    document.getElementById('indirim_miktari_input').value = parseInt(document.getElementById('indirim_miktari').innerHTML);
   }
 }
 

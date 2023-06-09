@@ -264,6 +264,7 @@
                                                 <div id="silinenler" style="display:none;"></div>
                                                 <input type="text" style="display:none;" id="counter" value="2">
                                                 <!-- Arkadan işlem yapmak için gerekli alanlar -->
+                                                <input type="text" style="display:none;" id="indirim_miktari_input" name="indirim_miktari_input" value = "0">
                                             </div>
 
 
@@ -625,12 +626,12 @@
                                                     <div class="col-6">
                                                         <div class="form-group mb-0" id="discount-amount" style="display: none;">
                                                             <label for="rate">Miktar</label>
-                                                            <input type="number" class="form-control input-rate" onchange="indirimYap('Miktar')" id="discount-amount-rate" placeholder="Rate" value="0">
+                                                            <input type="number" class="form-control input-rate" onclick="teklifGonderSil()" onchange="indirimYap('Miktar')" id="discount-amount-rate" placeholder="Rate" value="0">
                                                         </div>
 
                                                         <div class="form-group mb-0" id="discount-percent" style="display: none;" >
                                                             <label for="rate">Yüzde</label>
-                                                            <input type="number" class="form-control input-rate" onchange="indirimYap('Yüzde')" id="discount-percent-rate" placeholder="Rate" value="0">
+                                                            <input type="number" class="form-control input-rate" onclick="teklifGonderSil()" onchange="indirimYap('Yüzde')" id="discount-percent-rate" placeholder="Rate" value="0">
                                                         </div>
                                                     </div>
 
