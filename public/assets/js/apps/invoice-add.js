@@ -123,19 +123,27 @@ function selectableDropdown(getElement, myCallback) {
 } */
 
 function getDiscountValue(value) { //İndirim Miktarını Düzenler
-    if (value.dropdownValue == 'Yüzde') {
-        console.log('Ben Yüzdeyim')
-        document.querySelector('.discount-percent').style.display = 'block';
-        document.querySelector('.discount-amount').style.display = 'none';
-    } else if (value.dropdownValue == 'Belirli Miktar') {
-        console.log('Ben Belirli Miktarım')
-        document.querySelector('.discount-amount').style.display = 'block';
-        document.querySelector('.discount-percent').style.display = 'none';
-    } else if (value.dropdownValue == 'Yok') {
-        console.log('Ben Yokum')
-        document.querySelector('.discount-percent').style.display = 'none';
-        document.querySelector('.discount-amount').style.display = 'none';
+    if (value == 'Yüzde' && document.getElementById('toplam_tutar1') != 0) {
+        document.getElementById('discount-amount').style.display = 'none';
+        document.getElementById('discount-percent').style.display = 'block';
+        document.getElementById('selectable-text-indirim').innerHTML = 'Yüzde';
+    } else if (value == 'Belirli Miktar' && document.getElementById('toplam_tutar1') != 0) {
+        document.getElementById('discount-percent').style.display = 'none';
+        document.getElementById('discount-amount').style.display = 'block';
+        document.getElementById('selectable-text-indirim').innerHTML = 'Belirli Miktar';
+    } else if (value == 'Yok') {
+        document.getElementById('discount-percent').style.display = 'none';
+        document.getElementById('discount-amount').style.display = 'none';
+        document.getElementById('selectable-text-indirim').innerHTML = 'Yok';
     }
+}
+
+function indirimYap(value){
+  if(value == 'Yüzde'){
+    document.getElementById('indirim_miktari').innerHTML = (parseInt(document.getElementById('toplam_tutar1').innerHTML) * document.getElementById('discount-percent-rate').value ) / 100 ;
+  }else if (value == 'Miktar'){
+    document.getElementById('indirim_miktari').innerHTML = document.getElementById('discount-amount-rate').value;
+  }
 }
 
 document.getElementsByClassName('additem')[0].addEventListener('click', function() {

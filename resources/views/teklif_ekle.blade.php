@@ -64,6 +64,7 @@
                         </ol>
                     </nav>
                 </div>
+                <p class="font-weight-bold alert alert-danger mt-1" id="indirim_hatasi" style="display:none;">Lütfen belirlediğiniz indirim miktarının toplam ücretten daha az olduğundan emin olun!</p>
                 @if($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -241,7 +242,7 @@
                                                                 </td>
                                                                 <td class="description">
                                                                     <div class="dropdown selectable-dropdown invoice-select">
-                                                                        <a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="selectable-text"> Vinç Periyodik Kontrol</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>
+                                                                        <a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span id="selectable-text"> Vinç Periyodik Kontrol</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>
                                                                         <div class="dropdown-menu" aria-labelledby="currencyDropdown">
                                                                             <a class="dropdown-item" data-value="Vinç Periyodik Kontrol" href="javascript:void(0);"> Vinç Periyodik Kontrol</a>
                                                                             <a class="dropdown-item" data-value="Kalorifer Kazanı Periyodik Kontrol" href="javascript:void(0);"> Kalorifer Kazanı Periyodik Kontrol</a>
@@ -263,8 +264,6 @@
                                                 <div id="silinenler" style="display:none;"></div>
                                                 <input type="text" style="display:none;" id="counter" value="2">
                                                 <!-- Arkadan işlem yapmak için gerekli alanlar -->
-                                                <a href="javascript:void(0);" class="btn btn-secondary additem btn-sm" style="width: 100px;" id="ekle">Ekle</a>
-                                                <div class="alert alert-danger" id="fazla_teklif" style="display:none;"> Daha fazla teklif ekleyebilmek için bizimle irtibata geçiniz.</div>
                                             </div>
 
 
@@ -498,8 +497,10 @@
 
                                                     <div class="col-md-6 fiyat_hesapla text-center">
                                                         <a href="javascript:void(0);" class="btn btn-primary" onclick="totalFiyatHesapla(1)">Total Fiyat Hesapla</a>
+                                                        <p class="font-weight-bold alert alert-danger mt-1" id="fiyat_uyarisi1" style="display:none;">Lütfen ürün için geçerli fiyat bilgisi girdiğinizden emin olunuz!</p>
+                                                        <p class="font-weight-bold alert alert-danger mt-1" id="miktar_uyarisi1" style="display:none;">Lütfen ürün için geçerli miktar bilgisi girdiğinizden emin olunuz!</p>
+                                                        <p class="font-weight-bold alert alert-danger mt-1" id="cok_miktar" style="display:none;">Lütfen daha fazla miktarda ürün talep etmek için bizimle <span class="text-bold">iletişime</span> geçiniz!</p>
                                                         <div id="totalrow" style="display:none;">
-                                                            <p class="text-danger font-weight-bold">Lütfen öncelikle fiyat bilgilerini giriniz!</p>
                                                             <div class="invoice-totals-row invoice-summary-subtotal">
                                                                 <div class="invoice-summary-label">Ara Toplam</div>
 
@@ -609,11 +610,11 @@
                                                             <label for="type">Tip</label>
 
                                                             <div class="dropdown selectable-dropdown invoice-discount-select">
-                                                                <a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="selectable-text">Yok</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>
+                                                                <a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span id="selectable-text-indirim">Yok</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>
                                                                 <div class="dropdown-menu" aria-labelledby="currencyDropdown">
-                                                                    <a class="dropdown-item" data-value="Yüzde" href="javascript:void(0);">Yüzde</a>
-                                                                    <a class="dropdown-item" data-value="Belirli Miktar" href="javascript:void(0);">Belirli Miktar</a>
-                                                                    <a class="dropdown-item" data-value="Yok" href="javascript:void(0);">Yok</a>
+                                                                    <span class="dropdown-item" data-value="Yüzde" style="cursor: pointer;" onclick="getDiscountValue('Yüzde')" >Yüzde</span>
+                                                                    <span class="dropdown-item" data-value="Belirli Miktar" style="cursor: pointer;" onclick="getDiscountValue('Belirli Miktar')">Belirli Miktar</span>
+                                                                    <span class="dropdown-item" data-value="Yok" style="cursor: pointer;" onclick="getDiscountValue('Yok')">Yok</span>
                                                                 </div>
                                                             </div>
                                                             
@@ -622,14 +623,14 @@
                                                     </div>
 
                                                     <div class="col-6">
-                                                        <div class="form-group mb-0 discount-amount" style="display: none;">
+                                                        <div class="form-group mb-0" id="discount-amount" style="display: none;">
                                                             <label for="rate">Miktar</label>
-                                                            <input type="number" class="form-control input-rate" id="rate" placeholder="Rate" value="25">
+                                                            <input type="number" class="form-control input-rate" onchange="indirimYap('Miktar')" id="discount-amount-rate" placeholder="Rate" value="0">
                                                         </div>
 
-                                                        <div class="form-group mb-0 discount-percent" style="display: none;">
+                                                        <div class="form-group mb-0" id="discount-percent" style="display: none;" >
                                                             <label for="rate">Yüzde</label>
-                                                            <input type="number" class="form-control input-rate" id="rate" placeholder="Rate" value="10">
+                                                            <input type="number" class="form-control input-rate" onchange="indirimYap('Yüzde')" id="discount-percent-rate" placeholder="Rate" value="0">
                                                         </div>
                                                     </div>
 
@@ -647,7 +648,7 @@
 
                                             <div class="row">
                                                 <div class="col-xl-12 col-md-4">
-                                                    <button type="submit" class="btn btn-primary btn-send w-100 mb-2">Teklifi Gönder</button>
+                                                    <button type="submit" style="display:none;" id="teklif_gonder" class="btn btn-primary btn-send w-100 mb-2">Teklifi Gönder</button>
                                                 </div>
                                                 <div class="col-xl-12 col-md-4">
                                                     <button formaction="{{route('teklif_onizle')}}" type="submit" class="btn btn-dark btn-preview w-100">Önizle</a>

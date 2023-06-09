@@ -6,18 +6,44 @@ function hesapla(counter){
 }
 
 function totalFiyatHesapla(counter, selectedItem){
-    document.getElementById("totalrow").style.display = "block";
-    var hepsiniTopla = 0;
-    for (let i = 0; i < counter; i++) {
-      console.log(document.getElementsByClassName("editable-amount").parentNode.className)
+    if(document.getElementById("urun_fiyati1").value <= 0 && document.getElementById("urun_miktari1").value <= 0){
+      document.getElementById("fiyat_uyarisi1").style.display = "block";
+      document.getElementById("miktar_uyarisi1").style.display = "block";
+    }else if(document.getElementById("urun_fiyati1").value <= 0){
+      document.getElementById("fiyat_uyarisi1").style.display = "block";
+      document.getElementById("miktar_uyarisi1").style.display = "none";
+    }else if(document.getElementById("urun_miktari1").value <= 0) {
+      document.getElementById("miktar_uyarisi1").style.display = "block";
+      document.getElementById("fiyat_uyarisi1").style.display = "none";
+    }else{
+      if(parseInt(document.getElementById("ara_toplam").innerHTML) < parseInt(document.getElementById("indirim_miktari").innerHTML )){
+        document.getElementById("indirim_hatasi").style.display = "block";
+        document.getElementById("teklif_gonder").style.display = "none";
+        document.getElementById("totalrow").style.display = "none";
+        location.href = "#indirim_hatasi";
+      }else{
+        document.getElementById("totalrow").style.display = "block";
+        document.getElementById("ara_toplam").innerHTML = document.getElementById("toplam_tutar1").innerHTML;
+        document.getElementById("fiyat_uyarisi1").style.display = "none";
+        document.getElementById("miktar_uyarisi1").style.display = "none";
+        document.getElementById("toplam_ucret").innerHTML =  parseInt(document.getElementById("ara_toplam").innerHTML) - parseInt(document.getElementById("indirim_miktari").innerHTML);
+        document.getElementById("teklif_gonder").style.display = "block";
       }
-      document.getElementById("ara_toplam").innerHTML = String(hepsiniTopla);
-      console.log(document.getElementsByClassName("editable-amount").parentNode);
+    }
+
+    if(document.getElementById("urun_miktari1").value > 10){
+      document.getElementById("cok_miktar").style.display = "block";
+      document.getElementById("fiyat_uyarisi1").style.display = "none";
+      document.getElementById("miktar_uyarisi1").style.display = "none";
+      document.getElementById("totalrow").style.display = "none";
+    }else{
+      document.getElementById("cok_miktar").style.display = "none";
+    }
 }
 
-function changeCounter(deger){
-  if(parseInt(document.getElementById("counter").value) == 1){
-  }else{
-    document.getElementById("counter").value = parseInt(document.getElementById("counter").value) - deger ;
-  }
-}
+// function changeCounter(deger){
+//   if(parseInt(document.getElementById("counter").value) == 1){
+//   }else{
+//     document.getElementById("counter").value = parseInt(document.getElementById("counter").value) - deger ;
+//   }
+// }
