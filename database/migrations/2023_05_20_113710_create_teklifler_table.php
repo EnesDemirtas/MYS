@@ -27,6 +27,10 @@ return new class extends Migration
             $table->string('istenilen_hizmet_miktar')->lenght(5);
             $table->string('teklif_veren_sirket')->lenght(50);
             $table->string('teklif_edilen_para')->lenght(20);
+            $table->string('odeme_bilgileri_banka_adi')->lenght(30);
+            $table->string('odeme_bilgileri_swift_kodu')->lenght(30);
+            $table->string('odeme_bilgileri_ulke_adi')->lenght(30);
+            $table->string('odeme_bilgileri_hesap_numarasi')->lenght(30);
             $table->date('updated_at');
             $table->date('created_at');
             $table->timestamp('islemsaati');

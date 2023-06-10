@@ -277,28 +277,28 @@
                                                         <div class="form-group row invoice-created-by">
                                                             <label for="payment-method-account" class="col-sm-3 col-form-label col-form-label-sm">Hesap No:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control form-control-sm" id="payment-method-account" placeholder="Hesap Numarası">
+                                                                <input type="text" class="form-control form-control-sm" id="hesap_numarasi" name="hesap_numrasi" placeholder="Hesap Numarası">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row invoice-created-by">
                                                             <label for="payment-method-bank-name" class="col-sm-3 col-form-label col-form-label-sm">Banka Adı:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control form-control-sm" id="payment-method-bank-name" placeholder="Banka Adı">
+                                                                <input type="text" class="form-control form-control-sm" id="banka_adi" name="banka_adi" placeholder="Banka Adı">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row invoice-created-by">
                                                             <label for="payment-method-code" class="col-sm-3 col-form-label col-form-label-sm">SWIFT kodu:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control form-control-sm" id="payment-method-code" placeholder="Kodu Giriniz">
+                                                                <input type="text" class="form-control form-control-sm" id="swift_kodu" name="swift_kodu" placeholder="Kodu Giriniz">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row invoice-created-by">
                                                             <label for="payment-method-country" class="col-sm-3 col-form-label col-form-label-sm">Ülke:</label>
                                                             <div class="col-sm-9">
-                                                                <select name="country_code" class="form-control country_code  form-control-sm" id="payment-method-country">
+                                                                <select name="country_code" class="form-control country_code  form-control-sm" id="ulke" name="ulke">
                                                                     <option value="">Ülkeyi Seçiniz</option>
                                                                     <option value="United States">United States</option>
                                                                     <option value="United Kingdom">United Kingdom</option>
@@ -504,10 +504,10 @@
                                                         <div id="totalrow" style="display:none;">
                                                             <div class="invoice-totals-row invoice-summary-subtotal">
                                                                 <div class="invoice-summary-label">Ara Toplam</div>
-
                                                                 <div class="invoice-summary-value">
                                                                     <div class="subtotal-amount">
                                                                         <span class="currency">$</span><span class="amount" id="ara_toplam">100</span>
+                                                                        <input type="text" class="d-none" id="ara_toplam" name="ara_toplam" value="0">
                                                                     </div>
                                                                 </div>
 
@@ -522,6 +522,7 @@
                                                                 <div class="invoice-summary-value">
                                                                     <div class="total-amount">
                                                                         <span class="currency">$</span><span id="indirim_miktari">0</span>
+                                                                        <input type="text" class="d-none" id="indirim" name="indirim" value="0">
                                                                     </div>
                                                                 </div>
 
@@ -534,6 +535,7 @@
                                                                 <div class="invoice-summary-value">
                                                                     <div class="balance-due-amount">
                                                                         <span class="currency">$</span><span id="toplam_ucret">90</span>
+                                                                        <input type="text" class="d-none" id="toplam_ucret" name="toplam_ucret" value="0">
                                                                     </div>
                                                                 </div>
 

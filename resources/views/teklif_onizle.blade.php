@@ -89,7 +89,7 @@
                                                                 <div class="col-sm-6 col-12 mr-auto">
                                                                     <div class="d-flex">
                                                                         <img class="company-logo" src="assets/img/cork-logo.png" alt="company">
-                                                                        <h3 class="in-heading align-self-center">DAKIK</h3>
+                                                                        <h3 class="in-heading align-self-center">{{$sirketismi}}</h3>
                                                                     </div>
                                                                 </div>
 
@@ -98,9 +98,10 @@
                                                                 </div>
 
                                                                 <div class="col-sm-6 align-self-center mt-3">
-                                                                    <p class="inv-street-addr">XYZ Delta Street</p>
-                                                                    <p class="inv-email-address">info@company.com</p>
-                                                                    <p class="inv-email-address">(120) 456 789</p>
+                                                                    <p class="inv-street-addr">{{$yetkiliismi}}</p>
+                                                                    <p class="inv-street-addr">{{$musteriadres}}</p>
+                                                                    <p class="inv-email-address">{{$yetkiliemail}}</p>
+                                                                    <p class="inv-email-address">{{$musteritelefon}}</p>
                                                                 </div>
                                                                 <div class="col-sm-6 align-self-center mt-3 text-sm-right">
                                                                     <p class="inv-created-date"><span class="inv-title">Teklif Tarihi : </span> <span class="inv-date">20 Aug 2020</span></p>
@@ -124,18 +125,18 @@
                                                                 </div>
                                                                 
                                                                 <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
-                                                                    <p class="inv-customer-name">{{$yetkiliismi}}</p>
-                                                                    <p class="inv-street-addr">405 Mulberry Rd. Mc Grady, NC, 28649</p>
-                                                                    <p class="inv-email-address">redq@company.com</p>
-                                                                    <p class="inv-email-address">(128) 666 070</p>
+                                                                    <p class="inv-customer-name"> Sadık Bozkır</p>
+                                                                    <p class="inv-street-addr">Muratpaşa, Kızılarık Mah. Yanık Apt. No: 5/11, Köroğlu Bulvarı, 07310 Antalya</p>
+                                                                    <p class="inv-email-address">business@sbe.com</p>
+                                                                    <p class="inv-email-address">+90 (242) 326 10 11</p>
                                                                 </div>
                                                                 
                                                                 <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 order-sm-0 order-1">
                                                                     <div class="inv--payment-info">
-                                                                        <p><span class=" inv-subtitle">Banka Adı:</span> <span>Bank of America</span></p>
-                                                                        <p><span class=" inv-subtitle">Hesap Numarası: </span> <span>1234567890</span></p>
-                                                                        <p><span class=" inv-subtitle">SWIFT code:</span> <span>VS70134</span></p>
-                                                                        <p><span class=" inv-subtitle">Ülke: </span> <span>United States</span></p>
+                                                                        <p><span class=" inv-subtitle">Banka Adı:</span> <span>{{$banka_adi}}</span></p>
+                                                                        <p><span class=" inv-subtitle">Hesap Numarası: </span> <span>{{$hesap_numarasi}}</span></p>
+                                                                        <p><span class=" inv-subtitle">SWIFT code:</span> <span>{{$swift_kodu}}</span></p>
+                                                                        <p><span class=" inv-subtitle">Ülke: </span> <span>{{$ulke}}</span></p>
 
                                                                     </div>
                                                                 </div>
@@ -149,41 +150,18 @@
                                                                 <table class="table">
                                                                     <thead class="">
                                                                         <tr>
-                                                                            <th scope="col">S.No</th>
-                                                                            <th scope="col">Items</th>
-                                                                            <th class="text-right" scope="col">Qty</th>
-                                                                            <th class="text-right" scope="col">Price</th>
-                                                                            <th class="text-right" scope="col">Amount</th>
+                                                                            <th scope="col">Hizmet İsmi</th>
+                                                                            <th class="text-right" scope="col">Adet</th>
+                                                                            <th class="text-right" scope="col">Ücret</th>
+                                                                            <th class="text-right" scope="col">Total</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td>1</td>
                                                                             <td>Calendar App Customization</td>
                                                                             <td class="text-right">1</td>
                                                                             <td class="text-right">$120</td>
                                                                             <td class="text-right">$120</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>2</td>
-                                                                            <td>Chat App Customization</td>
-                                                                            <td class="text-right">1</td>
-                                                                            <td class="text-right">$230</td>
-                                                                            <td class="text-right">$230</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>3</td>
-                                                                            <td>Laravel Integration</td>
-                                                                            <td class="text-right">1</td>
-                                                                            <td class="text-right">$405</td>
-                                                                            <td class="text-right">$405</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>4</td>
-                                                                            <td>Backend UI Design</td>
-                                                                            <td class="text-right">1</td>
-                                                                            <td class="text-right">$2500</td>
-                                                                            <td class="text-right">$2500</td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
