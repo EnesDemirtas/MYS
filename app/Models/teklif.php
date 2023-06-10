@@ -23,5 +23,10 @@ class teklif extends Model
         'istenilen_hizmetler',
         'istenilen_hizmet_fiyat',
         'istenilen_hizmet_miktar',
+        'teklif_edilen_indirim',
+        'odeme_bilgileri_banka_adi',
+        'odeme_bilgileri_swift_kodu',
+        'odeme_bilgileri_hesap_numarasi',
+        'odeme_bilgileri_ulke_adi'
     ];
 }

@@ -158,10 +158,10 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td>Calendar App Customization</td>
-                                                                            <td class="text-right">1</td>
-                                                                            <td class="text-right">$120</td>
-                                                                            <td class="text-right">$120</td>
+                                                                            <td>{{$periyodik_bakim}}</td>
+                                                                            <td class="text-right">{{$urun_miktari1}}</td>
+                                                                            <td class="text-right">{{$urun_fiyati1}}</td>
+                                                                            <td class="text-right">{{$indirimsiz_toplam}}</td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -180,7 +180,7 @@
                                                                                 <p class="">Ara Toplam: </p>
                                                                             </div>
                                                                             <div class="col-sm-4 col-5">
-                                                                                <p class="">{{Session::get('yetkiliismi')}}</p>
+                                                                                <p class="">{{$ara_toplam_input}}</p>
                                                                             </div>
                                                                             <div class="col-sm-8 col-7">
                                                                                 <p class="">İndirim: </p>
@@ -192,7 +192,7 @@
                                                                                 <h4 class="">Net Toplam : </h4>
                                                                             </div>
                                                                             <div class="col-sm-4 col-5 grand-total-amount">
-                                                                                <h4 class="">$3845</h4>
+                                                                                <h4 class="">{{$toplam_ucret_input}}</h4>
                                                                             </div>
                                                                         </div>
                                                                     </div>

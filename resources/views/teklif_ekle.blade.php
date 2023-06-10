@@ -241,19 +241,21 @@
                                                                     </ul>
                                                                 </td>
                                                                 <td class="description">
-                                                                    <div class="dropdown selectable-dropdown invoice-select">
-                                                                        <a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span id="selectable-text"> Vinç Periyodik Kontrol</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>
-                                                                        <div class="dropdown-menu" aria-labelledby="currencyDropdown">
-                                                                            <a class="dropdown-item" data-value="Vinç Periyodik Kontrol" href="javascript:void(0);"> Vinç Periyodik Kontrol</a>
-                                                                            <a class="dropdown-item" data-value="Kalorifer Kazanı Periyodik Kontrol" href="javascript:void(0);"> Kalorifer Kazanı Periyodik Kontrol</a>
+                                                                    <div class="form-group row invoice-created-by">
+                                                                        <div class="col-sm-12">
+                                                                            <select class="form-control country_code  form-control-sm" value="{{old('periyodik_bakim')}}" id="periyodik_bakim" name="periyodik_bakim">
+                                                                                <option value="">Hizmet Seçiniz</option>
+                                                                                <option value="Vinç Periyodik Kontrol">Vinç Periyodik Kontrol</option>
+                                                                                <option value="Kalorifer Kazanı Periyodik Kontrol">Kalorifer Kazanı Periyodik Kontrol</option>
+                                                                                </select>
                                                                         </div>
                                                                     </div>
                                                                        <textarea id="ek_detaylar" class="form-control" placeholder="Ek Detaylar (Eklemek istediğiniz herhangi birşey varsa)"></textarea></td>
                                                                 <td class="rate">
-                                                                      <input type="text" class="form-control  form-control-sm" placeholder="Fiyat" id="urun_fiyati1" value="0" onchange="hesapla(1)">
+                                                                      <input type="text" class="form-control  form-control-sm" placeholder="Fiyat" id="urun_fiyati1" name="urun_fiyati1" value="0" onchange="hesapla(1)">
                                                                 </td>
-                                                                <td class="text-right qty"><input type="text" class="form-control  form-control-sm" placeholder="Miktar" id="urun_miktari1" onchange="hesapla(1)" value="1" ></td>
-                                                                  <td class="text-right amount"><span class="editable-amount"><span class="currency">$</span> <span class="1" id="toplam_tutar1">0.00</span></span></td>
+                                                                <td class="text-right qty"><input type="text" class="form-control  form-control-sm" placeholder="Miktar" name="urun_miktari1" id="urun_miktari1" onchange="hesapla(1)" value="1" ></td>
+                                                                  <td class="text-right amount"><span class="editable-amount"><span class="currency">$</span> <span class="1" name="toplam_tutar1" id="toplam_tutar1">0.00</span></span></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -264,7 +266,7 @@
                                                 <div id="silinenler" style="display:none;"></div>
                                                 <input type="text" style="display:none;" id="counter" value="2">
                                                 <!-- Arkadan işlem yapmak için gerekli alanlar -->
-                                                <input type="text" style="display:none;" id="indirim_miktari_input" name="indirim_miktari_input" value = "0">
+                                                
                                             </div>
 
 
@@ -277,28 +279,28 @@
                                                         <div class="form-group row invoice-created-by">
                                                             <label for="payment-method-account" class="col-sm-3 col-form-label col-form-label-sm">Hesap No:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control form-control-sm" id="hesap_numarasi" name="hesap_numrasi" placeholder="Hesap Numarası">
+                                                                <input type="text" class="form-control form-control-sm" value="{{old('hesap_numarasi')}}" id="hesap_numarasi" name="hesap_numarasi" placeholder="Hesap Numarası">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row invoice-created-by">
                                                             <label for="payment-method-bank-name" class="col-sm-3 col-form-label col-form-label-sm">Banka Adı:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control form-control-sm" id="banka_adi" name="banka_adi" placeholder="Banka Adı">
+                                                                <input type="text" class="form-control form-control-sm" value="{{old('banka_adi')}}" id="banka_adi" name="banka_adi" placeholder="Banka Adı">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row invoice-created-by">
                                                             <label for="payment-method-code" class="col-sm-3 col-form-label col-form-label-sm">SWIFT kodu:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control form-control-sm" id="swift_kodu" name="swift_kodu" placeholder="Kodu Giriniz">
+                                                                <input type="text" class="form-control form-control-sm" value="{{old('swift_code')}}" id="swift_kodu" name="swift_kodu" placeholder="Kodu Giriniz">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row invoice-created-by">
                                                             <label for="payment-method-country" class="col-sm-3 col-form-label col-form-label-sm">Ülke:</label>
                                                             <div class="col-sm-9">
-                                                                <select name="country_code" class="form-control country_code  form-control-sm" id="ulke" name="ulke">
+                                                                <select class="form-control country_code  form-control-sm" value="{{old('ulke')}}" id="ulke" name="ulke">
                                                                     <option value="">Ülkeyi Seçiniz</option>
                                                                     <option value="United States">United States</option>
                                                                     <option value="United Kingdom">United Kingdom</option>
@@ -507,7 +509,7 @@
                                                                 <div class="invoice-summary-value">
                                                                     <div class="subtotal-amount">
                                                                         <span class="currency">$</span><span class="amount" id="ara_toplam">100</span>
-                                                                        <input type="text" class="d-none" id="ara_toplam" name="ara_toplam" value="0">
+                                                                        <input type="text" style="display:none;" id="ara_toplam_input" name="ara_toplam_input" value="0">
                                                                     </div>
                                                                 </div>
 
@@ -522,7 +524,7 @@
                                                                 <div class="invoice-summary-value">
                                                                     <div class="total-amount">
                                                                         <span class="currency">$</span><span id="indirim_miktari">0</span>
-                                                                        <input type="text" class="d-none" id="indirim" name="indirim" value="0">
+                                                                        <input type="text" style="display:none;" id="indirim_miktari_input" name="indirim_miktari_input" value = "0">
                                                                     </div>
                                                                 </div>
 
@@ -535,7 +537,7 @@
                                                                 <div class="invoice-summary-value">
                                                                     <div class="balance-due-amount">
                                                                         <span class="currency">$</span><span id="toplam_ucret">90</span>
-                                                                        <input type="text" class="d-none" id="toplam_ucret" name="toplam_ucret" value="0">
+                                                                        <input type="text" style="display:none;" id="toplam_ucret_input" name="toplam_ucret_input" value="0">
                                                                     </div>
                                                                 </div>
 

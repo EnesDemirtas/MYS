@@ -43,8 +43,7 @@ class Teklifler extends Controller
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
         ]);
 
-            
-            teklif::create(array('teklif_baslangic_tarihi' => $request->date,'teklif_bitis_tarihi'=>$request->due, 'teklif_veren_isim' => $request->yetkiliismi,'teklif_veren_email' => $request->yetkiliemail,'teklif_veren_adres' => $request->musteriadres,'teklif_veren_telefon' => $request->musteritelefon ,'teklif_veren_sirket' => $request->sirketismi));
+            teklif::create(array('odeme_bilgileri_hesap_numarasi' => $request->hesap_numarasi ,'odeme_bilgileri_ulke_adi' => $request->ulke ,'odeme_bilgileri_swift_kodu' => $request->swift_kodu ,'odeme_bilgileri_banka_adi' => $request->banka_adi ,'istenilen_hizmet_miktar' => $request->urun_miktari1 ,'istenilen_hizmet_fiyat' => $request->urun_fiyati1 ,'istenilen_hizmetler' => $request->periyodik_bakim ,'teklif_baslangic_tarihi' => $request->date,'teklif_bitis_tarihi'=>$request->due, 'teklif_veren_isim' => $request->yetkiliismi,'teklif_veren_email' => $request->yetkiliemail,'teklif_veren_adres' => $request->musteriadres,'teklif_veren_telefon' => $request->musteritelefon ,'teklif_veren_sirket' => $request->sirketismi));
             return redirect('teklifler')->with("success","Teklif başarıyla oluşturuldu!");
     }
 
@@ -68,7 +67,7 @@ class Teklifler extends Controller
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
         ]);
         
-        return view('teklif_onizle',['ulke' => $request->hesap_numarasi, 'ulke' => $request->banka_adi, 'hesap_numarasi' => $request->hesap_numarasi, 'indirim_miktari_input' => $request->indirim_miktari_input, 'yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi, 'not' => $request->not]);
+        return view('teklif_onizle',['urun_miktari1' => $request->urun_miktari1, 'indirimsiz_toplam' => ($request->toplam_ucret_input + $request->indirim_miktari_input) , 'urun_fiyati1' => $request->urun_fiyati1, 'periyodik_bakim' => $request->periyodik_bakim, 'swift_kodu' => $request->swift_kodu, 'ulke' => $request->ulke, 'banka_adi' => $request->banka_adi, 'hesap_numarasi' => $request->hesap_numarasi , 'toplam_ucret_input' => $request->toplam_ucret_input, 'ara_toplam_input' => $request->ara_toplam_input, 'indirim_miktari_input' => $request->indirim_miktari_input, 'yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi, 'not' => $request->not]);
     }
 
     public function teklifEkleGiris(Request $request) {

@@ -28,6 +28,11 @@ function totalFiyatHesapla(counter, selectedItem){
         document.getElementById("miktar_uyarisi1").style.display = "none";
         document.getElementById("toplam_ucret").innerHTML =  parseInt(document.getElementById("ara_toplam").innerHTML) - parseInt(document.getElementById("indirim_miktari").innerHTML);
         document.getElementById("teklif_gonder").style.display = "block";
+
+        // Ücret bilgilerini görünmez inputlara doldurma
+        document.getElementById("ara_toplam_input").value = parseInt(document.getElementById("ara_toplam").innerHTML);
+        document.getElementById("indirim_miktari_input").value = parseInt(document.getElementById("indirim_miktari").innerHTML);
+        document.getElementById("toplam_ucret_input").value = parseInt(document.getElementById("toplam_ucret").innerHTML);
       }
     }
 
