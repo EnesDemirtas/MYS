@@ -247,7 +247,7 @@
                                                                                 <option value="">Hizmet Seçiniz</option>
                                                                                 <option value="Vinç Periyodik Kontrol">Vinç Periyodik Kontrol</option>
                                                                                 <option value="Kalorifer Kazanı Periyodik Kontrol">Kalorifer Kazanı Periyodik Kontrol</option>
-                                                                                </select>
+                                                                            </select>
                                                                         </div>
                                                                     </div>
                                                                        <textarea id="ek_detaylar" class="form-control" placeholder="Ek Detaylar (Eklemek istediğiniz herhangi birşey varsa)"></textarea></td>
@@ -255,7 +255,7 @@
                                                                       <input type="text" class="form-control  form-control-sm" placeholder="Fiyat" id="urun_fiyati1" name="urun_fiyati1" value="0" onchange="hesapla(1)">
                                                                 </td>
                                                                 <td class="text-right qty"><input type="text" class="form-control  form-control-sm" placeholder="Miktar" name="urun_miktari1" id="urun_miktari1" onchange="hesapla(1)" value="1" ></td>
-                                                                  <td class="text-right amount"><span class="editable-amount"><span class="currency">$</span> <span class="1" name="toplam_tutar1" id="toplam_tutar1">0.00</span></span></td>
+                                                                  <td class="text-right amount"><span class="editable-amount"><span id="para_sembol">$</span> <span class="1" name="toplam_tutar1" id="toplam_tutar1">0.00</span></span></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -508,7 +508,7 @@
                                                                 <div class="invoice-summary-label">Ara Toplam</div>
                                                                 <div class="invoice-summary-value">
                                                                     <div class="subtotal-amount">
-                                                                        <span class="currency">$</span><span class="amount" id="ara_toplam">100</span>
+                                                                        <span id="para_sembol">$</span><span class="amount" id="ara_toplam">100</span>
                                                                         <input type="text" style="display:none;" id="ara_toplam_input" name="ara_toplam_input" value="0">
                                                                     </div>
                                                                 </div>
@@ -523,7 +523,7 @@
 
                                                                 <div class="invoice-summary-value">
                                                                     <div class="total-amount">
-                                                                        <span class="currency">$</span><span id="indirim_miktari">0</span>
+                                                                        <span id="para_sembol">$</span><span id="indirim_miktari">0</span>
                                                                         <input type="text" style="display:none;" id="indirim_miktari_input" name="indirim_miktari_input" value = "0">
                                                                     </div>
                                                                 </div>
@@ -536,7 +536,7 @@
 
                                                                 <div class="invoice-summary-value">
                                                                     <div class="balance-due-amount">
-                                                                        <span class="currency">$</span><span id="toplam_ucret">90</span>
+                                                                        <span id="para_sembol">$</span><span id="toplam_ucret">90</span>
                                                                         <input type="text" style="display:none;" id="toplam_ucret_input" name="toplam_ucret_input" value="0">
                                                                     </div>
                                                                 </div>
@@ -584,16 +584,23 @@
                                             <div class="form-group mb-0">
                                                 <label for="currency">Para Birimi</label>
                                                 <div class="dropdown selectable-dropdown invoice-select">
-                                                    <a id="currencyDropdown" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/img/flag-us.svg" class="flag-width" alt="flag"> <span class="selectable-text">USD - Amerikan Doları</span> <span class="selectable-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></a>
-                                                    <div class="dropdown-menu" aria-labelledby="currencyDropdown">
-                                                        <a class="dropdown-item" data-img-value="{{ asset('assets/img/flag-us.svg ') }}" data-value="USD - Amerikan Doları" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-us.svg ') }}" class="flag-width" alt="flag"> USD - Amerikan Doları</a>
-                                                        <a class="dropdown-item" data-img-value="{{ asset('assets/img/flag-gbp.svg') }}" data-value="GBP - İngiliz Sterlini" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-gbp.svg') }}" class="flag-width" alt="flag"> GBP - İngiliz Sterlini</a>
-                                                        <a class="dropdown-item" data-img-value="{{ asset('assets/img/flag-idr.svg') }}" data-value="IDR - Endonezya Rupisi" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-idr.svg') }}" class="flag-width" alt="flag"> IDR - Endonezya Rupisi</a>
-                                                        <a class="dropdown-item" data-img-value="{{ asset('assets/img/flag-inr.svg') }}" data-value="INR - Hindistan Rupisi" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-inr.svg') }}" class="flag-width" alt="flag"> INR - Hindistan Rupisi</a>
-                                                        <a class="dropdown-item" data-img-value="{{ asset('assets/img/flag-brl.svg') }}" data-value="BRL - Brezilya Reali" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-brl.svg') }}" class="flag-width" alt="flag"> BRL - Brezilya Reali</a>
-                                                        <a class="dropdown-item" data-img-value="{{ asset('assets/img/flag-de.svg ') }}" data-value="EUR - Euro" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-de.svg ') }}" class="flag-width" alt="flag"> EUR - Euro</a>
-                                                        <a class="dropdown-item" data-img-value="{{ asset('assets/img/flag-try.svg') }}" data-value="TRY - Türk Lirası" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-try.svg') }}" class="flag-width" alt="flag"> TRY - Türk Lirası</a>
-                                                    </div>
+                                                    {{-- <div class="row">
+                                                        <div class="col-2 my-auto p-0" style="float:right">
+                                                            <img src="assets/img/flag-try.svg" height="100px;" width="40px;" class="flag-width" alt="flag" style="display: none; float:right">
+                                                            <img src="assets/img/flag-us.svg" height="30px;" width="40px;" class="flag-width" alt="flag" style="display: none; float:right">
+                                                            <img src="assets/img/flag-de.svg" height="30px;" width="40px;" class="flag-width" alt="flag" style="display: none; float:right">
+                                                            <img src="assets/img/flag-gbp.svg" height="30px;" width="40px;" class="flag-width" alt="flag" style="display: none; float:right">
+                                                        </div>
+                                                        <div class="col-10 my-auto"> --}}
+                                                            <select class="form-control country_code para_birimi  form-control-sm" onchange="parayiCevir('cevirilecek_para','TRY',50)" value="GBP" id="para_birimi" name="para_birimi">
+                                                                <option value="">Para Birimi Seçiniz</option>
+                                                                <option value="TRY"> TRY - Türk Lirası</option>
+                                                                <option value="USD"> USD - Amerikan Doları</option>
+                                                                <option value="EUR"> EUR - Euro</option>
+                                                                <option value="GBP"> GBP - İngiliz Sterlini</option>
+                                                            </select>
+                                                        {{-- </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
 
@@ -699,5 +706,37 @@
     <script src="{{ asset('assets/js/apps/invoice-add.js') }}"></script>
     <script src="{{ asset('assets/js/teklifler.js') }}"></script>
     <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+    <script>
+        function parayiCevir(cevirilen, cevirilecek, miktar){
+            var parabirimi = document.getElementById("para_birimi").value;
+            if(parabirimi == 'TRY'){
+                document.getElementById("para_sembol").innerHTML = "₺";
+            }else if(parabirimi == 'USD'){
+                document.getElementById("para_sembol").innerHTML = "$";
+            }else if (parabirimi == 'EUR'){
+                document.getElementById("para_sembol").innerHTML = "€";
+            }else{
+                document.getElementById("para_sembol").innerHTML = "£";
+            }
+
+            console.log("Value:" + parabirimi);
+            $.ajax({
+                type: "GET",
+                url: "{{route('para.cevir')}}",
+                data: {
+                    cevirilen: parabirimi,
+                    cevirilecek: cevirilecek,
+                    miktar: miktar
+                },
+                success: function(response) {
+                    if (response) {
+                        console.log(" Tutar:"+response.tutar+" cevirilecek:" +response.cevirilecek+"cevirilen:" +response.cevirilen+"miktar:" +response.miktar);
+                    }
+                }
+            });
+        }
+        
+    </script>
 </body>
 </html>

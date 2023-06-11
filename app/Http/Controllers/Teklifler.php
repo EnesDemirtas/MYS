@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\teklif;
 use Illuminate\Http\Request;
+use AmrShawky\LaravelCurrency\Facade\Currency;
 
 class Teklifler extends Controller
 {
@@ -66,8 +67,15 @@ class Teklifler extends Controller
             'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
         ]);
+
+        $kacDolar = Currency::convert() //CURRENCY API KULLANIMI
+        ->from('USD')
+        ->to('TRY')
+        ->amount(50)
+        ->round(2)
+        ->get();
         
-        return view('teklif_onizle',['urun_miktari1' => $request->urun_miktari1, 'indirimsiz_toplam' => ($request->toplam_ucret_input + $request->indirim_miktari_input) , 'urun_fiyati1' => $request->urun_fiyati1, 'periyodik_bakim' => $request->periyodik_bakim, 'swift_kodu' => $request->swift_kodu, 'ulke' => $request->ulke, 'banka_adi' => $request->banka_adi, 'hesap_numarasi' => $request->hesap_numarasi , 'toplam_ucret_input' => $request->toplam_ucret_input, 'ara_toplam_input' => $request->ara_toplam_input, 'indirim_miktari_input' => $request->indirim_miktari_input, 'yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi, 'not' => $request->not]);
+        return view('teklif_onizle',['kacDolar' => $kacDolar,'urun_miktari1' => $request->urun_miktari1, 'indirimsiz_toplam' => ($request->toplam_ucret_input + $request->indirim_miktari_input) , 'urun_fiyati1' => $request->urun_fiyati1, 'periyodik_bakim' => $request->periyodik_bakim, 'swift_kodu' => $request->swift_kodu, 'ulke' => $request->ulke, 'banka_adi' => $request->banka_adi, 'hesap_numarasi' => $request->hesap_numarasi , 'toplam_ucret_input' => $request->toplam_ucret_input, 'ara_toplam_input' => $request->ara_toplam_input, 'indirim_miktari_input' => $request->indirim_miktari_input, 'yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi, 'not' => $request->not]);
     }
 
     public function teklifEkleGiris(Request $request) {
@@ -116,6 +124,21 @@ class Teklifler extends Controller
         ]);
         
         return view('teklif_onizle_giris',['yetkiliismi' => $request->yetkiliismi , 'yetkiliemail' => $request->yetkiliemail , 'musteriadres' => $request->musteriadres , 'musteritelefon' => $request->musteritelefon , 'date' => $request->date , 'due' => $request->due , 'sirketismi' => $request->sirketismi , 'not' => $request->not]);
+    }
+
+    public function paraCevir(Request $request){
+        $cevirilen = $request->cevirilen;
+        $cevirilecek = $request->cevirilecek;
+        $miktar = $request->miktar;
+        
+        $tutar = Currency::convert() //CURRENCY API KULLANIMI
+        ->from($cevirilen)
+        ->to($cevirilecek)
+        ->amount($miktar)
+        ->round(2)
+        ->get();
+        
+        return response()->json(['tutar'=>$tutar,'cevirilen'=>$cevirilen,'cevirilecek'=>$cevirilecek,'miktar'=>$miktar]);
     }
 
 }

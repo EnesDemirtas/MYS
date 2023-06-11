@@ -90,6 +90,7 @@
                                                                     <div class="d-flex">
                                                                         <img class="company-logo" src="assets/img/cork-logo.png" alt="company">
                                                                         <h3 class="in-heading align-self-center">{{$sirketismi}}</h3>
+                                                                        <p> 50 dolar Kaç para  = {{$kacDolar}}</p>
                                                                     </div>
                                                                 </div>
 

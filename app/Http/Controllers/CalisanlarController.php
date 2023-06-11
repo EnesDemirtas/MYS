@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\calisan;
 use App\Models\bakimformu;
+use App\Models\teklif;
 use App\Models\bakimformusonucu;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
@@ -186,11 +187,12 @@ class CalisanlarController extends Controller
 
     public function GetRandevuYonetimi(Request $request)
     {
+        $teklifler = teklif::All();
         $form_isimleri_raw = bakimformu::all('form_adi');
         $form_isimleri_slug = $form_isimleri_raw->map(function ($item, $key) {
             return Str::slug($item->form_adi, '-', 'tr');
         });
-        return view('randevu_yonetimi', ['form_isimleri_raw' => $form_isimleri_raw, 'form_isimleri_slug' => $form_isimleri_slug]);
+        return view('randevu_yonetimi', ['form_isimleri_raw' => $form_isimleri_raw, 'form_isimleri_slug' => $form_isimleri_slug] ,compact("teklifler"));
     }
 
     public function SubmitBakimFormu(Request $request)

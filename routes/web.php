@@ -118,3 +118,5 @@ Route::get('teklif_ekle', function () {
 Route::get('teklif_onizle', function () {
     return view('teklif_yonetimi');
 })->middleware('isAuthenticated');
+
+Route::get('paraCevir', [Teklifler::class, 'paraCevir'])->name('para.cevir');
