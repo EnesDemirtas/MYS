@@ -175,14 +175,14 @@ class CalisanlarController extends Controller
 
     public function ExampleForm(Request $request)
     {
-        $form_adi_slug = explode(';', $request->form_adi)[0];
-        $form_id = explode(';', $request->form_adi)[1];
-        $form = bakimformu::where('id', $form_id)->first();
+        $form_adi = explode(';', $request->form_adi)[0];
+        $teklif_id = explode(';', $request->form_adi)[1];
+        $form = bakimformu::where('form_adi', $form_adi)->first();
         $form_adi = $form->form_adi;
         $raw_sorular = $form->sorular;
         $sorular = explode(";", $raw_sorular);
         $sorular = array_slice($sorular, 0, -1);
-        return view('example_form', ['sorular' => $sorular, 'form_adi' => $form_adi]);
+        return view('example_form', ['sorular' => $sorular, 'form_adi' => $form_adi, 'teklif_id' => $teklif_id]);
     }
 
     public function GetRandevuYonetimi(Request $request)
@@ -192,7 +192,7 @@ class CalisanlarController extends Controller
         $form_isimleri_slug = $form_isimleri_raw->map(function ($item, $key) {
             return Str::slug($item->form_adi, '-', 'tr');
         });
-        return view('randevu_yonetimi', ['form_isimleri_raw' => $form_isimleri_raw, 'form_isimleri_slug' => $form_isimleri_slug] ,compact("teklifler"));
+        return view('randevu_yonetimi', ['form_isimleri_raw' => $form_isimleri_raw, 'form_isimleri_slug' => $form_isimleri_slug], compact("teklifler"));
     }
 
     public function SubmitBakimFormu(Request $request)
@@ -220,7 +220,6 @@ class CalisanlarController extends Controller
             'seri_no' => 'required|min:3|max:20',
             'ikaz_oneriler' => 'nullable|max:255',
             'sonuc_kanaat' => 'nullable|max:255',
-            'sonraki_bakim_tarihi' => 'required|after:tarih',
             'kontrol_yapan_tckn' => 'required|min:11|max:11',
             'kontrol_yapan_adsoyad' => 'required|min:6|max:50',
             'kontrol_yapan_meslek' => 'required|min:2|max:50',
@@ -277,6 +276,7 @@ class CalisanlarController extends Controller
             ]
         ));
         $form->save();
+        teklif::where('id', $request->teklif_id)->update(['teklif_durumu' => 'Bakım Yapıldı']);
         return redirect()->route('randevu_yonetimi')->with('success', 'Form başarıyla kaydedildi.');
     }
 

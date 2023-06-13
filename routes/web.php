@@ -111,9 +111,7 @@ Route::get('teklif_yonetimi', function () {
     return view('teklif_yonetimi');
 })->middleware('isAuthenticated');
 
-Route::get('teklif_ekle', function () {
-    return view('teklif_ekle');
-})->name('teklif_ekle')->middleware('isAuthenticated');
+Route::get('teklif_ekle', [Teklifler::class, 'teklifEkleLoad'])->name('teklif_ekle')->middleware('isAuthenticated');
 
 Route::get('teklif_onizle', function () {
     return view('teklif_yonetimi');

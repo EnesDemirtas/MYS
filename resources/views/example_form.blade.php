@@ -39,12 +39,13 @@
                     <h4 class="text-center">Periyodik Bakım Formu</h4>
                     <h5 class="text-center">{{ $form_adi }}</h5>
                     <input type=hidden name="form_adi" value="{{ $form_adi }}">
+                    <input type="hidden" name="teklif_id" value="{{ $teklif_id }}">
                 </div>
 
                 <div class="col-md-4">
                     <label for="date">Tarih</label>
                     <input type="text" class="form-control form-control-sm" id="date"
-                        placeholder="Add date picker" name="tarih">
+                        placeholder="Add date picker" name="tarih" value="{{ old('tarih') }}">
                 </div>
             </div>
 
@@ -64,22 +65,22 @@
                     <h3>Genel Bilgiler</h3>
                 </div>
                 <div class="row">
-                    <x-form_genel_bilgiler_row field="Kurum Adı" name="kurum_adi" />
+                    <x-bos_form_genel_bilgiler_row field="Kurum Adı" name="kurum_adi" />
                 </div>
                 <div class="row">
-                    <x-form_genel_bilgiler_row field="Faaliyet Alanı" name="faaliyet_alani" />
+                    <x-bos_form_genel_bilgiler_row field="Faaliyet Alanı" name="faaliyet_alani" />
 
                 </div>
                 <div class="row">
-                    <x-form_genel_bilgiler_row field="Adresi" name="adres" />
+                    <x-bos_form_genel_bilgiler_row field="Adresi" name="adres" />
 
                 </div>
                 <div class="row">
-                    <x-form_genel_bilgiler_row field="Telefon" name="telefon" />
+                    <x-bos_form_genel_bilgiler_row field="Telefon" name="telefon" />
 
                 </div>
                 <div class="row">
-                    <x-form_genel_bilgiler_row field="E-Posta" name="eposta" />
+                    <x-bos_form_genel_bilgiler_row field="E-Posta" name="eposta" />
 
                 </div>
             </div>
@@ -99,42 +100,42 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <x-form_genel_bilgiler_row field="Yapımcı firma" name="yapimci_firma" />
+                        <x-bos_form_genel_bilgiler_row field="Yapımcı firma" name="yapimci_firma" />
                     </div>
                     <div class="col">
-                        <x-form_genel_bilgiler_row field="Hacmi" name="hacmi" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <x-form_genel_bilgiler_row field="Markası" name="markasi" />
-                    </div>
-                    <div class="col">
-                        <x-form_genel_bilgiler_row field="Isıtma yüzeyi" name="isitma_yuzeyi" />
+                        <x-bos_form_genel_bilgiler_row field="Hacmi" name="hacmi" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <x-form_genel_bilgiler_row field="Modeli/Tipi" name="modeli_tipi" />
+                        <x-bos_form_genel_bilgiler_row field="Markası" name="markasi" />
                     </div>
                     <div class="col">
-                        <x-form_genel_bilgiler_row field="Isıtma kapasitesi" name="isitma_kapasitesi" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <x-form_genel_bilgiler_row field="Üretim tarihi" name="uretim_tarihi" />
-                    </div>
-                    <div class="col">
-                        <x-form_genel_bilgiler_row field="İşletme basıncı" name="isletme_basinci" />
+                        <x-bos_form_genel_bilgiler_row field="Isıtma yüzeyi" name="isitma_yuzeyi" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <x-form_genel_bilgiler_row field="Seri no" name="ozel_bilgiler_seri_no" />
+                        <x-bos_form_genel_bilgiler_row field="Modeli/Tipi" name="modeli_tipi" />
                     </div>
                     <div class="col">
-                        <x-form_genel_bilgiler_row field="Test basıncı" name="test_basinci" />
+                        <x-bos_form_genel_bilgiler_row field="Isıtma kapasitesi" name="isitma_kapasitesi" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <x-bos_form_genel_bilgiler_row field="Üretim tarihi" name="uretim_tarihi" />
+                    </div>
+                    <div class="col">
+                        <x-bos_form_genel_bilgiler_row field="İşletme basıncı" name="isletme_basinci" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <x-bos_form_genel_bilgiler_row field="Seri no" name="ozel_bilgiler_seri_no" />
+                    </div>
+                    <div class="col">
+                        <x-bos_form_genel_bilgiler_row field="Test basıncı" name="test_basinci" />
                     </div>
                 </div>
             </div>
@@ -145,18 +146,18 @@
                     <h3>Periyodik Kontrol Metodu</h3>
                 </div>
                 <div class="row">
-                    <x-form_genel_bilgiler_row field="Kullanılan Metod" name="kullanilan_metod" />
+                    <x-bos_form_genel_bilgiler_row field="Kullanılan Metod" name="kullanilan_metod" />
                 </div>
                 <div class="row">
-                    <x-form_genel_bilgiler_row field="Ölçüm Cihazı" name="olcum_cihazi" />
+                    <x-bos_form_genel_bilgiler_row field="Ölçüm Cihazı" name="olcum_cihazi" />
 
                 </div>
                 <div class="row">
-                    <x-form_genel_bilgiler_row field="Marka-Model" name="marka_model" />
+                    <x-bos_form_genel_bilgiler_row field="Marka-Model" name="marka_model" />
 
                 </div>
                 <div class="row">
-                    <x-form_genel_bilgiler_row field="Seri No" name="seri_no" />
+                    <x-bos_form_genel_bilgiler_row field="Seri No" name="seri_no" />
 
                 </div>
             </div>
@@ -187,7 +188,7 @@
                         <span class="input-group-text" id="inputGroup-sizing-default">İkaz ve Öneriler</span>
                     </div>
                     <textarea type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                        name="ikaz_oneriler"></textarea>
+                        name="ikaz_oneriler">{{ old('ikaz_oneriler') }}</textarea>
                 </div>
             </div>
 
@@ -198,7 +199,7 @@
                         <span class="input-group-text" id="inputGroup-sizing-default">Sonuç ve Kanaat</span>
                     </div>
                     <textarea type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                        name="sonuc_kanaat"></textarea>
+                        name="sonuc_kanaat">{{ old('sonuc_kanaat') }}</textarea>
                 </div>
             </div>
             <div class="row">
@@ -229,17 +230,18 @@
                                     No</span>
                             </div>
                             <input type="number" class="form-control" aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default" name="kontrol_yapan_tckn">
+                                aria-describedby="inputGroup-sizing-default" name="kontrol_yapan_tckn"
+                                value="{{ old('kontrol_yapan_tckn') }}">
                         </div>
                     </div>
                     <div class="row">
-                        <x-form_genel_bilgiler_row field="Adı Soyadı" name="kontrol_yapan_adsoyad" />
+                        <x-bos_form_genel_bilgiler_row field="Adı Soyadı" name="kontrol_yapan_adsoyad" />
                     </div>
                     <div class="row">
-                        <x-form_genel_bilgiler_row field="Mesleği" name="kontrol_yapan_meslek" />
+                        <x-bos_form_genel_bilgiler_row field="Mesleği" name="kontrol_yapan_meslek" />
                     </div>
                     <div class="row">
-                        <x-form_genel_bilgiler_row field="Diploma Tarihi ve No"
+                        <x-bos_form_genel_bilgiler_row field="Diploma Tarihi ve No"
                             name="kontrol_yapan_diploma_tarihi_no" />
                     </div>
                 </div>
@@ -254,14 +256,15 @@
                                     No</span>
                             </div>
                             <input type="number" class="form-control" aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default" name="kurum_yetkilisi_tckn">
+                                aria-describedby="inputGroup-sizing-default" name="kurum_yetkilisi_tckn"
+                                value="{{ old('kurum_yetkilisi_tckn') }}">
                         </div>
                     </div>
                     <div class="row">
-                        <x-form_genel_bilgiler_row field="Adı Soyadı" name="kurum_yetkilisi_adsoyad" />
+                        <x-bos_form_genel_bilgiler_row field="Adı Soyadı" name="kurum_yetkilisi_adsoyad" />
                     </div>
                     <div class="row">
-                        <x-form_genel_bilgiler_row field="Unvanı" name="kurum_yetkilisi_unvan" />
+                        <x-bos_form_genel_bilgiler_row field="Unvanı" name="kurum_yetkilisi_unvan" />
                     </div>
                 </div>
             </div>
