@@ -1,11 +1,11 @@
-function hesapla(counter){
-        var urunFiyati = document.getElementById("urun_fiyati"+counter+"").value;
-        var urunMiktari = document.getElementById("urun_miktari"+counter+"").value;
+function hesapla(){
+        var urunFiyati = document.getElementById("urun_fiyati1").value;
+        var urunMiktari = document.getElementById("urun_miktari1").value;
         var toplamTutar = urunFiyati * urunMiktari;
-        document.getElementById("toplam_tutar"+counter+"").innerHTML = toplamTutar;
+        document.getElementById("toplam_tutar1").innerHTML = toplamTutar;
 }
 
-function totalFiyatHesapla(counter, selectedItem){
+function totalFiyatHesapla(){
     if(document.getElementById("urun_fiyati1").value <= 0 && document.getElementById("urun_miktari1").value <= 0){
       document.getElementById("fiyat_uyarisi1").style.display = "block";
       document.getElementById("miktar_uyarisi1").style.display = "block";

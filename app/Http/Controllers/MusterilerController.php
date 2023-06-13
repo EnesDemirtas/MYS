@@ -128,7 +128,7 @@ class MusterilerController extends Controller {
             'mmobil' => 'required',
             'mukodutel' => 'required',
             'meposta' => 'email',
-            'madres' => 'reqired',
+            'madres' => 'required',
         ],
         [   
             'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
