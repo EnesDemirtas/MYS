@@ -118,3 +118,14 @@ Route::get('teklif_onizle', function () {
 })->middleware('isAuthenticated');
 
 Route::get('paraCevir', [Teklifler::class, 'paraCevir'])->name('para.cevir');
+
+// Kayıt olma aktivasyon kodu gönderme
+Route::get('get_register_activation_code', function () {
+    return view('get_register_activation_code')->name('get_register_activation_code');
+});
+
+Route::post('register_activation_code', [ActivationCodeController::class, 'SendRegisterActivationCode'])->name('register_activation_code');
+
+Route::get('load_register_activation_code', [UserController::class, 'LoadRegisterActivationCode'])->name('load_register_activation_code');
+
+Route::post('activate_account', [ActivationCodeController::class, 'ActivateAccount'])->name('activate_account');

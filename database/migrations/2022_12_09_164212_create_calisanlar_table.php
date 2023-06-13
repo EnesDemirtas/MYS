@@ -14,7 +14,7 @@ class CreateCalisanlarTable extends Migration
     public function up()
     {
         Schema::create('calisanlar', function (Blueprint $table) {
-            $table->id('csatirid',11);
+            $table->id('csatirid', 11);
             $table->string('mysrefno')->length(40)->nullable();
             $table->string('ctckn')->length(20);
             $table->string('cadi')->length(50);
@@ -32,6 +32,7 @@ class CreateCalisanlarTable extends Migration
             $table->string('cbanka')->lenght(30)->nullable();
             $table->string('ciban')->lenght(30)->nullable();
             $table->string('cevadres')->lenght(255)->nullable();
+            $table->boolean('caktif')->default(0);
         });
     }
 

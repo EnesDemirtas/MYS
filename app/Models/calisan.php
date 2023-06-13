@@ -30,6 +30,7 @@ class calisan extends Model
         'cevadresil',
         'ceposta',
         'cwhatsapp',
-        'cphoto'
+        'cphoto',
+        'caktif',
     ];
 }
