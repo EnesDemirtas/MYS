@@ -8,6 +8,7 @@
         "php": "^8.0.2",
         "amrshawky/laravel-currency": "^6.0",
         "barryvdh/laravel-dompdf": "^2.0",
+        "deligoez/tckimlikno": "^4.0",
         "doctrine/dbal": "^3.6",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
