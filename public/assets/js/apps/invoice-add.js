@@ -153,7 +153,7 @@ document.getElementsByClassName('additem')[0].addEventListener('click', function
         '<input type="text" class="form-control  form-control-sm" placeholder="Fiyat" id="urun_fiyati'+yenisi+'" value="0" onchange="hesapla('+yenisi+')">'+
    ' </td>'+
     '<td class="text-right qty"><input type="text" class="form-control  form-control-sm" placeholder="Miktar" id="urun_miktari'+yenisi+'" onchange="hesapla('+yenisi+')" value="1"></td>'+
-    '<td class="text-right amount"><span class="editable-amount"><span class="currency">$</span> <span class="'+yenisi+'" id="toplam_tutar'+yenisi+'">0.00</span></span></td>'+
+    '<td class="text-right amount"><span class="editable-amount"><span class="para_sembol"></span> <span class="'+yenisi+'" id="toplam_tutar'+yenisi+'">0.00</span></span></td>'+
     '</tr>';
 
 
@@ -163,7 +163,7 @@ document.getElementsByClassName('additem')[0].addEventListener('click', function
             '<div class="invoice-summary-label">Ara Toplam</div>'+
             '<div class="invoice-summary-value">'+
                 '<div class="subtotal-amount">'+
-                    '<span class="currency">$</span><span class="amount" id="ara_toplam">100</span>'+
+                    '<span class="para_sembol"></span><span class="amount" id="ara_toplam">100</span>'+
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -171,7 +171,7 @@ document.getElementsByClassName('additem')[0].addEventListener('click', function
             '<div class="invoice-summary-label">İndirim</div>'+
             '<div class="invoice-summary-value">'+
                 '<div class="total-amount">'+
-                    '<span class="currency">$</span><span id="indirim_miktari">0</span>'+
+                    '<span class="para_sembol"></span><span id="indirim_miktari">0</span>'+
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -179,7 +179,7 @@ document.getElementsByClassName('additem')[0].addEventListener('click', function
             '<div class="invoice-summary-label">Toplam</div>'+
             '<div class="invoice-summary-value">'+
                 '<div class="balance-due-amount">'+
-                    '<span class="currency">$</span><span id="toplam_ucret">90</span>'+
+                    '<span class="para_sembol"></span><span id="toplam_ucret">90</span>'+
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -189,7 +189,6 @@ document.getElementsByClassName('additem')[0].addEventListener('click', function
   $(".item-table tbody").append($html);
   deleteItemRow();
 })
-
 
 function selectableDropdown(getElement) {
   var getDropdownElement = getElement;

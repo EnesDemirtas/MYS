@@ -94,7 +94,7 @@
                                                                 </div>
 
                                                                 <div class="col-sm-6 text-sm-right">
-                                                                    <p class="inv-list-number"><span class="inv-title">Teklif : </span> <span class="inv-number">#0001</span></p>
+                                                                    <p class="inv-list-number"><span class="inv-title">Teklif : </span> <span class="inv-number">#0{{$teklifler->id}}</span></p>
                                                                 </div>
 
                                                                 <div class="col-sm-6 align-self-center mt-3">
@@ -179,19 +179,19 @@
                                                                                 <p class="">Ara Toplam: </p>
                                                                             </div>
                                                                             <div class="col-sm-4 col-5">
-                                                                                <p class=""></p>
+                                                                                <p class="">{{($teklifler->istenilen_hizmet_fiyat * $teklifler->istenilen_hizmet_miktar)}}</p>
                                                                             </div>
                                                                             <div class="col-sm-8 col-7">
-                                                                                <p class=" discount-rate">İndirim : <span class="discount-percentage">5%</span> </p>
+                                                                                <p class=" discount-rate">İndirim : <span class="discount-percentage">{{($teklifler->teklif_edilen_indirim * 100) / ($teklifler->istenilen_hizmet_fiyat * $teklifler->istenilen_hizmet_miktar)}}%</span> </p>
                                                                             </div>
                                                                             <div class="col-sm-4 col-5">
-                                                                                <p class="">$10</p>
+                                                                                <p class="">{{$teklifler->teklif_edilen_indirim}}</p>
                                                                             </div>
                                                                             <div class="col-sm-8 col-7 grand-total-title">
                                                                                 <h4 class="">Net Toplam : </h4>
                                                                             </div>
                                                                             <div class="col-sm-4 col-5 grand-total-amount">
-                                                                                <h4 class="">$3845</h4>
+                                                                                <h4 class="">{{($teklifler->istenilen_hizmet_fiyat * $teklifler->istenilen_hizmet_miktar) - $teklifler->teklif_edilen_indirim}}</h4>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -203,6 +203,7 @@
                                                         <div class="inv--note">
 
                                                             <div class="row mt-4">
+                                                                <label for="invoice-detail-notes" class="col-sm-12 col-form-label col-form-label-sm">Not:</label>
                                                                 <div class="col-sm-12 col-12 order-sm-0 order-1">
                                                                     <p>{{$teklifler->teklif_veren_not}}</p>
                                                                 </div>

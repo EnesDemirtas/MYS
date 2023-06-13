@@ -252,10 +252,12 @@
                                                                     </div>
                                                                        <textarea id="ek_detaylar" class="form-control" placeholder="Ek Detaylar (Eklemek istediğiniz herhangi birşey varsa)"></textarea></td>
                                                                 <td class="rate">
-                                                                      <input type="text" class="form-control  form-control-sm" placeholder="Fiyat" id="urun_fiyati1" name="urun_fiyati1" value="0" onchange="hesapla(1)">
+                                                                      <input type="text" class="form-control  form-control-sm" placeholder="Fiyat" id="urun_fiyati1" name="urun_fiyati1" value="0" >
                                                                 </td>
-                                                                <td class="text-right qty"><input type="text" class="form-control  form-control-sm" placeholder="Miktar" name="urun_miktari1" id="urun_miktari1" onchange="hesapla(1)" value="1" ></td>
-                                                                  <td class="text-right amount"><span class="editable-amount"><span id="para_sembol">$</span> <span class="1" name="toplam_tutar1" id="toplam_tutar1">0.00</span></span></td>
+                                                                <td class="text-right qty">
+                                                                    <input type="text" class="form-control  form-control-sm" placeholder="Miktar" name="urun_miktari1" id="urun_miktari1" value="1" >
+                                                                </td>
+                                                                  <td class="text-right amount"><span class="editable-amount"><span id="para_sembol">₺</span> <span class="1" name="toplam_tutar1" id="toplam_tutar1">0.00</span></span></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -499,16 +501,16 @@
                                                     </div>
 
                                                     <div class="col-md-6 fiyat_hesapla text-center">
-                                                        <a href="javascript:void(0);" class="btn btn-primary" onclick="totalFiyatHesapla(1)">Total Fiyat Hesapla</a>
+                                                        {{-- <a href="javascript:void(0);" class="btn btn-primary" onclick="totalFiyatHesapla(1)">Total Fiyat Hesapla</a> --}}
                                                         <p class="font-weight-bold alert alert-danger mt-1" id="fiyat_uyarisi1" style="display:none;">Lütfen ürün için geçerli fiyat bilgisi girdiğinizden emin olunuz!</p>
                                                         <p class="font-weight-bold alert alert-danger mt-1" id="miktar_uyarisi1" style="display:none;">Lütfen ürün için geçerli miktar bilgisi girdiğinizden emin olunuz!</p>
                                                         <p class="font-weight-bold alert alert-danger mt-1" id="cok_miktar" style="display:none;">Lütfen daha fazla miktarda ürün talep etmek için bizimle <span class="text-bold">iletişime</span> geçiniz!</p>
-                                                        <div id="totalrow" style="display:none;">
+                                                        <div id="totalrow" style="display:block;">
                                                             <div class="invoice-totals-row invoice-summary-subtotal">
                                                                 <div class="invoice-summary-label">Ara Toplam</div>
                                                                 <div class="invoice-summary-value">
                                                                     <div class="subtotal-amount">
-                                                                        <span id="para_sembol">$</span><span class="amount" id="ara_toplam">100</span>
+                                                                        <span id="para_sembol">₺</span><span class="amount" id="ara_toplam">100</span>
                                                                         <input type="text" style="display:none;" id="ara_toplam_input" name="ara_toplam_input" value="0">
                                                                     </div>
                                                                 </div>
@@ -523,7 +525,7 @@
 
                                                                 <div class="invoice-summary-value">
                                                                     <div class="total-amount">
-                                                                        <span id="para_sembol">$</span><span id="indirim_miktari">0</span>
+                                                                        <span id="para_sembol">₺</span><span id="indirim_miktari">0</span>
                                                                         <input type="text" style="display:none;" id="indirim_miktari_input" name="indirim_miktari_input" value = "0">
                                                                     </div>
                                                                 </div>
@@ -536,7 +538,7 @@
 
                                                                 <div class="invoice-summary-value">
                                                                     <div class="balance-due-amount">
-                                                                        <span id="para_sembol">$</span><span id="toplam_ucret">90</span>
+                                                                        <span id="para_sembol">₺</span><span id="toplam_ucret">90</span><span id="cevirilenPara" style="display:none;"></span>
                                                                         <input type="text" style="display:none;" id="toplam_ucret_input" name="toplam_ucret_input" value="0">
                                                                     </div>
                                                                 </div>
@@ -637,12 +639,12 @@
                                                     <div class="col-6">
                                                         <div class="form-group mb-0" id="discount-amount" style="display: none;">
                                                             <label for="rate">Miktar</label>
-                                                            <input type="number" class="form-control input-rate" onclick="teklifGonderSil()" onchange="indirimYap('Miktar')" id="discount-amount-rate" placeholder="Rate" value="0">
+                                                            <input type="number" class="form-control input-rate" onclick="teklifGonderSil()" id="discount-amount-rate" placeholder="Rate" value="0">
                                                         </div>
 
                                                         <div class="form-group mb-0" id="discount-percent" style="display: none;" >
                                                             <label for="rate">Yüzde</label>
-                                                            <input type="number" class="form-control input-rate" onclick="teklifGonderSil()" onchange="indirimYap('Yüzde')" id="discount-percent-rate" placeholder="Rate" value="0">
+                                                            <input type="number" class="form-control input-rate" onclick="teklifGonderSil()"  id="discount-percent-rate" placeholder="Rate" value="0">
                                                         </div>
                                                     </div>
 
@@ -708,35 +710,65 @@
     <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
     <script>
-        function parayiCevir(cevirilen, cevirilecek, miktar){
-            var parabirimi = document.getElementById("para_birimi").value;
-            if(parabirimi == 'TRY'){
+        $(document).ready(function(){
+            const fiyat = document.getElementById("urun_fiyati1"); // fiyat bilgisi değişince anlık olarak total ücreti hesaplamak için 
+            fiyat.addEventListener("input", fiyatUpdate);
+            function fiyatUpdate(e) {
+                hesapla();
+                totalFiyatHesapla();
+                document.getElementById("cevirilenPara").style.display = "block";
+                parayiCevir(document.getElementById("para_birimi").value,"TRY",parseInt(document.getElementById("toplam_ucret").innerHTML));
+            }
+
+            const miktar = document.getElementById("urun_miktari1"); // miktar bilgisi değişince anlık olarak total ücreti hesaplamak için 
+            miktar.addEventListener("input", miktarUpdate);
+            function miktarUpdate(e) {
+                hesapla();
+                totalFiyatHesapla();
+                parayiCevir(document.getElementById("para_birimi").value,"TRY",parseInt(document.getElementById("toplam_ucret").innerHTML));
+            }
+
+            const miktar_indirim = document.getElementById("discount-amount-rate");
+            miktar_indirim.addEventListener("input", updateValueMiktar); // Yüzdesel indirim yapma
+            function updateValueMiktar(e) {
+                indirimYap('Miktar');
+                totalFiyatHesapla();
+            }
+
+            const yuzde_indirim = document.getElementById("discount-percent-rate");
+            yuzde_indirim.addEventListener("input", updateValueYuzde); // Yüzdesel indirim yapma
+            function updateValueYuzde(e) {
+                indirimYap('Yüzde');
+                totalFiyatHesapla();
+            }
+        });
+        
+
+        function parayiCevir(cevirilen, cevirilecek, miktar){ // CURRENCY API İLE SEÇİLEN PARAYI TL'YE ÇEVİRME KISMI
+            if(document.getElementById("para_birimi").value == 'TRY'){
                 document.getElementById("para_sembol").innerHTML = "₺";
-            }else if(parabirimi == 'USD'){
+            }else if(document.getElementById("para_birimi").value == 'USD'){
                 document.getElementById("para_sembol").innerHTML = "$";
-            }else if (parabirimi == 'EUR'){
+            }else if (document.getElementById("para_birimi").value == 'EUR'){
                 document.getElementById("para_sembol").innerHTML = "€";
             }else{
                 document.getElementById("para_sembol").innerHTML = "£";
             }
-
-            console.log("Value:" + parabirimi);
             $.ajax({
                 type: "GET",
                 url: "{{route('para.cevir')}}",
                 data: {
-                    cevirilen: parabirimi,
+                    cevirilen: cevirilen,
                     cevirilecek: cevirilecek,
                     miktar: miktar
                 },
                 success: function(response) {
                     if (response) {
-                        console.log(" Tutar:"+response.tutar+" cevirilecek:" +response.cevirilecek+"cevirilen:" +response.cevirilen+"miktar:" +response.miktar);
+                            document.getElementById("cevirilenPara").innerHTML = ' = ₺' + response.tutar;
                     }
                 }
             });
-        }
-        
+            }
     </script>
 </body>
 </html>
