@@ -267,12 +267,23 @@ class CalisanlarController extends Controller
             $teknik_bilgiler_keys,
             ['_token', '_method', 'tarih', 'sonraki_bakim_tarihi']
         );
+
+        // Format the dates
+        $dateString = $request->tarih;
+        $dateString2 = $request->sonraki_bakim_tarihi;
+
+        $date = \DateTime::createFromFormat('d/m/Y', $dateString);
+        $date2 = \DateTime::createFromFormat('d/m/Y', $dateString2);
+
+        $mySqlDate = $date->format('Y-m-d');
+        $mySqlDate2 = $date2->format('Y-m-d');
+
         $form = bakimformusonucu::create(array_merge(
             $request->except($exclude_keys),
             [
                 'ozel_bilgiler' => $ozel_bilgiler, 'teknik_bilgiler' => $teknik_bilgiler,
-                'cevaplar' => $cevaplar, 'tarih' => date('Y-m-d', strtotime($request->tarih)),
-                'sonraki_bakim_tarihi' => date('Y-m-d', strtotime($request->sonraki_bakim_tarihi))
+                'cevaplar' => $cevaplar, 'tarih' => $mySqlDate,
+                'sonraki_bakim_tarihi' => $mySqlDate2
             ]
         ));
         $form->save();

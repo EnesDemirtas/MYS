@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('bakimformusonuclari', function (Blueprint $table) {
             $table->id();
             $table->string('form_adi')->length(255);
+            $table->integer('teklif_id');
             $table->string('kurum_adi')->length(255);
             $table->string('faaliyet_alani')->length(255);
             $table->text('adres');

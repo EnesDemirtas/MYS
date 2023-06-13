@@ -321,6 +321,9 @@
             //     .value), 1);
             document.getElementById('date').value = format(new Date(document.getElementById(
                 'date').value));
+
+            document.getElementById('sonuc_kanaat_date').innerHTML = format(new Date(document.getElementById(
+                'sonuc_kanaat_date').innerHTML));
         });
     </script>
 </body>
