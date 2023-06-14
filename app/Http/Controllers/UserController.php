@@ -36,6 +36,7 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
+        dd($request->tip);
         $request->validate([
             'username' => 'required',
             'cadi' => 'required',
@@ -56,6 +57,14 @@ class UserController extends Controller
             'dogumgunu.required' => 'Doğum günü boş bırakılamaz',
             'telefon.required' => 'Telefon numarası boş bırakılamaz',
         ]);
+
+        if($request->tip == "musteri"){
+
+        }else if($request->tip == "calisan"){
+
+        }else{
+            return back()->withErrors(['gecersizTip' => 'Kayıt olurken bir hata oluştu. Lütfen bizimle iletişime geçiniz.']);
+        }
 
         $kullanici = calisan::where('ckullaniciadi', $request->input('username'))->first();
         $tckn = calisan::where('ctckn', $request->input('tckn'))->first();

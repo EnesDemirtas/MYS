@@ -28,34 +28,24 @@
                         <form class="text-left" method="POST" action=" {{ route('register') }} ">
                             @csrf
                             <div class="form">
-                                <div class="kurumsal-bireysel-secme">
-                                    <button type="button" id="kurumsal_buton" class="btn btn-primary btn-rounded mb-2"
-                                        onclick="kurumsal_bireysel(3)">Müşteri</button>
-                                    <button type="button" id="bireysel_buton"
+                                <div class="musteri-calisan-secme">
+                                    <button type="button" id="musteri_buton" class="btn btn-primary btn-rounded mb-2"
+                                        onclick="musteri_calisan(3)">Müşteri</button>
+                                    <button type="button" id="calisan_buton"
                                         class="btn btn-outline-primary btn-rounded mb-2"
-                                        onclick="kurumsal_bireysel(4)">Çalışan</button>
+                                        onclick="musteri_calisan(4)">Çalışan</button>
                                 </div>
-                                <!-- Kurumsal Kayıt-->
+                                <input type="text" style="display:none;" name="tip" id="tip" value="musteri"> <!-- Çalışanın mı yoksa müşterinin mi kaydının tutulacağını tutan input -->
+                                <!-- musteri Kayıt-->
+                                @error('gecersizTip')
+                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                @enderror
                                 @error('mernis')
                                     <p class="text-danger mt-1">{{ $message }}</p>
                                 @enderror
-                                <div id="kurumsal">
+                                <div id="musteri"><!-- Birinci Satır -->
                                     <div class="row">
                                         <div class="col-6">
-                                            <div id="username-field" class="field-wrapper input">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-user">
-                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                                    <circle cx="12" cy="7" r="4"></circle>
-                                                </svg>
-                                                <input id="username" name="username" type="text"
-                                                    class="form-control"placeholder="Kullanıcı Adı">
-                                                @error('username')
-                                                    <p class="text-danger mt-1">{{ $message }}</p>
-                                                @enderror
-                                            </div>
                                             <div id="ad-field" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -70,6 +60,28 @@
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
+                                            
+                                        </div>
+                                        <div class="col-6">
+                                            <div id="soyad-field" class="field-wrapper input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                <input id="soyad" name="csoyadi" type="text"
+                                                    class="form-control"placeholder="Soyad">
+                                                @error('ad')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- İkinci Satır -->
+                                    <div class="row">
+                                        <div class="col-6">
                                             <div id="email-field" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -84,6 +96,8 @@
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
+                                        </div>
+                                        <div class="col-6">
                                             <div id="password-field" class="field-wrapper input mb-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -100,8 +114,10 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <!-- İkinci Kolon Başlangıç -->
+                                    </div>        
+                                    <!-- Üçüncü Satır --> 
+                                    <div class="row">
+                                        <div class="col-6">       
                                             <div id="tckn-field" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -116,7 +132,9 @@
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                            <div id="soyad-field" class="field-wrapper input">
+                                        </div>  
+                                        <div class="col-6">
+                                            <div id="username-field" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -124,12 +142,17 @@
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="soyad" name="csoyadi" type="text"
-                                                    class="form-control"placeholder="Soyad">
-                                                @error('ad')
+                                                <input id="username" name="username" type="text"
+                                                    class="form-control"placeholder="Kullanıcı Adı">
+                                                @error('username')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
-                                            </div>
+                                            </div>   
+                                        </div>
+                                    </div>
+                                    <!-- Dördüncü Satır -->
+                                    <div class="row">
+                                        <div class="col-6">     
                                             <div id="dogumgunu" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -149,6 +172,8 @@
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
+                                        </div>
+                                        <div class="col-6">  
                                             <div id="telefon-field" class="field-wrapper input mb-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -164,12 +189,33 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                    </div>
+                                    <!-- Üçüncü Satır --> 
+                                    <div class="row">
+                                        <div class="col-6">       
+                                            <div id="tckn-field" class="field-wrapper input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                <input id="tckn" name="tckn" type="text"
+                                                    class="form-control" placeholder="TCKN">
+                                                @error('tckn')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <!-- Adres Kısmı -->
                                         <div id="adres-field" class="row field-wrapper input mb-2">
                                             <div class="col-2 pr-0">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="30"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-map-pin">
+                                                    class="feather feather-map-pin" style="top: 7px; right: -30;">
                                                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                                                     <circle cx="12" cy="10" r="3" />
                                                 </svg>
@@ -190,24 +236,51 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="field-wrapper terms_condition">
-                                        <div class="n-chk new-checkbox checkbox-outline-primary">
-                                            <label class="new-control new-checkbox checkbox-outline-primary">
-                                                <input type="checkbox" class="new-control-input">
-                                                <span class="new-control-indicator"></span><span><a
-                                                        onclick="kurumsal_bireysel(5)"> Üyelik koşullarını </a>kabul
-                                                    ediyorum.</span>
-                                            </label>
+                                    
+                                    <div class="uyelik_kosullari">
+                                        <div class="row">
+                                            <div class="col-1 my-auto">
+                                                <input type="checkbox">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="field-wrapper terms_condition my-auto">
+                                                    <div class="n-chk new-checkbox checkbox-outline-primary">
+                                                        <div data-toggle="modal" data-target="#modal_default">
+                                                            <span class="text-primary" style="cursor:pointer;">Üyelik koşullarını</span> <span>kabul ediyorum.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
-                                <!-- Kurumsal Kayıt-->
-                                <!-- Bireysel Kayıt-->
-                                <div id="bireysel">
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal_default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Üyelik Şartları</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          SBE Mühendislik şu hakları saklı tutar:
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                <!-- Modal -->
+                                <!-- musteri Kayıt-->
+                                <!-- calisan Kayıt-->
+                                <div id="calisan">
                                 </div>
-                                <!-- Bireysel Kayıt-->
+                                <!-- calisan Kayıt-->
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper toggle-pass">
                                         <p class="d-inline-block">Şifreyi göster</p>
@@ -225,7 +298,7 @@
                         </form>
                         <div class="d-flex align-item-center">
                             <!-- Terms and conditions -->
-                            <p class="terms-conditions" style="bottom: 5px;">© 2022 Tüm hakları saklıdır. <a
+                            <p class="terms-conditions" style="bottom: 5px;">© 2023 Tüm hakları saklıdır. <a
                                     href="#">DAKIK</a>
                         </div>
 
@@ -247,7 +320,66 @@
 
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     <script src="{{ asset('assets/js/authentication/form-1.js') }}"></script>
+    <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
+    <script src="{{ asset('assets/js/inputController.js') }}"></script>
 
+    <script>
+    // GOOGLE HARİTALAR
+        function enlemBoylamDegis(enlem,boylam){
+                $("#hk-enlem").attr("value",enlem);
+                $("#hk-boylam").attr("value",boylam);    
+              }
+              let map, infoWindow;
+      
+                function initMap() {
+                  map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 36.89241570427338, lng: 30.710640679285348 },
+          zoom: 6,
+        });
+        infoWindow = new google.maps.InfoWindow();
+        let marker = new google.maps.Marker();
+      
+        const locationButton = document.getElementById("anlikKonum");
+      
+        locationButton.classList.add("custom-map-control-button");
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+        locationButton.addEventListener("click", () => {
+      
+          marker.setMap(null); // marker'ı sıfırlar
+          // Try HTML5 geolocation.
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude,
+                };
+                marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
+                  position: pos,
+                });
+      
+                enlemBoylamDegis(pos.lat,pos.lng); // enlem ve boylam bilgilerini inputa verir.
+                marker.setMap(map);
+                map.setCenter(pos);
+              }
+            );
+          }
+        });
+      
+        map.addListener("click", (mapsMouseEvent) => {
+          // Close the current InfoWindow.
+          marker.setMap(null); // marker'ı sıfırlar
+          marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
+            position: mapsMouseEvent.latLng,
+          });
+      
+          var lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat); // Seçilen konumun lat bilgisini alır.
+          var lng = JSON.stringify(mapsMouseEvent.latLng.toJSON().lng); // Seçilen konumun lng bilgisini alır. 
+          enlemBoylamDegis(lat,lng); // enlem ve boylam bilgilerini inputa verir.
+          marker.setMap(map);
+        });
+      }
+        </script>
 </body>
 
 </html>

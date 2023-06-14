@@ -545,7 +545,8 @@
 <script src="plugins/flatpickr/custom-flatpickr.js"></script>
 
 
-  <script> // GOOGLE HARİTALAR
+  <script> 
+  // GOOGLE HARİTALAR
   function enlemBoylamDegis(enlem,boylam){
           $("#hk-enlem").attr("value",enlem);
           $("#hk-boylam").attr("value",boylam);    
