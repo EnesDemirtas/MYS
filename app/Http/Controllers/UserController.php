@@ -88,7 +88,7 @@ class UserController extends Controller
             $kullanici->ctckn = $request->input('tckn');
             $kullanici->cdogum = $request->input('dogumgunu');
             $kullanici->save();
-            return redirect()->route('giris_yap');
+            return redirect()->route('get_register_activation_code');
         }
     }
 
@@ -123,5 +123,10 @@ class UserController extends Controller
     public function GetNewPassword(Request $request)
     {
         return view('sifre_yenileme_kod', ['eposta' => $request->query('eposta')]);
+    }
+
+    public function LoadRegisterActivationCode(Request $request)
+    {
+        return view('load_register_activation_code', ['eposta' => $request->query('eposta')]);
     }
 }

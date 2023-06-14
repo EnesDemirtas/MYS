@@ -11,6 +11,7 @@ class bakimformusonucu extends Model
     protected $table = 'bakimformusonuclari';
     protected $fillable = [
         'form_adi',
+        'teklif_id',
         'kurum_adi',
         'faaliyet_alani',
         'adres',
