@@ -1,5 +1,6 @@
 function musteri_calisan(deger) {
     if(deger == 3){ //Register - müşteri kısmı görünür yapma
+        document.getElementById("tip").value = "musteri";
         document.getElementById("musteri").innerHTML = '';
 		document.getElementById("calisan").innerHTML = '';
         var calisan = document.getElementById("calisan_buton");

@@ -13,6 +13,12 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/theme-checkbox-radio.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/switches.css') }}">
+    <style>
+        #map {
+          height: 300px;
+          width: 100%;
+         }
+    </style>
 </head>
 
 <body class="form">
@@ -20,7 +26,7 @@
     <div class="form-container">
         <div class="form-form">
             <div class="form-form-wrap">
-                <div class="form-container">
+                <div class="form-container p-1">
                     <div class="form-content">
                         <h1 class="">Anında yeni hesabınızı oluşturun</h1>
                         <p class="signup-link">Zaten bir hesabınız var mı? <a href="/musteri/giris_yap">Giriş yapın</a>
@@ -209,13 +215,37 @@
                                             </div>
                                         </div> 
                                     </div>
+                                    <!-- Google Haritalar -->
+                                    <div class="row">
+                                        <div class="col-12 text-center p-0">
+                                            <h3><span class="badge badge-primary font-weight-bold w-100" style="font-size:20px;">Adres Bilgileri</span></h3>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div role="button" id="anlikKonum" class="btn btn-light"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#de1717" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 395.71 395.71" xml:space="preserve" stroke="#006eff"><g id="SVGRepo_bgCarrier" stroke-width="0"/><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/><g id="SVGRepo_iconCarrier"> <g> <path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738 c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388 C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191 c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"/> </g> </g></svg>                            
+                                        </div>
+                                        <div class="col-1">
+                                          <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" value="{{ old('menlem') }}">
+                                        </div>
+                                        <div class="col-1">
+                                          <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam"  value="{{ old('mboylam') }}">
+                                        </div>
+                                        <div class="col-12" id="map"> <!-- GOOGLE HARİTALAR -->
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 p-0">
+                                            <textarea placeholder="Adres bilgilerinizi giriniz. Örn: Muratpaşa, Kızılarık Mah. Yanık Apt. No: 5/11, Köroğlu Bulvarı, 07310 Antalya" class="form-control mt-2" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}" style=" resize: none !important;"></textarea>
+                                        </div>
+                                    </div>
                                     <!-- Adres Kısmı -->
                                         <div id="adres-field" class="row field-wrapper input mb-2">
-                                            <div class="col-2 pr-0">
+                                            <div class="col-1 pr-0">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="30"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-map-pin" style="top: 7px; right: -30;">
+                                                    class="feather feather-map-pin" style="top: 7px; right: -15;">
                                                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                                                     <circle cx="12" cy="10" r="3" />
                                                 </svg>
@@ -240,7 +270,10 @@
                                     <div class="uyelik_kosullari">
                                         <div class="row">
                                             <div class="col-1 my-auto">
-                                                <input type="checkbox">
+                                                <label class="switch s-primary">
+                                                    <input type="checkbox" id="toggle-uyelik-kosullari" class="d-none" value="isaretlenmemis">
+                                                    <span class="slider round" onclick=""></span>
+                                                </label>
                                             </div>
                                             <div class="col-10">
                                                 <div class="field-wrapper terms_condition my-auto">
@@ -283,11 +316,11 @@
                                 <!-- calisan Kayıt-->
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper toggle-pass">
-                                        <p class="d-inline-block">Şifreyi göster</p>
                                         <label class="switch s-primary">
                                             <input type="checkbox" id="toggle-password" class="d-none">
                                             <span class="slider round"></span>
                                         </label>
+                                        <p class="d-inline-block">Şifreyi göster</p>
                                     </div>
                                     <div class="field-wrapper">
                                         <button type="submit" class="btn btn-primary" value="">Üye Ol</button>
@@ -322,7 +355,7 @@
     <script src="{{ asset('assets/js/authentication/form-1.js') }}"></script>
     <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
-
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
     <script>
     // GOOGLE HARİTALAR
         function enlemBoylamDegis(enlem,boylam){
