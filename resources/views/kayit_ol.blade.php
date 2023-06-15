@@ -13,11 +13,13 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/theme-checkbox-radio.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/switches.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
     <style>
         #map {
-          height: 300px;
-          width: 100%;
-         }
+            height: 300px;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -29,7 +31,8 @@
                 <div class="form-container p-1">
                     <div class="form-content">
                         <h1 class="">Anında yeni hesabınızı oluşturun</h1>
-                        <p class="signup-link">Zaten bir hesabınız var mı? <a href="{{route('giris_yap')}}">Giriş yapın</a>
+                        <p class="signup-link">Zaten bir hesabınız var mı? <a href="{{ route('giris_yap') }}">Giriş
+                                yapın</a>
                         </p>
                         <form class="text-left" method="POST" action=" {{ route('register') }} ">
                             @csrf
@@ -41,7 +44,9 @@
                                         class="btn btn-outline-primary btn-rounded mb-2"
                                         onclick="musteri_calisan(4)">Çalışan</button>
                                 </div>
-                                <input type="text" style="display:none;" name="tip" id="tip" value="musteri"> <!-- Çalışanın mı yoksa müşterinin mi kaydının tutulacağını tutan input -->
+                                <input type="text" style="display:none;" name="tip" id="tip"
+                                    value="musteri">
+                                <!-- Çalışanın mı yoksa müşterinin mi kaydının tutulacağını tutan input -->
                                 <!-- musteri Kayıt-->
                                 @error('gecersizTip')
                                     <p class="text-danger mt-1">{{ $message }}</p>
@@ -49,7 +54,8 @@
                                 @error('mernis')
                                     <p class="text-danger mt-1">{{ $message }}</p>
                                 @enderror
-                                <div id="musteri" style="display:block;" ><!-- Birinci Satır -->
+                                <div id="musteri" style="display:block;">
+                                    <!-- Birinci Satır -->
                                     <div class="row">
                                         <div class="col-6">
                                             <div id="ad-field" class="field-wrapper input">
@@ -66,7 +72,7 @@
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                            
+
                                         </div>
                                         <div class="col-6">
                                             <div id="soyad-field" class="field-wrapper input">
@@ -114,16 +120,20 @@
                                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                                 </svg>
                                                 <input id="msifre" name="msifre" type="password" value=""
-                                                    placeholder="Şifre">
+                                                    placeholder="Şifre" style="width: 90% !important">
+                                                <i class="far
+                                            fa-eye"
+                                                    id="togglePasswordMusteri"
+                                                    style="margin-left: -30px; cursor: pointer;"></i>
                                                 @error('password')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>        
-                                    <!-- Üçüncü Satır --> 
+                                    </div>
+                                    <!-- Üçüncü Satır -->
                                     <div class="row">
-                                        <div class="col-6">       
+                                        <div class="col-6">
                                             <div id="tckn-field" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -138,7 +148,7 @@
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                        </div>  
+                                        </div>
                                         <div class="col-6">
                                             <div id="username-field" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -153,12 +163,12 @@
                                                 @error('username')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
-                                            </div>   
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Dördüncü Satır -->
                                     <div class="row">
-                                        <div class="col-6">     
+                                        <div class="col-6">
                                             <div id="dogumgunu-field" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -179,7 +189,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-6">  
+                                        <div class="col-6">
                                             <div id="telefon-field" class="field-wrapper input mb-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -196,10 +206,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Firma Bilgileri Kısmı --> 
+                                    <!-- Firma Bilgileri Kısmı -->
                                     <div class="row">
                                         <div class="col-12 text-center p-0">
-                                            <h3><span class="badge badge-primary font-weight-bold w-100" style="font-size:20px;">Firma Bilgileriniz</span></h3>
+                                            <h3><span class="badge badge-primary font-weight-bold w-100"
+                                                    style="font-size:20px;">Firma Bilgileriniz</span></h3>
                                         </div>
                                     </div>
                                     <!-- Birinci Satır -->
@@ -213,14 +224,16 @@
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <select class="form-control form-control-sm text-center" name="mkayitturu" id="hk-kayitturu" onchange="changeFields(this.value)">
+                                                <select class="form-control form-control-sm text-center"
+                                                    name="mkayitturu" id="hk-kayitturu"
+                                                    onchange="changeFields(this.value)">
                                                     <option value="Kayıt Türü">Kayıt Türü</option>
                                                     <option value="Bireysel">Bireysel</option>
                                                     <option value="Ticari">Ticari</option>
                                                     <option value="Tedarikçi">Tedarikçi</option>
                                                     <option value="Müşteri Adayı">Müşteri Adayı</option>
                                                     <option value="Diğer">Diğer</option>
-                                                  </select>
+                                                </select>
                                                 @error('kayitturu')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -235,7 +248,9 @@
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="Vergi No" class="form-control form-control-sm" value="{{ old('mtcknvno') }}"  >
+                                                <input id="hk-tcknvno" type="number" name="mtcknvno"
+                                                    placeholder="Vergi No" class="form-control form-control-sm"
+                                                    value="{{ old('mtcknvno') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -250,7 +265,10 @@
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="hk-marka" type="text" name="mtmarkaadi" onkeyup="hkMarkaAdiBuyuk()" placeholder="Marka Adı" class="form-control form-control-sm"  value="{{ old('mtmarkaadi') }}"  >
+                                                <input id="hk-marka" type="text" name="mtmarkaadi"
+                                                    onkeyup="hkMarkaAdiBuyuk()" placeholder="Marka Adı"
+                                                    class="form-control form-control-sm"
+                                                    value="{{ old('mtmarkaadi') }}">
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -262,11 +280,14 @@
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="hk-unvan" type="text" name="mbunvani" onkeyup="hkUnvanBuyuk()" placeholder="Ünvan" class="form-control form-control-sm" value="{{ old('mbunvani') }}" >
+                                                <input id="hk-unvan" type="text" name="mbunvani"
+                                                    onkeyup="hkUnvanBuyuk()" placeholder="Ünvan"
+                                                    class="form-control form-control-sm"
+                                                    value="{{ old('mbunvani') }}">
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Üçüncü Satır --> 
+                                    <!-- Üçüncü Satır -->
                                     <div class="row">
                                         <div class="col-6">
                                             <div id="faks-field" class="field-wrapper input mb-2">
@@ -277,7 +298,9 @@
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="hk-fax" type="text" name="mfaks" placeholder="Faks" class="form-control" value="{{ old('mfaks') }}">
+                                                <input id="hk-fax" type="text" name="mfaks"
+                                                    placeholder="Faks" class="form-control"
+                                                    value="{{ old('mfaks') }}">
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -289,67 +312,91 @@
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="hk-website" type="text" name="mweb" placeholder="Web Site" class="form-control" value="{{ old('mweb') }}">
+                                                <input id="hk-website" type="text" name="mweb"
+                                                    placeholder="Web Site" class="form-control"
+                                                    value="{{ old('mweb') }}">
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Google Haritalar -->
                                     <div class="row">
                                         <div class="col-12 text-center p-0">
-                                            <h3><span class="badge badge-primary font-weight-bold w-100" style="font-size:20px;">Adres Bilgileri</span></h3>
+                                            <h3><span class="badge badge-primary font-weight-bold w-100"
+                                                    style="font-size:20px;">Adres Bilgileri</span></h3>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
-                                        <div role="button" id="anlikKonum" class="btn btn-light"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#de1717" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 395.71 395.71" xml:space="preserve" stroke="#006eff"><g id="SVGRepo_bgCarrier" stroke-width="0"/><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/><g id="SVGRepo_iconCarrier"> <g> <path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738 c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388 C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191 c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"/> </g> </g></svg>                            
+                                        <div role="button" id="anlikKonum" class="btn btn-light"><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" fill="#de1717"
+                                                version="1.1" id="Capa_1" width="800px" height="800px"
+                                                viewBox="0 0 395.71 395.71" xml:space="preserve" stroke="#006eff">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <g>
+                                                        <path
+                                                            d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738 c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388 C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191 c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z" />
+                                                    </g>
+                                                </g>
+                                            </svg>
                                         </div>
                                         <div class="col-1">
-                                          <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" value="{{ old('menlem') }}">
+                                            <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem"
+                                                value="{{ old('menlem') }}">
                                         </div>
                                         <div class="col-1">
-                                          <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam"  value="{{ old('mboylam') }}">
+                                            <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam"
+                                                value="{{ old('mboylam') }}">
                                         </div>
-                                        <div class="col-12" id="map"> <!-- GOOGLE HARİTALAR -->
+                                        <div class="col-12" id="map">
+                                            <!-- GOOGLE HARİTALAR -->
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-12 p-0">
-                                            <textarea placeholder="Adres bilgilerinizi giriniz. Örn: Muratpaşa, Kızılarık Mah. Yanık Apt. No: 5/11, Köroğlu Bulvarı, 07310 Antalya" class="form-control mt-2" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}" style=" resize: none !important;"></textarea>
+                                            <textarea
+                                                placeholder="Adres bilgilerinizi giriniz. Örn: Muratpaşa, Kızılarık Mah. Yanık Apt. No: 5/11, Köroğlu Bulvarı, 07310 Antalya"
+                                                class="form-control mt-2" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}"
+                                                style=" resize: none !important;"></textarea>
                                         </div>
                                     </div>
                                     <!-- Adres Kısmı -->
-                                        <div id="adres-field" class="row field-wrapper input mb-2">
-                                            <div class="col-1 pr-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="70" height="30"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-map-pin" style="top: 7px; right: -15;">
-                                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                                    <circle cx="12" cy="10" r="3" />
-                                                </svg>
-                                            </div>
-                                            <div class="col-5 ">
-                                                <select id="Iller" name="mil"
-                                                    class="placeholder js-states form-control">
-                                                    <option>İl</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-5">
-                                                <select id="Ilceler" disabled="disabled" name="milce"
-                                                    class="placeholder js-states form-control">
-                                                    <option>İlçe</option>
-                                                </select>
-                                                @error('adres')
-                                                    <p class="text-danger mt-1">{{ $message }}</p>
-                                                @enderror
-                                            </div>
+                                    <div id="adres-field" class="row field-wrapper input mb-2">
+                                        <div class="col-1 pr-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="30"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-map-pin" style="top: 7px; right: -15;">
+                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                                <circle cx="12" cy="10" r="3" />
+                                            </svg>
                                         </div>
-                                    
+                                        <div class="col-5 ">
+                                            <select id="Iller" name="mil"
+                                                class="placeholder js-states form-control">
+                                                <option>İl</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-5">
+                                            <select id="Ilceler" disabled="disabled" name="milce"
+                                                class="placeholder js-states form-control">
+                                                <option>İlçe</option>
+                                            </select>
+                                            @error('adres')
+                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                     <div class="uyelik_kosullari">
                                         <div class="row">
                                             <div class="col-1 my-auto">
                                                 <label class="switch s-primary">
-                                                    <input type="checkbox" id="toggle-uyelik-kosullari" class="d-none" value="isaretlenmemis">
+                                                    <input type="checkbox" id="toggle-uyelik-kosullari"
+                                                        class="d-none" value="isaretlenmemis">
                                                     <span class="slider round" onclick=""></span>
                                                 </label>
                                             </div>
@@ -357,7 +404,8 @@
                                                 <div class="field-wrapper terms_condition my-auto">
                                                     <div class="n-chk new-checkbox checkbox-outline-primary">
                                                         <div data-toggle="modal" data-target="#modal_default">
-                                                            <span class="text-primary" style="cursor:pointer;">Üyelik koşullarını</span> <span>kabul ediyorum.</span>
+                                                            <span class="text-primary" style="cursor:pointer;">Üyelik
+                                                                koşullarını</span> <span>kabul ediyorum.</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -384,7 +432,7 @@
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                            
+
                                         </div>
                                         <div class="col-6">
                                             <div id="csoyad-field" class="field-wrapper input">
@@ -432,16 +480,20 @@
                                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                                 </svg>
                                                 <input id="csifre" name="csifre" type="password" value=""
-                                                    placeholder="Şifre">
+                                                    placeholder="Şifre" style="width: 90% !important">
+                                                <i class="far
+                                            fa-eye"
+                                                    id="togglePasswordCalisan"
+                                                    style="margin-left: -30px; cursor: pointer;"></i>
                                                 @error('password')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>        
-                                    <!-- Üçüncü Satır --> 
+                                    </div>
+                                    <!-- Üçüncü Satır -->
                                     <div class="row">
-                                        <div class="col-6">       
+                                        <div class="col-6">
                                             <div id="ctckn-field" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -456,7 +508,7 @@
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                        </div>  
+                                        </div>
                                         <div class="col-6">
                                             <div id="cusername-field" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -471,12 +523,12 @@
                                                 @error('username')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
-                                            </div>   
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Dördüncü Satır -->
                                     <div class="row">
-                                        <div class="col-6">     
+                                        <div class="col-6">
                                             <div id="cdogumgunu" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -497,7 +549,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-6">  
+                                        <div class="col-6">
                                             <div id="ctelefon-field" class="field-wrapper input mb-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -537,24 +589,27 @@
                                     href="#">DAKIK</a>
                         </div>
                         <!-- Modal -->
-                        <div class="modal fade" id="modal_default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modal_default" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Üyelik Şartları</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Üyelik Şartları</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        SBE Mühendislik şu hakları saklı tutar:
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">Kapat</button>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                  SBE Mühendislik şu hakları saklı tutar:
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                                </div>
-                              </div>
                             </div>
-                          </div>
+                        </div>
                         <!-- Modal -->
                     </div>
                 </div>
@@ -576,64 +631,92 @@
     <script src="{{ asset('assets/js/authentication/form-1.js') }}"></script>
     <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap"
+        type="text/javascript"></script>
     <script>
-    // GOOGLE HARİTALAR
-        function enlemBoylamDegis(enlem,boylam){
-                $("#hk-enlem").attr("value",enlem);
-                $("#hk-boylam").attr("value",boylam);    
-              }
-              let map, infoWindow;
-      
-                function initMap() {
-                  map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: 36.89241570427338, lng: 30.710640679285348 },
-          zoom: 6,
-        });
-        infoWindow = new google.maps.InfoWindow();
-        let marker = new google.maps.Marker();
-      
-        const locationButton = document.getElementById("anlikKonum");
-      
-        locationButton.classList.add("custom-map-control-button");
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-        locationButton.addEventListener("click", () => {
-      
-          marker.setMap(null); // marker'ı sıfırlar
-          // Try HTML5 geolocation.
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                const pos = {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude,
-                };
+        // GOOGLE HARİTALAR
+        function enlemBoylamDegis(enlem, boylam) {
+            $("#hk-enlem").attr("value", enlem);
+            $("#hk-boylam").attr("value", boylam);
+        }
+        let map, infoWindow;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: {
+                    lat: 36.89241570427338,
+                    lng: 30.710640679285348
+                },
+                zoom: 6,
+            });
+            infoWindow = new google.maps.InfoWindow();
+            let marker = new google.maps.Marker();
+
+            const locationButton = document.getElementById("anlikKonum");
+
+            locationButton.classList.add("custom-map-control-button");
+            map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+            locationButton.addEventListener("click", () => {
+
+                marker.setMap(null); // marker'ı sıfırlar
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            const pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude,
+                            };
+                            marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
+                                position: pos,
+                            });
+
+                            enlemBoylamDegis(pos.lat, pos.lng); // enlem ve boylam bilgilerini inputa verir.
+                            marker.setMap(map);
+                            map.setCenter(pos);
+                        }
+                    );
+                }
+            });
+
+            map.addListener("click", (mapsMouseEvent) => {
+                // Close the current InfoWindow.
+                marker.setMap(null); // marker'ı sıfırlar
                 marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
-                  position: pos,
+                    position: mapsMouseEvent.latLng,
                 });
-      
-                enlemBoylamDegis(pos.lat,pos.lng); // enlem ve boylam bilgilerini inputa verir.
+
+                var lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat); // Seçilen konumun lat bilgisini alır.
+                var lng = JSON.stringify(mapsMouseEvent.latLng.toJSON()
+                    .lng); // Seçilen konumun lng bilgisini alır. 
+                enlemBoylamDegis(lat, lng); // enlem ve boylam bilgilerini inputa verir.
                 marker.setMap(map);
-                map.setCenter(pos);
-              }
-            );
-          }
-        });
-      
-        map.addListener("click", (mapsMouseEvent) => {
-          // Close the current InfoWindow.
-          marker.setMap(null); // marker'ı sıfırlar
-          marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
-            position: mapsMouseEvent.latLng,
-          });
-      
-          var lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat); // Seçilen konumun lat bilgisini alır.
-          var lng = JSON.stringify(mapsMouseEvent.latLng.toJSON().lng); // Seçilen konumun lng bilgisini alır. 
-          enlemBoylamDegis(lat,lng); // enlem ve boylam bilgilerini inputa verir.
-          marker.setMap(map);
-        });
-      }
-        </script>
+            });
+
+            const togglePasswordMusteri = document.querySelector('#togglePasswordMusteri');
+            const passwordMusteri = document.querySelector('#msifre');
+
+            togglePasswordMusteri.addEventListener('click', function(e) {
+                // toggle the type attribute
+                const type = passwordMusteri.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordMusteri.setAttribute('type', type);
+                // toggle the eye slash icon
+                this.classList.toggle('fa-eye-slash');
+            });
+
+            const togglePasswordCalisan = document.querySelector('#togglePasswordCalisan');
+            const passwordCalisan = document.querySelector('#csifre');
+
+            togglePasswordCalisan.addEventListener('click', function(e) {
+                // toggle the type attribute
+                const type = passwordCalisan.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordCalisan.setAttribute('type', type);
+                // toggle the eye slash icon
+                this.classList.toggle('fa-eye-slash');
+            });
+        }
+    </script>
 </body>
 
 </html>
