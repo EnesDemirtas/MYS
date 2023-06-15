@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/switches.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
+
     <style>
         #map {
             height: 300px;
@@ -198,8 +200,10 @@
                                                     <path
                                                         d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                                                 </svg>
-                                                <input id="telefon" name="mtel" type="text"
-                                                    placeholder="Telefon Numarası">
+                                                {{-- <input id="telefon" name="mtel" type="text"
+                                                    placeholder="Telefon Numarası"> --}}
+                                                <input id="telefon" name="mtel" type="tel" />
+
                                                 @error('telefon')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -558,8 +562,9 @@
                                                     <path
                                                         d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                                                 </svg>
-                                                <input id="telefon" name="ctel" type="text"
-                                                    placeholder="Telefon Numarası">
+                                                {{-- <input id="telefon" name="ctel" type="text"
+                                                    placeholder="Telefon Numarası"> --}}
+                                                <input id="telefon" name="ctel" type="tel" />
                                                 @error('telefon')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -693,29 +698,51 @@
                 enlemBoylamDegis(lat, lng); // enlem ve boylam bilgilerini inputa verir.
                 marker.setMap(map);
             });
-
-            const togglePasswordMusteri = document.querySelector('#togglePasswordMusteri');
-            const passwordMusteri = document.querySelector('#msifre');
-
-            togglePasswordMusteri.addEventListener('click', function(e) {
-                // toggle the type attribute
-                const type = passwordMusteri.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordMusteri.setAttribute('type', type);
-                // toggle the eye slash icon
-                this.classList.toggle('fa-eye-slash');
-            });
-
-            const togglePasswordCalisan = document.querySelector('#togglePasswordCalisan');
-            const passwordCalisan = document.querySelector('#csifre');
-
-            togglePasswordCalisan.addEventListener('click', function(e) {
-                // toggle the type attribute
-                const type = passwordCalisan.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordCalisan.setAttribute('type', type);
-                // toggle the eye slash icon
-                this.classList.toggle('fa-eye-slash');
-            });
         }
+
+        const togglePasswordMusteri = document.querySelector('#togglePasswordMusteri');
+        const passwordMusteri = document.querySelector('#msifre');
+
+        togglePasswordMusteri.addEventListener('click', function(e) {
+            // toggle the type attribute
+            const type = passwordMusteri.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordMusteri.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        const togglePasswordCalisan = document.querySelector('#togglePasswordCalisan');
+        const passwordCalisan = document.querySelector('#csifre');
+
+        togglePasswordCalisan.addEventListener('click', function(e) {
+            // toggle the type attribute
+            const type = passwordCalisan.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordCalisan.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+    <script>
+        var input = document.querySelectorAll("#telefon")[0];
+        window.intlTelInput(input, {
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+            setCountry: "tr",
+            initialCountry: "tr",
+            preferredCountries: ["tr", "us", "gb"],
+            separateDialCode: true,
+            nationalMode: false,
+        });
+
+        var input = document.querySelectorAll("#telefon")[1];
+        window.intlTelInput(input, {
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+            setCountry: "tr",
+            initialCountry: "tr",
+            preferredCountries: ["tr", "us", "gb"],
+            separateDialCode: true,
+            nationalMode: false,
+        });
     </script>
 </body>
 
