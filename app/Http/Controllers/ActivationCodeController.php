@@ -77,13 +77,13 @@ class ActivationCodeController extends Controller
     public function SendRegisterActivationCode(Request $request)
     {
         $request->validate([
-            'email' => 'required|email'
+            'ceposta' => 'required|email'
         ], [
-            'email.required' => 'E-posta boş bırakılamaz',
-            'email.email' => 'Geçerli bir e-posta adresi giriniz'
+            'ceposta.required' => 'E-posta boş bırakılamaz',
+            'ceposta.email' => 'Geçerli bir e-posta adresi giriniz'
         ]);
 
-        $kullanici = calisan::where('ceposta', $request->input('email'))->first();
+        $kullanici = calisan::where('ceposta', $request->input('ceposta'))->first();
         if ($kullanici) {
             $activation_code = rand(100000, 999999);
             $expires_at = now()->addMinutes(5);
@@ -93,13 +93,13 @@ class ActivationCodeController extends Controller
                 'sure' => $expires_at
             ]);
 
-            Mail::to($kullanici->ceposta)->send(new ResetPasswordActivationCode($activationcode));
+             Mail::to($kullanici->ceposta)->send(new ResetPasswordActivationCode($activationcode));
 
             // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
-            // dd($activationcode->eposta);
-            return redirect()->route('load_register_activation_code', ['eposta' => $activationcode->eposta]);
+            return redirect()->route('load_register_activation_code', ['ceposta' => $activationcode->eposta]);
         } else {
-            return back()->withErrors(['email' => 'E-posta adresi bulunamadı!'])->onlyInput('email');
+            dd($request->all());
+            return back()->withErrors(['ceposta' => 'E-posta adresi bulunamadı!'])->onlyInput('ceposta');
         }
     }
 
@@ -111,22 +111,22 @@ class ActivationCodeController extends Controller
             'aktivasyonkodu.required' => 'Aktivasyon kodu boş bırakılamaz'
         ]);
 
-        $activationcode = ActivationCode::where('eposta', $request->email)->orderBy('created_at', 'desc')->first();
+        $activationcode = ActivationCode::where('eposta', $request->ceposta)->orderBy('created_at', 'desc')->first();
         if ($activationcode->sure < now()) {
             $activation_code = rand(100000, 999999);
             $expires_at = now()->addMinutes(5);
             $activationcode = ActivationCode::create([
-                'eposta' => $request->email,
+                'ceposta' => $request->ceposta,
                 'aktivasyonkodu' => $activation_code,
                 'sure' => $expires_at
             ]);
 
-            Mail::to($request->email)->send(new ResetPasswordActivationCode($activationcode));
+            Mail::to($request->ceposta)->send(new ResetPasswordActivationCode($activationcode));
             return back()->withErrors(['aktivasyonkodu' => 'Aktivasyon kodu süresi doldu! Yeni kod mail adresinize gönderildi.'])->onlyInput('aktivasyonkodu');
         } else if ($request->aktivasyonkodu != $activationcode->aktivasyonkodu) {
             return back()->withErrors(['aktivasyonkodu' => 'Aktivasyon kodu hatalı!']);
         } else {
-            $kullanici = calisan::where('ceposta', $request->email)->first();
+            $kullanici = calisan::where('ceposta', $request->ceposta)->first();
             $kullanici->update(['caktif' => 1]);
             // $activationcode->delete();
             return redirect()->route('giris_yap')->with('aktivasyon_basarili', 'Hesabınız başarıyla aktifleştirildi!');

@@ -1,8 +1,8 @@
 function musteri_calisan(deger) {
     if(deger == 3){ //Register - müşteri kısmı görünür yapma
         document.getElementById("tip").value = "musteri";
-        document.getElementById("musteri").innerHTML = '';
-		document.getElementById("calisan").innerHTML = '';
+        document.getElementById("musteri").style.display = 'block';
+		document.getElementById("calisan").style.display = 'none';
         var calisan = document.getElementById("calisan_buton");
         calisan.classList.remove("btn-primary");
         calisan.classList.add("btn-outline-primary");
@@ -12,8 +12,8 @@ function musteri_calisan(deger) {
     }
     if(deger == 4){ //Register - çalışan kısmı görünür yapma
         document.getElementById("tip").value = "calisan";
-        document.getElementById("calisan").innerHTML = ' ';
-		document.getElementById("musteri").innerHTML = ' ';
+        document.getElementById("calisan").style.display = 'block';
+		document.getElementById("musteri").style.display = 'none';
         var calisan = document.getElementById("calisan_buton");
         calisan.classList.remove("btn-outline-primary");
         calisan.classList.add("btn-primary");

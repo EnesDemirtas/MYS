@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\calisan;
 use Illuminate\Support\Facades\Storage;
-
 use Deligoez\TCKimlikNo\TCKimlikNo;
 
 class UserController extends Controller
@@ -36,59 +35,59 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
-            'username' => 'required',
-            'cadi' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'tckn' => 'required',
-            'csoyadi' => 'required',
-            'dogumgunu' => 'required',
-            'telefon' => 'required',
-        ], [
-            'username.required' => 'Kullanıcı adı boş bırakılamaz',
-            'cadi.required' => 'Ad boş bırakılamaz',
-            'email.required' => 'E-posta boş bırakılamaz',
-            'email.email' => 'Geçerli bir e-posta adresi giriniz',
-            'password.required' => 'Şifre boş bırakılamaz',
-            'tckn.required' => 'TCKN boş bırakılamaz',
-            'csoyadi.required' => 'Soyad boş bırakılamaz',
-            'dogumgunu.required' => 'Doğum günü boş bırakılamaz',
-            'telefon.required' => 'Telefon numarası boş bırakılamaz',
-        ]);
-
+        
         if($request->tip == "musteri"){
 
         }else if($request->tip == "calisan"){
+            $request->validate([
+                'ckullaniciadi' => 'required',
+                'cadi' => 'required',
+                'ceposta' => 'required|email',
+                'csifre' => 'required',
+                'ctckn' => 'required',
+                'csoyadi' => 'required',
+                'cdogum' => 'required',
+                'ctel' => 'required',
+            ], [
+                'ckullaniciadi.required' => 'Kullanıcı adı boş bırakılamaz',
+                'cadi.required' => 'Ad boş bırakılamaz',
+                'email.required' => 'E-posta boş bırakılamaz',
+                'ceposta.email' => 'Geçerli bir e-posta adresi giriniz',
+                'csifre.required' => 'Şifre boş bırakılamaz',
+                'ctckn.required' => 'TCKN boş bırakılamaz',
+                'csoyadi.required' => 'Soyad boş bırakılamaz',
+                'cdogum.required' => 'Doğum günü boş bırakılamaz',
+                'ctel.required' => 'Telefon numarası boş bırakılamaz',
+            ]);
 
+            $kullanici = calisan::where('ckullaniciadi', $request->input('ckullaniciadi'))->first();
+            $tckn = calisan::where('ctckn', $request->input('ctckn'))->first();
+            // MERNIS kontrolu
+                if (!TCKimlikNo::validate($request->ctckn, $request->cadi, $request->csoyadi, explode("-", $request->cdogum)[0])) {
+                    return back()->withErrors(['mernis' => 'Geçersiz kimlik bilgileri!'])->onlyInput('username');
+                }
+                if ($kullanici) {
+                    return back()->withErrors(['username' => 'Kullanıcı adı/TCKN kullanımda!'])->onlyInput('username');
+                } else if ($tckn) {
+                    return back()->withErrors(['ctckn' => 'TCKN kullanımda!'])->onlyInput('ctckn');
+                } else {
+                    $kullanici = new calisan();
+                    $kullanici->ckullaniciadi = $request->input('ckullaniciadi');
+                    $kullanici->csifre = $request->input('csifre');
+                    $kullanici->ceposta = $request->input('ceposta');
+                    $kullanici->cadi = $request->input('cadi');
+                    $kullanici->csoyadi = $request->input('csoyadi');
+                    $kullanici->ctckn = $request->input('ctckn'); 
+                    $kullanici->cdogum = $request->input('cdogum');
+                    $kullanici->ctel = $request->input('ctel');
+                    $kullanici->save();
+                    return view('get_register_activation_code');
+                }
         }else{
             return back()->withErrors(['gecersizTip' => 'Kayıt olurken bir hata oluştu. Lütfen bizimle iletişime geçiniz.']);
         }
 
-        $kullanici = calisan::where('ckullaniciadi', $request->input('username'))->first();
-        $tckn = calisan::where('ctckn', $request->input('tckn'))->first();
-        // MERNIS kontrolu
-        if (!TCKimlikNo::validate($request->tckn, $request->cadi, $request->csoyadi, explode("-", $request->dogumgunu)[0])) {
-            return back()->withErrors(['mernis' => 'Geçersiz kimlik bilgileri!'])->onlyInput('username');
-        }
-
-
-        if ($kullanici) {
-            return back()->withErrors(['username' => 'Kullanıcı adı/TCKN kullanımda!'])->onlyInput('username');
-        } else if ($tckn) {
-            return back()->withErrors(['tckn' => 'TCKN kullanımda!'])->onlyInput('tckn');
-        } else {
-            $kullanici = new calisan();
-            $kullanici->ckullaniciadi = $request->input('username');
-            $kullanici->csifre = $request->input('password');
-            $kullanici->ceposta = $request->input('email');
-            $kullanici->cadi = $request->input('cadi');
-            $kullanici->csoyadi = $request->input('csoyadi');
-            $kullanici->ctckn = $request->input('tckn');
-            $kullanici->cdogum = $request->input('dogumgunu');
-            $kullanici->save();
-            return redirect()->route('get_register_activation_code');
-        }
+        
     }
 
     public function logout(Request $request)
@@ -126,6 +125,6 @@ class UserController extends Controller
 
     public function LoadRegisterActivationCode(Request $request)
     {
-        return view('load_register_activation_code', ['eposta' => $request->query('eposta')]);
+        return view('load_register_activation_code', ['ceposta' => $request->query('ceposta')]);
     }
 }

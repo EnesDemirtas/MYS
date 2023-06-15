@@ -50,11 +50,6 @@ Route::put('/calisan/{ctckn}', [CalisanlarController::class, 'calisanGuncelle'])
 Route::delete('/calisan/{ctckn}', [CalisanlarController::class, 'calisanSil'])->name('calisan.sil')->middleware('isAuthenticated');
 Route::get('calisanlar', [CalisanlarController::class, 'index'])->name('calisan.index')->middleware('isAuthenticated');
 
-
-Route::get('sifre_yenileme', function () {
-    return view('sifre_yenileme');
-});
-
 Route::get('on_muhasebe', function () {
     return view('on_muhasebe');
 })->middleware('isAuthenticated');
@@ -119,9 +114,9 @@ Route::get('teklif_onizle', function () {
 
 Route::get('paraCevir', [Teklifler::class, 'paraCevir'])->name('para.cevir');
 
-// Kayıt olma aktivasyon kodu gönderme
-Route::get('get_register_activation_code', function () {
-    return view('get_register_activation_code')->name('get_register_activation_code');
+
+Route::get('sifre_yenileme', function () {
+    return view('sifre_yenileme');
 });
 
 Route::post('register_activation_code', [ActivationCodeController::class, 'SendRegisterActivationCode'])->name('register_activation_code');

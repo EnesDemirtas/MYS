@@ -29,7 +29,7 @@
                 <div class="form-container p-1">
                     <div class="form-content">
                         <h1 class="">Anında yeni hesabınızı oluşturun</h1>
-                        <p class="signup-link">Zaten bir hesabınız var mı? <a href="/musteri/giris_yap">Giriş yapın</a>
+                        <p class="signup-link">Zaten bir hesabınız var mı? <a href="{{route('giris_yap')}}">Giriş yapın</a>
                         </p>
                         <form class="text-left" method="POST" action=" {{ route('register') }} ">
                             @csrf
@@ -49,7 +49,7 @@
                                 @error('mernis')
                                     <p class="text-danger mt-1">{{ $message }}</p>
                                 @enderror
-                                <div id="musteri"><!-- Birinci Satır -->
+                                <div id="musteri" style="display:block;" ><!-- Birinci Satır -->
                                     <div class="row">
                                         <div class="col-6">
                                             <div id="ad-field" class="field-wrapper input">
@@ -60,7 +60,7 @@
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="ad" name="cadi" type="text"
+                                                <input id="ad" name="mbadi" type="text"
                                                     class="form-control"placeholder="Ad">
                                                 @error('ad')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
@@ -77,7 +77,7 @@
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="soyad" name="csoyadi" type="text"
+                                                <input id="soyad" name="mbsoyadi" type="text"
                                                     class="form-control"placeholder="Soyad">
                                                 @error('ad')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
@@ -196,24 +196,102 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Üçüncü Satır --> 
+                                    <!-- Firma Bilgileri Kısmı --> 
                                     <div class="row">
-                                        <div class="col-6">       
-                                            <div id="tckn-field" class="field-wrapper input">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        <div class="col-12 text-center p-0">
+                                            <h3><span class="badge badge-primary font-weight-bold w-100" style="font-size:20px;">Firma Bilgileriniz</span></h3>
+                                        </div>
+                                    </div>
+                                    <!-- Birinci Satır -->
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div id="kayitturu-field" class="field-wrapper input mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="30"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                     class="feather feather-user">
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="tckn" name="tckn" type="text"
-                                                    class="form-control" placeholder="TCKN">
-                                                @error('tckn')
+                                                <select class="form-control form-control-sm text-center" name="mkayitturu" id="hk-kayitturu" onchange="changeFields(this.value)">
+                                                    <option value="Kayıt Türü">Kayıt Türü</option>
+                                                    <option value="Bireysel">Bireysel</option>
+                                                    <option value="Ticari">Ticari</option>
+                                                    <option value="Tedarikçi">Tedarikçi</option>
+                                                    <option value="Müşteri Adayı">Müşteri Adayı</option>
+                                                    <option value="Diğer">Diğer</option>
+                                                  </select>
+                                                @error('kayitturu')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                        </div> 
+                                        </div>
+                                        <div class="col-6">
+                                            <div id="tcknkayitturu-field" class="field-wrapper input mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="30"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="Vergi No" class="form-control form-control-sm" value="{{ old('mtcknvno') }}"  >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- İkinci Satır -->
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div id="markaadi-field" class="field-wrapper input mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="30"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                <input id="hk-marka" type="text" name="mtmarkaadi" onkeyup="hkMarkaAdiBuyuk()" placeholder="Marka Adı" class="form-control form-control-sm"  value="{{ old('mtmarkaadi') }}"  >
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div id="unvan-field" class="field-wrapper input mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="30"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                <input id="hk-unvan" type="text" name="mbunvani" onkeyup="hkUnvanBuyuk()" placeholder="Ünvan" class="form-control form-control-sm" value="{{ old('mbunvani') }}" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Üçüncü Satır --> 
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div id="faks-field" class="field-wrapper input mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="30"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                <input id="hk-fax" type="text" name="mfaks" placeholder="Faks" class="form-control" value="{{ old('mfaks') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div id="website-field" class="field-wrapper input mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="30"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                <input id="hk-website" type="text" name="mweb" placeholder="Web Site" class="form-control" value="{{ old('mweb') }}">
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- Google Haritalar -->
                                     <div class="row">
@@ -221,7 +299,7 @@
                                             <h3><span class="badge badge-primary font-weight-bold w-100" style="font-size:20px;">Adres Bilgileri</span></h3>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mt-2">
                                         <div role="button" id="anlikKonum" class="btn btn-light"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#de1717" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 395.71 395.71" xml:space="preserve" stroke="#006eff"><g id="SVGRepo_bgCarrier" stroke-width="0"/><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/><g id="SVGRepo_iconCarrier"> <g> <path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738 c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388 C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191 c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"/> </g> </g></svg>                            
                                         </div>
                                         <div class="col-1">
@@ -253,13 +331,13 @@
                                             <div class="col-5 ">
                                                 <select id="Iller" name="cevadresil"
                                                     class="placeholder js-states form-control">
-                                                    <option>Lütfen Bir İl Seçiniz</option>
+                                                    <option>İl</option>
                                                 </select>
                                             </div>
                                             <div class="col-5">
                                                 <select id="Ilceler" disabled="disabled" name="cevadresilce"
                                                     class="placeholder js-states form-control">
-                                                    <option>Lütfen Bir İlçe Seçiniz</option>
+                                                    <option>İlçe</option>
                                                 </select>
                                                 @error('adres')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
@@ -286,32 +364,156 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="modal_default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Üyelik Şartları</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-body">
-                                          SBE Mühendislik şu hakları saklı tutar:
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                <!-- Modal -->
                                 <!-- musteri Kayıt-->
                                 <!-- calisan Kayıt-->
-                                <div id="calisan">
+                                <div id="calisan" style="display:none;">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div id="cad-field" class="field-wrapper input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                <input id="ad" name="cadi" type="text"
+                                                    class="form-control"placeholder="Ad">
+                                                @error('ad')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-6">
+                                            <div id="csoyad-field" class="field-wrapper input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                <input id="soyad" name="csoyadi" type="text"
+                                                    class="form-control"placeholder="Soyad">
+                                                @error('ad')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- İkinci Satır -->
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div id="cemail-field" class="field-wrapper input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-at-sign">
+                                                    <circle cx="12" cy="12" r="4"></circle>
+                                                    <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+                                                </svg>
+                                                <input id="email" name="ceposta" type="text" value=""
+                                                    placeholder="Email">
+                                                @error('email')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div id="cpassword-field" class="field-wrapper input mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-lock">
+                                                    <rect x="3" y="11" width="18"
+                                                        height="11" rx="2" ry="2"></rect>
+                                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                                </svg>
+                                                <input id="password" name="csifre" type="password" value=""
+                                                    placeholder="Şifre">
+                                                @error('password')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>        
+                                    <!-- Üçüncü Satır --> 
+                                    <div class="row">
+                                        <div class="col-6">       
+                                            <div id="ctckn-field" class="field-wrapper input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                <input id="tckn" name="ctckn" type="text"
+                                                    class="form-control" placeholder="TCKN">
+                                                @error('tckn')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>  
+                                        <div class="col-6">
+                                            <div id="cusername-field" class="field-wrapper input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                <input id="username" name="ckullaniciadi" type="text"
+                                                    class="form-control"placeholder="Kullanıcı Adı">
+                                                @error('username')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>   
+                                        </div>
+                                    </div>
+                                    <!-- Dördüncü Satır -->
+                                    <div class="row">
+                                        <div class="col-6">     
+                                            <div id="cdogumgunu" class="field-wrapper input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-calendar">
+                                                    <rect x="3" y="4" width="18"
+                                                        height="18" rx="2" ry="2" />
+                                                    <line x1="16" y1="2" x2="16"
+                                                        y2="6" />
+                                                    <line x1="8" y1="2" x2="8"
+                                                        y2="6" />
+                                                    <line x1="3" y1="10" x2="21"
+                                                        y2="10" />
+                                                </svg>
+                                                <input id="dogumgunu" name="cdogum" type="date">
+                                                @error('dogumgunu')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-6">  
+                                            <div id="ctelefon-field" class="field-wrapper input mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-phone">
+                                                    <path
+                                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                                </svg>
+                                                <input id="telefon" name="ctel" type="text"
+                                                    placeholder="Telefon Numarası">
+                                                @error('telefon')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- calisan Kayıt-->
                                 <div class="d-sm-flex justify-content-between">
@@ -334,7 +536,26 @@
                             <p class="terms-conditions" style="bottom: 5px;">© 2023 Tüm hakları saklıdır. <a
                                     href="#">DAKIK</a>
                         </div>
-
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal_default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Üyelik Şartları</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  SBE Mühendislik şu hakları saklı tutar:
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <!-- Modal -->
                     </div>
                 </div>
             </div>

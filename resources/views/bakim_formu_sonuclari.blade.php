@@ -72,9 +72,7 @@
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0);">MYS</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Randevu Yönetimi</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a
-                                    href="javascript:void(0);">Randevular</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Bakım Sonuçları</a></li>
                         </ol>
                     </nav>
                 </div>
