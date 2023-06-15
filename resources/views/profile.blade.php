@@ -157,6 +157,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if (session('tip') == 'Çalışan') <!-- Çalışan Güncelleme Kısmı -->
                                     <div class="row">
                                         <div class="col-3">
                                             <div class="profilepic" style="border-radius: 20%;">
@@ -307,6 +308,12 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <!-- Çalışan Güncelleme Kısmı -->
+                                    <!-- Müşteri Güncelleme Kısmı -->
+                                    @else 
+                                    selam
+                                    @endif
+                                    <!-- Müşteri Güncelleme Kısmı -->
                                 </div>
                             </div>
                         </div>

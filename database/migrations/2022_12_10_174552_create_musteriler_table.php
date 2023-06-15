@@ -54,6 +54,7 @@ class CreateMusterilerTable extends Migration
             $table->string('mkullaniciadi')->lenght(20)->nullable();
             $table->string('msifre')->lenght(25)->nullable();
             $table->string('maktif')->lenght(5)->nullable();
+            $table->string('mphoto')->lenght(100)->nullable();
             $table->date('updated_at');
             $table->date('created_at');
         });

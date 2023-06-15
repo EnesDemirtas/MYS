@@ -12,11 +12,20 @@
                 <a href="#" class="nav-link dropdown-toggle user" id="user-profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media">
                         <div class="media-body align-self-center">
-                            @if (session('kullanici')->cadi == null)
-                                <h6>{{ session('kullanici')->ckullaniciadi }}</h6>
+                            @if (session('tip') == 'Çalışan')
+                                @if (session('kullanici')->cadi == null)
+                                    <h6>{{ session('kullanici')->ckullaniciadi }}</h6>
+                                @else
+                                <h6>{{ session('kullanici')->cadi . " " . session('kullanici')->csoyadi }}</h6>
+                                <p>{{ session('kullanici')->cunvani }}</p>
+                                @endif
                             @else
-                            <h6>{{ session('kullanici')->cadi . " " . session('kullanici')->csoyadi }}</h6>
-                            <p>{{ session('kullanici')->cunvani }}</p>
+                                @if (session('kullanici')->mbadi == null)
+                                <h6>{{ session('kullanici')->mkullaniciadi }}</h6>
+                                @else
+                                <h6>{{ session('kullanici')->mbadi . " " . session('kullanici')->mbsoyadi }}</h6>
+                                <p>{{ session('kullanici')->mbunvani }}</p>
+                                @endif
                             @endif
                         </div>
                         <img src="@if (is_null(session('kullanici')->cphoto)) {{ asset('assets/img/90x90.jpg') }} @else {{ Storage::url('photos/') . session('kullanici')->cphoto }} @endif" class="img-fluid" alt="admin-profile">
@@ -57,9 +66,15 @@
                         </a>
                     </div> --}}
                     <div class="dropdown-item">
-                        <a href="{{route('profile')}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> <span> Profil</span>
-                        </a>
+                        @if (session('tip') == 'Çalışan')
+                            <a href="{{route('profile',['tip' => 'Çalışan'])}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> <span> Profil</span>
+                            </a>
+                        @else 
+                            <a href="{{route('profile',['tip' => 'Müşteri'])}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> <span> Profil</span>
+                            </a>
+                        @endif
                     </div>
                     <div class="dropdown-item">
                         <form action="{{ route('logout') }}" method="post" id="logout-form">

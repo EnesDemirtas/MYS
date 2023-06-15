@@ -49,5 +49,6 @@ class musteri extends Model
     'mkullaniciadi',
     'msifre',
     'maktif',
+    'mphoto',
     ];
 }

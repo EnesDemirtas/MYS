@@ -26,9 +26,11 @@ class UserController extends Controller
             $tckn = calisan::where('ctckn', $request->input('ckullaniciadi'))->first();
             if ($kullanici && $kullanici->csifre == $request->input('csifre')) {
                 $request->session()->put('kullanici', $kullanici);
+                $request->session()->put('tip', 'Çalışan');
                 return redirect()->route('anasayfa.index');
             } else if ($tckn && $tckn->csifre == $request->input('csifre')) {
                 $request->session()->put('kullanici', $tckn);
+                $request->session()->put('tip', 'Çalışan');
                 return redirect()->route('anasayfa.index');
             } else {
                 return back()->withErrors(['ckullaniciadi' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('ckullaniciadi');
@@ -46,9 +48,11 @@ class UserController extends Controller
             $tckn = musteri::where('mtcknvno', $request->input('mkullaniciadi'))->first();
             if ($kullanici && $kullanici->msifre == $request->input('msifre')) {
                 $request->session()->put('kullanici', $kullanici);
+                $request->session()->put('tip', 'Müşteri');
                 return redirect()->route('anasayfa.index');
             } else if ($tckn && $tckn->msifre == $request->input('msifre')) {
                 $request->session()->put('kullanici', $tckn);
+                $request->session()->put('tip', 'Müşteri');
                 return redirect()->route('anasayfa.index');
             } else {
                 return back()->withErrors(['mkullaniciadi' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('mkullaniciadi');
@@ -174,7 +178,7 @@ class UserController extends Controller
                     $kullanici->ctckn = $request->input('ctckn'); 
                     $kullanici->cdogum = $request->input('cdogum');
                     $kullanici->ctel = $request->input('ctel');
-                    $kullanici->cphoto = 'ry3SeRlylxVzdSDtuzTrLuz4LVMxUNNZgNoDEvIb.png';
+                    $kullanici->cphoto = asset('assets/img/img_avatar.png');
                     $kullanici->save();
                     return view('get_register_activation_code',['tip' => 'Çalışan']);
                 }
@@ -193,7 +197,17 @@ class UserController extends Controller
 
     public function GetProfile(Request $request)
     {
-        $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
+        if($request->tip == 'Müşteri'){
+            $musteri = musteri::where('mkullaniciadi', $request->session()->get('kullanici')->mkullaniciadi)->first();
+        if ($musteri->mphoto != null or $musteri->mphoto != '') {
+            $musteri->mphoto = Storage::url('photos/') . $musteri->mphoto;
+        } else {
+            $musteri->mphoto = asset('assets/img/img_avatar.png');
+        }
+        // dd($musteri->cphoto);
+        return view('profile', ['kullanici' => $musteri]);
+        }else if($request->tip == 'Çalışan'){
+            $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
         if ($kullanici->cphoto != null or $kullanici->cphoto != '') {
             $kullanici->cphoto = Storage::url('photos/') . $kullanici->cphoto;
         } else {
@@ -201,6 +215,9 @@ class UserController extends Controller
         }
         // dd($kullanici->cphoto);
         return view('profile', ['kullanici' => $kullanici]);
+        }else{
+            return redirect()->route('pages_error404');
+        }
     }
 
     public function UploadPP(Request $request)
