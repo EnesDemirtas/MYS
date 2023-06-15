@@ -9,6 +9,7 @@ use App\Models\musteri;
 use App\Mail\ResetPasswordActivationCode;
 use App\Models\ActivationCode;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class ActivationCodeController extends Controller
 {
@@ -69,7 +70,7 @@ class ActivationCodeController extends Controller
             return back()->withErrors(['aktivasyonkodu' => 'Aktivasyon kodu hatalı!']);
         } else {
             $kullanici = calisan::where('ceposta', $request->email)->first();
-            $kullanici->update(['csifre' => $request->password]);
+            $kullanici->update(['csifre' => Hash::make($request->password)]);
             // $activationcode->delete();
             return redirect()->route('giris_yap')->with('sifre_degistirme_basarili', 'Şifreniz başarıyla değiştirildi!');
         }
@@ -77,14 +78,14 @@ class ActivationCodeController extends Controller
 
     public function SendRegisterActivationCode(Request $request)
     {
-        if($request->tip == "Müşteri"){
+        if ($request->tip == "Müşteri") {
             $request->validate([
                 'meposta' => 'required|email'
             ], [
                 'meposta.required' => 'E-posta boş bırakılamaz',
                 'meposta.email' => 'Geçerli bir e-posta adresi giriniz'
             ]);
-    
+
             $kullanici = musteri::where('meposta', $request->input('meposta'))->first();
             if ($kullanici) {
                 $activation_code = rand(100000, 999999);
@@ -94,21 +95,21 @@ class ActivationCodeController extends Controller
                     'aktivasyonkodu' => $activation_code,
                     'sure' => $expires_at
                 ]);
-    
+
                 Mail::to($kullanici->meposta)->send(new ResetPasswordActivationCode($activationcode));
                 // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
                 return redirect()->route('load_register_activation_code_musteri', ['meposta' => $activationcode->eposta, 'tip' => 'Müşteri']);
             } else {
                 return back()->withErrors(['ceposta' => 'E-posta adresi bulunamadı!'])->onlyInput('ceposta');
             }
-        }else if($request->tip == "Çalışan"){
+        } else if ($request->tip == "Çalışan") {
             $request->validate([
                 'ceposta' => 'required|email'
             ], [
                 'ceposta.required' => 'E-posta boş bırakılamaz',
                 'ceposta.email' => 'Geçerli bir e-posta adresi giriniz'
             ]);
-    
+
             $kullanici = calisan::where('ceposta', $request->input('ceposta'))->first();
             if ($kullanici) {
                 $activation_code = rand(100000, 999999);
@@ -118,29 +119,28 @@ class ActivationCodeController extends Controller
                     'aktivasyonkodu' => $activation_code,
                     'sure' => $expires_at
                 ]);
-    
+
                 Mail::to($kullanici->ceposta)->send(new ResetPasswordActivationCode($activationcode));
-    
+
                 // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
                 return redirect()->route('load_register_activation_code', ['ceposta' => $activationcode->eposta, 'tip' => 'Çalışan']);
             } else {
                 return back()->withErrors(['ceposta' => 'E-posta adresi bulunamadı!'])->onlyInput('ceposta');
             }
-        }else {
+        } else {
             return redirect()->route('pages_error404');
         }
-        
     }
 
     public function ActivateAccount(Request $request)
     {
-        if($request->tip == 'Çalışan'){
+        if ($request->tip == 'Çalışan') {
             $request->validate([
                 'aktivasyonkodu' => 'required'
             ], [
                 'aktivasyonkodu.required' => 'Aktivasyon kodu boş bırakılamaz'
             ]);
-    
+
             $activationcode = ActivationCode::where('eposta', $request->ceposta)->orderBy('created_at', 'desc')->first();
             if ($activationcode->sure < now()) {
                 $activation_code = rand(100000, 999999);
@@ -150,7 +150,7 @@ class ActivationCodeController extends Controller
                     'aktivasyonkodu' => $activation_code,
                     'sure' => $expires_at
                 ]);
-    
+
                 Mail::to($request->ceposta)->send(new ResetPasswordActivationCode($activationcode));
                 return back()->withErrors(['aktivasyonkodu' => 'Aktivasyon kodu süresi doldu! Yeni kod mail adresinize gönderildi.'])->onlyInput('aktivasyonkodu');
             } else if ($request->aktivasyonkodu != $activationcode->aktivasyonkodu) {
@@ -161,13 +161,13 @@ class ActivationCodeController extends Controller
                 // $activationcode->delete();
                 return redirect()->route('giris_yap')->with('aktivasyon_basarili', 'Hesabınız başarıyla aktifleştirildi!');
             }
-        }else if($request->tip == 'Müşteri'){
+        } else if ($request->tip == 'Müşteri') {
             $request->validate([
                 'aktivasyonkodu' => 'required'
             ], [
                 'aktivasyonkodu.required' => 'Aktivasyon kodu boş bırakılamaz'
             ]);
-    
+
             $activationcode = ActivationCode::where('eposta', $request->meposta)->orderBy('created_at', 'desc')->first();
             if ($activationcode->sure < now()) {
                 $activation_code = rand(100000, 999999);
@@ -177,7 +177,7 @@ class ActivationCodeController extends Controller
                     'aktivasyonkodu' => $activation_code,
                     'sure' => $expires_at
                 ]);
-    
+
                 Mail::to($request->meposta)->send(new ResetPasswordActivationCode($activationcode));
                 return back()->withErrors(['aktivasyonkodu' => 'Aktivasyon kodu süresi doldu! Yeni kod mail adresinize gönderildi.'])->onlyInput('aktivasyonkodu');
             } else if ($request->aktivasyonkodu != $activationcode->aktivasyonkodu) {
@@ -188,9 +188,8 @@ class ActivationCodeController extends Controller
                 // $activationcode->delete();
                 return redirect()->route('giris_yap')->with('aktivasyon_basarili', 'Hesabınız başarıyla aktifleştirildi!');
             }
-        }else{
+        } else {
             return redirect()->route('pages_error404');
         }
-        
     }
 }

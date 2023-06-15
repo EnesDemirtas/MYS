@@ -68,7 +68,6 @@ class CalisanlarController extends Controller
                 'chesapno' => $request->chesapno,
                 'cevadres' => $request->cevadres,
             ));
-
             return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
         }
     }
