@@ -113,7 +113,7 @@
                                                         height="11" rx="2" ry="2"></rect>
                                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                                 </svg>
-                                                <input id="password" name="msifre" type="password" value=""
+                                                <input id="msifre" name="msifre" type="password" value=""
                                                     placeholder="Şifre">
                                                 @error('password')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
@@ -431,7 +431,7 @@
                                                         height="11" rx="2" ry="2"></rect>
                                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                                 </svg>
-                                                <input id="password" name="csifre" type="password" value=""
+                                                <input id="csifre" name="csifre" type="password" value=""
                                                     placeholder="Şifre">
                                                 @error('password')
                                                     <p class="text-danger mt-1">{{ $message }}</p>

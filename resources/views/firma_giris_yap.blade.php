@@ -43,10 +43,18 @@
                             </div>
                         @endif
                         <form class="text-left" method="POST" action=" {{ route('login') }} ">
+                            <div class="musteri-calisan-secme">
+                                <button type="button" id="musteri_buton" class="btn btn-primary btn-rounded mb-2"
+                                    onclick="musteri_calisan(1)">Müşteri</button>
+                                <button type="button" id="calisan_buton"
+                                    class="btn btn-outline-primary btn-rounded mb-2"
+                                    onclick="musteri_calisan(2)">Çalışan</button>
+                            </div>
                             @csrf
+                            <input type="text" style="display:none;" name="tip" id="tip" value="Müşteri"> <!-- Çalışanın mı yoksa müşterinin mi girişinin yapılacağını tutan input -->
                             <div class="">
-                                <!--Kurumsal Girişi-->
-                                <div id="kurumsal">
+                                <!--Müşteri Girişi-->
+                                <div id="musteri" style="display:block;">
                                     <div class="field-wrapper input">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -54,10 +62,10 @@
                                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                             <circle cx="12" cy="7" r="4"></circle>
                                         </svg>
-                                        <input id="username" name="username" type="text" class="form-control"
-                                            value="{{ old('username') }}" placeholder="Kurumsal Kullanıcı Adı/TCKN">
+                                        <input id="mkullaniciadi" name="mkullaniciadi" type="text" class="form-control"
+                                            value="{{ old('mkullaniciadi') }}" placeholder="Müşteri Kullanıcı Adı/TCKN">
 
-                                        @error('username')
+                                        @error('mkullaniciadi')
                                             <p class="text-danger mt-1">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -70,10 +78,10 @@
                                                 rx="2" ry="2"></rect>
                                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                         </svg>
-                                        <input id="password" name="password" type="password" class="form-control"
+                                        <input id="msifre" name="msifre" type="password" class="form-control"
                                             placeholder="Şifre">
 
-                                        @error('password')
+                                        @error('msifre')
                                             <p class="text-danger mt-1">{{ $message }}</p>
                                         @enderror
                                         @if (Session::has('sifre_degistirme_basarili'))
@@ -83,7 +91,46 @@
                                         @endif
                                     </div>
                                 </div>
-                                <!--Kurumsal Girişi-->
+                                <!--Müşteri Girişi-->
+                                <!--Çalışan Girişi-->
+                                <div id="calisan" style="display:none;">
+                                    <div class="field-wrapper input">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                        <input id="ckullaniciadi" name="ckullaniciadi" type="text" class="form-control"
+                                            value="{{ old('ckullaniciadi') }}" placeholder="Çalışan Kullanıcı Adı/TCKN">
+
+                                        @error('ckullaniciadi')
+                                            <p class="text-danger mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="field-wrapper input mb-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock">
+                                            <rect x="3" y="11" width="18" height="11"
+                                                rx="2" ry="2"></rect>
+                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                        </svg>
+                                        <input id="csifre" name="csifre" type="password" class="form-control"
+                                            placeholder="Şifre">
+
+                                        @error('csifre')
+                                            <p class="text-danger mt-1">{{ $message }}</p>
+                                        @enderror
+                                        @if (Session::has('sifre_degistirme_basarili'))
+                                            <div class="alert alert-success">
+                                                {{ Session::get('sifre_degistirme_basarili') }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <!--Çalışan Girişi-->
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper toggle-pass">
                                         <p class="d-inline-block">Şifreyi Göster</p>

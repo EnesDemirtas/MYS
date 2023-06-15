@@ -13,25 +13,50 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required'
-        ], [
-            'username.required' => 'Kullanıcı adı/TCKN boş bırakılamaz',
-            'password.required' => 'Şifre boş bırakılamaz'
-        ]);
-
-        $kullanici = calisan::where('ckullaniciadi', $request->input('username'))->first();
-        $tckn = calisan::where('ctckn', $request->input('username'))->first();
-        if ($kullanici && $kullanici->csifre == $request->input('password')) {
-            $request->session()->put('kullanici', $kullanici);
-            return redirect()->route('anasayfa.index');
-        } else if ($tckn && $tckn->csifre == $request->input('password')) {
-            $request->session()->put('kullanici', $tckn);
-            return redirect()->route('anasayfa.index');
-        } else {
-            return back()->withErrors(['username' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('username');
+        if($request->tip == "Çalışan"){
+            $request->validate([
+                'ckullaniciadi' => 'required',
+                'csifre' => 'required'
+            ], [
+                'ckullaniciadi.required' => 'Kullanıcı adı boş bırakılamaz',
+                'csifre.required' => 'Şifre boş bırakılamaz'
+            ]);
+    
+            $kullanici = calisan::where('ckullaniciadi', $request->input('ckullaniciadi'))->first();
+            $tckn = calisan::where('ctckn', $request->input('ckullaniciadi'))->first();
+            if ($kullanici && $kullanici->csifre == $request->input('csifre')) {
+                $request->session()->put('kullanici', $kullanici);
+                return redirect()->route('anasayfa.index');
+            } else if ($tckn && $tckn->csifre == $request->input('csifre')) {
+                $request->session()->put('kullanici', $tckn);
+                return redirect()->route('anasayfa.index');
+            } else {
+                return back()->withErrors(['ckullaniciadi' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('ckullaniciadi');
+            }
+        }else if($request->tip == "Müşteri"){
+            $request->validate([
+                'mkullaniciadi' => 'required',
+                'msifre' => 'required'
+            ], [
+                'mkullaniciadi.required' => 'Kullanıcı adı boş bırakılamaz',
+                'msifre.required' => 'Şifre boş bırakılamaz'
+            ]);
+    
+            $kullanici = musteri::where('mkullaniciadi', $request->input('mkullaniciadi'))->first();
+            $tckn = musteri::where('mtcknvno', $request->input('mkullaniciadi'))->first();
+            if ($kullanici && $kullanici->msifre == $request->input('msifre')) {
+                $request->session()->put('kullanici', $kullanici);
+                return redirect()->route('anasayfa.index');
+            } else if ($tckn && $tckn->msifre == $request->input('msifre')) {
+                $request->session()->put('kullanici', $tckn);
+                return redirect()->route('anasayfa.index');
+            } else {
+                return back()->withErrors(['mkullaniciadi' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('mkullaniciadi');
+            }
+        }else{
+            return redirect()->route('pages_error404');
         }
+        
     }
 
     public function register(Request $request)
@@ -103,6 +128,7 @@ class UserController extends Controller
                     $kullanici->madres = $request->input('madres');
                     $kullanici->mil = $request->input('mil');
                     $kullanici->milce = $request->input('milce');
+                    $kullanici->mphoto = 'ry3SeRlylxVzdSDtuzTrLuz4LVMxUNNZgNoDEvIb.png';
                     $kullanici->save();
                     return view('get_register_activation_code',['tip' => 'Müşteri']);
                 }
@@ -148,6 +174,7 @@ class UserController extends Controller
                     $kullanici->ctckn = $request->input('ctckn'); 
                     $kullanici->cdogum = $request->input('cdogum');
                     $kullanici->ctel = $request->input('ctel');
+                    $kullanici->cphoto = 'ry3SeRlylxVzdSDtuzTrLuz4LVMxUNNZgNoDEvIb.png';
                     $kullanici->save();
                     return view('get_register_activation_code',['tip' => 'Çalışan']);
                 }

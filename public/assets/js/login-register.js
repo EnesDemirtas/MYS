@@ -1,5 +1,25 @@
 function musteri_calisan(deger) {
-    if(deger == 3){ //Register - müşteri kısmı görünür yapma
+    if(deger == 1){ //Login - Müşteri kısmı görünür yapma
+        document.getElementById("musteri").style.display = 'block';
+		document.getElementById("calisan").style.display = 'none';
+        var calisan = document.getElementById("calisan_buton");
+        calisan.classList.remove("btn-primary");
+        calisan.classList.add("btn-outline-primary");
+        var musteri = document.getElementById("musteri_buton");
+        musteri.classList.remove("btn-outline-primary");
+        musteri.classList.add("btn-primary");
+        document.getElementById("tip").value = 'Müşteri';
+    }if(deger == 2){ //Login - Çalışan kısmı görünür yapma
+        document.getElementById("musteri").style.display = 'none';
+		document.getElementById("calisan").style.display = 'block';
+        var calisan = document.getElementById("calisan_buton");
+        calisan.classList.remove("btn-outline-primary");
+        calisan.classList.add("btn-primary");
+        var musteri = document.getElementById("musteri_buton");
+        musteri.classList.remove("btn-primary");
+        musteri.classList.add("btn-outline-primary");
+        document.getElementById("tip").value = 'Çalışan';
+    }if(deger == 3){ //Register - Müşteri kısmı görünür yapma
         document.getElementById("tip").value = "musteri";
         document.getElementById("musteri").style.display = 'block';
 		document.getElementById("calisan").style.display = 'none';
@@ -9,8 +29,7 @@ function musteri_calisan(deger) {
         var musteri = document.getElementById("musteri_buton");
         musteri.classList.remove("btn-outline-primary");
         musteri.classList.add("btn-primary");
-    }
-    if(deger == 4){ //Register - çalışan kısmı görünür yapma
+    }if(deger == 4){ //Register - çalışan kısmı görünür yapma
         document.getElementById("tip").value = "calisan";
         document.getElementById("calisan").style.display = 'block';
 		document.getElementById("musteri").style.display = 'none';
