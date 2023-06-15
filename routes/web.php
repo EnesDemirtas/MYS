@@ -122,5 +122,10 @@ Route::get('sifre_yenileme', function () {
 Route::post('register_activation_code', [ActivationCodeController::class, 'SendRegisterActivationCode'])->name('register_activation_code');
 
 Route::get('load_register_activation_code', [UserController::class, 'LoadRegisterActivationCode'])->name('load_register_activation_code');
+Route::get('load_register_activation_code_musteri', [UserController::class, 'LoadRegisterActivationCode'])->name('load_register_activation_code_musteri');
 
 Route::post('activate_account', [ActivationCodeController::class, 'ActivateAccount'])->name('activate_account');
+
+Route::get('pages_error404', function () {
+    return view('pages_error404');
+});

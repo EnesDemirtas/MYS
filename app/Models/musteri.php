@@ -46,5 +46,8 @@ class musteri extends Model
     'mboylam',
     'mnot',
     'aktif',
+    'mkullaniciadi',
+    'msifre',
+    'maktif',
     ];
 }

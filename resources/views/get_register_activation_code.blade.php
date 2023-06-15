@@ -26,33 +26,64 @@
 
                         <h1 class="">Aktivasyon Kodu</h1>
                         <p class="signup-link">Hesabınızı aktifleştirmek için lütfen E-posta adresinizi giriniz.</p>
-                        <form class="text-left" action="{{ route('register_activation_code') }}" method="POST">
+                        <form class="text-left" action="{{ route('register_activation_code', ['tip' => $tip] )}}" method="POST">
                             @csrf
                             @method('POST')
-                            <div class="form">
-
-                                <div id="email-field" class="field-wrapper input">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-at-sign">
-                                        <circle cx="12" cy="12" r="4"></circle>
-                                        <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
-                                    </svg>
-                                    <input id="email" name="ceposta" type="text" value=""
-                                        placeholder="E-posta">
-                                </div>
-                                @error('email')
-                                    <p class="text-danger mt-1">{{ $message }}</p>
-                                @enderror
-                                <div class="d-sm-flex justify-content-between">
-                                    <div class="field-wrapper">
-                                        <button type="submit" class="btn btn-primary" value="">Devam</button>
+                            @php
+                                if($tip == "Çalışan"){
+                            @endphp
+                                    <div class="form">
+                                        {{$tip}}
+                                    <div id="email-field" class="field-wrapper input">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-at-sign">
+                                            <circle cx="12" cy="12" r="4"></circle>
+                                            <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+                                        </svg>
+                                        <input id="email" name="ceposta" type="text" value=""
+                                            placeholder="E-posta">
                                     </div>
-                                </div>
-
-                            </div>
+                                        @error("email")
+                                            <p class="text-danger mt-1">{{ $message }}</p>
+                                        @enderror
+                                        <div class="d-sm-flex justify-content-between">
+                                            <div class="field-wrapper">
+                                                <button type="submit" class="btn btn-primary" value="">Devam</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            @php
+                                }else if($tip == "Müşteri"){
+                            @endphp
+                                    <div class="form">
+                                        {{$tip}}
+                                    <div id="email-field" class="field-wrapper input">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-at-sign">
+                                            <circle cx="12" cy="12" r="4"></circle>
+                                            <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+                                        </svg>
+                                        <input id="email" name="meposta" type="text" value=""
+                                            placeholder="E-posta">
+                                    </div>
+                                        @error("email")
+                                            <p class="text-danger mt-1">{{ $message }}</p>
+                                        @enderror
+                                        <div class="d-sm-flex justify-content-between">
+                                            <div class="field-wrapper">
+                                                <button type="submit" class="btn btn-primary" value="">Devam</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            @php
+                                }else{
+                                    route('pages_error404');
+                                }
+                            @endphp
                         </form>
-                        <p class="terms-conditions">© 2022 Tüm hakları saklıdır. <a href="mys_index.html">DAKIK</a>
+                        <p class="terms-conditions">© 2023 Tüm hakları saklıdır. <a href="#">DAKIK</a>
 
                     </div>
                 </div>

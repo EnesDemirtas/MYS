@@ -71,7 +71,7 @@
                                 @error('password_confirmation')
                                     <p class="text-danger mt-1">{{ $message }}</p>
                                 @enderror
-                                [<input name="ceposta" type="hidden" value="{{ $ceposta }}">]
+                                [<input name="meposta" type="hidden" value="{{ $meposta }}">]
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper">
                                         <button type="submit" class="btn btn-primary" value="">Yenile</button>
@@ -80,7 +80,7 @@
 
                             </div>
                         </form>
-                        <p class="terms-conditions">© 2022 Tüm hakları saklıdır. <a href="#">DAKIK</a>
+                        <p class="terms-conditions">© 2023 Tüm hakları saklıdır. <a href="#">DAKIK</a>
 
                     </div>
                 </div>

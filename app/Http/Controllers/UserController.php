@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\calisan;
+use App\Models\musteri;
 use Illuminate\Support\Facades\Storage;
 use Deligoez\TCKimlikNo\TCKimlikNo;
 
@@ -37,7 +38,74 @@ class UserController extends Controller
     {
         
         if($request->tip == "musteri"){
+            $request->validate([
+                'mbadi' => 'required',
+                'mbsoyadi' => 'required',
+                'meposta' => 'required|email',
+                'mtcknvno' => 'required',
+                'mkullaniciadi' => 'required',
+                'msifre' => 'required',
+                'mbdogumgunu' => 'required',
+                'mtel' => 'required',
+                'mkayitturu' => 'required',
+                'mtmarkaadi' => 'required',
+                'mbunvani' => 'required',
+                'menlem' => 'required',
+                'mboylam' => 'required',
+                'madres' => 'required',
+                'mil' => 'required',
+                'milce' => 'required',
+            ], [
+                'mkullaniciadi.required' => 'Kullanıcı adı boş bırakılamaz',
+                'mbadi.required' => 'Ad boş bırakılamaz',
+                'meposta.required' => 'E-posta boş bırakılamaz',
+                'meposta.email' => 'Geçerli bir e-posta adresi giriniz',
+                'msifre.required' => 'Şifre boş bırakılamaz',
+                'mtcknvno.required' => 'TCKN boş bırakılamaz',
+                'mbsoyadi.required' => 'Soyad boş bırakılamaz',
+                'mbdogumgunu.required' => 'Doğum günü boş bırakılamaz',
+                'mtel.required' => 'Telefon numarası boş bırakılamaz',
+                'mkayitturu.required' => 'Kayıt türü boş bırakılamaz',
+                'mtmarkaadi.required' => 'Marka adı  boş bırakılamaz',
+                'mbunvani.required' => 'Lütfen ünvanınızı giriniz',
+                'menlem.required' => 'Haritadan şirket adresini seçiniz',
+                'mboylam.required' => 'Haritadan şirket adresini seçiniz',
+                'madres.required' => 'Adres boş bırakılamaz',
+                'mil.required' => 'İl boş bırakılamaz',
+                'milce.required' => 'İlçe boş bırakılamaz',
+            ]);
 
+            $kullanici = musteri::where('mkullaniciadi', $request->input('mkullaniciadi'))->first();
+            $tckn = musteri::where('mtcknvno', $request->input('mtcknvno'))->first();
+            // MERNIS kontrolu
+                if (!TCKimlikNo::validate($request->mtcknvno, $request->mbadi, $request->mbsoyadi, explode("-", $request->mbdogumgunu)[0])) {
+                    return back()->withErrors(['mernis' => 'Geçersiz kimlik bilgileri!'])->onlyInput('username');
+                }
+                if ($kullanici) {
+                    return back()->withErrors(['username' => 'Kullanıcı adı/TCKN kullanımda!'])->onlyInput('username');
+                } else if ($tckn) {
+                    return back()->withErrors(['ctckn' => 'TCKN kullanımda!'])->onlyInput('ctckn');
+                } else {
+                    $kullanici = new musteri();
+                    $kullanici->mkullaniciadi = $request->input('mkullaniciadi');
+                    $kullanici->msifre = $request->input('msifre');
+                    $kullanici->meposta = $request->input('meposta');
+                    $kullanici->mbadi = $request->input('mbadi');
+                    $kullanici->mbsoyadi = $request->input('mbsoyadi');
+                    $kullanici->mtcknvno = $request->input('mtcknvno'); 
+                    $kullanici->mbdogumgunu = $request->input('mbdogumgunu');
+                    $kullanici->mtel = $request->input('mtel');
+                    $kullanici->mkayitturu = $request->input('mkayitturu');
+                    $kullanici->mtmarkaadi = $request->input('mtmarkaadi');
+                    $kullanici->mbunvani = $request->input('mbunvani');
+                    $kullanici->menlem = $request->input('menlem');
+                    $kullanici->mboylam = $request->input('mboylam');
+                    $kullanici->madres = $request->input('madres');
+                    $kullanici->mil = $request->input('mil');
+                    $kullanici->milce = $request->input('milce');
+                    $kullanici->save();
+                    return view('get_register_activation_code',['tip' => 'Müşteri']);
+                }
         }else if($request->tip == "calisan"){
             $request->validate([
                 'ckullaniciadi' => 'required',
@@ -81,7 +149,7 @@ class UserController extends Controller
                     $kullanici->cdogum = $request->input('cdogum');
                     $kullanici->ctel = $request->input('ctel');
                     $kullanici->save();
-                    return view('get_register_activation_code');
+                    return view('get_register_activation_code',['tip' => 'Çalışan']);
                 }
         }else{
             return back()->withErrors(['gecersizTip' => 'Kayıt olurken bir hata oluştu. Lütfen bizimle iletişime geçiniz.']);
@@ -125,6 +193,12 @@ class UserController extends Controller
 
     public function LoadRegisterActivationCode(Request $request)
     {
-        return view('load_register_activation_code', ['ceposta' => $request->query('ceposta')]);
+        if($request->tip == "Çalışan"){
+            return view('load_register_activation_code', ['ceposta' => $request->query('ceposta'),'tip' => 'Çalışan']);
+        }else if($request->tip == "Müşteri"){
+            return view('load_register_activation_code_musteri', ['meposta' => $request->query('meposta'),'tip' => 'Müşteri']);
+        }else{
+            return redirect()->route('pages_error404');
+        }
     }
 }

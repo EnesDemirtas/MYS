@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>CORK Admin Template - Error 404 Page</title>
+    <title>SBE Mühendislik - 404 Hatası</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
@@ -27,10 +27,10 @@
     </div>
     <div class="container-fluid error-content">
         <div class="">
-            <h1 class="error-number">404</h1>
+            <h1 class="error-number">404 Hatası!</h1>
             <p class="mini-text">Ooops!</p>
-            <p class="error-text mb-4 mt-1">The page you requested was not found!</p>
-            <a href="index.html" class="btn btn-primary mt-5">Go Back</a>
+            <p class="error-text mb-4 mt-1">Bu sayfa bulunamadı</p>
+            <a href="index.html" class="btn btn-primary mt-5">Geri Dön</a>
         </div>
     </div>    
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
