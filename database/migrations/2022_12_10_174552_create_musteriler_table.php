@@ -14,7 +14,7 @@ class CreateMusterilerTable extends Migration
     public function up()
     {
         Schema::create('musteriler', function (Blueprint $table) {
-            $table->id('id',11);
+            $table->id('id', 11);
             $table->string('mno')->lenght(11)->nullable();
             $table->string('mrefno')->lenght(20)->nullable();
             $table->string('mkayitturu')->lenght(20);
@@ -52,7 +52,7 @@ class CreateMusterilerTable extends Migration
             $table->string('mnot')->lenght(20)->nullable();
             $table->string('aktif')->lenght(10)->nullable();
             $table->string('mkullaniciadi')->lenght(20)->nullable();
-            $table->string('msifre')->lenght(25)->nullable();
+            $table->string('msifre')->lenght(255)->nullable();
             $table->string('maktif')->lenght(5)->nullable();
             $table->string('mphoto')->lenght(100)->nullable();
             $table->date('updated_at');

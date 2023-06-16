@@ -18,7 +18,8 @@ class IsAuthenticated
     {
 
         if (is_null(session('kullanici'))) {
-            return redirect('giris_yap');
+            // return redirect('giris_yap');
+            return redirect()->route('pages_error404');
         }
 
         return $next($request);

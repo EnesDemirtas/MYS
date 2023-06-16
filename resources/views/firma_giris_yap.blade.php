@@ -13,6 +13,7 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/theme-checkbox-radio.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/switches.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 </head>
 
 <body class="">
@@ -51,7 +52,8 @@
                                     onclick="musteri_calisan(2)">Çalışan</button>
                             </div>
                             @csrf
-                            <input type="text" style="display:none;" name="tip" id="tip" value="Müşteri"> <!-- Çalışanın mı yoksa müşterinin mi girişinin yapılacağını tutan input -->
+                            <input type="text" style="display:none;" name="tip" id="tip" value="Müşteri">
+                            <!-- Çalışanın mı yoksa müşterinin mi girişinin yapılacağını tutan input -->
                             <div class="">
                                 <!--Müşteri Girişi-->
                                 <div id="musteri" style="display:block;">
@@ -62,8 +64,9 @@
                                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                             <circle cx="12" cy="7" r="4"></circle>
                                         </svg>
-                                        <input id="mkullaniciadi" name="mkullaniciadi" type="text" class="form-control"
-                                            value="{{ old('mkullaniciadi') }}" placeholder="Müşteri Kullanıcı Adı/TCKN">
+                                        <input id="mkullaniciadi" name="mkullaniciadi" type="text"
+                                            class="form-control" value="{{ old('mkullaniciadi') }}"
+                                            placeholder="Müşteri Kullanıcı Adı/TCKN">
 
                                         @error('mkullaniciadi')
                                             <p class="text-danger mt-1">{{ $message }}</p>
@@ -79,7 +82,11 @@
                                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                         </svg>
                                         <input id="msifre" name="msifre" type="password" class="form-control"
-                                            placeholder="Şifre">
+                                            placeholder="Şifre" style="width:90% !important">
+                                        <i class="far
+                                            fa-eye"
+                                            id="togglePasswordMusteri"
+                                            style="margin-left: -30px; cursor: pointer;"></i>
 
                                         @error('msifre')
                                             <p class="text-danger mt-1">{{ $message }}</p>
@@ -96,13 +103,15 @@
                                 <div id="calisan" style="display:none;">
                                     <div class="field-wrapper input">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-user">
                                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                             <circle cx="12" cy="7" r="4"></circle>
                                         </svg>
-                                        <input id="ckullaniciadi" name="ckullaniciadi" type="text" class="form-control"
-                                            value="{{ old('ckullaniciadi') }}" placeholder="Çalışan Kullanıcı Adı/TCKN">
+                                        <input id="ckullaniciadi" name="ckullaniciadi" type="text"
+                                            class="form-control" value="{{ old('ckullaniciadi') }}"
+                                            placeholder="Çalışan Kullanıcı Adı/TCKN">
 
                                         @error('ckullaniciadi')
                                             <p class="text-danger mt-1">{{ $message }}</p>
@@ -111,14 +120,19 @@
 
                                     <div class="field-wrapper input mb-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock">
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-lock">
                                             <rect x="3" y="11" width="18" height="11"
                                                 rx="2" ry="2"></rect>
                                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                         </svg>
                                         <input id="csifre" name="csifre" type="password" class="form-control"
-                                            placeholder="Şifre">
+                                            placeholder="Şifre" style="width: 90% !important">
+                                        <i class="far
+                                            fa-eye"
+                                            id="togglePasswordCalisan"
+                                            style="margin-left: -30px; cursor: pointer;"></i>
 
                                         @error('csifre')
                                             <p class="text-danger mt-1">{{ $message }}</p>
@@ -140,7 +154,8 @@
                                         </label>
                                     </div>
                                     <div class="field-wrapper">
-                                        <button type="submit" class="btn btn-primary" value="">Giriş Yap</button>
+                                        <button type="submit" class="btn btn-primary" value="">Giriş
+                                            Yap</button>
                                     </div>
 
                                 </div>
@@ -182,6 +197,30 @@
 
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     <script src="{{ asset('assets/js/authentication/form-1.js') }}"></script>
+
+    <script>
+        const togglePasswordMusteri = document.querySelector('#togglePasswordMusteri');
+        const passwordMusteri = document.querySelector('#msifre');
+
+        togglePasswordMusteri.addEventListener('click', function(e) {
+            // toggle the type attribute
+            const type = passwordMusteri.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordMusteri.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        const togglePasswordCalisan = document.querySelector('#togglePasswordCalisan');
+        const passwordCalisan = document.querySelector('#csifre');
+
+        togglePasswordCalisan.addEventListener('click', function(e) {
+            // toggle the type attribute
+            const type = passwordCalisan.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordCalisan.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 
 </body>
 
