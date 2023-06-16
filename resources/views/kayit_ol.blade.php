@@ -202,7 +202,7 @@
                                                 </svg>
                                                 {{-- <input id="telefon" name="mtel" type="text"
                                                     placeholder="Telefon Numarası"> --}}
-                                                <input id="telefon" name="mtel" type="tel" />
+                                                <input id="telefon_musteri" name="mtel" type="tel" />
 
                                                 @error('telefon')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
@@ -564,7 +564,7 @@
                                                 </svg>
                                                 {{-- <input id="telefon" name="ctel" type="text"
                                                     placeholder="Telefon Numarası"> --}}
-                                                <input id="telefon" name="ctel" type="tel" />
+                                                <input id="telefon_calisan" name="ctel" type="tel" />
                                                 @error('telefon')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -724,8 +724,8 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
     <script>
-        var input = document.querySelectorAll("#telefon")[0];
-        window.intlTelInput(input, {
+        var musteriTelefon = document.querySelector("#telefon_musteri");
+        var musteriTelefonHandler = window.intlTelInput(musteriTelefon, {
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
             setCountry: "tr",
             initialCountry: "tr",
@@ -734,14 +734,22 @@
             nationalMode: false,
         });
 
-        var input = document.querySelectorAll("#telefon")[1];
-        window.intlTelInput(input, {
+        musteriTelefon.addEventListener("change", function() {
+            this.value = musteriTelefonHandler.getNumber();
+        });
+
+        var calisanTelefon = document.querySelector("#telefon_calisan");
+        var calisanTelefonHandler = window.intlTelInput(calisanTelefon, {
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
             setCountry: "tr",
             initialCountry: "tr",
             preferredCountries: ["tr", "us", "gb"],
             separateDialCode: true,
             nationalMode: false,
+        });
+
+        calisanTelefon.addEventListener("change", function() {
+            this.value = calisanTelefonHandler.getNumber();
         });
     </script>
 </body>
