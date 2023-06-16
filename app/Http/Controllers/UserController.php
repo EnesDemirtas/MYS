@@ -85,6 +85,7 @@ class UserController extends Controller
                 'madres' => 'required',
                 'mil' => 'required',
                 'milce' => 'required',
+                'mbolge' => 'required',
             ], [
                 'mkullaniciadi.required' => 'Kullanıcı adı boş bırakılamaz',
                 'mbadi.required' => 'Ad boş bırakılamaz',
@@ -103,6 +104,7 @@ class UserController extends Controller
                 'madres.required' => 'Adres boş bırakılamaz',
                 'mil.required' => 'İl boş bırakılamaz',
                 'milce.required' => 'İlçe boş bırakılamaz',
+                'mbolge.required' => 'Bölge ismi boş bırakılamaz'
             ]);
 
             $kullanici = musteri::where('mkullaniciadi', $request->input('mkullaniciadi'))->first();
@@ -116,6 +118,7 @@ class UserController extends Controller
             } else if ($tckn) {
                 return back()->withErrors(['ctckn' => 'TCKN kullanımda!'])->onlyInput('ctckn');
             } else {
+                dd($request->all());
                 $kullanici = new musteri();
                 $kullanici->mkullaniciadi = $request->input('mkullaniciadi');
                 $kullanici->msifre = Hash::make($request->input('msifre'));
@@ -133,7 +136,10 @@ class UserController extends Controller
                 $kullanici->madres = $request->input('madres');
                 $kullanici->mil = $request->input('mil');
                 $kullanici->milce = $request->input('milce');
-                $kullanici->mphoto = 'ry3SeRlylxVzdSDtuzTrLuz4LVMxUNNZgNoDEvIb.png';
+                $kullanici->mphoto = asset('assets/img/img_avatar.png');
+                $kullanici->mbolge = $request->input('mbolge');
+                $kullanici->mmobil = $request->input('mtel');
+                $kullanici->mukodutel = $request->input('mukodutel');
                 $kullanici->save();
                 return view('get_register_activation_code', ['tip' => 'Müşteri']);
             }

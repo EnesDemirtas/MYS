@@ -96,13 +96,13 @@ class MusterilerController extends Controller {
     }
 
     $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
-    $musteriSayisiBul = musteri::where('satirid', '>', '0')->get();
+    $musteriSayisiBul = musteri::where('id', '>', '0')->get();
     $musteriSayisi = $musteriSayisiBul->count(); // Kaç çalışan olduğunu saydırır.
 
     if (musteri::where('mtcknvno', $request->mtcknvno)->exists()) {
         return redirect()->back()->with('error', 'Bu TCKN/Vergi No ile kayıtlı bir müşteri bulunmaktadır.');
     }else if($musteriSayisi > 0){ // Tablo boş değilse
-        $sonmusteri = musteri::orderBy('satirid', 'desc')->first()->satirid; //Son Çalışanın Satır ID'sini getirir.
+        $sonmusteri = musteri::orderBy('id', 'desc')->first()->id; //Son Çalışanın Satır ID'sini getirir.
         musteri::create($request->all());
         musteri::where('mtcknvno', $request->mtcknvno)->update( array('mrefno'=>'sbe-'.$sonmusteri++.'','aktif' => 1) );
         return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
@@ -149,13 +149,13 @@ class MusterilerController extends Controller {
             'madres.required' => 'Lütfen müşterinin adresini giriniz.',
         ]);
 
-        $musteriSayisiBul = musteri::where('satirid', '>', '0')->get();
+        $musteriSayisiBul = musteri::where('id', '>', '0')->get();
         $musteriSayisi = $musteriSayisiBul->count(); // Kaç çalışan olduğunu saydırır.
 
         if (musteri::where('mtcknvno', $request->mtcknvno)->exists()) {
             return redirect()->back()->with('error', 'Bu TCKN/Vergi No ile kayıtlı bir müşteri bulunmaktadır.');
         }else if($musteriSayisi > 0){ // Tablo boş değilse
-            $sonmusteri = musteri::orderBy('satirid', 'desc')->first()->satirid; //Son Çalışanın Satır ID'sini getirir.
+            $sonmusteri = musteri::orderBy('id', 'desc')->first()->id; //Son Çalışanın Satır ID'sini getirir.
             musteri::create($request->all());
             musteri::where('mtcknvno', $request->mtcknvno)->update( array('mrefno'=>'sbe-'.$sonmusteri++.'','aktif' => 1) );
             return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");

@@ -121,15 +121,6 @@
         <!--  BEGIN TOPBAR  -->
         <x-navbar />
         <!--  END TOPBAR  -->
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                <li>{{$error}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     @if(Session::has("success"))
                         <div class="alert alert-success">
                             {{Session::get("success")}}
@@ -188,35 +179,35 @@
                                                     <div class="row">
                                                         <div class="col-md-11 mx-auto">
                                                             <span class="badge badge-primary font-weight-bold w-100" style="font-size:20px;">Kişisel Bilgiler</span>
-                                                            <div class="row">
+                                                            <div class="row mt-2">
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <label for="ad">Ad</label>
-                                                                        <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4"  name="cadi"  value="{{$kullanici->cadi}}" required>
+                                                                        <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4"  name="cadi"  value="{{$kullanici->cadi}}" readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label for="soyad">Soyad</label>
-                                                                        <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="csoyadi"   value="{{$kullanici->csoyadi}}" required>
+                                                                        <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="csoyadi"   value="{{$kullanici->csoyadi}}" readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <label for="tckn">TCKN</label>
-                                                                        <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="ctckn" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$kullanici->ctckn}}" required>
+                                                                        <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="ctckn" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$kullanici->ctckn}}" readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label for="website1">Ünvan</label>
-                                                                        <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" value="{{$kullanici->cunvani}}" required>
+                                                                        <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" value="{{$kullanici->cunvani}}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label for="dg">Doğum Günü</label>
-                                                                        <input onkeypress="guncelleGoster()" type="date" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$kullanici->cdogum}}" required>
+                                                                        <input onkeypress="guncelleGoster()" type="date" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$kullanici->cdogum}}">
                                                                     </div>
                                                                 </div>
                                                                 </div>
@@ -312,6 +303,7 @@
                                     <!-- Çalışan Güncelleme Kısmı -->
                                     <!-- Müşteri Güncelleme Kısmı -->
                                     @else 
+                                    MÜŞTERİ
                                         <div class="row">
                                             <div class="col-3">
                                                 <div class="profilepic" style="border-radius: 20%;">
@@ -364,13 +356,13 @@
                                                                     <div class="col-md-2">
                                                                         <div class="form-group">
                                                                             <label for="website1">Ünvan</label>
-                                                                            <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" value="{{$musteri->cunvani}}" required>
+                                                                            <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mbunvani" id="website1" placeholder="Ünvan" value="{{$musteri->mbunvani}}" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-2">
                                                                         <div class="form-group">
                                                                             <label for="dg">Doğum Günü</label>
-                                                                            <input onkeypress="guncelleGoster()" type="date" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$musteri->cdogum}}" required>
+                                                                            <input onkeypress="guncelleGoster()" type="date" class="form-control mb-4"  name="mbdogumgunu" id="dogumgunu" value="{{$musteri->mbdogumgunu}}" required>
                                                                         </div>
                                                                     </div>
                                                                     </div>
@@ -380,8 +372,8 @@
                                                                         <div class="col-md-2 h-50 pr-0">
                                                                             <div class="form-group">
                                                                                 <label for="phone">Ülke Kodu</label>
-                                                                                <select onchange="guncelleGoster()" class="placeholder js-states form-control" name="ukodutel">
-                                                                                    <option>{{$musteri->ukodutel}}</option>
+                                                                                <select onchange="guncelleGoster()" class="placeholder js-states form-control" name="mukodutel">
+                                                                                    <option>{{$musteri->mukodutel}}</option>
                                                                                     <option value="90">90</option>
                                                                                     <option value="49">49</option>
                                                                                     <option value="1">1</option>
@@ -393,13 +385,13 @@
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label for="phone">Telefon Numarası</label>
-                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="10" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="ctel" id="phone" placeholder="Telefon Numarası" value="{{$musteri->ctel}}" required>
+                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="15" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="mtel" id="mtel" placeholder="Telefon Numarası" value="{{$musteri->mtel}}" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="email">Eposta</label>
-                                                                                <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="ceposta" id="email" placeholder="Eposta" value="{{$musteri->ceposta}}" required>
+                                                                                <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="meposta" id="meposta" placeholder="Eposta" value="{{$musteri->meposta}}" required>
                                                                             </div>
                                                                         </div>
                                                                     </div> 
@@ -409,23 +401,23 @@
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label for="location">İl</label>
-                                                                                <select onchange="guncelleGoster()" id="Iller" name="cevadresil" class="placeholder js-states form-control">
-                                                                                    <option>{{$musteri->cevadresil}}</option>
+                                                                                <select onchange="guncelleGoster()" id="mil" name="mil" class="placeholder js-states form-control">
+                                                                                    <option>{{$musteri->mil}}</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label for="location">İlçe</label>
-                                                                                <select onchange="guncelleGoster()" id="Ilceler" name="cevadresilce" class="placeholder js-states form-control">
-                                                                                    <option value="{{$musteri->cevadresilce}}" selected>{{$musteri->cevadresilce}}</option>
+                                                                                <select onchange="guncelleGoster()" id="milce" name="milce" class="placeholder js-states form-control">
+                                                                                    <option value="{{$musteri->milce}}" selected>{{$musteri->milce}}</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="location">Adres</label>
-                                                                                <textarea onkeypress="guncelleGoster()" class="form-control mb-4" style="resize:none;" id="cevadres" name="cevadres" placeholder="Adres" rows="2">{{$musteri->cevadres}}</textarea>
+                                                                                <textarea onkeypress="guncelleGoster()" class="form-control mb-4" style="resize:none;" id="madres" name="madres" placeholder="Adres" rows="2">{{$musteri->madres}}</textarea>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -434,14 +426,14 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <label for="cbanka">Banka Adı</label>
-                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="11" class="form-control mb-4" name="cbanka" id="cbanka" placeholder="Banka Adı" value="{{$musteri->cbanka}}">
+                                                                                <label for="mbankaadi">Banka Adı</label>
+                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="11" class="form-control mb-4" name="mbankaadi" id="mbankaadi" placeholder="Banka Adı" value="{{$musteri->mbankaadi}}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <label for="ciban">IBAN</label>
-                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="26"  class="form-control mb-4" name="ciban" id="ciban" placeholder="IBAN" value="{{$musteri->ciban}}">
+                                                                                <label for="miban">IBAN</label>
+                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="26"  class="form-control mb-4" name="miban" id="miban" placeholder="IBAN" value="{{$musteri->miban}}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
@@ -481,6 +473,7 @@
 
         <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
         <x-global-mandatory.scripts />
+        <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
         <script src="{{ asset('assets/js/inputController.js') }}"></script>
 </body>
 

@@ -69,7 +69,7 @@
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
                                                 <input id="ad" name="mbadi" type="text"
-                                                    class="form-control"placeholder="Ad">
+                                                    class="form-control" placeholder="Ad" value="{{ old('mbadi') }}">
                                                 @error('ad')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -86,7 +86,7 @@
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
                                                 <input id="soyad" name="mbsoyadi" type="text"
-                                                    class="form-control"placeholder="Soyad">
+                                                    class="form-control"placeholder="Soyad" value="{{ old('mbsoyadi') }}">
                                                 @error('ad')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -104,7 +104,7 @@
                                                     <circle cx="12" cy="12" r="4"></circle>
                                                     <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
                                                 </svg>
-                                                <input id="email" name="meposta" type="text" value=""
+                                                <input id="email" name="meposta" type="text" value="{{ old('meposta') }}"
                                                     placeholder="Email">
                                                 @error('email')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
@@ -121,10 +121,9 @@
                                                         height="11" rx="2" ry="2"></rect>
                                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                                 </svg>
-                                                <input id="msifre" name="msifre" type="password" value=""
+                                                <input id="msifre" name="msifre" type="password" value="{{ old('msifre') }}"
                                                     placeholder="Şifre" style="width: 90% !important">
-                                                <i class="far
-                                            fa-eye"
+                                                <i class="far fa-eye"
                                                     id="togglePasswordMusteri"
                                                     style="margin-left: -30px; cursor: pointer;"></i>
                                                 @error('password')
@@ -145,7 +144,7 @@
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
                                                 <input id="tckn" name="mtcknvno" type="text"
-                                                    class="form-control" placeholder="TCKN">
+                                                    class="form-control" placeholder="TCKN" value="{{ old('mtcknvno') }}">
                                                 @error('tckn')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -161,7 +160,7 @@
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
                                                 <input id="username" name="mkullaniciadi" type="text"
-                                                    class="form-control"placeholder="Kullanıcı Adı">
+                                                    class="form-control"placeholder="Kullanıcı Adı" value="{{ old('mkullaniciadi') }}">
                                                 @error('username')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -185,7 +184,7 @@
                                                     <line x1="3" y1="10" x2="21"
                                                         y2="10" />
                                                 </svg>
-                                                <input id="dogumgunu" name="mbdogumgunu" type="date">
+                                                <input id="dogumgunu" name="mbdogumgunu" type="date" value="{{ old('mbdogumgunu') }}">
                                                 @error('dogumgunu')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -202,7 +201,8 @@
                                                 </svg>
                                                 {{-- <input id="telefon" name="mtel" type="text"
                                                     placeholder="Telefon Numarası"> --}}
-                                                <input id="telefon" name="mtel" type="tel" />
+                                                <input type="text" style="display:none;" id="mukodutel" name="mukodutel" value="{{ old('mukodutel') }}">
+                                                <input id="telefon" name="mtel" type="tel" onchange="ulkeKoduDegistir()" value="{{ old('mtel') }}"/>
 
                                                 @error('telefon')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
@@ -230,7 +230,7 @@
                                                 </svg>
                                                 <select class="form-control form-control-sm text-center"
                                                     name="mkayitturu" id="hk-kayitturu"
-                                                    onchange="changeFields(this.value)">
+                                                    onchange="changeFields(this.value)" value="{{ old('mkayitturu') }}">
                                                     <option value="Kayıt Türü">Kayıt Türü</option>
                                                     <option value="Bireysel">Bireysel</option>
                                                     <option value="Ticari">Ticari</option>
@@ -369,29 +369,35 @@
                                     </div>
                                     <!-- Adres Kısmı -->
                                     <div id="adres-field" class="row field-wrapper input mb-2">
-                                        <div class="col-1 pr-0">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="30"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-map-pin" style="top: 7px; right: -15;">
-                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                                <circle cx="12" cy="10" r="3" />
-                                            </svg>
-                                        </div>
-                                        <div class="col-5 ">
+                                        
+                                        <div class="col-4 ">
                                             <select id="Iller" name="mil"
-                                                class="placeholder js-states form-control">
+                                                class="placeholder js-states form-control" value="{{ old('mil') }}">
                                                 <option>İl</option>
                                             </select>
                                         </div>
-                                        <div class="col-5">
+                                        <div class="col-4">
                                             <select id="Ilceler" disabled="disabled" name="milce"
-                                                class="placeholder js-states form-control">
+                                                class="placeholder js-states form-control" value="{{ old('milce') }}">
                                                 <option>İlçe</option>
                                             </select>
                                             @error('adres')
                                                 <p class="text-danger mt-1">{{ $message }}</p>
                                             @enderror
+                                        </div>
+                                        <div class="col-4">
+                                            <div id="bolge-field" class="field-wrapper input mb-2 pt-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="70" height="30"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-map-pin" style="top: 10px; right: 90;">
+                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                                <circle cx="12" cy="10" r="3" />
+                                                </svg>
+                                                <input id="mbolge" type="text" name="mbolge"
+                                                    placeholder="Bölge" class="form-control pb-0"
+                                                    value="{{ old('mbolge') }}">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -733,16 +739,8 @@
             separateDialCode: true,
             nationalMode: false,
         });
-
-        var input = document.querySelectorAll("#telefon")[1];
-        window.intlTelInput(input, {
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
-            setCountry: "tr",
-            initialCountry: "tr",
-            preferredCountries: ["tr", "us", "gb"],
-            separateDialCode: true,
-            nationalMode: false,
-        });
+            
+        console.log(iti.getNumber());   
     </script>
 </body>
 

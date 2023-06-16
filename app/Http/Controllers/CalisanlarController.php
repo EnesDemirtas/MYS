@@ -50,15 +50,9 @@ class CalisanlarController extends Controller
                 'ceposta.required' => 'Lütfen çalışan eposta boş bırakmayınız.',
                 'cunvani.required' => 'Lütfen çalışan ünvanını boş bırakmayınız.',
                 'ukodutel.required' => 'Lütfen telefon ülke kodunu boş bırakmayınız.',
-            ]
-        );
-        $telNoUzunlugu = strlen($request->ctel);
-        if ($telNoUzunlugu != 10) { // Telefon Numarası 10 haneden az ise error döner
-            return redirect()->back()->with("eksikTel", "Yanlış Bir Telefon Numarası Girdiniz.");
-        } else {
-            calisan::where('ctckn', $request->ctckn)->update(array(
-                'ctel' => $request->ctel,
-                'ukodutel' => $request->ukodutel,
+            ]);
+
+            calisan::where('ctckn', $request->$ctckn)->update(array('ctel' => $request->ctel, 'ukodutel' => $request->ukodutel,
                 'ceposta' => $request->ceposta,
                 'cunvani' => $request->cunvani,
                 'cevadresil' => $request->cevadresil,
@@ -69,7 +63,7 @@ class CalisanlarController extends Controller
                 'cevadres' => $request->cevadres,
             ));
             return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
-        }
+        
     }
 
     public function calisanSil($ctckn)
