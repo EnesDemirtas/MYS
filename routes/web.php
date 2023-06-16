@@ -28,6 +28,7 @@ Route::post('/musteri', [MusterilerController::class, 'musteriEkle'])->name('mus
 Route::get('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriDuzenle'])->name('musteri.duzenle')->middleware('isAuthenticated');
 Route::put('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriGuncelle'])->name('musteri.guncelle')->middleware('isAuthenticated');
 Route::delete('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriSil'])->name('musteri.sil')->middleware('isAuthenticated');
+Route::put('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriGuncelleProfil'])->name('musteri.guncelle.profil')->middleware('isAuthenticated');
 
 
 Route::get('/musteri_ekle', function () {

@@ -100,6 +100,7 @@
             font-family: sans-serif;
         }
     </style>
+    <link href="{{ asset('assets/css/authentication/form-1.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/users/account-setting.css') }}"/>
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
@@ -186,8 +187,8 @@
                                                 <div class="info bg-light">
                                                     <div class="row">
                                                         <div class="col-md-11 mx-auto">
-                                                                <h3 style="text-decoration: underline;">Kişisel Bilgiler</h3>
-                                                                <div class="row">
+                                                            <span class="badge badge-primary font-weight-bold w-100" style="font-size:20px;">Kişisel Bilgiler</span>
+                                                            <div class="row">
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <label for="ad">Ad</label>
@@ -311,7 +312,157 @@
                                     <!-- Çalışan Güncelleme Kısmı -->
                                     <!-- Müşteri Güncelleme Kısmı -->
                                     @else 
-                                    selam
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <div class="profilepic" style="border-radius: 20%;">
+                                                    <img class="profilepic__image" alt="Profil Resmi"
+                                                        src="{{ $musteri->mphoto }}" />
+                                                    <div class="profilepic__content">
+                                                        <span class="profilepic__icon"><i class="fas fa-camera"></i></span>
+                                                        <form method="post" action="{{ route('uploadPP') }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="file" id="actual-btn" name="photo"
+                                                             onchange="javascript:document.getElementById('upload_button').hidden = false;" hidden />
+                                                            <label for="actual-btn" class="profilepic__text"> Fotoğrafı Düzenle</label>
+                                                        
+                                                    </div>
+    
+                                                </div>
+                                                <div id="upload_button_div"><button type="submit" id="upload_button" hidden>Yükle</button></div>
+                                            </form>
+                                            </div>
+    
+                                            <div class="col-9 px-4">
+                                                <form id="kisiBilgileri" class="section contact" method="post" action="{{route('musteri.guncelle.profil',["mtcknvno" => $musteri->mtcknvno])}}" >
+                                                    @csrf
+                                                    @method("put")
+                                                    <div class="info bg-light">
+                                                        <div class="row">
+                                                            <div class="col-md-11 mx-auto">
+                                                                <span class="badge badge-primary font-weight-bold w-20" style="font-size:20px; text-decoration: underline;">Kişisel Bilgiler</span>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group input field-wrapper">
+                                                                            <label for="ad">Ad</label>
+                                                                            <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4"  name="mbadi"  value="{{$musteri->mbadi}}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <div class="form-group">
+                                                                            <label for="soyad">Soyad</label>
+                                                                            <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mbsoyadi"   value="{{$musteri->mbsoyadi}}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="tckn">TCKN</label>
+                                                                            <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mtcknvno" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$musteri->mtcknvno}}" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <div class="form-group">
+                                                                            <label for="website1">Ünvan</label>
+                                                                            <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" value="{{$musteri->cunvani}}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <div class="form-group">
+                                                                            <label for="dg">Doğum Günü</label>
+                                                                            <input onkeypress="guncelleGoster()" type="date" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$musteri->cdogum}}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <h3 style="text-decoration: underline;">İletişim Bilgileri</h3>
+                                                                    <div class="row">
+                                                                        <div class="col-md-2 h-50 pr-0">
+                                                                            <div class="form-group">
+                                                                                <label for="phone">Ülke Kodu</label>
+                                                                                <select onchange="guncelleGoster()" class="placeholder js-states form-control" name="ukodutel">
+                                                                                    <option>{{$musteri->ukodutel}}</option>
+                                                                                    <option value="90">90</option>
+                                                                                    <option value="49">49</option>
+                                                                                    <option value="1">1</option>
+                                                                                    <option value="7">7</option>
+                                                                                    <option value="380">380</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                <label for="phone">Telefon Numarası</label>
+                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="10" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="ctel" id="phone" placeholder="Telefon Numarası" value="{{$musteri->ctel}}" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="email">Eposta</label>
+                                                                                <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="ceposta" id="email" placeholder="Eposta" value="{{$musteri->ceposta}}" required>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> 
+                                                                    <hr>
+                                                                    <h3 style="text-decoration: underline;">Adres Bilgileri</h3>
+                                                                    <div class="row">                                   
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="location">İl</label>
+                                                                                <select onchange="guncelleGoster()" id="Iller" name="cevadresil" class="placeholder js-states form-control">
+                                                                                    <option>{{$musteri->cevadresil}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="location">İlçe</label>
+                                                                                <select onchange="guncelleGoster()" id="Ilceler" name="cevadresilce" class="placeholder js-states form-control">
+                                                                                    <option value="{{$musteri->cevadresilce}}" selected>{{$musteri->cevadresilce}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="location">Adres</label>
+                                                                                <textarea onkeypress="guncelleGoster()" class="form-control mb-4" style="resize:none;" id="cevadres" name="cevadres" placeholder="Adres" rows="2">{{$musteri->cevadres}}</textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <h3 style="text-decoration: underline;">Hesap Bilgileri</h3>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                <label for="cbanka">Banka Adı</label>
+                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="11" class="form-control mb-4" name="cbanka" id="cbanka" placeholder="Banka Adı" value="{{$musteri->cbanka}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                <label for="ciban">IBAN</label>
+                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="26"  class="form-control mb-4" name="ciban" id="ciban" placeholder="IBAN" value="{{$musteri->ciban}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                <label for="chesapno">Hesap No</label>
+                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="26"  class="form-control mb-4" name="chesapno" id="chesapno" placeholder="Hesap Numarası" value={{$musteri->chesapno}}>
+                                                                            </div>
+                                                                        </div>   
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="account-settings-footer justify-content-center fixed-bottom hide d-none">
+                                                        <div class="as-footer-container text-center justify-content-center">
+                                                            <button type="submit" id="multiple-messages" class="btn btn-primary">Güncelle</button>
+                                                        </div> 
+                                                      </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     @endif
                                     <!-- Müşteri Güncelleme Kısmı -->
                                 </div>

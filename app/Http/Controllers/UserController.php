@@ -205,7 +205,7 @@ class UserController extends Controller
             $musteri->mphoto = asset('assets/img/img_avatar.png');
         }
         // dd($musteri->cphoto);
-        return view('profile', ['kullanici' => $musteri]);
+        return view('profile', ['musteri' => $musteri]);
         }else if($request->tip == 'Çalışan'){
             $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
         if ($kullanici->cphoto != null or $kullanici->cphoto != '') {
