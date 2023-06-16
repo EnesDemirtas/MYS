@@ -146,13 +146,13 @@
                                 </div>
                                 <!--Çalışan Girişi-->
                                 <div class="d-sm-flex justify-content-between">
-                                    <div class="field-wrapper toggle-pass">
+                                    {{-- <div class="field-wrapper toggle-pass">
                                         <p class="d-inline-block">Şifreyi Göster</p>
                                         <label class="switch s-primary">
                                             <input type="checkbox" id="toggle-password" class="d-none">
                                             <span class="slider round"></span>
                                         </label>
-                                    </div>
+                                    </div> --}}
                                     <div class="field-wrapper">
                                         <button type="submit" class="btn btn-primary" value="">Giriş
                                             Yap</button>

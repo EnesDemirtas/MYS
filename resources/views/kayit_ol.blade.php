@@ -574,13 +574,13 @@
                                 </div>
                                 <!-- calisan Kayıt-->
                                 <div class="d-sm-flex justify-content-between">
-                                    <div class="field-wrapper toggle-pass">
+                                    {{-- <div class="field-wrapper toggle-pass">
                                         <label class="switch s-primary">
                                             <input type="checkbox" id="toggle-password" class="d-none">
                                             <span class="slider round"></span>
                                         </label>
                                         <p class="d-inline-block">Şifreyi göster</p>
-                                    </div>
+                                    </div> --}}
                                     <div class="field-wrapper">
                                         <button type="submit" class="btn btn-primary" value="">Üye Ol</button>
                                     </div>
