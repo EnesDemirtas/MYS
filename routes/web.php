@@ -126,6 +126,4 @@ Route::get('load_register_activation_code_musteri', [UserController::class, 'Loa
 
 Route::post('activate_account', [ActivationCodeController::class, 'ActivateAccount'])->name('activate_account');
 
-Route::get('pages_error404', function () {
-    return view('pages_error404');
-});
+Route::get('pages_error404', [UserController::class, 'Error404'])->name('pages_error404');

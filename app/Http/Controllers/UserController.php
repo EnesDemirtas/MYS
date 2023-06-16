@@ -245,4 +245,9 @@ class UserController extends Controller
             return redirect()->route('pages_error404');
         }
     }
+
+    public function Error404()
+    {
+        return view('pages_error404');
+    }
 }
