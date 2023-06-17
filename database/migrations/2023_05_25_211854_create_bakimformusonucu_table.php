@@ -41,7 +41,9 @@ return new class extends Migration
             $table->string('kurum_yetkilisi_adsoyad')->length(100);
             $table->string('kurum_yetkilisi_unvan')->length(100);
             $table->boolean('onay')->default(false);
+            $table->timestamp('onay_timestamp')->nullable();
             $table->text('signature')->default('');
+            $table->text('qrCodeData')->default('');
             $table->timestamps();
         });
     }

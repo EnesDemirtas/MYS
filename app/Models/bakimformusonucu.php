@@ -36,6 +36,8 @@ class bakimformusonucu extends Model
         'kurum_yetkilisi_adsoyad',
         'kurum_yetkilisi_unvan',
         'onay',
-        'signature'
+        'onay_timestamp',
+        'signature',
+        'qrCodeData',
     ];
 }
