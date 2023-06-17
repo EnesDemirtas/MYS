@@ -201,8 +201,12 @@
                                                 </svg>
                                                 {{-- <input id="telefon" name="mtel" type="text"
                                                     placeholder="Telefon Numarası"> --}}
+<<<<<<< HEAD
                                                 <input type="text" style="display:none;" id="mukodutel" name="mukodutel" value="{{ old('mukodutel') }}">
                                                 <input id="telefon" name="mtel" type="tel" onchange="ulkeKoduDegistir()" value="{{ old('mtel') }}"/>
+=======
+                                                <input id="telefon_musteri" name="mtel" type="tel" />
+>>>>>>> 1484a1b7af1185c9e49b1c9846c896f238bcd692
 
                                                 @error('telefon')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
@@ -570,7 +574,7 @@
                                                 </svg>
                                                 {{-- <input id="telefon" name="ctel" type="text"
                                                     placeholder="Telefon Numarası"> --}}
-                                                <input id="telefon" name="ctel" type="tel" />
+                                                <input id="telefon_calisan" name="ctel" type="tel" />
                                                 @error('telefon')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -580,13 +584,13 @@
                                 </div>
                                 <!-- calisan Kayıt-->
                                 <div class="d-sm-flex justify-content-between">
-                                    <div class="field-wrapper toggle-pass">
+                                    {{-- <div class="field-wrapper toggle-pass">
                                         <label class="switch s-primary">
                                             <input type="checkbox" id="toggle-password" class="d-none">
                                             <span class="slider round"></span>
                                         </label>
                                         <p class="d-inline-block">Şifreyi göster</p>
-                                    </div>
+                                    </div> --}}
                                     <div class="field-wrapper">
                                         <button type="submit" class="btn btn-primary" value="">Üye Ol</button>
                                     </div>
@@ -730,8 +734,8 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
     <script>
-        var input = document.querySelectorAll("#telefon")[0];
-        window.intlTelInput(input, {
+        var musteriTelefon = document.querySelector("#telefon_musteri");
+        var musteriTelefonHandler = window.intlTelInput(musteriTelefon, {
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
             setCountry: "tr",
             initialCountry: "tr",
@@ -739,8 +743,29 @@
             separateDialCode: true,
             nationalMode: false,
         });
+<<<<<<< HEAD
             
         console.log(iti.getNumber());   
+=======
+
+        musteriTelefon.addEventListener("change", function() {
+            this.value = musteriTelefonHandler.getNumber();
+        });
+
+        var calisanTelefon = document.querySelector("#telefon_calisan");
+        var calisanTelefonHandler = window.intlTelInput(calisanTelefon, {
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+            setCountry: "tr",
+            initialCountry: "tr",
+            preferredCountries: ["tr", "us", "gb"],
+            separateDialCode: true,
+            nationalMode: false,
+        });
+
+        calisanTelefon.addEventListener("change", function() {
+            this.value = calisanTelefonHandler.getNumber();
+        });
+>>>>>>> 1484a1b7af1185c9e49b1c9846c896f238bcd692
     </script>
 </body>
 
