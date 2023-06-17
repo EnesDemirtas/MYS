@@ -209,17 +209,16 @@ class UserController extends Controller
 
     public function GetProfile(Request $request)
     {
-        // dd($request);
-        if ($request->tip == 'Müşteri') {
+        if (session('tip') == 'Müşteri') {
             $musteri = musteri::where('mkullaniciadi', $request->session()->get('kullanici')->mkullaniciadi)->first();
             if ($musteri->mphoto != null or $musteri->mphoto != '') {
                 $musteri->mphoto = Storage::url('photos/') . $musteri->mphoto;
             } else {
                 $musteri->mphoto = asset('assets/img/img_avatar.png');
             }
-            // dd($musteri->cphoto);
+            // dd($musteri->mphoto);
             return view('profile', ['musteri' => $musteri]);
-        } else if ($request->tip == 'Çalışan') {
+        } else if (session('tip') == 'Çalışan') {
             $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
             if ($kullanici->cphoto != null or $kullanici->cphoto != '') {
                 $kullanici->cphoto = Storage::url('photos/') . $kullanici->cphoto;

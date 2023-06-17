@@ -28,7 +28,11 @@
                                 @endif
                             @endif
                         </div>
-                        <img src="@if (is_null(session('kullanici')->cphoto)) {{ asset('assets/img/90x90.jpg') }} @else {{ Storage::url('photos/') . session('kullanici')->cphoto }} @endif" class="img-fluid" alt="admin-profile">
+                        @if (session('tip') == 'Çalışan')
+                            <img src="@if (is_null(session('kullanici')->cphoto)) {{ asset('assets/img/90x90.jpg') }} @else {{ Storage::url('photos/') . session('kullanici')->cphoto }} @endif" class="img-fluid" alt="admin-profile">
+                        @else
+                            <img src="@if (is_null(session('kullanici')->mphoto)) {{ asset('assets/img/90x90.jpg') }} @else {{ Storage::url('photos/') . session('kullanici')->mphoto }} @endif" class="img-fluid" alt="admin-profile">
+                        @endif
                         <span class="badge badge-success"></span>
                     </div>
                 </a>

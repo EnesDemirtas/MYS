@@ -69,6 +69,7 @@ class CalisanlarController extends Controller
 
     public function calisanGuncelleProfil(Request $request, $ctckn)
     {
+        //dd($request->all());
         $request->validate(
             [
                 "ctckn" => "required",
@@ -92,7 +93,7 @@ class CalisanlarController extends Controller
             ]
         );
 
-        calisan::where('ctckn', $request->$ctckn)->update(array(
+        calisan::where('ctckn', $ctckn)->update(array(
             'ctel' => $request->ctel,
             'ceposta' => $request->ceposta,
             'cunvani' => $request->cunvani,
@@ -102,7 +103,11 @@ class CalisanlarController extends Controller
             'cbanka' => $request->cbanka,
             'chesapno' => $request->chesapno,
             'cevadres' => $request->cevadres,
-        ));
+            'cadi' => $request->cadi,
+            'csoyadi' => $request->csoyadi,
+            'ctckn' => $request->ctckn,
+            'cdogum' => $request->cdogum,
+        )); 
         return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
     }
 

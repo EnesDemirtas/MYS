@@ -159,7 +159,7 @@
                                         <div class="col-3 d-flex flex-column" style="height: 200px;">
                                             <div class="profilepic" style="border-radius: 20%;">
                                                 <img class="profilepic__image" alt="Profil Resmi"
-                                                    src="{{ $kullanici->cphoto }}"  width="100%" height="200px"/>
+                                                    src="@if (is_null(session('kullanici')->cphoto)) {{ asset('assets/img/90x90.jpg') }} @else {{ Storage::url('photos/') . session('kullanici')->cphoto }} @endif"  width="100%" height="200px"/>
                                                 <div class="profilepic__content">
                                                     <span class="profilepic__icon"><i class="fas fa-camera"></i></span>
                                                     <form method="post" action="{{ route('uploadPP', ["tip" => "Çalışan"]) }}"
@@ -224,7 +224,7 @@
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label for="dg">Doğum Günü</label>
-                                                                        <input onkeypress="guncelleGoster()" type="date" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$kullanici->cdogum}}">
+                                                                        <input onchange="guncelleGoster()" type="date" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$kullanici->cdogum}}" disabled>
                                                                         @error('cdogum')
                                                                             <p class="text-danger mt-1">{{ $message }}</p>
                                                                         @enderror
@@ -237,7 +237,7 @@
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="phone">Telefon Numarası</label>
-                                                                            <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="ctel" id="telefon_calisan" placeholder="Telefon Numarası" value="{{$kullanici->ctel}}" required>
+                                                                            <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="ctel" id="telefon_calisan" placeholder="Telefon Numarası" value="{{$kullanici->ctel}}" >
                                                                             @error('ctel')
                                                                                 <p class="text-danger mt-1">{{ $message }}</p>
                                                                             @enderror
@@ -338,7 +338,7 @@
                                             <div class="col-3 d-flex flex-column" style="height: 200px;">
                                                 <div class="profilepic" style="border-radius: 20%">
                                                     <img class="profilepic__image" alt="Profil Resmi"
-                                                        src="{{ $musteri->mphoto }}" width="100%" height="200px"/>
+                                                        src="@if (is_null(session('kullanici')->mphoto)) {{ asset('assets/img/90x90.jpg') }} @else {{ Storage::url('photos/') . session('kullanici')->mphoto }} @endif" width="100%" height="200px"/>
                                                     <div class="profilepic__content">
                                                         <span class="profilepic__icon"><i class="fas fa-camera"></i></span>
                                                         <form method="post" action="{{ route('uploadPP', ["tip" => "Müşteri"]) }}"
@@ -510,9 +510,9 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <label for="mbankaadi">Banka Adı</label>
-                                                                                <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mbankaadi" id="mbankaadi" placeholder="Banka Adı" value="{{$musteri->mbankaadi}}">
-                                                                                @error('mbankaadi')
+                                                                                <label for="mbankadi">Banka Adı</label>
+                                                                                <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mbankadi" id="mbankadi" placeholder="Banka Adı" value="{{$musteri->mbankadi}}">
+                                                                                @error('mbankadi')
                                                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                                                 @enderror
                                                                             </div>
@@ -526,15 +526,6 @@
                                                                                 @enderror
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <label for="chesapno">Hesap No</label>
-                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="26"  class="form-control mb-4" name="chesapno" id="chesapno" placeholder="Hesap Numarası" value={{$musteri->chesapno}}>
-                                                                                @error('chesapno')
-                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
-                                                                                @enderror
-                                                                            </div>
-                                                                        </div>   
                                                                     </div>
                                                                     <span class="badge badge-primary font-weight-bold w-100 mb-2" style="font-size:20px;">Firma Bilgileri</span>
                                                                     <div class="row">
@@ -685,20 +676,6 @@
             </script>
 
     <script>
-        var musteriTelefon = document.querySelector("#telefon_musteri");
-        var musteriTelefonHandler = window.intlTelInput(musteriTelefon, {
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
-            setCountry: "tr",
-            initialCountry: "tr",
-            preferredCountries: ["tr", "us", "gb"],
-            separateDialCode: true,
-            nationalMode: false,
-        });
-
-        musteriTelefon.addEventListener("change", function() {
-            this.value = musteriTelefonHandler.getNumber();
-        });
-
         var calisanTelefon = document.querySelector("#telefon_calisan");
         var calisanTelefonHandler = window.intlTelInput(calisanTelefon, {
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
@@ -711,6 +688,22 @@
 
         calisanTelefon.addEventListener("change", function() {
             this.value = calisanTelefonHandler.getNumber();
+        });
+    </script>
+
+    <script>
+        var musteriTelefon = document.querySelector("#telefon_musteri");
+        var musteriTelefonHandler = window.intlTelInput(musteriTelefon, {
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+            setCountry: "tr",
+            initialCountry: "tr",
+            preferredCountries: ["tr", "us", "gb"],
+            separateDialCode: true,
+            nationalMode: false,
+        });
+
+        musteriTelefon.addEventListener("change", function() {
+            this.value = musteriTelefonHandler.getNumber();
         });
     </script>
 </body>

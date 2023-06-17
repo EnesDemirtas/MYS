@@ -30,14 +30,6 @@
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="menu1" data-parent="#topAccordion">
-                    <li>
-                        <a href="#"> Submenu 1 </a>
-                    </li>
-                    <li>
-                        <a href="#"> Submenu 2 </a>
-                    </li>
-                </ul>
             </li>
 
             <li class="menu single-menu">
@@ -85,27 +77,6 @@
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="menu2" data-parent="#topAccordion">
-                    <li>
-                        <a href="#"> Submenu 1 </a>
-                    </li>
-                    <li>
-                        <a href="#"> Submenu 2 </a>
-                    </li>
-                    <li class="sub-sub-submenu-list">
-                        <a href="#sub-sub-category" aria-expanded="false" class="dropdown-toggle"> Submenu 3 <svg
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-chevron-right">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg> </a>
-                        <ul class="collapse list-unstyled sub-submenu" id="sub-sub-category" data-parent="#menu">
-                            <li>
-                                <a href="#"> Sub-Submenu 1 </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
             </li>
 
             <li class="menu single-menu">

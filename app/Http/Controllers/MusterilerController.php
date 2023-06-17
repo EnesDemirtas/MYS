@@ -199,9 +199,8 @@ class MusterilerController extends Controller {
         return redirect('musteriler')->with('success', 'Kayıt Başarıyla Güncellendi');
     }
 
-    public function musteriGuncelleProfil(Request $request) {
+    public function musteriGuncelleProfil(Request $request, $mtcknvno) {
         
-    dd($request->all());
         $request->validate([
             'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
             'mtcknvno' => 'required|numeric',
@@ -237,9 +236,22 @@ class MusterilerController extends Controller {
             'mtel.requried' => 'Lütfen telefon numarası giriniz',
         ]
     );
+        
         $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
-        musteri::where('mtcknvno', $mtcknvno)->update($request->except(['_token', '_method']));
-        return redirect('profile')->with('success', 'Kayıt Başarıyla Güncellendi');
+        musteri::where('mtcknvno', $mtcknvno)->update(array(
+            'mkayitturu' => $request->mkayitturu,
+            'mbfirmaadi' => $request->mbfirmaadi,
+            'mbolge' => $request->mbolge,
+            'menlem' => $request->menlem,
+            'mboylam' => $request->mboylam,
+            'milce' => $request->milce,
+            'mil' => $request->mil,
+            'meposta' => $request->meposta,
+            'madres' => $request->madres,
+            'mtel' => $request->mtel,
+            'mbdogumgunu' => $request['mbdogumgunu'],
+        ));
+        return redirect()->back()->with('success', 'Kayıt Başarıyla Güncellendi');
     }
 
     public function musteriSil($mtcknvno){
