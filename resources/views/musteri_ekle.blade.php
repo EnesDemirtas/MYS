@@ -13,6 +13,7 @@
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="{{ asset('assets/css/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
     <style>
         #formValidate .wizard > .content {min-height: 25em;}
         #example-vertical.wizard > .content {min-height: 24.5em;}
@@ -34,8 +35,8 @@
           height: 300px;
           width: 100%;
          }
+         
       </style>
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/dropify/dropify.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/users/account-setting.css') }}"/>
 
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -101,7 +102,7 @@
                                             <section>
                                               <div class="row py-3">
                                               <div class="col-3">
-                                                <select class="form-control" name="mkayitturu" id="hk-kayitturu" onchange="changeFieldsMusteri(this.value); checkKayitMusteriFields(this.value)">
+                                                <select class="form-control" name="mkayitturu" id="hk-kayitturu" onchange="changeFieldsMusteri(this.value); checkKayitMusteriFields(this.value)" value="{{ old('mkayitturu') }}">
                                                   <option value="Kayıt Türü">Kayıt Türü</option>
                                                   <option value="Bireysel">Bireysel</option>
                                                   <option value="Ticari">Ticari</option>
@@ -111,17 +112,17 @@
                                                 </select>
                                               </div>
                                                 <div class="col-3">
-                                                    <select class="form-control" name="mturu" id="hk-mturu" onchange="checkKayitMusteriFields(this.value)">
+                                                    <select class="form-control" name="mturu" id="hk-mturu" onchange="checkKayitMusteriFields(this.value)" value="{{ old('mturu') }}">
                                                         <option value="Müşteri Türü">Müşteri Türü</option>
                                                         <option value="Gerçek">Gerçek Kişi</option>
                                                         <option value="Tüzel">Tüzel Kişi</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-3">
-                                                    <input id="hk-marka" onkeyup="hkMarkaAdiBuyuk()" type="text" name="mtmarkaadi" placeholder="Marka Adı" class="form-control" required value="{{ old('mtmarkaadi') }}">
+                                                    <input id="hk-marka" onkeyup="hkMarkaAdiBuyuk()" type="text" name="mbfirmaadi" placeholder="Firma Adı" class="form-control" required value="{{ old('mbfirmaadi') }}">
                                                   </div>
                                                 <div class="col-3 bireyselbilgi">
-                                                        <input id="hk-onunvan" onkeyup="hkOnUnvanBuyuk()" type="text" name="monunvan" placeholder="Unvanı" class="form-control" value="{{ old('monunvan') }}">
+                                                        <input id="hk-onunvan" onkeyup="hkOnUnvanBuyuk()" type="text" name="mbunvani" placeholder="Ünvan" class="form-control" value="{{ old('mbunvani') }}">
                                                 </div>
                                                 <div class="col-3 ticaribilgi">
                                                     <input id="hk-sube" type="text" name="mtsubeadi" placeholder="Şube Adı" class="form-control" value="{{ old('mtsubeadi') }}">
@@ -165,7 +166,6 @@
                                                       <div class="col-3 ticaribilgi">
                                                             <input id="hk-ticaretsicil" type="number" name="mtsno" placeholder="Ticaret Sicil No" class="form-control" value="{{ old('mtsno') }}">
                                                       </div>
-
                                                       <div class="col-3 ticaribilgi">
                                                         <input id="hk-odasicil" type="number" name="mosno" placeholder="Oda Sicil No" class="form-control" value="{{ old('mosno') }}">
                                                       </div>
@@ -175,8 +175,13 @@
                                               </div>    
                                               <div class="row py-3">
                                                 <div class="col-3">
-                                                  <input id="hk-mtel" name="mtel" input="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Telefon" class="form-control" value="{{ old('mtel') }}">
-                                                </div>
+                                                  <div class="form-group">
+                                                    <label for="phone">Telefon Numarası</label>
+                                                    <input type="text" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="mtel" id="telefon_musteri" placeholder="Telefon Numarası" value="{{ old('mtel') }}" >
+                                                    @error('mtel')
+                                                        <p class="text-danger mt-1">{{ $message }}</p>
+                                                    @enderror
+                                                </div>                                                </div>
                                                 <div class="col-3">
                                                   <input id="hk-eposta" type="email" name="meposta" placeholder="E-Posta" class="form-control" value="{{ old('meposta') }}">
                                                 </div>
@@ -186,24 +191,6 @@
                                                 <div class="col-3">
                                                   <input id="hk-fax" type="text" name="mfaks" placeholder="Faks" class="form-control" value="{{ old('mfaks') }}">
                                                 </div>
-                                              </div>
-                                              <div class="row py-3">
-                                                <div class="col-md-1 pr-0">
-                                                  <div class="form-group">
-                                                      <select class="placeholder js-states form-control" name="mukodutel">
-                                                          <option value="90">+90</option>
-                                                          <option value="49">+49</option>
-                                                          <option value="1">+1</option>
-                                                          <option value="7">+7</option>
-                                                          <option value="380">+380</option>
-                                                      </select>
-                                                  </div>
-                                              </div>
-                                          <div class="col-md-2 pl-1">
-                                              <div class="form-group">
-                                                  <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control mb-4" name="mmobil" id="phone" placeholder="Cep Telefonu" value="{{ old('mmobil') }}">
-                                              </div>
-                                          </div> 
                                               </div>
                                             </section>
                                             <h3>Ödeme Bilgileri</h3>
@@ -217,7 +204,7 @@
                                                       </div>  
                                                       <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <textarea class="form-control mb-4" id="mnot" name="mnot" placeholder="Notlar" rows="2" value="{{ old('mnot') }}"></textarea>
+                                                            <textarea class="form-control mb-4" style="resize:none;" id="mnot" name="mnot" placeholder="Notlar" rows="2" value="{{ old('mnot') }}"></textarea>
                                                         </div>
                                                       </div>
                                             </div>
@@ -227,7 +214,7 @@
                                                 <div class="row py-3">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <textarea class="form-control mb-4" onkeyup="madresBuyuk()" id="madres" name="madres" placeholder="Adres" rows="2" value="{{ old('madres') }}"></textarea>
+                                                            <textarea class="form-control mb-4" style="resize:none;" onkeyup="madresBuyuk()" id="madres" name="madres" placeholder="Adres" rows="2" value="{{ old('madres') }}"></textarea>
                                                         </div>
                                                     </div>  
                                                     <div class="col-2">
@@ -342,7 +329,7 @@
 
   // Readonly/Disabled input
   $(document).ready(function() {
-    $(".form-control").attr("readonly", true);
+    $(".form-control").attr("readonly", false);
     $("#hk-kayitturu").attr("readonly", false);
     $("#hk-mturu").attr("readonly", false);
   });
@@ -374,6 +361,23 @@
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
     <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
     <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+    <script>
+      var musteriTelefon = document.querySelector("#telefon_musteri");
+      var musteriTelefonHandler = window.intlTelInput(musteriTelefon, {
+          utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+          setCountry: "tr",
+          initialCountry: "tr",
+          preferredCountries: ["tr", "us", "gb"],
+          separateDialCode: true,
+          nationalMode: false,
+      });
+
+      musteriTelefon.addEventListener("change", function() {
+          this.value = musteriTelefonHandler.getNumber();
+      });
+  </script>
 </body>
 </html>

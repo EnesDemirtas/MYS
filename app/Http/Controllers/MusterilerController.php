@@ -9,7 +9,7 @@ class MusterilerController extends Controller {
     // Show all musteriler
     public function index()
     {
-        return view('musteriler', ['musteriler' => musteri::where('aktif',1)->get()]);
+        return view('musteriler', ['musteriler' => musteri::where('maktif',1)->get()]);
     }
 
     public function musteriDuzenle($mtcknvno)
@@ -23,12 +23,12 @@ class MusterilerController extends Controller {
             $request->validate([
                 'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
                 'mtcknvno' => 'required|numeric',
-                'mtmarkaadi' => 'required',
+                'mbfirmaadi' => 'required',
                 'madres' => 'required',
                 'mbolge' => 'required',
                 'milce' => 'required|doesnt_start_with:İl',
                 'mil' => 'required|doesnt_start_with:İlçe',
-                'mmobil' => 'required',
+                'mtel' => 'required',
                 'menlem' => 'required',
                 'meposta' => 'email',
             ],
@@ -38,7 +38,7 @@ class MusterilerController extends Controller {
                 'milce.doesnt_start_with' => 'Lütfen müşterinin ilçesini giriniz.',
                 'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
                 'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
-                'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
+                'mbfirmaadi.required' => 'Lütfen firma adını boş bırakmayınız.',
                 'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
                 'mbsoyadi.required' => 'Lütfen müşteri soyadını boş bırakmayınız.',
                 'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
@@ -46,7 +46,7 @@ class MusterilerController extends Controller {
                 'madres.required' => 'Lütfen müşterinin adresini giriniz.',
                 'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
                 'meposta.required' => 'Lütfen müşterinin eposta adresini giriniz.',
-                'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
+                'mtel.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
                 'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
             ]
         );
@@ -54,7 +54,7 @@ class MusterilerController extends Controller {
         $request->validate([
             'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
             'mtcknvno' => 'required|numeric',
-            'mtmarkaadi' => 'required',
+            'mbfirmaadi' => 'required',
             'mbunvani' => 'string',
             'mbadi' => 'required',
             'mbsoyadi' => 'required',
@@ -62,8 +62,8 @@ class MusterilerController extends Controller {
             'madres' => 'required',
             'mbolge' => 'required',
             'milce' => 'required|doesnt_start_with:İl',
-            'mil' => 'required|doesnt_start_with:İlçe',
-            'mmobil' => 'required',
+            'mtel' => 'required|doesnt_start_with:İlçe',
+            'mtel' => 'required',
             'menlem' => 'required',
             'meposta' => 'email'
         ],
@@ -73,7 +73,7 @@ class MusterilerController extends Controller {
             'milce.doesnt_start_with' => 'Lütfen müşterinin ilçesini giriniz.',
             'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
             'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
-            'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
+            'mbfirmaadi.required' => 'Lütfen firma adını boş bırakmayınız.',
             'mbunvani.string' => 'Lütfen müşterinin ünvanını doğru girdiğinizden emin olunuz.',
             'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
             'mbsoyadi.required' => 'Lütfen müşteri soyadını boş bırakmayınız.',
@@ -82,43 +82,32 @@ class MusterilerController extends Controller {
             'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
             'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
             'meposta.required' => 'Lütfen müşterinin eposta adresini giriniz.',
-            'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
+            'mtel.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
             'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
             'madres.required' => 'Lütfen müşterinin adresini giriniz.',
         ]
-    );
-    }
-    $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
-    $musteriSayisiBul = musteri::where('id', '>', '0')->get();
-    $musteriSayisi = $musteriSayisiBul->count(); // Kaç çalışan olduğunu saydırır.
+    );}
 
-    if (musteri::where('mtcknvno', $request->mtcknvno)->exists()) {
-        return redirect()->back()->with('error', 'Bu TCKN/Vergi No ile kayıtlı bir müşteri bulunmaktadır.');
-    }else if($musteriSayisi > 0){ // Tablo boş değilse
-        $sonmusteri = musteri::orderBy('id', 'desc')->first()->id; //Son Çalışanın Satır ID'sini getirir.
-        musteri::create($request->all());
-        musteri::where('mtcknvno', $request->mtcknvno)->update( array('mrefno'=>'sbe-'.$sonmusteri++.'','aktif' => 1) );
-        return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
-    }else{ // Tablo Boşsa
-        musteri::create($request->all());
-        musteri::where('mtcknvno', $request->mtcknvno)->update( array('mrefno'=>'sbe-1','aktif' => 1) );
-        return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
-    }
+            $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
+            musteri::create($request->all());
+            return redirect()->back()->with("success","Kayıt Başarıyla Eklendi!");
+        
     }
 
     public function musteriEkle(Request $request) {
         // Validate data
+        dd($request->all());
         $request->validate([
             'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
             'mtcknvno' => 'required|numeric',
-            'mtmarkaadi' => 'required',
+            'mbfirmaadi' => 'required',
             'milce' => 'required|doesnt_start_with:İl',
             'mil' => 'required|doesnt_start_with:İlçe',
             'mbadi' => 'required',
             'mbsoyadi' => 'required',
             'mbolge' => 'required',
             'menlem' => 'required',
-            'mmobil' => 'required',
+            'mtel' => 'required',
             'meposta' => 'email',
             'madres' => 'required',
         ],
@@ -126,7 +115,7 @@ class MusterilerController extends Controller {
             'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
             'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
             'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
-            'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
+            'mbfirmaadi.required' => 'Lütfen firma adını boş bırakmayınız.',
             'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
             'mbsoyadi.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
             'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
@@ -135,7 +124,7 @@ class MusterilerController extends Controller {
             'milce.doesnt_start_with' => 'Lütfen ilçeyi seçiniz.',
             'mil.required' => 'Lütfen il seçiniz.',
             'mil.doesnt_start_with' => 'Lütfen il seçiniz.',
-            'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
+            'mtel.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
             'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
             'madres.required' => 'Lütfen müşterinin adresini giriniz.',
             'mtel.requried' => 'Lütfen telefon numarası giriniz',
@@ -163,7 +152,7 @@ class MusterilerController extends Controller {
         $request->validate([
             'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
             'mtcknvno' => 'required|numeric',
-            'mtmarkaadi' => 'required',
+            'mbfirmaadi' => 'required',
             'mbadi' => 'required',
             'mbsoyadi' => 'required',
             'mbdogumgunu' => 'before:today',
@@ -179,7 +168,7 @@ class MusterilerController extends Controller {
         [   
             'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
             'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
-            'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
+            'mbfirmaadi.required' => 'Lütfen firma adını boş bırakmayınız.',
             'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
             'mbsoyadi.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
             'mbdogumgunu.before' => 'Lütfen müşterinin doğum tarihini doğru girdiğinizden emin olunuz.',

@@ -68,18 +68,18 @@ function musteriBilgileri(id){
    var eposta = $("#musteri-"+id+" .eposta").attr('name');
    $("#modal-eposta").text(eposta);
 
-   var cep = "+" + $("#musteri-"+id+" .ulkekodu").attr('name') +" "+ $("#musteri-"+id+" .cep").attr('name');
+   var cep =  $("#musteri-"+id+" .cep").attr('name');
    $("#modal-cep").text(cep);
 
-   var cepHref = $("#musteri-"+id+" .ulkekodu").attr('name') + $("#musteri-"+id+" .cep").attr('name');
+   var cepHref = $("#musteri-"+id+" .cep").attr('name');
    $("#modal-cep-href").attr('href',"tel:"+cepHref);
    $("#modal-whatsapp-href").attr('href',"https://wa.me/"+cepHref);
 
    var dogumTarihi = $("#musteri-"+id+" .dogum").attr('name');
    $("#modal-dogum").text(dogumTarihi);
 
-   var markaAdi = $("#musteri-"+id+" .markaAdi").attr('name');
-   $("#modal-marka").text(markaAdi);
+   var mbfirmaadi = $("#musteri-"+id+" .mbfirmaadi").attr('name');
+   $("#modal-firma").text(mbfirmaadi);
 
    //var detayliGoruntule =  $("#musteri-"+id+" .mtcknvno").attr('name');
    //$("#modal-detayliGoruntule-href").attr('href',detayliGoruntule);
@@ -90,7 +90,7 @@ function musteriBilgileri(id){
 function changeFields(kayit) {
     if (kayit == "Kayıt Türü") {
         $("#hk-tcknvno").prop("readonly", true);
-        $("#hk-marka").prop("readonly", true);
+        $("#hk-firma").prop("readonly", true);
         $("#bireysel-bilgiler1 input").prop("readonly", true);
         $("#bireysel-bilgiler2 input").prop("readonly", true);
         $("#iletisim-bilgileri input").prop("readonly", true);
@@ -103,9 +103,10 @@ function changeFields(kayit) {
         $("#hk-adres").prop("readonly", true);
     } else if (kayit == "Ticari") {
         $("#hk-tcknvno").attr("placeholder", "Vergi No");
-        $("#bireysel-bilgiler1").hide();
-        $("#bireysel-bilgiler2").hide();
+        $("#bireysel-bilgiler2 #mbdogumgunu").hide();
 
+        $("#bireysel-bilgiler1 input").prop("readonly", false);
+        $("#bireysel-bilgiler2 input").prop("readonly", false);
         $("#hk-tcknvno").prop("readonly", false);
         $("#hk-marka").prop("readonly", false);
         $("#iletisim-bilgileri input").prop("readonly", false);

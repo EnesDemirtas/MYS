@@ -55,7 +55,7 @@
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">MYS</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Teklif</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Teklif Yönetimi</a></li>
                             <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);" style="color:whitesmoke">Gözat</a></li>
                         </ol>
                     </nav>

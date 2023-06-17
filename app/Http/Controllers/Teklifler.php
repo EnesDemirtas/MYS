@@ -16,6 +16,12 @@ class Teklifler extends Controller
         return view('teklifler', compact("teklifler"));
     }
 
+    public function hizmetler()
+    {
+        $bakimformlari = bakimformu::All();
+        return view('hizmet_ve_urunler', compact("bakimformlari"));
+    }
+
     public function teklifSil($id)
     {
         teklif::where('id', $id)->delete();

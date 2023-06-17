@@ -19,6 +19,16 @@
       height: 300px;
       width: 100%;
      }
+     .iti__flag-container {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            padding-bottom: 10px;
+        }
+        .iti--separate-dial-code .iti__selected-flag {
+            background-color: rgb(0 0 0 / 0%);
+        }  
   </style>
   <!-- END GLOBAL MANDATORY STYLES -->
 
@@ -53,6 +63,7 @@
   <!--  BEGIN CUSTOM STYLE FILE  -->
   <link href="assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="plugins/jquery-step/jquery.steps.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
   <style>
       #formValidate .wizard > .content {min-height: 25em;}
       #example-vertical.wizard > .content {min-height: 24.5em;}
@@ -96,6 +107,7 @@
         border-color: #805dca !important;
         box-shadow: 0 10px 20px -10px #805dca !important;
       }
+      
   </style>
       <link href="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" type="text/css" />
       <link href="assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
@@ -138,15 +150,7 @@
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content widget-content searchable-container list">
       <div class="layout-px-spacing">
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        
         @if(session()->has("success"))
             <div class="alert alert-success">
                 {{session("success")}}
@@ -231,34 +235,53 @@
                                     <option value="Diğer">Diğer</option>
                                   </select>
                                 </div>
+                                @error('mkayitturu')
+                                  <p class="text-danger mt-1">{{ $message }}</p>
+                                @enderror
                                 <div class="col-6">
-                                    <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" class="form-control form-control-sm" value="{{ old('mtcknvno') }}" required readonly>
+                                    <input id="hk-tcknvno" type="number" name="mtcknvno" placeholder="TCKN/Vergi No" class="form-control form-control-sm" value="{{ old('mtcknvno') }}"  readonly>
+                                    @error('mtcknvno')
+                                      <p class="text-danger mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 </div>
                                   <div class="row py-3">
-
                                     <div class="col">
-                                      <input id="hk-marka" type="text" name="mtmarkaadi" onkeyup="hkMarkaAdiBuyuk()" placeholder="Marka Adı" class="form-control form-control-sm" required value="{{ old('mtmarkaadi') }}" required readonly>
+                                      <input id="hk-firma" type="text" name="mbfirmaadi" onkeyup="hkMarkaAdiBuyuk()" placeholder="Firma Adı" class="form-control form-control-sm"  value="{{ old('mbfirmaadi') }}"  readonly>
+                                      @error('mbfirmaadi')
+                                        <p class="text-danger mt-1">{{ $message }}</p>
+                                      @enderror
                                     </div>
                                   </div>
 
                                   <div class="row py-3" id="bireysel-bilgiler1">                                    
                                     <div class="col">
                                       <input id="hk-ad" type="text" name="mbadi" onkeyup="hkAdilkHarfBuyuk()" placeholder="Adı" class="form-control form-control-sm" value="{{ old('mbadi') }}" readonly>
+                                      @error('mbadi')
+                                        <p class="text-danger mt-1">{{ $message }}</p>
+                                      @enderror
                                     </div>
                                     
                                     <div class="col">
                                       <input id="hk-soyad" type="text" name="mbsoyadi" onkeyup="hkSoyadBuyuk()" placeholder="Soyadı" class="form-control form-control-sm" value="{{ old('mbsoyadi') }}" readonly>
+                                      @error('mbsoyadi')
+                                        <p class="text-danger mt-1">{{ $message }}</p>
+                                      @enderror
                                     </div>
                                   </div>
 
                                   <div class="row py-3" id="bireysel-bilgiler2">                                   
                                     <div class="col">
-                                      <input id="hk-unvan" type="text" name="mbunvani" onkeyup="hkUnvanBuyuk()" placeholder="Unvanı" class="form-control form-control-sm" value="{{ old('mbunvani') }}" readonly>
+                                      <input id="hk-unvan" type="text" name="mbunvani" onkeyup="hkUnvanBuyuk()" placeholder="Ünvan" class="form-control form-control-sm" value="{{ old('mbunvani') }}" readonly>
+                                      @error('mbunvani')
+                                        <p class="text-danger mt-1">{{ $message }}</p>
+                                      @enderror
                                     </div>
-                                    
-                                    <div class="col">
-                                      <input onfocus="(this.type='date')" class="form-control" value="{{ old('mbdogumgunu') }}" name="mbdogumgunu" class="form-control form-control-sm flatpickr flatpickr-input active" type="text" placeholder="Doğum Günü" readonly>
+                                    <div class="col" id="mbdogumgunu">
+                                      <input onfocus="(this.type='date')" class="form-control" id="mbdogumgunuu" value="{{ old('mbdogumgunu') }}" name="mbdogumgunu" class="form-control form-control-sm flatpickr flatpickr-input active" type="text" placeholder="Doğum Günü" readonly>
+                                      @error('mbdogumgunuu')
+                                        <p class="text-danger mt-1">{{ $message }}</p>
+                                      @enderror
                                     </div>
                                   </div>
 
@@ -269,28 +292,43 @@
                               <div class="row">
                                 <div class="col-4">
                                   <input id="hk-bolge" type="text" name="mbolge" onkeyup="hkBolgeBuyuk()" placeholder="Bölge" class="form-control form-control-sm" required value="{{ old('mbolge') }}" readonly>
+                                  @error('mbolge')
+                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                  @enderror
                                 </div>
                                 <div class="col-4">
                                   <select id="Iller" name="mil" class="placeholder js-states form-control" disabled>
-                                    <option>Lütfen Bir İl Seçiniz</option>
-                                  </select>                                
+                                    <option>İl</option>
+                                  </select>
+                                  @error('mil')
+                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                  @enderror                                
                                 </div>
                                 <div class="col-4">
                                   <select id="Ilceler" disabled="disabled" name="milce" class="placeholder js-states form-control">
-                                    <option>Lütfen Bir İlçe Seçiniz</option>
+                                    <option>İlçe</option>
                                   </select>
+                                  @error('milce')
+                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                  @enderror
                                 </div>
                               </div>
 
                               <div class="row py-3">
-                                <div class="col-8 pl-1">
+                                <div class="col-12 pl-1">
                                     <div class="form-group">
-                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm mb-4" name="mtel" id="telefon_musteri" placeholder="Telefon" value="{{ old('mtel') }}" readonly>
+                                        <input type="text" class="form-control form-control-sm mb-4" name="mtel" id="telefon_musteri" placeholder="Telefon" value="{{ old('mtel') }}">
+                                        @error('mtel')
+                                          <p class="text-danger mt-1">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-12 pl-3">
                                   <div class="form-group">
-                                    <input id="hk-eposta" type="email" name="meposta" placeholder="Eposta" class="form-control" value="{{ old('meposta') }}" readonly>
+                                    <input id="hk-eposta" type="email" name="meposta" placeholder="Eposta" class="form-control" value="{{ old('meposta') }}" >
+                                    @error('mtel')
+                                      <p class="text-danger mt-1">{{ $message }}</p>
+                                    @enderror
                                   </div>
                                 </div>
                                   <hr>
@@ -299,15 +337,24 @@
                                   </div>
                                   <div class="col-3">
                                     <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" class="form-control form-control-sm" required value="{{ old('menlem') }}">
+                                    @error('menlem')
+                                      <p class="text-danger mt-1">{{ $message }}</p>
+                                    @enderror
                                   </div>
                                   <div class="col-3">
                                     <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam" class="form-control form-control-sm" required value="{{ old('mboylam') }}">
+                                    @error('mboylam')
+                                      <p class="text-danger mt-1">{{ $message }}</p>
+                                    @enderror
                                   </div>
                                   <div class="col-12" id="map"> <!-- GOOGLE HARİTALAR -->
                                   </div>
                               </div>
                               <div class="form-group mb-4">
                                 <textarea placeholder="Adres" onkeyup="hkmadresBuyuk()" class="form-control" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}" readonly></textarea>
+                                @error('madres')
+                                  <p class="text-danger mt-1">{{ $message }}</p>
+                                @enderror
                               </div>
                               </section>
                           </div>
@@ -351,7 +398,7 @@
                           <ul class="contacts-block list-unstyled">
                               <li class="contacts-block__item">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                                  <span id="modal-marka">Şirket adı</span>
+                                  <span id="modal-firma">Şirket adı</span>
                               </li>
                               <li class="contacts-block__item">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span id="modal-dogum">Jan 20, 1989</span>
@@ -408,12 +455,12 @@
                       <tr id="musteri-{{ $musteri->mtcknvno }}">
                         <td class="checkbox-column" style=" width:0px !important;"> {{$loop->iteration }} </td>
                         <td >{{ $musteri->mkayitturu }}</td>
-                        <td class="checkbox-column" style=" width:px !important;"> {{ $musteri->mtmarkaadi }} </td>
+                        <td class="checkbox-column" style=" width:px !important;"> {{ $musteri->mbfirmaadi }} </td>
                         <td style="padding-left:0px !important;">
                         @if ($musteri->mbadi != null)
                             {{ $musteri->mbadi . " " . $musteri->mbsoyadi}}
                         @else
-                            {{ $musteri->mtmarkaadi }}
+                            {{ $musteri->mbfirmaadi }}
                         @endif
                         </td>
                         <td>{{ $musteri->mtcknvno }}</td>
@@ -426,13 +473,13 @@
                           <a href="mailto:{{$musteri->meposta}}"><span style="margin-left: 2px;" class="inv-email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span></a> <span style="margin-left: 2px;">
                           @endif
                           @if ( $musteri->mtel != null)
-                          <a target="_blank" href="https://wa.me/{{$musteri->mtel}}"><i style="color: #805dca;" class="fa fa-lg fa-whatsapp"></i></a></span></td>
+                          <a target="_blank" href="wa.me/{{$musteri->mtel}}"><i style="color: #805dca;" class="fa fa-lg fa-whatsapp"></i></a></span></td>
                           @endif
                           <input class="epostaHref" type="hidden" name="mailto:{{ $musteri->meposta }}">
                         <input class="lokasyonHref" type="hidden" name="https://www.google.com/maps/search/?api=1&query={{$musteri->menlem}}%2C{{$musteri->mboylam}}">
                         <input class="lokasyon" type="hidden" name="{{ $musteri->milce . "/" . $musteri->mil }}">
                         <input class="isim" type="hidden" name="{{ $musteri->mbadi." ".$musteri->mbsoyadi }}">
-                        <input class="markaAdi" type="hidden" name="{{ $musteri->mtmarkaadi }}">
+                        <input class="mbfirmaadi" type="hidden" name="{{ $musteri->mbfirmaadi }}">
                         <input class="kayitno" type="hidden" name="{{ $musteri->mkayitturu }}">
                         <input class="eposta" type="hidden" name="{{ $musteri->meposta }}">
                         <input class="mtcknvno" type="hidden" name="{{$musteri->mtcknvno}}">
@@ -662,18 +709,18 @@
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
 <script>
     var musteriTelefon = document.querySelector("#telefon_musteri");
-    var musteriTelefonHandler = window.intlTelInput(musteriTelefon, {
-        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
-        setCountry: "tr",
-        initialCountry: "tr",
-        preferredCountries: ["tr", "us", "gb"],
-        separateDialCode: true,
-        nationalMode: false,
-    });
+        var musteriTelefonHandler = window.intlTelInput(musteriTelefon, {
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+            setCountry: "tr",
+            initialCountry: "tr",
+            preferredCountries: ["tr", "us", "gb"],
+            separateDialCode: true,
+            nationalMode: false,
+        });
 
-    musteriTelefon.addEventListener("change", function() {
-        this.value = musteriTelefonHandler.getNumber();
-    });
+        musteriTelefon.addEventListener("change", function() {
+            this.value = musteriTelefonHandler.getNumber();
+        });
 
 </script>
 </body>

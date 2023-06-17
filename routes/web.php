@@ -64,10 +64,6 @@ Route::get('teklif_ekle_giris', function () {
     return view('teklif_ekle_giris');
 });
 
-Route::get('hizmet_ve_urunler', function () {
-    return view('hizmet_ve_urunler');
-})->middleware('isAuthenticated');
-
 Route::get('musteri/giris_yap', function () {
     return view('musteri_giris_yap');
 });
@@ -105,6 +101,8 @@ Route::post('teklif_onizle_giris', [Teklifler::class, 'teklifOnizleGiris'])->nam
 Route::get('teklifler', [Teklifler::class, 'index'])->name('teklifler.index')->middleware('isAuthenticated');
 Route::post('teklif_ekleme_yap_giris', [Teklifler::class, 'teklifEkleGiris'])->name('teklif.ekleme.yap.giris');
 Route::get('teklif_duzenle', [Teklifler::class, 'teklifDuzenlemeyeDon'])->name('teklif.duzenle');
+
+Route::get('hizmet_listeleme', [Teklifler::class, 'hizmetler'])->name('hizmet.listeleme')->middleware('isAuthenticated');
 
 Route::get('teklif_yonetimi', function () {
     return view('teklif_yonetimi');
