@@ -14,7 +14,18 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/dropify/dropify.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/users/account-setting.css') }}"/>
     
-
+    <style>
+        .iti__flag-container {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            padding-bottom: 10px;
+        }
+        .iti--separate-dial-code .iti__selected-flag {
+            background-color: rgb(0 0 0 / 0%);
+        }
+    </style>
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     
 </head>

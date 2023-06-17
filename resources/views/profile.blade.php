@@ -165,10 +165,10 @@
                                     </div>
                                     @if (session('tip') == 'Çalışan') <!-- Çalışan Güncelleme Kısmı -->
                                     <div class="row">
-                                        <div class="col-3">
+                                        <div class="col-3 d-flex flex-column" style="height: 200px;">
                                             <div class="profilepic" style="border-radius: 20%;">
                                                 <img class="profilepic__image" alt="Profil Resmi"
-                                                    src="{{ $kullanici->cphoto }}" />
+                                                    src="{{ $kullanici->cphoto }}"  width="100%" height="200px"/>
                                                 <div class="profilepic__content">
                                                     <span class="profilepic__icon"><i class="fas fa-camera"></i></span>
                                                     <form method="post" action="{{ route('uploadPP', ["tip" => "Çalışan"]) }}"
@@ -247,7 +247,7 @@
                                                                     <div class="col-md-3">
                                                                         <div class="form-group">
                                                                             <label for="location">İl</label>
-                                                                            <select onchange="guncelleGoster()" id="Iller" name="cevadresil" class="placeholder js-states form-control">
+                                                                            <select onchange="guncelleGoster()" id="Iller" name="cevadresil" class="placeholder js-states form-control" value="{{$kullanici->cevadresil}}">
                                                                                 <option value="{{$kullanici->cevadresil}}">{{$kullanici->cevadresil}}</option>
                                                                             </select>
                                                                         </div>
@@ -255,7 +255,7 @@
                                                                     <div class="col-md-3">
                                                                         <div class="form-group">
                                                                             <label for="location">İlçe</label>
-                                                                            <select onchange="guncelleGoster()" id="Ilceler" name="cevadresilce" class="placeholder js-states form-control">
+                                                                            <select onchange="guncelleGoster()" id="Ilceler" name="cevadresilce" class="placeholder js-states form-control" value="{{$kullanici->cevadresilce}}">
                                                                                 <option value="{{$kullanici->cevadresilce}}" selected>{{$kullanici->cevadresilce}}</option>
                                                                             </select>
                                                                         </div>
@@ -305,10 +305,10 @@
                                     <!-- Müşteri Güncelleme Kısmı -->
                                     @else 
                                         <div class="row">
-                                            <div class="col-3">
-                                                <div class="profilepic" style="border-radius: 20%;">
+                                            <div class="col-3 d-flex flex-column" style="height: 200px;">
+                                                <div class="profilepic" style="border-radius: 20%">
                                                     <img class="profilepic__image" alt="Profil Resmi"
-                                                        src="{{ $musteri->mphoto }}" />
+                                                        src="{{ $musteri->mphoto }}" width="100%" height="200px"/>
                                                     <div class="profilepic__content">
                                                         <span class="profilepic__icon"><i class="fas fa-camera"></i></span>
                                                         <form method="post" action="{{ route('uploadPP', ["tip" => "Müşteri"]) }}"
@@ -317,9 +317,7 @@
                                                             <input type="file" id="actual-btn" name="photo"
                                                              onchange="javascript:document.getElementById('upload_button').hidden = false;" hidden />
                                                             <label for="actual-btn" class="profilepic__text"> Fotoğrafı Düzenle</label>
-                                                        
                                                     </div>
-    
                                                 </div>
                                                 <div id="upload_button_div"><button type="submit" id="upload_button" hidden>Yükle</button></div>
                                             </form>
@@ -361,7 +359,7 @@
                                                                         <div class="col-md-2">
                                                                             <div class="form-group">
                                                                                 <label for="dg">Doğum Günü</label>
-                                                                                <input onkeypress="guncelleGoster()" type="date" class="form-control mb-4"  name="mbdogumgunu" id="dogumgunu" value="{{$musteri->mbdogumgunu}}" required>
+                                                                                <input onchange="guncelleGoster()" type="date" class="form-control mb-4"  name="mbdogumgunu" id="dogumgunu" value="{{$musteri->mbdogumgunu}}" required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -412,20 +410,26 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">                                   
-                                                                        <div class="col-md-3">
+                                                                        <div class="col-md-2">
                                                                             <div class="form-group">
                                                                                 <label for="location">İl</label>
-                                                                                <select onchange="guncelleGoster()" id="mil" name="mil" class="placeholder js-states form-control">
-                                                                                    <option>{{$musteri->mil}}</option>
+                                                                                <select onchange="guncelleGoster()" id="Iller" name="mil" class="placeholder js-states form-control" value="{{$musteri->mil}}">
+                                                                                    <option value="{{$musteri->mil}}" selected>{{$musteri->mil}}</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
+                                                                        <div class="col-md-2">
                                                                             <div class="form-group">
                                                                                 <label for="location">İlçe</label>
-                                                                                <select onchange="guncelleGoster()" id="milce" name="milce" class="placeholder js-states form-control">
-                                                                                    <option value="{{$musteri->milce}}" selected>{{$musteri->milce}}</option>
+                                                                                <select onchange="guncelleGoster()" id="Ilceler" name="milce" class="placeholder js-states form-control" value="{{$musteri->milce}}">
+                                                                                    <option value="{{$musteri->milce}}" selected disabled>{{$musteri->milce}}</option>
                                                                                 </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                <label for="location">Bölge</label>
+                                                                                <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mbolge" id="mbolge" placeholder="Banka Adı" value="{{$musteri->mbolge}}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -462,9 +466,8 @@
                                                                             <div class="form-group">
                                                                                 <label for="Müşteri Türü">Müşteri Türü</label>
                                                                                 <select class="form-control form-control text-center"
-                                                                                    name="mkayitturu" id="hk-kayitturu"
-                                                                                    onchange="guncelleGoster()" value="{{$musteri->mkayitturu}}">
-                                                                                    <option value="Kayıt Türü">Kayıt Türü</option>
+                                                                                    name="mkayitturu" id="hk-kayitturu" onchange="guncelleGoster()" value="{{$musteri->mkayitturu}}">
+                                                                                    <option value="{{$musteri->mkayitturu}}" selected>{{$musteri->mkayitturu}}</option>
                                                                                     <option value="Bireysel">Bireysel</option>
                                                                                     <option value="Ticari">Ticari</option>
                                                                                     <option value="Tedarikçi">Tedarikçi</option>
@@ -482,7 +485,7 @@
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label for="mweb">Web Adresi</label>
-                                                                                <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mweb" id="mweb" placeholder="Firma Adı" value="{{$musteri->mweb}}">
+                                                                                <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mweb" id="mweb" placeholder="Örn: www.sbemuhendislik.com" value="{{$musteri->mweb}}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -490,7 +493,7 @@
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label for="faks">Faks</label>
-                                                                                <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mweb" id="mweb" placeholder="Firma Adı" value="{{$musteri->mfaks}}">
+                                                                                <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mfaks" id="mfaks" placeholder="Faks" value="{{$musteri->mfaks}}">
                                                                             </div>
                                                                         </div>
                                                                     </div>

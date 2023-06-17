@@ -22,6 +22,16 @@
             height: 300px;
             width: 100%;
         }
+        .iti__flag-container {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            padding-bottom: 10px;
+        }
+        .iti--separate-dial-code .iti__selected-flag {
+            background-color: rgb(0 0 0 / 0%);
+        }
     </style>
 </head>
 

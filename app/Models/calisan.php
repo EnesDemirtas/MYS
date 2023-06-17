@@ -24,7 +24,6 @@ class calisan extends Model
         'cunvani',
         'cdogum',
         'cisegiris',
-        'ukodutel',
         'ctel',
         'cevadresilce',
         'cevadresil',
