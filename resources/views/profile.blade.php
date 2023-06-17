@@ -140,15 +140,6 @@
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
-                @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                 <!-- CONTENT AREA -->
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-top-spacing layout-spacing">
@@ -198,30 +189,45 @@
                                                                     <div class="form-group">
                                                                         <label for="ad">Ad</label>
                                                                         <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4"  name="cadi"  value="{{$kullanici->cadi}}" readonly>
+                                                                        @error('cadi')
+                                                                            <p class="text-danger mt-1">{{ $message }}</p>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label for="soyad">Soyad</label>
                                                                         <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="csoyadi"   value="{{$kullanici->csoyadi}}" readonly>
+                                                                        @error('csoyadi')
+                                                                            <p class="text-danger mt-1">{{ $message }}</p>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label for="tckn">TCKN</label>
                                                                         <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="ctckn" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$kullanici->ctckn}}" readonly>
+                                                                        @error('ctckn')
+                                                                            <p class="text-danger mt-1">{{ $message }}</p>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <label for="website1">Ünvan</label>
                                                                         <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" value="{{$kullanici->cunvani}}">
+                                                                        @error('cunvani')
+                                                                            <p class="text-danger mt-1">{{ $message }}</p>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label for="dg">Doğum Günü</label>
                                                                         <input onkeypress="guncelleGoster()" type="date" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$kullanici->cdogum}}">
+                                                                        @error('cdogum')
+                                                                            <p class="text-danger mt-1">{{ $message }}</p>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                                 </div>
@@ -232,12 +238,18 @@
                                                                         <div class="form-group">
                                                                             <label for="phone">Telefon Numarası</label>
                                                                             <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="ctel" id="telefon_calisan" placeholder="Telefon Numarası" value="{{$kullanici->ctel}}" required>
+                                                                            @error('ctel')
+                                                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="email">Eposta</label>
                                                                             <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="ceposta" id="email" placeholder="Eposta" value="{{$kullanici->ceposta}}" required>
+                                                                            @error('ceposta')
+                                                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>
                                                                 </div> 
@@ -250,6 +262,9 @@
                                                                             <select onchange="guncelleGoster()" id="Iller" name="cevadresil" class="placeholder js-states form-control" value="{{$kullanici->cevadresil}}">
                                                                                 <option value="{{$kullanici->cevadresil}}">{{$kullanici->cevadresil}}</option>
                                                                             </select>
+                                                                            @error('cevadresil')
+                                                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-3">
@@ -258,12 +273,18 @@
                                                                             <select onchange="guncelleGoster()" id="Ilceler" name="cevadresilce" class="placeholder js-states form-control" value="{{$kullanici->cevadresilce}}">
                                                                                 <option value="{{$kullanici->cevadresilce}}" selected>{{$kullanici->cevadresilce}}</option>
                                                                             </select>
+                                                                            @error('cevadresilce')
+                                                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="location">Adres</label>
                                                                             <textarea onkeypress="guncelleGoster()" class="form-control mb-4" style="resize:none;" id="cevadres" name="cevadres" placeholder="Adres" rows="2">{{$kullanici->cevadres}}</textarea>
+                                                                            @error('cevadres')
+                                                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -274,18 +295,27 @@
                                                                         <div class="form-group">
                                                                             <label for="cbanka">Banka Adı</label>
                                                                             <input onkeypress="guncelleGoster()" type="text" maxlength="11" class="form-control mb-4" name="cbanka" id="cbanka" placeholder="Banka Adı" value="{{$kullanici->cbanka}}">
+                                                                            @error('cbanka')
+                                                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="ciban">IBAN</label>
                                                                             <input onkeypress="guncelleGoster()" type="text" maxlength="26"  class="form-control mb-4" name="ciban" id="ciban" placeholder="IBAN" value="{{$kullanici->ciban}}">
+                                                                            @error('ciban')
+                                                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="chesapno">Hesap No</label>
                                                                             <input onkeypress="guncelleGoster()" type="text" maxlength="26"  class="form-control mb-4" name="chesapno" id="chesapno" placeholder="Hesap Numarası" value={{$kullanici->chesapno}}>
+                                                                            @error('chesapno')
+                                                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>   
                                                                 </div>
@@ -336,30 +366,45 @@
                                                                             <div class="form-group input field-wrapper">
                                                                                 <label for="ad">Ad</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4"  name="mbadi"  value="{{$musteri->mbadi}}" required>
+                                                                                @error('mbadi')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-2">
                                                                             <div class="form-group">
                                                                                 <label for="soyad">Soyad</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mbsoyadi"   value="{{$musteri->mbsoyadi}}" required>
+                                                                                @error('mbsoyadi')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-2">
                                                                             <div class="form-group">
                                                                                 <label for="tckn">TCKN</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mtcknvno" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$musteri->mtcknvno}}" readonly>
+                                                                                @error('mtcknvno')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label for="website1">Ünvan</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mbunvani" id="website1" placeholder="Ünvan" value="{{$musteri->mbunvani}}" required>
+                                                                                @error('mbunvani')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-2">
                                                                             <div class="form-group">
                                                                                 <label for="dg">Doğum Günü</label>
                                                                                 <input onchange="guncelleGoster()" type="date" class="form-control mb-4"  name="mbdogumgunu" id="dogumgunu" value="{{$musteri->mbdogumgunu}}" required>
+                                                                                @error('mbdogumgunu')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -368,13 +413,19 @@
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label for="phone">Telefon Numarası</label>
-                                                                                <input onkeypress="guncelleGoster()" type="text" maxlength="15" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="mtel" id="telefon_musteri" placeholder="Telefon Numarası" value="{{$musteri->mtel}}" required>
+                                                                                <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="mtel" id="telefon_musteri" placeholder="Telefon Numarası" value="{{$musteri->mtel}}" required>
+                                                                                @error('mtel')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label for="email">Eposta</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="meposta" id="meposta" placeholder="Eposta" value="{{$musteri->meposta}}" required>
+                                                                                @error('meposta')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                     </div> 
@@ -397,12 +448,16 @@
                                                                         </div>
                                                                         <div class="col-12">
                                                                             <div class="col-1">
-                                                                                <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem"
-                                                                                    value="{{$musteri->menlem}}">
+                                                                                <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" value="{{$musteri->menlem}}">
+                                                                                @error('meposta')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                             <div class="col-1">
-                                                                                <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam"
-                                                                                    value="{{ $musteri->mboylam }}">
+                                                                                <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam" value="{{ $musteri->mboylam }}">
+                                                                                @error('meposta')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                             <div class="col-12" onclick="guncelleGoster()" id="map">
                                                                                 <!-- GOOGLE HARİTALAR -->
@@ -416,26 +471,38 @@
                                                                                 <select onchange="guncelleGoster()" id="Iller" name="mil" class="placeholder js-states form-control" value="{{$musteri->mil}}">
                                                                                     <option value="{{$musteri->mil}}" selected>{{$musteri->mil}}</option>
                                                                                 </select>
+                                                                                @error('mil')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-2">
                                                                             <div class="form-group">
                                                                                 <label for="location">İlçe</label>
                                                                                 <select onchange="guncelleGoster()" id="Ilceler" name="milce" class="placeholder js-states form-control" value="{{$musteri->milce}}">
-                                                                                    <option value="{{$musteri->milce}}" selected disabled>{{$musteri->milce}}</option>
+                                                                                    <option value="{{$musteri->milce}}" selected>{{$musteri->milce}}</option>
                                                                                 </select>
+                                                                                @error('milce')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-2">
                                                                             <div class="form-group">
                                                                                 <label for="location">Bölge</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mbolge" id="mbolge" placeholder="Banka Adı" value="{{$musteri->mbolge}}">
+                                                                                @error('mbolge')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="location">Adres</label>
                                                                                 <textarea onkeypress="guncelleGoster()" class="form-control mb-4" style="resize:none;" id="madres" name="madres" placeholder="Adres" rows="2">{{$musteri->madres}}</textarea>
+                                                                                @error('madres')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -445,18 +512,27 @@
                                                                             <div class="form-group">
                                                                                 <label for="mbankaadi">Banka Adı</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mbankaadi" id="mbankaadi" placeholder="Banka Adı" value="{{$musteri->mbankaadi}}">
+                                                                                @error('mbankaadi')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label for="miban">IBAN</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" maxlength="26"  class="form-control mb-4" name="miban" id="miban" placeholder="IBAN" value="{{$musteri->miban}}">
+                                                                                @error('miban')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label for="chesapno">Hesap No</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" maxlength="26"  class="form-control mb-4" name="chesapno" id="chesapno" placeholder="Hesap Numarası" value={{$musteri->chesapno}}>
+                                                                                @error('chesapno')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>   
                                                                     </div>
@@ -474,18 +550,27 @@
                                                                                     <option value="Müşteri Adayı">Müşteri Adayı</option>
                                                                                     <option value="Diğer">Diğer</option>
                                                                                 </select>
+                                                                                @error('mkayitturu')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label for="firmaismi">Firma Adı</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mbfirmaadi" id="mbfirmaadi" placeholder="Firma Adı" value="{{$musteri->mbfirmaadi}}">
+                                                                                @error('mbfirmaadi')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label for="mweb">Web Adresi</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mweb" id="mweb" placeholder="Örn: www.sbemuhendislik.com" value="{{$musteri->mweb}}">
+                                                                                @error('mweb')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -494,6 +579,9 @@
                                                                             <div class="form-group">
                                                                                 <label for="faks">Faks</label>
                                                                                 <input onkeypress="guncelleGoster()" type="text" class="form-control mb-4" name="mfaks" id="mfaks" placeholder="Faks" value="{{$musteri->mfaks}}">
+                                                                                @error('mfaks')
+                                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -527,7 +615,7 @@
 
         <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
         <x-global-mandatory.scripts />
-        <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
+        <script src="{{ asset('assets/js/il-ilce-guncelleme.js') }}"></script>
         <script src="{{ asset('assets/js/inputController.js') }}"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>

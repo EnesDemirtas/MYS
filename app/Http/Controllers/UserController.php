@@ -66,7 +66,6 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-
         if ($request->tip == "musteri") {
             $request->validate([
                 'mbadi' => 'required',
@@ -77,14 +76,14 @@ class UserController extends Controller
                 'msifre' => 'required',
                 'mbdogumgunu' => 'required',
                 'mtel' => 'required',
-                'mkayitturu' => 'required',
-                'mtmarkaadi' => 'required',
+                'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
+                'mbfirmaadi' => 'required',
                 'mbunvani' => 'required',
                 'menlem' => 'required',
                 'mboylam' => 'required',
                 'madres' => 'required',
-                'mil' => 'required',
-                'milce' => 'required',
+                'mil' => 'required|doesnt_start_with:İl',
+                'milce' => 'required|doesnt_start_with:İlçe',
                 'mbolge' => 'required',
             ], [
                 'mkullaniciadi.required' => 'Kullanıcı adı boş bırakılamaz',
@@ -97,13 +96,16 @@ class UserController extends Controller
                 'mbdogumgunu.required' => 'Doğum günü boş bırakılamaz',
                 'mtel.required' => 'Telefon numarası boş bırakılamaz',
                 'mkayitturu.required' => 'Kayıt türü boş bırakılamaz',
-                'mtmarkaadi.required' => 'Marka adı  boş bırakılamaz',
+                'mkayitturu.doesnt_start_with' => 'Kayıt türü boş bırakılamaz',
+                'mbfirmaadi.required' => 'Firma adı  boş bırakılamaz',
                 'mbunvani.required' => 'Lütfen ünvanınızı giriniz',
                 'menlem.required' => 'Haritadan şirket adresini seçiniz',
                 'mboylam.required' => 'Haritadan şirket adresini seçiniz',
                 'madres.required' => 'Adres boş bırakılamaz',
-                'mil.required' => 'İl boş bırakılamaz',
-                'milce.required' => 'İlçe boş bırakılamaz',
+                'mil.required' => 'Lütfen il seçiniz.',
+                'mil.doesnt_start_with' => 'Lütfen il seçiniz.',
+                'milce.required' => 'Lütfen ilçe seçiniz.',
+                'milce.doesnt_start_with' => 'Lütfen ilçe seçiniz.',
                 'mbolge.required' => 'Bölge ismi boş bırakılamaz'
             ]);
 
@@ -118,7 +120,6 @@ class UserController extends Controller
             } else if ($tckn) {
                 return back()->withErrors(['ctckn' => 'TCKN kullanımda!'])->onlyInput('ctckn');
             } else {
-                dd($request->all());
                 $kullanici = new musteri();
                 $kullanici->mkullaniciadi = $request->input('mkullaniciadi');
                 $kullanici->msifre = Hash::make($request->input('msifre'));
@@ -129,7 +130,7 @@ class UserController extends Controller
                 $kullanici->mbdogumgunu = $request->input('mbdogumgunu');
                 $kullanici->mtel = $request->input('mtel');
                 $kullanici->mkayitturu = $request->input('mkayitturu');
-                $kullanici->mtmarkaadi = $request->input('mtmarkaadi');
+                $kullanici->mbfirmaadi = $request->input('mbfirmaadi');
                 $kullanici->mbunvani = $request->input('mbunvani');
                 $kullanici->menlem = $request->input('menlem');
                 $kullanici->mboylam = $request->input('mboylam');
@@ -138,8 +139,8 @@ class UserController extends Controller
                 $kullanici->milce = $request->input('milce');
                 $kullanici->mphoto = asset('assets/img/img_avatar.png');
                 $kullanici->mbolge = $request->input('mbolge');
-                $kullanici->mmobil = $request->input('mtel');
-                $kullanici->mukodutel = $request->input('mukodutel');
+                $kullanici->mfaks = $request->input('mfaks');
+
                 $kullanici->save();
                 return view('get_register_activation_code', ['tip' => 'Müşteri']);
             }
@@ -153,16 +154,20 @@ class UserController extends Controller
                 'csoyadi' => 'required',
                 'cdogum' => 'required',
                 'ctel' => 'required',
+                'cisegiris' => 'required',
+                'cunvani' => 'required',
             ], [
                 'ckullaniciadi.required' => 'Kullanıcı adı boş bırakılamaz',
                 'cadi.required' => 'Ad boş bırakılamaz',
-                'email.required' => 'E-posta boş bırakılamaz',
+                'ceposta.required' => 'E-posta boş bırakılamaz',
                 'ceposta.email' => 'Geçerli bir e-posta adresi giriniz',
                 'csifre.required' => 'Şifre boş bırakılamaz',
                 'ctckn.required' => 'TCKN boş bırakılamaz',
                 'csoyadi.required' => 'Soyad boş bırakılamaz',
                 'cdogum.required' => 'Doğum günü boş bırakılamaz',
                 'ctel.required' => 'Telefon numarası boş bırakılamaz',
+                'cunvani.required' => 'Ünvan boş bırakılamaz',
+                'cisegiris.required' => 'Lütfen işe giriş tarihinizi giriniz'
             ]);
 
             $kullanici = calisan::where('ckullaniciadi', $request->input('ckullaniciadi'))->first();
@@ -186,6 +191,8 @@ class UserController extends Controller
                 $kullanici->cdogum = $request->input('cdogum');
                 $kullanici->ctel = $request->input('ctel');
                 $kullanici->cphoto = asset('assets/img/img_avatar.png');
+                $kullanici->cunvani = $request->input('cunvani');
+                $kullanici->cisegiris = $request->input('cisegiris');
                 $kullanici->save();
                 return view('get_register_activation_code', ['tip' => 'Çalışan']);
             }

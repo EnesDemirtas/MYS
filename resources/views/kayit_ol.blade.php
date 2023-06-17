@@ -50,14 +50,14 @@
                             @csrf
                             <div class="form">
                                 <div class="musteri-calisan-secme">
-                                    <button type="button" id="musteri_buton" class="btn btn-primary btn-rounded mb-2"
-                                        onclick="musteri_calisan(3)">Müşteri</button>
                                     <button type="button" id="calisan_buton"
-                                        class="btn btn-outline-primary btn-rounded mb-2"
+                                        class="btn btn-primary btn-rounded mb-2"
                                         onclick="musteri_calisan(4)">Çalışan</button>
+                                    <button type="button" id="musteri_buton" class="btn btn-outline-primary btn-rounded mb-2"
+                                        onclick="musteri_calisan(3)">Müşteri</button>
                                 </div>
                                 <input type="text" style="display:none;" name="tip" id="tip"
-                                    value="musteri">
+                                    value="calisan">
                                 <!-- Çalışanın mı yoksa müşterinin mi kaydının tutulacağını tutan input -->
                                 <!-- musteri Kayıt-->
                                 @error('gecersizTip')
@@ -66,7 +66,7 @@
                                 @error('mernis')
                                     <p class="text-danger mt-1">{{ $message }}</p>
                                 @enderror
-                                <div id="musteri" style="display:block;">
+                                <div id="musteri" style="display:none;">
                                     <!-- Birinci Satır -->
                                     <div class="row">
                                         <div class="col-6">
@@ -80,7 +80,7 @@
                                                 </svg>
                                                 <input id="ad" name="mbadi" type="text"
                                                     class="form-control" placeholder="Ad" value="{{ old('mbadi') }}">
-                                                @error('ad')
+                                                @error('mbadi')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -97,7 +97,7 @@
                                                 </svg>
                                                 <input id="soyad" name="mbsoyadi" type="text"
                                                     class="form-control"placeholder="Soyad" value="{{ old('mbsoyadi') }}">
-                                                @error('ad')
+                                                @error('mbsoyadi')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -116,7 +116,7 @@
                                                 </svg>
                                                 <input id="email" name="meposta" type="text" value="{{ old('meposta') }}"
                                                     placeholder="Email">
-                                                @error('email')
+                                                @error('meposta')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -136,7 +136,7 @@
                                                     <i class="far
                                                     fa-eye"
                                                     id="togglePasswordMusteri" style="margin-left: -30px; cursor: pointer; font-size:20px; color:#1C8ADB;"></i>
-                                                @error('password')
+                                                @error('msifre')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -155,7 +155,7 @@
                                                 </svg>
                                                 <input id="tckn" name="mtcknvno" type="text"
                                                     class="form-control" placeholder="TCKN" value="{{ old('mtcknvno') }}">
-                                                @error('tckn')
+                                                @error('mtcknvno')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -171,7 +171,7 @@
                                                 </svg>
                                                 <input id="username" name="mkullaniciadi" type="text"
                                                     class="form-control"placeholder="Kullanıcı Adı" value="{{ old('mkullaniciadi') }}">
-                                                @error('username')
+                                                @error('mkullaniciadi')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -195,7 +195,7 @@
                                                         y2="10" />
                                                 </svg>
                                                 <input id="dogumgunu" name="mbdogumgunu" type="date" value="{{ old('mbdogumgunu') }}">
-                                                @error('dogumgunu')
+                                                @error('mbdogumgunu')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -211,9 +211,8 @@
                                                 </svg>
                                                 {{-- <input id="telefon" name="mtel" type="text"
                                                     placeholder="Telefon Numarası"> --}}
-                                                <input id="telefon_musteri" name="mtel" type="tel" />
-
-                                                @error('telefon')
+                                                <input id="telefon_musteri" name="mtel" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="tel" value="{{ old('mtel') }}"/>
+                                                @error('mtel')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -222,8 +221,9 @@
                                     <!-- Firma Bilgileri Kısmı -->
                                     <div class="row">
                                         <div class="col-12 text-center p-0">
-                                            <h3><span class="badge badge-primary font-weight-bold w-100"
-                                                    style="font-size:20px;">Firma Bilgileriniz</span></h3>
+                                            <h3>
+                                                <span class="badge badge-primary font-weight-bold w-100" style="font-size:20px;">Firma Bilgileriniz</span>
+                                            </h3>
                                         </div>
                                     </div>
                                     <!-- Birinci Satır -->
@@ -247,7 +247,7 @@
                                                     <option value="Müşteri Adayı">Müşteri Adayı</option>
                                                     <option value="Diğer">Diğer</option>
                                                 </select>
-                                                @error('kayitturu')
+                                                @error('mkayitturu')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -264,6 +264,9 @@
                                                 <input id="hk-tcknvno" type="number" name="mtcknvno"
                                                     placeholder="Vergi No" class="form-control form-control-sm"
                                                     value="{{ old('mtcknvno') }}">
+                                                    @error('mtcknvno')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                    @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -278,10 +281,13 @@
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="hk-marka" type="text" name="mtmarkaadi"
-                                                    onkeyup="hkMarkaAdiBuyuk()" placeholder="Marka Adı"
+                                                <input id="hk-marka" type="text" name="mbfirmaadi"
+                                                    onkeyup="hkMarkaAdiBuyuk()" placeholder="Firmanızın Adı"
                                                     class="form-control form-control-sm"
-                                                    value="{{ old('mtmarkaadi') }}">
+                                                    value="{{ old('mbfirmaadi') }}">
+                                                    @error('mbfirmaadi')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                    @enderror
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -297,6 +303,9 @@
                                                     onkeyup="hkUnvanBuyuk()" placeholder="Ünvan"
                                                     class="form-control form-control-sm"
                                                     value="{{ old('mbunvani') }}">
+                                                    @error('mbunvani')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                    @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -314,6 +323,9 @@
                                                 <input id="hk-fax" type="text" name="mfaks"
                                                     placeholder="Faks" class="form-control"
                                                     value="{{ old('mfaks') }}">
+                                                    @error('mfaks')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                    @enderror
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -328,6 +340,9 @@
                                                 <input id="hk-website" type="text" name="mweb"
                                                     placeholder="Web Site" class="form-control"
                                                     value="{{ old('mweb') }}">
+                                                    @error('mweb')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                    @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -374,23 +389,29 @@
                                                 placeholder="Adres bilgilerinizi giriniz. Örn: Muratpaşa, Kızılarık Mah. Yanık Apt. No: 5/11, Köroğlu Bulvarı, 07310 Antalya"
                                                 class="form-control mt-2" name="madres" id="hk-adres" rows="3" value="{{ old('madres') }}"
                                                 style=" resize: none !important;"></textarea>
+                                                @error('madres')
+                                                <p class="text-danger text-center mt-1">{{ $message }}</p>
+                                                @enderror
                                         </div>
                                     </div>
                                     <!-- Adres Kısmı -->
-                                    <div id="adres-field" class="row field-wrapper input mb-2">
+                                    <div id="adres-field" class="row field-wrapper input pb-0">
                                         
                                         <div class="col-4 ">
                                             <select id="Iller" name="mil"
                                                 class="placeholder js-states form-control" value="{{ old('mil') }}">
                                                 <option>İl</option>
                                             </select>
+                                            @error('mil')
+                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                         <div class="col-4">
                                             <select id="Ilceler" disabled="disabled" name="milce"
                                                 class="placeholder js-states form-control" value="{{ old('milce') }}">
                                                 <option>İlçe</option>
                                             </select>
-                                            @error('adres')
+                                            @error('milce')
                                                 <p class="text-danger mt-1">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -406,35 +427,16 @@
                                                 <input id="mbolge" type="text" name="mbolge"
                                                     placeholder="Bölge" class="form-control pb-0"
                                                     value="{{ old('mbolge') }}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="uyelik_kosullari">
-                                        <div class="row">
-                                            <div class="col-1 my-auto">
-                                                <label class="switch s-primary">
-                                                    <input type="checkbox" id="toggle-uyelik-kosullari"
-                                                        class="d-none" value="isaretlenmemis">
-                                                    <span class="slider round" onclick=""></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-10">
-                                                <div class="field-wrapper terms_condition my-auto">
-                                                    <div class="n-chk new-checkbox checkbox-outline-primary">
-                                                        <div data-toggle="modal" data-target="#modal_default">
-                                                            <span class="text-primary" style="cursor:pointer;">Üyelik
-                                                                koşullarını</span> <span>kabul ediyorum.</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @error('mbolge')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- musteri Kayıt-->
                                 <!-- calisan Kayıt-->
-                                <div id="calisan" style="display:none;">
+                                <div id="calisan" style="display:block;">
                                     <div class="row">
                                         <div class="col-6">
                                             <div id="cad-field" class="field-wrapper input">
@@ -446,8 +448,8 @@
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
                                                 <input id="ad" name="cadi" type="text"
-                                                    class="form-control"placeholder="Ad">
-                                                @error('ad')
+                                                    class="form-control"placeholder="Ad" value="{{ old('cadi') }}">
+                                                @error('cadi')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -463,8 +465,8 @@
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
                                                 <input id="soyad" name="csoyadi" type="text"
-                                                    class="form-control"placeholder="Soyad">
-                                                @error('ad')
+                                                    class="form-control"placeholder="Soyad" value="{{ old('csoyadi') }}">
+                                                @error('csoyadi')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -473,17 +475,17 @@
                                     <!-- İkinci Satır -->
                                     <div class="row">
                                         <div class="col-6">
-                                            <div id="cemail-field" class="field-wrapper input">
+                                            <div id="cusername-field" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-at-sign">
-                                                    <circle cx="12" cy="12" r="4"></circle>
-                                                    <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="email" name="ceposta" type="text" value=""
-                                                    placeholder="Email">
-                                                @error('email')
+                                                <input id="username" name="ckullaniciadi" type="text"
+                                                    class="form-control"placeholder="Kullanıcı Adı" value="{{ old('ckullaniciadi') }}">
+                                                @error('ckullaniciadi')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -498,9 +500,9 @@
                                                         height="11" rx="2" ry="2"></rect>
                                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                                 </svg>
-                                                <input id="csifre" name="csifre" type="password" class="form-control" placeholder="Şifre" style="width: 98% !important">
+                                                <input id="csifre" name="csifre" type="password" class="form-control" placeholder="Şifre" style="width: 98% !important" value="{{ old('csifre') }}">
                                             <i class="far fa-eye" id="togglePasswordCalisan" style="margin-left: -30px; cursor: pointer;font-size:20px; color:#1C8ADB;"></i>
-                                                @error('password')
+                                                @error('csifre')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -509,7 +511,7 @@
                                     <!-- Üçüncü Satır -->
                                     <div class="row">
                                         <div class="col-6">
-                                            <div id="ctckn-field" class="field-wrapper input">
+                                            <div id="ctckn-field" class="field-wrapper input pt-0">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -517,25 +519,25 @@
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                     <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="tckn" name="ctckn" type="text"
-                                                    class="form-control" placeholder="TCKN">
-                                                @error('tckn')
+                                                <input id="ctckn" name="ctckn" type="text"
+                                                    class="form-control" placeholder="TCKN" value="{{ old('ctckn') }}">
+                                                @error('ctckn')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div id="cusername-field" class="field-wrapper input">
+                                            <div id="cemail-field" class="field-wrapper input">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-user">
-                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                    class="feather feather-at-sign">
+                                                    <circle cx="12" cy="12" r="4"></circle>
+                                                    <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
                                                 </svg>
-                                                <input id="username" name="ckullaniciadi" type="text"
-                                                    class="form-control"placeholder="Kullanıcı Adı">
-                                                @error('username')
+                                                <input id="email" name="ceposta" type="text" value="{{ old('ceposta') }}"
+                                                    placeholder="Email">
+                                                @error('ceposta')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -544,22 +546,17 @@
                                     <!-- Dördüncü Satır -->
                                     <div class="row">
                                         <div class="col-6">
-                                            <div id="cdogumgunu" class="field-wrapper input">
+                                            <div id="cunvan-field" class="field-wrapper input pt-0">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-calendar">
-                                                    <rect x="3" y="4" width="18"
-                                                        height="18" rx="2" ry="2" />
-                                                    <line x1="16" y1="2" x2="16"
-                                                        y2="6" />
-                                                    <line x1="8" y1="2" x2="8"
-                                                        y2="6" />
-                                                    <line x1="3" y1="10" x2="21"
-                                                        y2="10" />
+                                                    class="feather feather-user">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
                                                 </svg>
-                                                <input id="dogumgunu" name="cdogum" type="date">
-                                                @error('dogumgunu')
+                                                <input id="cunvani" name="cunvani" type="text"
+                                                    class="form-control" placeholder="Ünvanınız" value="{{ old('cunvani') }}">
+                                                @error('cunvani')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -575,26 +572,87 @@
                                                 </svg>
                                                 {{-- <input id="telefon" name="ctel" type="text"
                                                     placeholder="Telefon Numarası"> --}}
-                                                <input id="telefon_calisan" name="ctel" type="tel" />
-                                                @error('telefon')
+                                                <input id="telefon_calisan" name="ctel" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="tel" value="{{ old('ctel') }}"/>
+                                                @error('ctel')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Beşinci Satır -->
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="isegiris">İşe Giriş</label>
+                                            <div id="isegiris" class="field-wrapper input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-calendar">
+                                                    <rect x="3" y="4" width="18"
+                                                        height="18" rx="2" ry="2" />
+                                                    <line x1="16" y1="2" x2="16"
+                                                        y2="6" />
+                                                    <line x1="8" y1="2" x2="8"
+                                                        y2="6" />
+                                                    <line x1="3" y1="10" x2="21"
+                                                        y2="10" />
+                                                </svg>
+                                                <input id="isegiris" name="cisegiris" type="date" value="{{ old('cisegiris') }}">
+                                                @error('cisegiris')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="isegiris">Doğum Günü</label>
+                                            <div id="cdogumgunu" class="field-wrapper input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-calendar">
+                                                    <rect x="3" y="4" width="18"
+                                                        height="18" rx="2" ry="2" />
+                                                    <line x1="16" y1="2" x2="16"
+                                                        y2="6" />
+                                                    <line x1="8" y1="2" x2="8"
+                                                        y2="6" />
+                                                    <line x1="3" y1="10" x2="21"
+                                                        y2="10" />
+                                                </svg>
+                                                <input id="cdogum" name="cdogum" type="date" value="{{ old('cdogum') }}">
+                                                @error('cdogum')
+                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Form Bitişi -->
                                 </div>
                                 <!-- calisan Kayıt-->
-                                <div class="d-sm-flex justify-content-between">
-                                    {{-- <div class="field-wrapper toggle-pass">
-                                        <label class="switch s-primary">
-                                            <input type="checkbox" id="toggle-password" class="d-none">
-                                            <span class="slider round"></span>
-                                        </label>
-                                        <p class="d-inline-block">Şifreyi göster</p>
-                                    </div> --}}
-                                    <div class="field-wrapper">
-                                        <button type="submit" class="btn btn-primary" value="">Üye Ol</button>
+                                <div class="uyelik_kosullari">
+                                    <div class="row">
+                                        <div class="col-1 my-auto">
+                                            <label class="switch s-primary">
+                                                <input type="checkbox" id="toggle-uyelik-kosullari"
+                                                    class="d-none" value="isaretlenmemis">
+                                                <span class="slider round" onclick=""></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="field-wrapper terms_condition my-auto">
+                                                <div class="n-chk new-checkbox checkbox-outline-primary">
+                                                    <div data-toggle="modal" data-target="#modal_default">
+                                                        <span class="text-primary" style="cursor:pointer;">Üyelik
+                                                            koşullarını</span> <span>kabul ediyorum.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
+                                
+                                <div class="field-wrapper text-center">
+                                    <button type="submit" class="btn btn-primary" value="">Üye Ol</button>
                                 </div>
 
                             </div>
