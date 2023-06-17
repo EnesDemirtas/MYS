@@ -54,7 +54,6 @@
                         <div class="widget widget-content-area br-4">
                             <div class="widget-one">
                                 <h6>BURASI ÖN MUHASEBE SAYFASI OLACAK</h6>
-                                
                             </div>    
                         </div>
                     </div>

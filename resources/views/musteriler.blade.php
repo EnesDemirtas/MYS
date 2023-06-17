@@ -121,7 +121,16 @@
   <div class="main-container" id="container">
     <div class="overlay"></div>
     <div class="search-overlay"></div>
-
+      <div class="layout-px-spacing">
+        <div class="page-header">
+          <nav class="breadcrumb-one" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">MYS</a></li>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Müşteri Yönetimi</a></li>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Müşteriler</a></li>
+              </ol>
+          </nav>
+      </div>
     <!--  BEGIN TOPBAR  -->
     <x-navbar />
     <!--  END TOPBAR  -->

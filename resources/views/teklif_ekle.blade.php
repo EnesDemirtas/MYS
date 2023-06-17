@@ -54,7 +54,16 @@
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
-
+                <div class="layout-px-spacing">
+                    <div class="page-header">
+                      <nav class="breadcrumb-one" aria-label="breadcrumb">
+                          <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">MYS</a></li>
+                              <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Teklif Yönetimi</a></li>
+                              <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Ekle</a></li>
+                          </ol>
+                      </nav>
+                  </div>
                 <!-- CONTENT AREA -->
                 <div class="page-header">
                     <nav class="breadcrumb-one" aria-label="breadcrumb">

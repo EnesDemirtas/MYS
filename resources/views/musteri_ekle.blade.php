@@ -60,7 +60,15 @@
         <!--  BEGIN CONTENT AREA  -->  
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
-
+              <div class="page-header">
+                <nav class="breadcrumb-one" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">MYS</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Müşteri Yönetimi</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Müşteri Ekle</a></li>
+                    </ol>
+                </nav>
+            </div>
                 <!-- CONTENT AREA -->
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-top-spacing layout-spacing">
