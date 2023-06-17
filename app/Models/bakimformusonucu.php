@@ -35,5 +35,7 @@ class bakimformusonucu extends Model
         'kurum_yetkilisi_tckn',
         'kurum_yetkilisi_adsoyad',
         'kurum_yetkilisi_unvan',
+        'onay',
+        'signature'
     ];
 }

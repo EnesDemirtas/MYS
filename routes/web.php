@@ -93,6 +93,7 @@ Route::get('load_bakim_formu/{form_adi}', [CalisanlarController::class, 'LoadBak
 Route::post('submit_bakim_formu', [CalisanlarController::class, 'SubmitBakimFormu'])->name('submit_bakim_formu');
 Route::get('bakim_formu_sonuclari', [CalisanlarController::class, 'BakimFormuSonuclari'])->name('bakim_formu_sonuclari');
 Route::get('load_bakim_formu_sonucu/{form_id}', [CalisanlarController::class, 'LoadBakimFormuSonucu'])->name('load_bakim_formu_sonucu');
+Route::get('formu_onayla/{form_id}', [CalisanlarController::class, 'FormuOnayla'])->name('formu_onayla');
 
 Route::get('example_form/{form_adi}', [CalisanlarController::class, 'ExampleForm'])->name('example_form');
 Route::post('teklif_ekleme_yap', [Teklifler::class, 'teklifEkle'])->name('teklif.ekleme.yap')->middleware('isAuthenticated');

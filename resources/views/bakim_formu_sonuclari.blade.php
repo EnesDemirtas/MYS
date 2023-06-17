@@ -116,10 +116,17 @@
                                             <td><span>{{ $form->form_adi }}</span></td>
 
                                             <td><span class="inv-date" id="inv-date">{{ $form->tarih }}</span></td>
-                                            <td>
-                                                <a class="btn btn-danger"
-                                                    href="{{ route('load_bakim_formu_sonucu', ['form_id' => $form->id]) }}">{{ $form->form_adi }}</a>
-                                            </td>
+                                            @if ($form->onay)
+                                                <td>
+                                                    <a class="btn btn-danger"
+                                                        href="{{ route('load_bakim_formu_sonucu', ['form_id' => $form->id]) }}">{{ $form->form_adi }}</a>
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <a class="btn btn-success"
+                                                        href="{{ route('formu_onayla', ['form_id' => $form->id]) }}">Onayla</a>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
 

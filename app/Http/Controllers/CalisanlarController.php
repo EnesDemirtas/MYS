@@ -7,10 +7,11 @@ use App\Models\calisan;
 use App\Models\bakimformu;
 use App\Models\teklif;
 use App\Models\bakimformusonucu;
+use App\Models\configs;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
-
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 
 class CalisanlarController extends Controller
 {
@@ -50,19 +51,21 @@ class CalisanlarController extends Controller
                 'ceposta.required' => 'Lütfen çalışan eposta boş bırakmayınız.',
                 'cunvani.required' => 'Lütfen çalışan ünvanını boş bırakmayınız.',
                 'ukodutel.required' => 'Lütfen telefon ülke kodunu boş bırakmayınız.',
-            ]);
+            ]
+        );
 
-            calisan::where('ctckn', $request->$ctckn)->update(array('ctel' => $request->ctel, 'ukodutel' => $request->ukodutel,
-                'ceposta' => $request->ceposta,
-                'cunvani' => $request->cunvani,
-                'cevadresil' => $request->cevadresil,
-                'cevadresilce' => $request->cevadresilce,
-                'ciban' => $request->ciban,
-                'cbanka' => $request->cbanka,
-                'chesapno' => $request->chesapno,
-                'cevadres' => $request->cevadres,
-            ));
-            return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
+        calisan::where('ctckn', $request->$ctckn)->update(array(
+            'ctel' => $request->ctel, 'ukodutel' => $request->ukodutel,
+            'ceposta' => $request->ceposta,
+            'cunvani' => $request->cunvani,
+            'cevadresil' => $request->cevadresil,
+            'cevadresilce' => $request->cevadresilce,
+            'ciban' => $request->ciban,
+            'cbanka' => $request->cbanka,
+            'chesapno' => $request->chesapno,
+            'cevadres' => $request->cevadres,
+        ));
+        return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
     }
 
     public function calisanGuncelleProfil(Request $request, $ctckn)
@@ -89,19 +92,21 @@ class CalisanlarController extends Controller
                 'ceposta.required' => 'Lütfen çalışan eposta boş bırakmayınız.',
                 'cunvani.required' => 'Lütfen çalışan ünvanını boş bırakmayınız.',
                 'ukodutel.required' => 'Lütfen telefon ülke kodunu boş bırakmayınız.',
-            ]);
+            ]
+        );
 
-            calisan::where('ctckn', $request->$ctckn)->update(array('ctel' => $request->ctel, 'ukodutel' => $request->ukodutel,
-                'ceposta' => $request->ceposta,
-                'cunvani' => $request->cunvani,
-                'cevadresil' => $request->cevadresil,
-                'cevadresilce' => $request->cevadresilce,
-                'ciban' => $request->ciban,
-                'cbanka' => $request->cbanka,
-                'chesapno' => $request->chesapno,
-                'cevadres' => $request->cevadres,
-            ));
-            return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
+        calisan::where('ctckn', $request->$ctckn)->update(array(
+            'ctel' => $request->ctel, 'ukodutel' => $request->ukodutel,
+            'ceposta' => $request->ceposta,
+            'cunvani' => $request->cunvani,
+            'cevadresil' => $request->cevadresil,
+            'cevadresilce' => $request->cevadresilce,
+            'ciban' => $request->ciban,
+            'cbanka' => $request->cbanka,
+            'chesapno' => $request->chesapno,
+            'cevadres' => $request->cevadres,
+        ));
+        return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
     }
 
     public function calisanSil($ctckn)
@@ -338,6 +343,36 @@ class CalisanlarController extends Controller
         $form->teknik_bilgiler = explode(';', $form->teknik_bilgiler);
         $form->cevaplar = explode(';', $form->cevaplar);
         return view('form_sonucu', ['form' => $form, 'sorular' => $sorular]);
+    }
+
+    public function FormuOnayla(Request $request)
+    {
+        $id = $request->form_id;
+        $form = bakimformusonucu::find($id);
+        $form->onay = 1;
+
+
+        // Step 1: Generate Key Pair (You can generate the keys once and store them securely)
+        $privateKey = configs::firstOrCreate(['name' => 'private_key'], ['value' => Str::random(32)])->value;
+        $publicKey = configs::firstOrCreate(['name' => 'public_key'], ['value' => Crypt::encryptString($privateKey)])->value;
+
+        // Step 2: Create a Signature
+        // Convert the model to an array
+        $modelArray = $form->toArray();
+
+        // Spread the values of the model's fields in the document content
+        $documentContent = '';
+        foreach ($modelArray as $field => $value) {
+            $documentContent .= $field . ': ' . $value . "\n";
+        }
+        $signature = hash('sha256', $documentContent . $privateKey);
+
+        // Step 3: Attach the Signature (Store the signature in the database along with the document)
+        $form->signature = $signature;
+
+
+        $form->save();
+        return redirect()->route('bakim_formu_sonuclari')->with('success', 'Form başarıyla onaylandı.');
     }
 
 
