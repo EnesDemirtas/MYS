@@ -1542,6 +1542,7 @@ var data = [
       ]
     }
   ]
+
   function search(nameKey, myArray){
       for (var i=0; i < myArray.length; i++) {
           if (myArray[i].il == nameKey) {
@@ -1553,7 +1554,7 @@ var data = [
   $( document ).ready(function() {
     $.each(data, function( index, value ) {
       $('#Iller').append($('<option>', {
-          value: value.il,
+          value: value.value,
           text:  value.il
       }));
     });

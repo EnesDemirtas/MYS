@@ -122,10 +122,10 @@
                                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                                 </svg>
                                                 <input id="msifre" name="msifre" type="password" value="{{ old('msifre') }}"
-                                                    placeholder="Şifre" style="width: 90% !important">
-                                                <i class="far fa-eye"
-                                                    id="togglePasswordMusteri"
-                                                    style="margin-left: -30px; cursor: pointer;"></i>
+                                                    placeholder="Şifre" style="width:98% !important">
+                                                    <i class="far
+                                                    fa-eye"
+                                                    id="togglePasswordMusteri" style="margin-left: -30px; cursor: pointer; font-size:20px; color:#1C8ADB;"></i>
                                                 @error('password')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -201,12 +201,7 @@
                                                 </svg>
                                                 {{-- <input id="telefon" name="mtel" type="text"
                                                     placeholder="Telefon Numarası"> --}}
-<<<<<<< HEAD
-                                                <input type="text" style="display:none;" id="mukodutel" name="mukodutel" value="{{ old('mukodutel') }}">
-                                                <input id="telefon" name="mtel" type="tel" onchange="ulkeKoduDegistir()" value="{{ old('mtel') }}"/>
-=======
                                                 <input id="telefon_musteri" name="mtel" type="tel" />
->>>>>>> 1484a1b7af1185c9e49b1c9846c896f238bcd692
 
                                                 @error('telefon')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
@@ -493,12 +488,8 @@
                                                         height="11" rx="2" ry="2"></rect>
                                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                                 </svg>
-                                                <input id="csifre" name="csifre" type="password" value=""
-                                                    placeholder="Şifre" style="width: 90% !important">
-                                                <i class="far
-                                            fa-eye"
-                                                    id="togglePasswordCalisan"
-                                                    style="margin-left: -30px; cursor: pointer;"></i>
+                                                <input id="csifre" name="csifre" type="password" class="form-control" placeholder="Şifre" style="width: 98% !important">
+                                            <i class="far fa-eye" id="togglePasswordCalisan" style="margin-left: -30px; cursor: pointer;font-size:20px; color:#1C8ADB;"></i>
                                                 @error('password')
                                                     <p class="text-danger mt-1">{{ $message }}</p>
                                                 @enderror
@@ -646,9 +637,7 @@
     <script src="{{ asset('assets/js/authentication/form-1.js') }}"></script>
     <script src="{{ asset('assets/js/kisiBilgileri.js') }}"></script>
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap"
-        type="text/javascript"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
     <script>
         // GOOGLE HARİTALAR
         function enlemBoylamDegis(enlem, boylam) {
@@ -743,10 +732,6 @@
             separateDialCode: true,
             nationalMode: false,
         });
-<<<<<<< HEAD
-            
-        console.log(iti.getNumber());   
-=======
 
         musteriTelefon.addEventListener("change", function() {
             this.value = musteriTelefonHandler.getNumber();
@@ -765,7 +750,6 @@
         calisanTelefon.addEventListener("change", function() {
             this.value = calisanTelefonHandler.getNumber();
         });
->>>>>>> 1484a1b7af1185c9e49b1c9846c896f238bcd692
     </script>
 </body>
 

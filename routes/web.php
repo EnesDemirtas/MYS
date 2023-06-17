@@ -28,7 +28,7 @@ Route::post('/musteri', [MusterilerController::class, 'musteriEkle'])->name('mus
 Route::get('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriDuzenle'])->name('musteri.duzenle')->middleware('isAuthenticated');
 Route::put('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriGuncelle'])->name('musteri.guncelle')->middleware('isAuthenticated');
 Route::delete('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriSil'])->name('musteri.sil')->middleware('isAuthenticated');
-Route::put('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriGuncelleProfil'])->name('musteri.guncelle.profil')->middleware('isAuthenticated');
+Route::put('/MusteriProfilDuzenleme', [MusterilerController::class, 'musteriGuncelleProfil'])->name('musteri.guncelle.profil')->middleware('isAuthenticated');
 
 
 Route::get('/musteri_ekle', function () {
@@ -50,6 +50,7 @@ Route::get('/calisan/{ctckn}', [CalisanlarController::class, 'calisanDuzenle'])-
 Route::put('/calisan/{ctckn}', [CalisanlarController::class, 'calisanGuncelle'])->name('calisan.guncelle')->middleware('isAuthenticated');
 Route::delete('/calisan/{ctckn}', [CalisanlarController::class, 'calisanSil'])->name('calisan.sil')->middleware('isAuthenticated');
 Route::get('calisanlar', [CalisanlarController::class, 'index'])->name('calisan.index')->middleware('isAuthenticated');
+Route::put('/CalisanProfilGuncelleme', [CalisanlarController::class, 'calisanGuncelleProfil'])->name('calisan.guncelle.profil')->middleware('isAuthenticated');
 
 Route::get('on_muhasebe', function () {
     return view('on_muhasebe');

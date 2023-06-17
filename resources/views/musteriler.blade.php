@@ -12,6 +12,7 @@
   <link href="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" type="text/css" />
   <link href="assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
   
   <style>
     #map {
@@ -273,20 +274,9 @@
                               </div>
 
                               <div class="row py-3">
-                                <div class="col-4 pr-0">
-                                  <div class="form-group">
-                                      <select class="placeholder js-states form-control form-control-sm" name="mukodutel" disabled>
-                                          <option value="90">+90</option>
-                                          <option value="49">+49</option>
-                                          <option value="1">+1</option>
-                                          <option value="7">+7</option>
-                                          <option value="380">+380</option>
-                                      </select>
-                                  </div>
-                                </div>
                                 <div class="col-8 pl-1">
                                     <div class="form-group">
-                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm mb-4" name="mmobil" id="phone" placeholder="Telefon" value="{{ old('mmobil') }}" readonly>
+                                        <input type="text" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm mb-4" name="mtel" id="telefon_musteri" placeholder="Telefon" value="{{ old('mtel') }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-12 pl-3">
@@ -420,14 +410,14 @@
                         <td>{{ $musteri->mtcknvno }}</td>
                         <td>{{ $musteri->milce . "/" . $musteri->mil }}</td>
                         <td>
-                          @if ( $musteri->mmobil != null)
-                          <a href="tel:{{ $musteri->mmobil }}"><span class="inv-email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span></a>
+                          @if ( $musteri->mtel != null)
+                          <a href="tel:{{ $musteri->mtel }}"><span class="inv-email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span></a>
                           @endif
                           @if ( $musteri->meposta != null)
                           <a href="mailto:{{$musteri->meposta}}"><span style="margin-left: 2px;" class="inv-email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span></a> <span style="margin-left: 2px;">
                           @endif
-                          @if ( $musteri->mmobil != null)
-                          <a target="_blank" href="https://wa.me/{{$musteri->mmobil}}"><i style="color: #805dca;" class="fa fa-lg fa-whatsapp"></i></a></span></td>
+                          @if ( $musteri->mtel != null)
+                          <a target="_blank" href="https://wa.me/{{$musteri->mtel}}"><i style="color: #805dca;" class="fa fa-lg fa-whatsapp"></i></a></span></td>
                           @endif
                           <input class="epostaHref" type="hidden" name="mailto:{{ $musteri->meposta }}">
                         <input class="lokasyonHref" type="hidden" name="https://www.google.com/maps/search/?api=1&query={{$musteri->menlem}}%2C{{$musteri->mboylam}}">
@@ -437,8 +427,7 @@
                         <input class="kayitno" type="hidden" name="{{ $musteri->mkayitturu }}">
                         <input class="eposta" type="hidden" name="{{ $musteri->meposta }}">
                         <input class="mtcknvno" type="hidden" name="{{$musteri->mtcknvno}}">
-                        <input class="cep" type="hidden" name="{{ $musteri->mmobil }}">
-                        <input class="ulkekodu" type="hidden" name="{{ $musteri->mukodutel }}"
+                        <input class="cep" type="hidden" name="{{ $musteri->mtel }}">
                         <input class="unvan" type="hidden" name="{{ $musteri->mbunvani }}">
                         @if ( $musteri->mbdogumgunu != null)
                         <input class="dogum" type="hidden" name="{{$musteri->mbdogumgunu[8]}}{{ $musteri->mbdogumgunu[9]}}.{{$musteri->mbdogumgunu[5]}}{{ $musteri->mbdogumgunu[6]}}.{{$musteri->mbdogumgunu[0]}}{{ $musteri->mbdogumgunu[1]}}{{$musteri->mbdogumgunu[2]}}{{ $musteri->mbdogumgunu[3]}}">
@@ -660,7 +649,24 @@
     my_var.appendChild(excel_button);
 
   </script>
-  <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+<script>
+    var musteriTelefon = document.querySelector("#telefon_musteri");
+    var musteriTelefonHandler = window.intlTelInput(musteriTelefon, {
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+        setCountry: "tr",
+        initialCountry: "tr",
+        preferredCountries: ["tr", "us", "gb"],
+        separateDialCode: true,
+        nationalMode: false,
+    });
+
+    musteriTelefon.addEventListener("change", function() {
+        this.value = musteriTelefonHandler.getNumber();
+    });
+
+</script>
 </body>
 
 </html>

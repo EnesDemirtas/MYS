@@ -63,7 +63,45 @@ class CalisanlarController extends Controller
                 'cevadres' => $request->cevadres,
             ));
             return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
-        
+    }
+
+    public function calisanGuncelleProfil(Request $request, $ctckn)
+    {
+        $request->validate(
+            [
+                "ctckn" => "required",
+                "cadi" => "required",
+                "csoyadi" => "required",
+                "cevadresil" => "required",
+                "cevadresilce" => "required",
+                "ctel" => "required",
+                "ceposta" => "required",
+                "cunvani" => "required",
+                "ukodutel" => "required",
+            ],
+            [
+                'ctkn.required' => 'Lütfen çalışan TCKN boş bırakmayınız.',
+                'cadi.required' => 'Lütfen çalışan adını boş bırakmayınız.',
+                'csoyadi.required' => 'Lütfen çalışan soyadını boş bırakmayınız.',
+                'cevadresil.required' => 'Lütfen il  boş bırakmayınız.',
+                'cevadresilce.required' => 'Lütfen ilçeyi boş bırakmayınız.',
+                'ctel.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
+                'ceposta.required' => 'Lütfen çalışan eposta boş bırakmayınız.',
+                'cunvani.required' => 'Lütfen çalışan ünvanını boş bırakmayınız.',
+                'ukodutel.required' => 'Lütfen telefon ülke kodunu boş bırakmayınız.',
+            ]);
+
+            calisan::where('ctckn', $request->$ctckn)->update(array('ctel' => $request->ctel, 'ukodutel' => $request->ukodutel,
+                'ceposta' => $request->ceposta,
+                'cunvani' => $request->cunvani,
+                'cevadresil' => $request->cevadresil,
+                'cevadresilce' => $request->cevadresilce,
+                'ciban' => $request->ciban,
+                'cbanka' => $request->cbanka,
+                'chesapno' => $request->chesapno,
+                'cevadres' => $request->cevadres,
+            ));
+            return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
     }
 
     public function calisanSil($ctckn)

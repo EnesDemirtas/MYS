@@ -31,7 +31,6 @@ class MusterilerController extends Controller {
                 'mmobil' => 'required',
                 'menlem' => 'required',
                 'meposta' => 'email',
-                'mukodutel' => 'required',
             ],
             [   
                 'mkayitturu.doesnt_start_with' => 'Lütfen müşterinin kayıt türünü seçiniz.',
@@ -48,7 +47,6 @@ class MusterilerController extends Controller {
                 'madres.required' => 'Lütfen müşterinin adresini giriniz.',
                 'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
                 'meposta.required' => 'Lütfen müşterinin eposta adresini giriniz.',
-                'mukodutel.required' => 'Lütfen müşteri telefonunun ülke kodunu giriniz.',
                 'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
                 'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
             ]
@@ -67,7 +65,6 @@ class MusterilerController extends Controller {
             'milce' => 'required|doesnt_start_with:Lütfen Bir İlçe Seçiniz',
             'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz',
             'mmobil' => 'required',
-            'mukodutel' => 'required',
             'menlem' => 'required',
             'meposta' => 'email'
         ],
@@ -87,7 +84,6 @@ class MusterilerController extends Controller {
             'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
             'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
             'meposta.required' => 'Lütfen müşterinin eposta adresini giriniz.',
-            'mukodutel.required' => 'Lütfen müşteri telefonunun ülke kodunu giriniz.',
             'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
             'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
             'madres.required' => 'Lütfen müşterinin adresini giriniz.',
@@ -126,7 +122,6 @@ class MusterilerController extends Controller {
             'mbolge' => 'required',
             'menlem' => 'required',
             'mmobil' => 'required',
-            'mukodutel' => 'required',
             'meposta' => 'email',
             'madres' => 'required',
         ],
@@ -143,10 +138,10 @@ class MusterilerController extends Controller {
             'milce.doesnt_start_with' => 'Lütfen ilçeyi seçiniz.',
             'mil.required' => 'Lütfen il seçiniz.',
             'mil.doesnt_start_with' => 'Lütfen il seçiniz.',
-            'mukodutel.required' => 'Lütfen müşteri telefonunun ülke kodunu giriniz.',
             'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
             'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
             'madres.required' => 'Lütfen müşterinin adresini giriniz.',
+            'mtel.requried' => 'Lütfen telefon numarası giriniz',
         ]);
 
         $musteriSayisiBul = musteri::where('id', '>', '0')->get();
@@ -177,13 +172,11 @@ class MusterilerController extends Controller {
             'mbdogumgunu' => 'before:today',
             'madres' => 'required',
             'mbolge' => 'required',
-            'mmobil' => 'required',
+            'mtel' => 'required',
             'menlem' => 'required',
             'mboylam' => 'required',
             'milce' => 'required|doesnt_start_with:Lütfen Bir İlçe Seçiniz',
             'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz',
-            'mmobil' => 'required',
-            'mukodutel' => 'required',
             'meposta' => 'email',
         ],
         [   
@@ -200,8 +193,6 @@ class MusterilerController extends Controller {
             'milce.doesnt_start_with' => 'Lütfen ilçeyi seçiniz.',
             'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
             'mil.doesnt_start_with' => 'Lütfen il alanını boş bırakmayınız.',
-            'mukodutel.required' => 'Lütfen müşteri telefonunun ülke kodunu giriniz.',
-            'mmobil.required' => 'Lütfen müşterinin telefon numarasını giriniz.',
             'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
             'madres.required' => 'Lütfen müşterinin adresini giriniz.',
         ]
@@ -209,6 +200,47 @@ class MusterilerController extends Controller {
         $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
         musteri::where('mtcknvno', $mtcknvno)->update($request->except(['_token', '_method']));
         return redirect('musteriler')->with('success', 'Kayıt Başarıyla Güncellendi');
+    }
+
+    public function musteriGuncelleProfil(Request $request) {
+        $request->validate([
+            'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
+            'mtcknvno' => 'required|numeric',
+            'mtmarkaadi' => 'required',
+            'mbadi' => 'required',
+            'mbsoyadi' => 'required',
+            'mbdogumgunu' => 'before:today',
+            'madres' => 'required',
+            'mbolge' => 'required',
+            'menlem' => 'required',
+            'mboylam' => 'required',
+            'milce' => 'required|doesnt_start_with:Lütfen Bir İlçe Seçiniz',
+            'mil' => 'required|doesnt_start_with:Lütfen Bir İl Seçiniz',
+            'mtel' => 'required',
+            'meposta' => 'email',
+        ],
+        [   
+            'mkayitturu.required' => 'Lütfen müşteri kayıt türünü seçiniz.',
+            'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
+            'mtmarkaadi.required' => 'Lütfen marka adını boş bırakmayınız.',
+            'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
+            'mbsoyadi.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
+            'mbdogumgunu.before' => 'Lütfen müşterinin doğum tarihini doğru girdiğinizden emin olunuz.',
+            'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
+            'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
+            'mboylam.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
+            'milce.required' => 'Lütfen ilçeyi seçiniz.',
+            'milce.doesnt_start_with' => 'Lütfen ilçeyi seçiniz.',
+            'mil.required' => 'Lütfen il alanını boş bırakmayınız.',
+            'mil.doesnt_start_with' => 'Lütfen il alanını boş bırakmayınız.',
+            'meposta.email' => 'Lütfen müşterinin eposta adresini doğru girdiğinizden emin olunuz.',
+            'madres.required' => 'Lütfen müşterinin adresini giriniz.',
+            'mtel.requried' => 'Lütfen telefon numarası giriniz',
+        ]
+    );
+        $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
+        musteri::where('mtcknvno', $mtcknvno)->update($request->except(['_token', '_method']));
+        return redirect('profile')->with('success', 'Kayıt Başarıyla Güncellendi');
     }
 
     public function musteriSil($mtcknvno){

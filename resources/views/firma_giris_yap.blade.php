@@ -82,11 +82,11 @@
                                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                         </svg>
                                         <input id="msifre" name="msifre" type="password" class="form-control"
-                                            placeholder="Şifre" style="width:90% !important">
+                                            placeholder="Şifre" style="width:98% !important">
                                         <i class="far
                                             fa-eye"
                                             id="togglePasswordMusteri"
-                                            style="margin-left: -30px; cursor: pointer;"></i>
+                                            style="margin-left: -30px; cursor: pointer; font-size:20px; color:#1C8ADB;"></i>
 
                                         @error('msifre')
                                             <p class="text-danger mt-1">{{ $message }}</p>
@@ -128,12 +128,11 @@
                                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                         </svg>
                                         <input id="csifre" name="csifre" type="password" class="form-control"
-                                            placeholder="Şifre" style="width: 90% !important">
+                                            placeholder="Şifre" style="width: 98% !important">
                                         <i class="far
                                             fa-eye"
                                             id="togglePasswordCalisan"
-                                            style="margin-left: -30px; cursor: pointer;"></i>
-
+                                            style="margin-left: -30px; cursor: pointer;font-size:20px; color:#1C8ADB;"></i>
                                         @error('csifre')
                                             <p class="text-danger mt-1">{{ $message }}</p>
                                         @enderror
@@ -146,13 +145,13 @@
                                 </div>
                                 <!--Çalışan Girişi-->
                                 <div class="d-sm-flex justify-content-between">
-                                    {{-- <div class="field-wrapper toggle-pass">
+                                    <div class="field-wrapper toggle-pass">
                                         <p class="d-inline-block">Şifreyi Göster</p>
                                         <label class="switch s-primary">
                                             <input type="checkbox" id="toggle-password" class="d-none">
                                             <span class="slider round"></span>
                                         </label>
-                                    </div> --}}
+                                    </div>
                                     <div class="field-wrapper">
                                         <button type="submit" class="btn btn-primary" value="">Giriş
                                             Yap</button>

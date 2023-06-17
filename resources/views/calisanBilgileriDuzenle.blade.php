@@ -152,7 +152,7 @@
                                                                 <div class="form-group">
                                                                     <label for="location">İl</label>
                                                                     <select id="Iller" name="cevadresil" class="placeholder js-states form-control">
-                                                                        <option>{{$calisanlar->cevadresil}}</option>
+                                                                        <option value="{{$calisanlar->cevadresil}}">{{$calisanlar->cevadresil}}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -160,7 +160,7 @@
                                                                 <div class="form-group">
                                                                     <label for="location">İlçe</label>
                                                                     <select id="Ilceler" name="cevadresilce" class="placeholder js-states form-control">
-                                                                        <option value="{{$calisanlar->cevadresilce}}" selected>{{$calisanlar->cevadresilce}}</option>
+                                                                        <option value="{{$calisanlar->cevadresil}}" selected> {{$calisanlar->cevadresilce}}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -223,6 +223,7 @@
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <x-global-mandatory.scripts/>
+    <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
     <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
     
@@ -235,7 +236,6 @@
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    <script src="{{ asset('assets/js/il-ilce-secme-duzenle.js') }}"></script>
     <script src="{{ asset('assets/js/users/account-settings.js') }}"></script>
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->

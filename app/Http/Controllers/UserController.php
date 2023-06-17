@@ -228,12 +228,21 @@ class UserController extends Controller
 
     public function UploadPP(Request $request)
     {
-        $path = $request->file('photo')->store('public/photos');
-        $filename = explode('/', $path)[2];
-        $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
-        $kullanici->update(['cphoto' => $filename]);
-        session()->put('kullanici', $kullanici);
-        return redirect()->route('profile', ['kullanici' => $kullanici]);
+        if($request->tip == "Müşteri"){
+            $path = $request->file('photo')->store('public/photos');
+            $filename = explode('/', $path)[2];
+            $kullanici = musteri::where('mkullaniciadi', $request->session()->get('kullanici')->mkullaniciadi)->first();
+            $kullanici->update(['mphoto' => $filename]);
+            session()->put('kullanici', $kullanici);
+            return redirect()->route('profile', ['kullanici' => $kullanici]);
+        }else{
+            $path = $request->file('photo')->store('public/photos');
+            $filename = explode('/', $path)[2];
+            $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
+            $kullanici->update(['cphoto' => $filename]);
+            session()->put('kullanici', $kullanici);
+            return redirect()->route('profile', ['kullanici' => $kullanici]);
+        }
     }
 
     public function GetNewPassword(Request $request)
