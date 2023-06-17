@@ -11,6 +11,7 @@ use App\Models\configs;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class CalisanlarController extends Controller
@@ -344,7 +345,7 @@ class CalisanlarController extends Controller
         $id = $request->form_id;
         $form = bakimformusonucu::find($id);
         $form->onay = 1;
-
+        $form->onay_timestamp = Carbon::now();
 
         // Step 1: Generate Key Pair (You can generate the keys once and store them securely)
         $privateKey = configs::firstOrCreate(['name' => 'private_key'], ['value' => Str::random(32)])->value;
@@ -357,16 +358,49 @@ class CalisanlarController extends Controller
         // Spread the values of the model's fields in the document content
         $documentContent = '';
         foreach ($modelArray as $field => $value) {
-            $documentContent .= $field . ': ' . $value . "\n";
+            if (!in_array($field, ['signature', 'qrCodeData', 'onay', 'onay_timestamp', 'created_at', 'updated_at'])) {
+                $documentContent .= $field . ': ' . $value . "\n";
+            }
         }
         $signature = hash('sha256', $documentContent . $privateKey);
 
         // Step 3: Attach the Signature (Store the signature in the database along with the document)
         $form->signature = $signature;
 
-
+        $verificationUrl = "127.0.0.1:8000/form_verify/" . $id;
+        $form->qrCodeData = Crypt::encryptString($verificationUrl);
         $form->save();
         return redirect()->route('bakim_formu_sonuclari')->with('success', 'Form başarıyla onaylandı.');
+    }
+
+    public function FormVerify(Request $request)
+    {
+        $id = $request->form_id;
+        $form = bakimformusonucu::find($id);
+        $signature = $form->signature;
+
+        // Step 1: Generate Key Pair (You can generate the keys once and store them securely)
+        $privateKey = configs::firstOrCreate(['name' => 'private_key'], ['value' => Str::random(32)])->value;
+        $publicKey = configs::firstOrCreate(['name' => 'public_key'], ['value' => Crypt::encryptString($privateKey)])->value;
+
+        // Step 2: Create a Signature
+        // Convert the model to an array
+        $modelArray = $form->toArray();
+
+        // Spread the values of the model's fields in the document content
+        $documentContent = '';
+        foreach ($modelArray as $field => $value) {
+            if (!in_array($field, ['signature', 'qrCodeData', 'onay', 'onay_timestamp', 'created_at', 'updated_at'])) {
+                $documentContent .= $field . ': ' . $value . "\n";
+            }
+        }
+        $signature2 = hash('sha256', $documentContent . $privateKey);
+
+        if ($signature == $signature2) {
+            return view('form_verify', ['isValid' => true, 'form' => $form, 'signature' => $signature, 'signature2' => $signature2]);
+        } else {
+            return view('form_verify', ['isValid' => false, 'form' => $form, 'signature' => $signature, 'signature2' => $signature2]);
+        }
     }
 
 
