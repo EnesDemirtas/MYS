@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('cunvani')->nullable()->change();
             $table->date('cdogum')->nullable()->change();
             $table->date('cisegiris')->nullable()->change();
-            $table->string('ukodutel')->nullable()->change();
             $table->string('ctel')->nullable()->change();
             $table->string('cevadresilce')->nullable()->change();
             $table->string('cevadresil')->nullable()->change();

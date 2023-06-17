@@ -39,7 +39,6 @@ class CalisanlarController extends Controller
                 "ctel" => "required",
                 "ceposta" => "required",
                 "cunvani" => "required",
-                "ukodutel" => "required",
             ],
             [
                 'ctkn.required' => 'Lütfen çalışan TCKN boş bırakmayınız.',
@@ -50,12 +49,11 @@ class CalisanlarController extends Controller
                 'ctel.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
                 'ceposta.required' => 'Lütfen çalışan eposta boş bırakmayınız.',
                 'cunvani.required' => 'Lütfen çalışan ünvanını boş bırakmayınız.',
-                'ukodutel.required' => 'Lütfen telefon ülke kodunu boş bırakmayınız.',
             ]
         );
 
         calisan::where('ctckn', $request->$ctckn)->update(array(
-            'ctel' => $request->ctel, 'ukodutel' => $request->ukodutel,
+            'ctel' => $request->ctel,
             'ceposta' => $request->ceposta,
             'cunvani' => $request->cunvani,
             'cevadresil' => $request->cevadresil,
@@ -80,7 +78,6 @@ class CalisanlarController extends Controller
                 "ctel" => "required",
                 "ceposta" => "required",
                 "cunvani" => "required",
-                "ukodutel" => "required",
             ],
             [
                 'ctkn.required' => 'Lütfen çalışan TCKN boş bırakmayınız.',
@@ -91,12 +88,11 @@ class CalisanlarController extends Controller
                 'ctel.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
                 'ceposta.required' => 'Lütfen çalışan eposta boş bırakmayınız.',
                 'cunvani.required' => 'Lütfen çalışan ünvanını boş bırakmayınız.',
-                'ukodutel.required' => 'Lütfen telefon ülke kodunu boş bırakmayınız.',
             ]
         );
 
         calisan::where('ctckn', $request->$ctckn)->update(array(
-            'ctel' => $request->ctel, 'ukodutel' => $request->ukodutel,
+            'ctel' => $request->ctel,
             'ceposta' => $request->ceposta,
             'cunvani' => $request->cunvani,
             'cevadresil' => $request->cevadresil,
@@ -129,7 +125,6 @@ class CalisanlarController extends Controller
                 "ctel" => "required",
                 "ceposta" => "required",
                 "cunvani" => "required",
-                "ukodutel" => "required",
                 "chesapno" => "required",
                 "cbanka" => "required",
                 "ciban" => "required",
@@ -148,7 +143,6 @@ class CalisanlarController extends Controller
                 'cdogum.before' => 'Lütfen doğum gününü bugünden önce bir tarih seçiniz.',
                 'cevadresilce.required' => 'Lütfen çalışanın ilçesini giriniz.',
                 'cisegiris.required' => 'Lütfen çalışanın işe giriş tarihini giriniz',
-                'ukodutel.required' => 'Lütfen çalışan telefonunun ülke kodunu giriniz.',
                 'chesapno.required' => 'Lütfen çalışanın hesap numarasını giriniz.',
                 'cbanka.required' => 'Lütfen çalışanın kullandığı banka adını giriniz.',
                 'ciban.required' => 'Lütfen çalışanın ibanını giriniz.',
@@ -165,11 +159,11 @@ class CalisanlarController extends Controller
         } else if ($calisanSayisi > 0) { // Tablo boş değilse
             $sonCalisan = calisan::orderBy('csatirid', 'desc')->first()->csatirid; //Son Çalışanın Satır ID'sini getirir.
             calisan::create($request->all());
-            calisan::where('ctckn', $request->ctckn)->update(array('cevadres' => $request->cevadres, 'cwhatsapp' => 'wa.me/' . $request->ukodutel . '' . $request->ctel . '', 'mysrefno' => 'sbe-' . $sonCalisan++ . '', 'ciban' => $request->ciban, 'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka));
+            calisan::where('ctckn', $request->ctckn)->update(array('cevadres' => $request->cevadres, 'cwhatsapp' => 'wa.me/' . $request->ctel . '', 'mysrefno' => 'sbe-' . $sonCalisan++ . '', 'ciban' => $request->ciban, 'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka));
             return redirect()->back()->with("success", "Kayıt Başarıyla Eklendi!");
         } else { // Tablo Boşsa
             calisan::create($request->all());
-            calisan::where('ctckn', $request->ctckn)->update(array('cevadres' => $request->cevadres, 'cwhatsapp' => 'wa.me/' . $request->ukodutel . '' . $request->ctel . '', 'mysrefno' => 'sbe-1', 'ciban' => $request->ciban, 'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka));
+            calisan::where('ctckn', $request->ctckn)->update(array('cevadres' => $request->cevadres, 'cwhatsapp' => 'wa.me/' . $request->ctel . '', 'mysrefno' => 'sbe-1', 'ciban' => $request->ciban, 'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka));
             return redirect()->back()->with("success", "Kayıt Başarıyla Eklendi!");
         }
     }

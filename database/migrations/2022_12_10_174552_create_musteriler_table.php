@@ -37,10 +37,8 @@ class CreateMusterilerTable extends Migration
             $table->string('mbolge')->lenght(20)->nullable();
             $table->string('milce')->lenght(20)->nullable();
             $table->string('mil')->lenght(20)->nullable();
-            $table->string('mukodutel')->lenght(10)->nullable();
             $table->string('mtel')->lenght(20)->nullable();
             $table->string('mfaks')->lenght(20)->nullable();
-            $table->string('mmobil')->lenght(20)->nullable();
             $table->string('meposta')->lenght(20)->nullable();
             $table->string('mweb')->lenght(20)->nullable();
             $table->string('menlem')->lenght(20)->nullable();
