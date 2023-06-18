@@ -7,6 +7,7 @@ use App\Models\calisan;
 use App\Models\musteri;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redis;
 use Deligoez\TCKimlikNo\TCKimlikNo;
 
 class UserController extends Controller
@@ -30,7 +31,7 @@ class UserController extends Controller
                 $request->session()->put('kullanici', $kullanici);
                 $request->session()->put('tip', 'Çalışan');
                 return redirect()->route('anasayfa.index');
-            } else if ($tckn && $tckn->csifre == $request->input('csifre')) {
+            } else if ($tckn && Hash::check($request->input('csifre'), $kullanici->csifre)) {
                 $request->session()->put('kullanici', $tckn);
                 $request->session()->put('tip', 'Çalışan');
                 return redirect()->route('anasayfa.index');
@@ -52,7 +53,7 @@ class UserController extends Controller
                 $request->session()->put('kullanici', $kullanici);
                 $request->session()->put('tip', 'Müşteri');
                 return redirect()->route('anasayfa.index');
-            } else if ($tckn && $tckn->msifre == $request->input('msifre')) {
+            } else if ($tckn && Hash::check($request->input('msifre'), $kullanici->msifre)) {
                 $request->session()->put('kullanici', $tckn);
                 $request->session()->put('tip', 'Müşteri');
                 return redirect()->route('anasayfa.index');
@@ -210,22 +211,32 @@ class UserController extends Controller
     public function GetProfile(Request $request)
     {
         if (session('tip') == 'Müşteri') {
-            $musteri = musteri::where('mkullaniciadi', $request->session()->get('kullanici')->mkullaniciadi)->first();
-            if ($musteri->mphoto != null or $musteri->mphoto != '') {
-                $musteri->mphoto = Storage::url('photos/') . $musteri->mphoto;
+            $musteri_cache_result = Redis::get('musteri:' . $request->session()->get('kullanici')->id);
+            if (isset($musteri_cache_result)) {
+                $musteri = json_decode($musteri_cache_result);
             } else {
-                $musteri->mphoto = asset('assets/img/img_avatar.png');
+                $musteri = musteri::where('mkullaniciadi', $request->session()->get('kullanici')->mkullaniciadi)->first();
+                if ($musteri->mphoto != null or $musteri->mphoto != '') {
+                    $musteri->mphoto = Storage::url('photos/') . $musteri->mphoto;
+                } else {
+                    $musteri->mphoto = asset('assets/img/img_avatar.png');
+                }
+                Redis::set('musteri:' . $request->session()->get('kullanici')->id, json_encode($musteri));
             }
-            // dd($musteri->mphoto);
             return view('profile', ['musteri' => $musteri]);
         } else if (session('tip') == 'Çalışan') {
-            $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
-            if ($kullanici->cphoto != null or $kullanici->cphoto != '') {
-                $kullanici->cphoto = Storage::url('photos/') . $kullanici->cphoto;
+            $calisan_cache_result = Redis::get('calisan:' . $request->session()->get('kullanici')->csatirid);
+            if (isset($calisan_cache_result)) {
+                $kullanici = json_decode($calisan_cache_result);
             } else {
-                $kullanici->cphoto = asset('assets/img/img_avatar.png');
+                $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
+                if ($kullanici->cphoto != null or $kullanici->cphoto != '') {
+                    $kullanici->cphoto = Storage::url('photos/') . $kullanici->cphoto;
+                } else {
+                    $kullanici->cphoto = asset('assets/img/img_avatar.png');
+                }
+                Redis::set('calisan:' . $request->session()->get('kullanici')->csatirid, json_encode($kullanici));
             }
-            // dd($kullanici->cphoto);
             return view('profile', ['kullanici' => $kullanici]);
         } else {
             return redirect()->route('pages_error404');
@@ -234,14 +245,14 @@ class UserController extends Controller
 
     public function UploadPP(Request $request)
     {
-        if($request->tip == "Müşteri"){
+        if ($request->tip == "Müşteri") {
             $path = $request->file('photo')->store('public/photos');
             $filename = explode('/', $path)[2];
             $kullanici = musteri::where('mkullaniciadi', $request->session()->get('kullanici')->mkullaniciadi)->first();
             $kullanici->update(['mphoto' => $filename]);
             session()->put('kullanici', $kullanici);
             return redirect()->route('profile', ['kullanici' => $kullanici]);
-        }else{
+        } else {
             $path = $request->file('photo')->store('public/photos');
             $filename = explode('/', $path)[2];
             $kullanici = calisan::where('ckullaniciadi', $request->session()->get('kullanici')->ckullaniciadi)->first();
