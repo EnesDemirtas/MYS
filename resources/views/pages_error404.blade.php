@@ -18,9 +18,9 @@
 
 <body class="error404 text-center">
 
-    <div class="container-fluid">
+    <div class="container-fluidr">
         <div class="row">
-            <div class="col-md-4 mr-auto mt-2 text-md-left text-center">
+            <div class="col-md-4 mx-auto mt-2">
                 <a href="index.html" class="ml-md-5">
                     <img alt="image-404" style="width: 80%; height: auto;" src="{{ asset('assets/img/sbe_logo.png') }}"
                         class="theme-logo">
