@@ -14,7 +14,7 @@ class AnasayfaController extends Controller
     {
         $calisanlar_cache_result = Redis::get('calisanlar');
         if (isset($calisanlar_cache_result)) {
-            $calisanlar = json_decode($calisanlar_cache_result);
+            $calisanlar = json_decode($calisanlar_cache_result, true);
         } else {
             $calisanlar = calisan::all();
             Redis::set('calisanlar', json_encode($calisanlar));
@@ -22,11 +22,12 @@ class AnasayfaController extends Controller
 
         $musteriler_cache_result = Redis::get('musteriler');
         if (isset($musteriler_cache_result)) {
-            $musteriler = json_decode($musteriler_cache_result);
+            $musteriler = json_decode($musteriler_cache_result, true);
         } else {
             $musteriler = musteri::all();
             Redis::set('musteriler', json_encode($musteriler));
         }
+
         return view('mys_index', compact('calisanlar', 'musteriler'));
     }
 }

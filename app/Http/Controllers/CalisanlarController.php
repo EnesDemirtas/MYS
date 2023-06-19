@@ -127,10 +127,14 @@ class CalisanlarController extends Controller
             'ctckn' => $request->ctckn,
             'cdogum' => $request->cdogum,
         ));
-        Redis::set('calisan:' . $ctckn, json_encode($calisan_updated));
+
+        $calisan = calisan::where('ctckn', $ctckn)->first();
+        Redis::set('calisan:' .$calisan->csatirid, json_encode($calisan));
         Redis::del('calisanlar');
         Redis::del('calisanlar:aktif');
-        return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
+        session()->put('kullanici', $calisan);
+
+        return redirect()->route('profile')->with('success', 'Kayıt Başarıyla Güncellendi');
     }
 
     public function calisanSil($ctckn)
@@ -370,27 +374,14 @@ class CalisanlarController extends Controller
 
     public function BakimFormuSonuclari(Request $request)
     {
-        $bakimformusonuclari_cache_result = Redis::get('bakimformusonuclari');
-        if (isset($bakimformusonuclari_cache_result)) {
-            $forms = json_decode($bakimformusonuclari_cache_result);
-        } else {
-            $forms = bakimformusonucu::all();
-            Redis::set('bakımformusonuclari', json_encode($forms));
-        }
+        $forms = bakimformusonucu::all();
         return view('bakim_formu_sonuclari', compact('forms'));
     }
 
     public function LoadBakimFormuSonucu(Request $request)
     {
         $id = $request->form_id;
-        $bakimformusonucu_cache_result = Redis::get('bakimformusonucu:' . $id);
-        if (isset($bakimformusonucu_cache_result)) {
-            $form = json_decode($bakimformusonucu_cache_result);
-        } else {
-            $form = bakimformusonucu::find($id);
-            Redis::set('bakimformusonucu:' . $id, json_encode($form));
-            Redis::del('bakimformusonuclari');
-        }
+        $form = bakimformusonucu::find($id);
         $sorular = bakimformu::where('form_adi', $form->form_adi)->get('sorular');
         $sorular = explode(';', $sorular[0]->sorular);
         $form->ozel_bilgiler = explode(';', $form->ozel_bilgiler);
@@ -402,16 +393,10 @@ class CalisanlarController extends Controller
     public function FormuOnayla(Request $request)
     {
         $id = $request->form_id;
-        $bakimformusonucu_cache_result = Redis::get('bakimformusonucu:' . $id);
-        if (isset($bakimformusonucu_cache_result)) {
-            $form = json_decode($bakimformusonucu_cache_result);
-        } else {
-            $form = bakimformusonucu::find($id);
-            Redis::set('bakimformusonucu:' . $id, json_encode($form));
-            Redis::del('bakimformusonuclari');
-        }
+        $form = bakimformusonucu::find($id);
         $form->onay = 1;
         $form->onay_timestamp = Carbon::now();
+        
 
         // Step 1: Generate Key Pair (You can generate the keys once and store them securely)
         $privateKey = configs::firstOrCreate(['name' => 'private_key'], ['value' => Str::random(32)])->value;

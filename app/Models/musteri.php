@@ -40,7 +40,6 @@ class musteri extends Model
     'menlem',
     'mboylam',
     'mnot',
-    'aktif',
     'mkullaniciadi',
     'msifre',
     'maktif',

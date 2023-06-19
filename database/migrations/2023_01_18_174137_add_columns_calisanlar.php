@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::table('calisanlar', function (Blueprint $table) {
             $table->string('ckullaniciadi')->length(25)->nullable();
             $table->string('csifre')->length(255)->nullable();
-            $table->boolean('csistemkullanicisimi')->default(false)->nullable();
             $table->integer('cyetki')->nullable();
             $table->string('ctckn')->nullable()->change();
             $table->string('cadi')->nullable()->change();

@@ -44,7 +44,6 @@ class CreateMusterilerTable extends Migration
             $table->string('menlem')->lenght(20)->nullable();
             $table->string('mboylam')->lenght(20)->nullable();
             $table->string('mnot')->lenght(20)->nullable();
-            $table->string('aktif')->lenght(10)->nullable();
             $table->string('mkullaniciadi')->lenght(20)->nullable();
             $table->string('msifre')->lenght(255)->nullable();
             $table->string('maktif')->lenght(5)->nullable();

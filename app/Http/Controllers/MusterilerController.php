@@ -265,7 +265,6 @@ class MusterilerController extends Controller
                 'mtel.requried' => 'Lütfen telefon numarası giriniz',
             ]
         );
-
         $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
         $musteri_updated = musteri::where('mtcknvno', $mtcknvno)->update(array(
             'mkayitturu' => $request->mkayitturu,
@@ -280,10 +279,13 @@ class MusterilerController extends Controller
             'mtel' => $request->mtel,
             'mbdogumgunu' => $request['mbdogumgunu'],
         ));
-        Redis::set('musteri:' . $mtcknvno, $musteri_updated);
+        
+        $musteri = musteri::where('mtcknvno', $mtcknvno)->first();
+        Redis::set('musteri:' . $musteri->id, json_encode($musteri));
         Redis::del('musteriler:aktif');
         Redis::del('musteriler');
-        return redirect()->back()->with('success', 'Kayıt Başarıyla Güncellendi');
+        session()->put('kullanici', $musteri);
+        return redirect()->route('profile')->with('success', 'Kayıt Başarıyla Güncellendi');
     }
 
     public function musteriSil($mtcknvno)

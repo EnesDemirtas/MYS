@@ -18,17 +18,7 @@
     #map {
       height: 300px;
       width: 100%;
-     }
-     .iti__flag-container {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            padding-bottom: 10px;
-        }
-        .iti--separate-dial-code .iti__selected-flag {
-            background-color: rgb(0 0 0 / 0%);
-        }  
+     } 
   </style>
   <!-- END GLOBAL MANDATORY STYLES -->
 
@@ -316,8 +306,8 @@
 
                               <div class="row py-3">
                                 <div class="col-12 pl-1">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-sm mb-4" name="mtel" id="telefon_musteri" placeholder="Telefon" value="{{ old('mtel') }}">
+                                    <div class="">
+                                        <input type="tel" class="" name="mtel" id="telefon_musteri1" value="{{ old('mtel') }}">
                                         @error('mtel')
                                           <p class="text-danger mt-1">{{ $message }}</p>
                                         @enderror
@@ -707,8 +697,8 @@
   </script>
 
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
-<script>
-    var musteriTelefon = document.querySelector("#telefon_musteri");
+    <script>
+        var musteriTelefon = document.querySelector("#telefon_musteri1");
         var musteriTelefonHandler = window.intlTelInput(musteriTelefon, {
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
             setCountry: "tr",
@@ -721,8 +711,7 @@
         musteriTelefon.addEventListener("change", function() {
             this.value = musteriTelefonHandler.getNumber();
         });
-
-</script>
+      </script>
 </body>
 
 </html>

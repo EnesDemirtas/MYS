@@ -34,8 +34,8 @@
             <div class="col-md-4">
                 <h4 class="text-center">Periyodik Bakım Formu</h4>
                 <h5 class="text-center">{{ $form->form_adi }}</h5>
-                <div class="card-body">
-                    {!! QrCode::size(75)->generate(Crypt::decryptString($form->qrCodeData)) !!}
+                <div class="card-body text-center">
+                    {!! QrCode::size(125)->generate(Crypt::decryptString($form->qrCodeData)) !!}
                 </div>
             </div>
 

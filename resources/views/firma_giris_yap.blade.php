@@ -24,14 +24,11 @@
             <div class="form-form-wrap">
                 <div class="form-container">
                     <div class="form-content">
-
+                        <div class="pb-2">
                         <h1 class=""><a href="#"><span class="brand-name">HOŞGELDİNİZ</span></a></h1>
                         <p class="signup-link mb-1">Burada yeni misiniz? <a href="/kayit_ol">Yeni bir hesap
                                 oluşturun</a></p>
-                        <div class="field-wrapper">
-                            <p class="signup-link mb-3">Hizmetlerimizden yararlanmak mı istiyorsunuz? <a
-                                    href="/teklif_ekle_giris">Teklif Oluşturun </a> </p>
-                        </div>
+                        </div>        
                         @if (Session::has('success'))
                             <div class="alert alert-success">
                                 {{ Session::get('success') }}

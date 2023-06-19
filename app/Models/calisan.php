@@ -17,7 +17,6 @@ class calisan extends Model
         'ctckn',
         'ckullaniciadi',
         'csifre',
-        'csistemkullanicisimi',
         'cyetki',
         'cadi',
         'csoyadi',

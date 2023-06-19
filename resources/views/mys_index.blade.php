@@ -67,6 +67,7 @@
                         <div class="widget widget-one h-100">
                             <div class="widget-heading">
                                 <h6 class="">Müşteri Portföyü Özeti</h6>
+                                
 
                                 <div class="task-action">
                                     <div class="dropdown">
@@ -87,7 +88,7 @@
                                 <div class="w-chart-section total-visits-content">
                                     <div class="w-detail">
                                         <p class="w-title">Toplam Müşteri</p>
-                                        <p class="w-stats">{{$musteriler->count()}}</p>
+                                        <p class="w-stats">{{count($musteriler)}}</p>
                                     </div>
                                 </div>
                                 
@@ -133,8 +134,9 @@
                                             @endphp
                                             @foreach ($musteriler as $musteri)
                                             @php
+                                            $musteri['mbadi'];
                                             $ay = date("m"); //Bulunduğumuz ay
-                                            $musteriKayit = $musteri->created_at->format('m'); // Müşterinin kayıt olduğu ay
+                                            $musteriKayit = explode('-',$musteri['created_at'])[1] ; // Müşterinin kayıt olduğu ay
                                             if($ay == $musteriKayit){
                                                 $buAyKayitOlanMusteri++; // bulunduğumuz ay ile müşterinin kayıt olduğu ay aynı ise ++
                                             }
@@ -334,7 +336,7 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                                             </div>
                                             <div class="">
-                                                <p class="w-value">{{$calisanlar->count()}}</p>
+                                                <p class="w-value">{{count($calisanlar)}}</p>
                                                 <h5 class="">Aktif Çalışan Sayısı</h5>
                                             </div>
                                         </div>
@@ -349,7 +351,7 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                                             </div>
                                             <div class="">
-                                                <p class="w-value">{{$musteriler->count()}}</p>
+                                                <p class="w-value">{{count($musteriler)}}</p>
                                                 <h5 class="">Aktif Müşteri Sayısı</h5>
                                             </div>
                                         </div>
