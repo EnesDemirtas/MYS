@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\teklif;
 use App\Models\bakimformu;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
+// use Illuminate\Support\Facades\Redis;
 use AmrShawky\LaravelCurrency\Facade\Currency;
 
 class Teklifler extends Controller
@@ -13,13 +13,9 @@ class Teklifler extends Controller
     // Bütün Teklifleri Göster
     public function index()
     {
-        $teklifler_cache_result = Redis::get('teklifler');
-        if (isset($teklifler_cache_result)) {
-            $teklifler = json_decode($teklifler_cache_result);
-        } else {
-            $teklifler = teklif::all();
-            Redis::set('teklifler', json_encode($teklifler));
-        }
+
+        $teklifler = teklif::all();
+
         return view('teklifler', compact("teklifler"));
     }
 
@@ -32,20 +28,14 @@ class Teklifler extends Controller
     public function teklifSil($id)
     {
         teklif::where('id', $id)->delete();
-        Redis::del('teklifler');
         return redirect()->back()->with("success", "Teklif Başarıyla Silindi.");
     }
 
     public function teklifGozat($id)
     {
-        $teklif_cache_result = Redis::get('teklif:' . $id);
-        if (isset($teklif_cache_result)) {
-            $teklif = json_decode($teklif_cache_result);
-        } else {
-            $teklif = teklif::where('id', $id)->first();
-            Redis::set('teklif:' . $id, json_encode($teklif));
-            Redis::del('teklifler');
-        }
+
+        $teklif = teklif::where('id', $id)->first();
+
         return view('teklif_gozat', ['teklifler' => $teklif]);
     }
 
@@ -70,9 +60,8 @@ class Teklifler extends Controller
             'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
         ]);
 
-        $new_teklif = teklif::create(array('teklif_veren_not' => $request->not, 'teklif_durumu' => 'Teklif Yapıldı', 'teklif_edilen_indirim' => $request->indirim_miktari_input, 'odeme_bilgileri_hesap_numarasi' => $request->hesap_numarasi, 'odeme_bilgileri_ulke_adi' => $request->ulke, 'odeme_bilgileri_swift_kodu' => $request->swift_kodu, 'odeme_bilgileri_banka_adi' => $request->banka_adi, 'istenilen_hizmet_miktar' => $request->urun_miktari1, 'istenilen_hizmet_fiyat' => $request->urun_fiyati1, 'istenilen_hizmetler' => $request->periyodik_bakim, 'teklif_baslangic_tarihi' => $request->date, 'teklif_bitis_tarihi' => $request->due, 'teklif_veren_isim' => $request->yetkiliismi, 'teklif_veren_email' => $request->yetkiliemail, 'teklif_veren_adres' => $request->musteriadres, 'teklif_veren_telefon' => $request->musteritelefon, 'teklif_veren_sirket' => $request->sirketismi));
-        Redis::set('teklif:' . $new_teklif->id, json_encode($new_teklif));
-        Redis::del('teklifler');
+        teklif::create(array('teklif_veren_not' => $request->not, 'teklif_durumu' => 'Teklif Yapıldı', 'teklif_edilen_indirim' => $request->indirim_miktari_input, 'odeme_bilgileri_hesap_numarasi' => $request->hesap_numarasi, 'odeme_bilgileri_ulke_adi' => $request->ulke, 'odeme_bilgileri_swift_kodu' => $request->swift_kodu, 'odeme_bilgileri_banka_adi' => $request->banka_adi, 'istenilen_hizmet_miktar' => $request->urun_miktari1, 'istenilen_hizmet_fiyat' => $request->urun_fiyati1, 'istenilen_hizmetler' => $request->periyodik_bakim, 'teklif_baslangic_tarihi' => $request->date, 'teklif_bitis_tarihi' => $request->due, 'teklif_veren_isim' => $request->yetkiliismi, 'teklif_veren_email' => $request->yetkiliemail, 'teklif_veren_adres' => $request->musteriadres, 'teklif_veren_telefon' => $request->musteritelefon, 'teklif_veren_sirket' => $request->sirketismi));
+
         return redirect('teklifler')->with("success", "Teklif başarıyla oluşturuldu!");
     }
 
@@ -129,9 +118,8 @@ class Teklifler extends Controller
         ]);
 
 
-        $new_teklif = teklif::create(array('teklif_baslangic_tarihi' => $request->date, 'teklif_bitis_tarihi' => $request->due, 'teklif_veren_isim' => $request->yetkiliismi, 'teklif_veren_email' => $request->yetkiliemail, 'teklif_veren_adres' => $request->musteriadres, 'teklif_veren_telefon' => $request->musteritelefon, 'teklif_veren_sirket' => $request->sirketismi));
-        Redis::set('teklif:' . $new_teklif->id, json_encode($new_teklif));
-        Redis::del('teklifler');
+        teklif::create(array('teklif_baslangic_tarihi' => $request->date, 'teklif_bitis_tarihi' => $request->due, 'teklif_veren_isim' => $request->yetkiliismi, 'teklif_veren_email' => $request->yetkiliemail, 'teklif_veren_adres' => $request->musteriadres, 'teklif_veren_telefon' => $request->musteritelefon, 'teklif_veren_sirket' => $request->sirketismi));
+
         return redirect('giris_yap')->with("success", "Teklif başarıyla oluşturuldu!");
     }
 

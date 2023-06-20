@@ -12,7 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Redis;
+// use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 
 class CalisanlarController extends Controller
@@ -20,27 +20,13 @@ class CalisanlarController extends Controller
     // Show all calisanlar
     public function index()
     {
-        $calisanlar_cache_result = Redis::get('calisanlar');
-        if (isset($calisanlar_cache_result)) {
-            $calisanlar = json_decode($calisanlar_cache_result);
-        } else {
-            $calisanlar = calisan::all();
-            Redis::set('calisanlar', json_encode($calisanlar));
-        }
+        $calisanlar = calisan::all();
         return view('calisanlar', compact("calisanlar"));
     }
 
     public function calisanDuzenle($ctckn)
     {
-        $calisan_ctckn_cache_result = Redis::get('calisan:' . $ctckn);
-        if (isset($calisan_ctckn_cache_result)) {
-            $calisan = json_decode($calisan_ctckn_cache_result);
-        } else {
-            $calisan = calisan::where('ctckn', $ctckn)->first();
-            Redis::set('calisan:' . $ctckn, json_encode($calisan));
-            Redis::del('calisanlar');
-            Redis::del('calisanlar:aktif');
-        }
+        $calisan = calisan::where('ctckn', $ctckn)->first();
         return view('calisanBilgileriDuzenle', ['calisanlar' => $calisan]);
     }
 
@@ -69,7 +55,7 @@ class CalisanlarController extends Controller
             ]
         );
 
-        $calisan_updated = calisan::where('ctckn', $request->$ctckn)->update(array(
+        calisan::where('ctckn', $request->$ctckn)->update(array(
             'ctel' => $request->ctel,
             'ceposta' => $request->ceposta,
             'cunvani' => $request->cunvani,
@@ -80,9 +66,7 @@ class CalisanlarController extends Controller
             'chesapno' => $request->chesapno,
             'cevadres' => $request->cevadres,
         ));
-        Redis::set('calisan:' . $ctckn, json_encode($calisan_updated));
-        Redis::del('calisanlar');
-        Redis::del('calisanlar:aktif');
+
         return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
     }
 
@@ -112,7 +96,7 @@ class CalisanlarController extends Controller
             ]
         );
 
-        $calisan_updated = calisan::where('ctckn', $ctckn)->update(array(
+        calisan::where('ctckn', $ctckn)->update(array(
             'ctel' => $request->ctel,
             'ceposta' => $request->ceposta,
             'cunvani' => $request->cunvani,
@@ -129,9 +113,6 @@ class CalisanlarController extends Controller
         ));
 
         $calisan = calisan::where('ctckn', $ctckn)->first();
-        Redis::set('calisan:' .$calisan->csatirid, json_encode($calisan));
-        Redis::del('calisanlar');
-        Redis::del('calisanlar:aktif');
         session()->put('kullanici', $calisan);
 
         return redirect()->route('profile')->with('success', 'Kayıt Başarıyla Güncellendi');
@@ -140,9 +121,6 @@ class CalisanlarController extends Controller
     public function calisanSil($ctckn)
     {
         calisan::where('ctckn', $ctckn)->delete();
-        Redis::del('calisan:' . $ctckn);
-        Redis::del('calisanlar');
-        Redis::del('calisanlar:aktif');
         return redirect()->back()->with("success", "Çalışan Başarıyla Silindi.");
     }
 
@@ -194,17 +172,12 @@ class CalisanlarController extends Controller
         } else if ($calisanSayisi > 0) { // Tablo boş değilse
             $sonCalisan = calisan::orderBy('csatirid', 'desc')->first()->csatirid; //Son Çalışanın Satır ID'sini getirir.
             calisan::create($request->all());
-            $calisan_new = calisan::where('ctckn', $request->ctckn)->update(array('cevadres' => $request->cevadres, 'cwhatsapp' => 'wa.me/' . $request->ctel . '', 'mysrefno' => 'sbe-' . $sonCalisan++ . '', 'ciban' => $request->ciban, 'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka));
-            Redis::set('calisan:' . $request->ctckn, json_encode($calisan_new));
-            Redis::del('calisanlar');
-            Redis::del('calisanlar:aktif');
+            calisan::where('ctckn', $request->ctckn)->update(array('cevadres' => $request->cevadres, 'cwhatsapp' => 'wa.me/' . $request->ctel . '', 'mysrefno' => 'sbe-' . $sonCalisan++ . '', 'ciban' => $request->ciban, 'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka));
             return redirect()->back()->with("success", "Kayıt Başarıyla Eklendi!");
         } else { // Tablo Boşsa
             calisan::create($request->all());
-            $calisan_new = calisan::where('ctckn', $request->ctckn)->update(array('cevadres' => $request->cevadres, 'cwhatsapp' => 'wa.me/' . $request->ctel . '', 'mysrefno' => 'sbe-1', 'ciban' => $request->ciban, 'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka));
-            Redis::set('calisan:' . $request->ctckn, json_encode($calisan_new));
-            Redis::del('calisanlar');
-            Redis::del('calisanlar:aktif');
+            calisan::where('ctckn', $request->ctckn)->update(array('cevadres' => $request->cevadres, 'cwhatsapp' => 'wa.me/' . $request->ctel . '', 'mysrefno' => 'sbe-1', 'ciban' => $request->ciban, 'chesapno' => $request->chesapno, 'cbanka' => $request->cbanka));
+
             return redirect()->back()->with("success", "Kayıt Başarıyla Eklendi!");
         }
     }
@@ -259,13 +232,9 @@ class CalisanlarController extends Controller
 
     public function GetRandevuYonetimi(Request $request)
     {
-        $teklifler_cache_result = Redis::get('teklifler');
-        if (isset($teklifler_cache_result)) {
-            $teklifler = json_decode($teklifler_cache_result);
-        } else {
-            $teklifler = teklif::All();
-            Redis::set('teklifler', json_encode($teklifler));
-        }
+
+        $teklifler = teklif::All();
+
         $form_isimleri_raw = bakimformu::all('form_adi');
         $form_isimleri_slug = $form_isimleri_raw->map(function ($item, $key) {
             return Str::slug($item->form_adi, '-', 'tr');
@@ -365,10 +334,8 @@ class CalisanlarController extends Controller
             ]
         ));
         $form->save();
-        Redis::set('bakimformusonucu:' . $form->id, json_encode($form));
-        Redis::del('bakimformusonuclari');
+
         teklif::where('id', $request->teklif_id)->update(['teklif_durumu' => 'Bakım Yapıldı']);
-        Redis::del('teklifler');
         return redirect()->route('randevu_yonetimi')->with('success', 'Form başarıyla kaydedildi.');
     }
 
@@ -396,7 +363,7 @@ class CalisanlarController extends Controller
         $form = bakimformusonucu::find($id);
         $form->onay = 1;
         $form->onay_timestamp = Carbon::now();
-        
+
 
         // Step 1: Generate Key Pair (You can generate the keys once and store them securely)
         $privateKey = configs::firstOrCreate(['name' => 'private_key'], ['value' => Str::random(32)])->value;

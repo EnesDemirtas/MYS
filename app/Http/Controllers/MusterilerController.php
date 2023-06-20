@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\musteri;
-use Illuminate\Support\Facades\Redis;
+// use Illuminate\Support\Facades\Redis;
 
 
 class MusterilerController extends Controller
@@ -12,27 +12,16 @@ class MusterilerController extends Controller
     // Show all musteriler
     public function index()
     {
-        $musteriler_aktif_cache_result = Redis::get('musteriler:aktif');
-        if (isset($musteriler_aktif_cache_result)) {
-            $musteriler = json_decode($musteriler_aktif_cache_result);
-        } else {
-            $musteriler = musteri::where('maktif', 1)->get();
-            Redis::set('musteriler:aktif', json_encode($musteriler));
-        }
+
+        $musteriler = musteri::where('maktif', 1)->get();
+
         return view('musteriler', ['musteriler' => $musteriler]);
     }
 
     public function musteriDuzenle($mtcknvno)
     {
-        $musteri_mtcknvno_cache_result = Redis::get('musteri:' . $mtcknvno);
-        if (isset($musteri_mtcknvno_cache_result)) {
-            $musteri = json_decode($musteri_mtcknvno_cache_result);
-        } else {
-            $musteri = musteri::where('mtcknvno', $mtcknvno)->first();
-            Redis::set('musteri:' . $mtcknvno, json_encode($musteri));
-            Redis::del('musteriler:aktif');
-            Redis::del('musteriler');
-        }
+        $musteri = musteri::where('mtcknvno', $mtcknvno)->first();
+
         return view('musteriBilgileriDuzenle', ['musteri' => $musteri]);
     }
 
@@ -112,10 +101,8 @@ class MusterilerController extends Controller
         }
 
         $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
-        $musteri = musteri::create($request->all());
-        Redis::set('musteri:', $musteri->mtcknvno);
-        Redis::del('musteriler:aktif');
-        Redis::del('musteriler');
+        musteri::create($request->all());
+
         return redirect()->back()->with("success", "Kayıt Başarıyla Eklendi!");
     }
 
@@ -161,22 +148,16 @@ class MusterilerController extends Controller
         $musteriSayisiBul = musteri::where('id', '>', '0')->get();
         $musteriSayisi = $musteriSayisiBul->count(); // Kaç çalışan olduğunu saydırır.
 
-        if (Redis::get('musteri:' . $request->mtcknvno)) {
+        if (musteri::where('mtcknvno', $request->mtcknvno)->exists()) {
             return redirect()->back()->with('error', 'Bu TCKN/Vergi No ile kayıtlı bir müşteri bulunmaktadır.');
         } else if ($musteriSayisi > 0) { // Tablo boş değilse
             $sonmusteri = musteri::orderBy('id', 'desc')->first()->id; //Son Çalışanın Satır ID'sini getirir.
             musteri::create($request->all());
-            $musteri_new = musteri::where('mtcknvno', $request->mtcknvno)->update(array('mrefno' => 'sbe-' . $sonmusteri++ . '', 'aktif' => 1));
-            Redis::set('musteri:' . $request->mtcknvno, $musteri_new);
-            Redis::del('musteriler:aktif');
-            Redis::del('musteriler');
+            musteri::where('mtcknvno', $request->mtcknvno)->update(array('mrefno' => 'sbe-' . $sonmusteri++ . '', 'aktif' => 1));
             return redirect()->back()->with("success", "Kayıt Başarıyla Eklendi!");
         } else { // Tablo Boşsa
             musteri::create($request->all());
-            $new_musteri = musteri::where('mtcknvno', $request->mtcknvno)->update(array('mrefno' => 'sbe-0', 'aktif' => 1));
-            Redis::set('musteri:' . $request->mtcknvno, $new_musteri);
-            Redis::del('musteriler:aktif');
-            Redis::del('musteriler');
+            musteri::where('mtcknvno', $request->mtcknvno)->update(array('mrefno' => 'sbe-0', 'aktif' => 1));
             return redirect()->back()->with("success", "Kayıt Başarıyla Eklendi!");
         }
     }
@@ -219,10 +200,8 @@ class MusterilerController extends Controller
             ]
         );
         $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
-        $musteri_updated = musteri::where('mtcknvno', $mtcknvno)->update($request->except(['_token', '_method']));
-        Redis::set('musteri:' . $mtcknvno, $musteri_updated);
-        Redis::del('musteriler:aktif');
-        Redis::del('musteriler');
+        musteri::where('mtcknvno', $mtcknvno)->update($request->except(['_token', '_method']));
+
         return redirect('musteriler')->with('success', 'Kayıt Başarıyla Güncellendi');
     }
 
@@ -266,7 +245,7 @@ class MusterilerController extends Controller
             ]
         );
         $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
-        $musteri_updated = musteri::where('mtcknvno', $mtcknvno)->update(array(
+        musteri::where('mtcknvno', $mtcknvno)->update(array(
             'mkayitturu' => $request->mkayitturu,
             'mbfirmaadi' => $request->mbfirmaadi,
             'mbolge' => $request->mbolge,
@@ -279,11 +258,8 @@ class MusterilerController extends Controller
             'mtel' => $request->mtel,
             'mbdogumgunu' => $request['mbdogumgunu'],
         ));
-        
+
         $musteri = musteri::where('mtcknvno', $mtcknvno)->first();
-        Redis::set('musteri:' . $musteri->id, json_encode($musteri));
-        Redis::del('musteriler:aktif');
-        Redis::del('musteriler');
         session()->put('kullanici', $musteri);
         return redirect()->route('profile')->with('success', 'Kayıt Başarıyla Güncellendi');
     }
@@ -292,9 +268,7 @@ class MusterilerController extends Controller
     {
         // musteri::where('mtcknvno', $mtcknvno)->delete();
         musteri::where('mtcknvno', $mtcknvno)->update(['aktif' => 0]);
-        Redis::del('musteri:' . $mtcknvno);
-        Redis::del('musteriler');
-        Redis::del('musteriler:aktif');
+
         return redirect()->back()->with("success", "Müşteri Başarıyla Silindi.");
     }
 }

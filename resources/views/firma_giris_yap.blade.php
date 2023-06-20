@@ -25,10 +25,10 @@
                 <div class="form-container">
                     <div class="form-content">
                         <div class="pb-2">
-                        <h1 class=""><a href="#"><span class="brand-name">HOŞGELDİNİZ</span></a></h1>
-                        <p class="signup-link mb-1">Burada yeni misiniz? <a href="/kayit_ol">Yeni bir hesap
-                                oluşturun</a></p>
-                        </div>        
+                            <h1 class=""><a href="#"><span class="brand-name">HOŞGELDİNİZ</span></a></h1>
+                            <p class="signup-link mb-1">Burada yeni misiniz? <a href="/kayit_ol">Yeni bir hesap
+                                    oluşturun</a></p>
+                        </div>
                         @if (Session::has('success'))
                             <div class="alert alert-success">
                                 {{ Session::get('success') }}
@@ -142,13 +142,6 @@
                                 </div>
                                 <!--Çalışan Girişi-->
                                 <div class="d-sm-flex justify-content-between">
-                                    <div class="field-wrapper toggle-pass">
-                                        <p class="d-inline-block">Şifreyi Göster</p>
-                                        <label class="switch s-primary">
-                                            <input type="checkbox" id="toggle-password" class="d-none">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
                                     <div class="field-wrapper">
                                         <button type="submit" class="btn btn-primary" value="">Giriş
                                             Yap</button>
