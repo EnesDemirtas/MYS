@@ -748,8 +748,7 @@
 
 
 
-                                                                    <div
-                                                                        class="invoice-totals-row invoice-summary-total">
+                                                                    <div class="invoice-totals-row invoice-summary-total">
 
                                                                         <div class="invoice-summary-label">İndirim
                                                                         </div>
@@ -860,7 +859,7 @@
 
 
 
-                                                <div class="invoice-action-discount">
+                                                <div class="invoice-action-discount" id="indirim" style="display: none;">
 
                                                     <h5>İndirim</h5>
 
@@ -921,7 +920,7 @@
                                                                     <input type="number"
                                                                         class="form-control input-rate"
                                                                         onclick="teklifGonderSil()"
-                                                                        id="discount-amount-rate" placeholder="Rate"
+                                                                        id="discount-amount-rate" placeholder="Miktar"
                                                                         value="0">
                                                                 </div>
 
@@ -931,7 +930,7 @@
                                                                     <input type="number"
                                                                         class="form-control input-rate"
                                                                         onclick="teklifGonderSil()"
-                                                                        id="discount-percent-rate" placeholder="Rate"
+                                                                        id="discount-percent-rate" placeholder="Miktar"
                                                                         value="0">
                                                                 </div>
                                                             </div>
@@ -1007,6 +1006,7 @@
                     const fiyat = document.getElementById("urun_fiyati1"); // fiyat bilgisi değişince anlık olarak total ücreti hesaplamak için 
                     fiyat.addEventListener("input", fiyatUpdate);
                     function fiyatUpdate(e) {
+                        document.getElementById('indirim').style.display = "block";
                         hesapla();
                         totalFiyatHesapla();
                         document.getElementById("cevirilenPara").style.display = "block";

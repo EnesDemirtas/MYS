@@ -167,7 +167,7 @@
                                                                     </div>
 
                                                                     <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
-                                                                        <p class="inv-customer-name"> Sadık Bozkır</p>
+                                                                        <p class="inv-customer-name"> Sadık BOZDEMİR</p>
                                                                         <p class="inv-street-addr">Muratpaşa, Kızılarık
                                                                             Mah. Yanık Apt. No: 5/11, Köroğlu Bulvarı,
                                                                             07310 Antalya</p>
