@@ -27,6 +27,10 @@ class UserController extends Controller
             $kullanici = calisan::where('ckullaniciadi', $request->input('ckullaniciadi'))->first();
             $tckn = calisan::where('ctckn', $request->input('ckullaniciadi'))->first();
 
+            if (!$kullanici->caktif) {
+                return back()->withErrors(['ckullaniciadi' => 'Hesap aktif değil. Destek ile iletişime geçiniz.'])->onlyInput('ckullaniciadi');
+            }
+
             if ($kullanici && Hash::check($request->input('csifre'), $kullanici->csifre)) {
                 $request->session()->put('kullanici', $kullanici);
                 $request->session()->put('tip', 'Çalışan');
@@ -49,6 +53,11 @@ class UserController extends Controller
 
             $kullanici = musteri::where('mkullaniciadi', $request->input('mkullaniciadi'))->first();
             $tckn = musteri::where('mtcknvno', $request->input('mkullaniciadi'))->first();
+
+            if (!$kullanici->maktif) {
+                return back()->withErrors(['mkullaniciadi' => 'Hesap aktif değil. Destek ile iletişime geçiniz.'])->onlyInput('mkullaniciadi');
+            }
+
             if ($kullanici && Hash::check($request->input('msifre'), $kullanici->msifre)) {
                 $request->session()->put('kullanici', $kullanici);
                 $request->session()->put('tip', 'Müşteri');
@@ -250,6 +259,22 @@ class UserController extends Controller
 
             session()->put('kullanici', $kullanici);
             return redirect()->route('profile', ['kullanici' => $kullanici]);
+        }
+    }
+
+    public function DeleteProfile(Request $request)
+    {
+        $tip = $request->tip;
+        $id = $request->id;
+
+        if ($tip == "Müşteri") {
+            musteri::where('id', $id)->update(['maktif' => 0]);
+            $request->session()->flush();
+            return redirect()->route('giris_yap')->with('success_delete', 'Hesabınız başarıyla silindi.');
+        } else {
+            calisan::where('csatirid', $id)->update(['caktif' => 0]);
+            $request->session()->flush();
+            return redirect()->route('giris_yap')->with('success_delete', 'Hesabınız başarıyla silindi.');
         }
     }
 

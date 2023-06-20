@@ -80,6 +80,7 @@ Route::post('kayit_ol', [UserController::class, 'register'])->name('register');
 
 Route::get('profile', [UserController::class, 'GetProfile'])->name('profile');
 Route::post('uploadPP', [UserController::class, 'UploadPP'])->name('uploadPP');
+Route::get('profile/{tip}/{id}', [UserController::class, 'DeleteProfile'])->name('profile.delete');
 
 Route::post('reset_activation_code', [ActivationCodeController::class, 'SendResetActivationCode'])->name('reset_activation_code');
 Route::get('new_password', [UserController::class, 'GetNewPassword'])->name('get_new_password');

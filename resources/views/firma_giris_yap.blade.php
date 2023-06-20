@@ -40,6 +40,12 @@
                                 {{ Session::get('aktivasyon_basarili') }}
                             </div>
                         @endif
+
+                        @if (Session::has('success_delete'))
+                            <div class="alert alert-success">
+                                {{ Session::get('success_delete') }}
+                            </div>
+                        @endif
                         <form class="text-left" method="POST" action=" {{ route('login') }} ">
                             <div class="musteri-calisan-secme">
                                 <button type="button" id="musteri_buton" class="btn btn-primary btn-rounded mb-2"

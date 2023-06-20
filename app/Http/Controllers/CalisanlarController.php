@@ -20,7 +20,7 @@ class CalisanlarController extends Controller
     // Show all calisanlar
     public function index()
     {
-        $calisanlar = calisan::all();
+        $calisanlar = calisan::where('caktif', 1)->get();
         return view('calisanlar', compact("calisanlar"));
     }
 
