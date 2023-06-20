@@ -68,18 +68,6 @@
                         </nav>
                     </div>
                     <!-- CONTENT AREA -->
-                    <div class="page-header">
-                        <nav class="breadcrumb-one" aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">MYS</a></li>
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Teklif</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a
-                                        href="javascript:void(0);">Ekle</a></li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <p class="font-weight-bold alert alert-danger mt-1" id="indirim_hatasi" style="display:none;">Lütfen
-                        belirlediğiniz indirim miktarının toplam ücretten daha az olduğundan emin olun!</p>
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -745,9 +733,9 @@
                                                                         </div>
                                                                         <div class="invoice-summary-value">
                                                                             <div class="subtotal-amount">
-                                                                                <span id="para_sembol">₺</span><span
+                                                                                <span id="para_sembol1">₺</span><span
                                                                                     class="amount"
-                                                                                    id="ara_toplam">100</span>
+                                                                                    id="ara_toplam">0</span>
                                                                                 <input type="text"
                                                                                     style="display:none;"
                                                                                     id="ara_toplam_input"
@@ -768,7 +756,7 @@
 
                                                                         <div class="invoice-summary-value">
                                                                             <div class="total-amount">
-                                                                                <span id="para_sembol">₺</span><span
+                                                                                <span id="para_sembol2">₺</span><span
                                                                                     id="indirim_miktari">0</span>
                                                                                 <input type="text"
                                                                                     style="display:none;"
@@ -787,8 +775,8 @@
 
                                                                         <div class="invoice-summary-value">
                                                                             <div class="balance-due-amount">
-                                                                                <span id="para_sembol">₺</span><span
-                                                                                    id="toplam_ucret">90</span><span
+                                                                                <span id="para_sembol3">₺</span><span
+                                                                                    id="toplam_ucret">0</span><span
                                                                                     id="cevirilenPara"
                                                                                     style="display:none;"></span>
                                                                                 <input type="text"
@@ -854,8 +842,8 @@
                                                         <div class="col-10 my-auto"> --}}
                                                             <select
                                                                 class="form-control country_code para_birimi  form-control-sm"
-                                                                onchange="parayiCevir('cevirilecek_para','TRY',50)"
-                                                                value="GBP" id="para_birimi" name="para_birimi">
+                                                                onchange="parayiCevir(this.value,'TRY',parseInt(document.getElementById('toplam_ucret').innerHTML))"
+                                                                value="TRY" id="para_birimi" name="para_birimi">
                                                                 <option value="">Para Birimi Seçiniz</option>
                                                                 <option value="TRY"> TRY - Türk Lirası</option>
                                                                 <option value="USD"> USD - Amerikan Doları</option>
@@ -1016,10 +1004,8 @@
 
             <script>
                 $(document).ready(function() {
-                    const fiyat = document.getElementById(
-                        "urun_fiyati1"); // fiyat bilgisi değişince anlık olarak total ücreti hesaplamak için 
+                    const fiyat = document.getElementById("urun_fiyati1"); // fiyat bilgisi değişince anlık olarak total ücreti hesaplamak için 
                     fiyat.addEventListener("input", fiyatUpdate);
-
                     function fiyatUpdate(e) {
                         hesapla();
                         totalFiyatHesapla();
@@ -1028,10 +1014,8 @@
                             "toplam_ucret").innerHTML));
                     }
 
-                    const miktar = document.getElementById(
-                        "urun_miktari1"); // miktar bilgisi değişince anlık olarak total ücreti hesaplamak için 
+                    const miktar = document.getElementById( "urun_miktari1"); // miktar bilgisi değişince anlık olarak total ücreti hesaplamak için 
                     miktar.addEventListener("input", miktarUpdate);
-
                     function miktarUpdate(e) {
                         hesapla();
                         totalFiyatHesapla();
@@ -1040,30 +1024,54 @@
                     }
 
                     const miktar_indirim = document.getElementById("discount-amount-rate");
-                    miktar_indirim.addEventListener("input", updateValueMiktar); // Yüzdesel indirim yapma
+                    miktar_indirim.addEventListener("input", updateValueMiktar); // Miktar indirim yapma
                     function updateValueMiktar(e) {
                         indirimYap('Miktar');
+                        hesapla();
                         totalFiyatHesapla();
+                        parayiCevir(document.getElementById("para_birimi").value, "TRY", parseInt(document.getElementById(
+                            "toplam_ucret").innerHTML));
                     }
 
                     const yuzde_indirim = document.getElementById("discount-percent-rate");
                     yuzde_indirim.addEventListener("input", updateValueYuzde); // Yüzdesel indirim yapma
                     function updateValueYuzde(e) {
                         indirimYap('Yüzde');
+                        hesapla();
                         totalFiyatHesapla();
+                        parayiCevir(document.getElementById("para_birimi").value, "TRY", parseInt(document.getElementById(
+                            "toplam_ucret").innerHTML));
                     }
                 });
 
 
                 function parayiCevir(cevirilen, cevirilecek, miktar) { // CURRENCY API İLE SEÇİLEN PARAYI TL'YE ÇEVİRME KISMI
+                    console.log('cevirilen' + cevirilen + 'miktar' + miktar);
                     if (document.getElementById("para_birimi").value == 'TRY') {
                         document.getElementById("para_sembol").innerHTML = "₺";
+                        document.getElementById("para_sembol1").innerHTML = "₺";
+                        document.getElementById("para_sembol2").innerHTML = "₺";
+                        document.getElementById("para_sembol3").innerHTML = "₺";
                     } else if (document.getElementById("para_birimi").value == 'USD') {
                         document.getElementById("para_sembol").innerHTML = "$";
+                        document.getElementById("para_sembol1").innerHTML = "$";
+                        document.getElementById("para_sembol2").innerHTML = "$";
+                        document.getElementById("para_sembol3").innerHTML = "$";
                     } else if (document.getElementById("para_birimi").value == 'EUR') {
                         document.getElementById("para_sembol").innerHTML = "€";
-                    } else {
+                        document.getElementById("para_sembol1").innerHTML = "€";
+                        document.getElementById("para_sembol2").innerHTML = "€";
+                        document.getElementById("para_sembol3").innerHTML = "€";
+                    } else if (document.getElementById("para_birimi").value == 'GBP'){
                         document.getElementById("para_sembol").innerHTML = "£";
+                        document.getElementById("para_sembol1").innerHTML = "£";
+                        document.getElementById("para_sembol2").innerHTML = "£";
+                        document.getElementById("para_sembol3").innerHTML = "£";
+                    } else {
+                        document.getElementById("para_sembol").innerHTML = "₺";
+                        document.getElementById("para_sembol1").innerHTML = "₺";
+                        document.getElementById("para_sembol2").innerHTML = "₺";
+                        document.getElementById("para_sembol3").innerHTML = "₺";
                     }
                     $.ajax({
                         type: "GET",

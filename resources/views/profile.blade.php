@@ -106,8 +106,6 @@
             font-family: sans-serif;
         }
     </style>
-    <link href="{{ asset('assets/css/authentication/form-1.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/users/account-setting.css') }}" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
 </head>
@@ -147,7 +145,7 @@
                                 <li class="breadcrumb-item"><a href="javascript:void(0);"
                                         style="color:whitesmoke">MYS</a></li>
                                 <li class="breadcrumb-item"><a href="javascript:void(0);"
-                                        style="color:whitesmoke">Profil Düzenleme</a></li>
+                                        style="color:whitesmoke">Profil</a></li>
                             </ol>
                         </nav>
                     </div>

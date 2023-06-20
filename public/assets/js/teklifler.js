@@ -17,10 +17,8 @@ function totalFiyatHesapla(){
       document.getElementById("fiyat_uyarisi1").style.display = "none";
     }else{
       if(parseInt(document.getElementById("ara_toplam").innerHTML) < parseInt(document.getElementById("indirim_miktari").innerHTML )){
-        document.getElementById("indirim_hatasi").style.display = "block";
         document.getElementById("teklif_gonder").style.display = "none";
         document.getElementById("totalrow").style.display = "none";
-        location.href = "#indirim_hatasi";
       }else{
         document.getElementById("totalrow").style.display = "block";
         document.getElementById("ara_toplam").innerHTML = document.getElementById("toplam_tutar1").innerHTML;
@@ -42,6 +40,9 @@ function totalFiyatHesapla(){
       document.getElementById("miktar_uyarisi1").style.display = "none";
       document.getElementById("totalrow").style.display = "none";
     }else{
+      document.getElementById("totalrow").style.display = "block";
+      document.getElementById("fiyat_uyarisi1").style.display = "none";
+      document.getElementById("miktar_uyarisi1").style.display = "none";
       document.getElementById("cok_miktar").style.display = "none";
     }
 }

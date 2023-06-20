@@ -228,9 +228,9 @@
                                                                                 <td class="text-right">
                                                                                     {{ $urun_miktari1 }}</td>
                                                                                 <td class="text-right">
-                                                                                    {{ $urun_fiyati1 }}</td>
+                                                                                    {{$secilen_para_birimi}}{{ $urun_fiyati1 }}</td>
                                                                                 <td class="text-right">
-                                                                                    {{ $indirimsiz_toplam }}</td>
+                                                                                    {{$secilen_para_birimi}}{{ $indirimsiz_toplam }}</td>
                                                                                 <input type="hidden"
                                                                                     name="indirimsiz_toplam"
                                                                                     value="{{ $indirimsiz_toplam }}">
@@ -253,14 +253,14 @@
                                                                                 </div>
                                                                                 <div class="col-sm-4 col-5">
                                                                                     <p class="">
-                                                                                        {{ $ara_toplam_input }}</p>
+                                                                                        {{$secilen_para_birimi}}{{ $ara_toplam_input }}</p>
                                                                                 </div>
                                                                                 <div class="col-sm-8 col-7">
                                                                                     <p class="">İndirim: </p>
                                                                                 </div>
                                                                                 <div class="col-sm-4 col-5">
                                                                                     <p class="">
-                                                                                        {{ $indirim_miktari_input }}
+                                                                                        {{$secilen_para_birimi}}{{ $indirim_miktari_input }}
                                                                                     </p>
                                                                                     <input type="hidden"
                                                                                         name="indirim_miktari_input"
@@ -274,7 +274,7 @@
                                                                                 <div
                                                                                     class="col-sm-4 col-5 grand-total-amount">
                                                                                     <h4 class="">
-                                                                                        {{ $toplam_ucret_input }}</h4>
+                                                                                        {{$secilen_para_birimi}}{{ $toplam_ucret_input }}</h4>
                                                                                     <input type="hidden"
                                                                                         name="toplam_ucret_input"
                                                                                         value="{{ $toplam_ucret_input }}">
@@ -326,12 +326,6 @@
                                             <div class="invoice-action-btn">
 
                                                 <div class="row">
-                                                    <div class="col-xl-12 col-md-3 col-sm-6">
-                                                        <button type="submit" style="display:none;"
-                                                            id="teklif_gonder"
-                                                            class="btn btn-primary btn-send w-100 mb-2">Teklifi
-                                                            Gönder</button>
-                                                    </div>
                                                     <div class="col-xl-12 col-md-3 col-sm-6">
                                                         <a href="javascript:void(0);"
                                                             class="btn btn-secondary btn-print  action-print">Yazdır</a>

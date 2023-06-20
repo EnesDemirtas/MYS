@@ -92,63 +92,23 @@ class Teklifler extends Controller
             ->amount(50)
             ->round(2)
             ->get();
-
-        return view('teklif_onizle', ['teklif_bitis_tarihi' => $request->teklif_bitis_tarihi, 'teklif_baslangic_tarihi' => $request->teklif_baslangic_tarihi, 'urun_miktari1' => $request->urun_miktari1, 'indirimsiz_toplam' => ($request->toplam_ucret_input + $request->indirim_miktari_input), 'urun_fiyati1' => $request->urun_fiyati1, 'periyodik_bakim' => $request->periyodik_bakim, 'swift_kodu' => $request->swift_kodu, 'ulke' => $request->ulke, 'banka_adi' => $request->banka_adi, 'hesap_numarasi' => $request->hesap_numarasi, 'toplam_ucret_input' => $request->toplam_ucret_input, 'ara_toplam_input' => $request->ara_toplam_input, 'indirim_miktari_input' => $request->indirim_miktari_input, 'yetkiliismi' => $request->yetkiliismi, 'yetkiliemail' => $request->yetkiliemail, 'musteriadres' => $request->musteriadres, 'musteritelefon' => $request->musteritelefon, 'date' => $request->date, 'due' => $request->due, 'sirketismi' => $request->sirketismi, 'not' => $request->not]);
+    
+        if($request->para_pirimi == 'GBP'){
+            $secilen_para_birimi = '£';
+        } elseif ($request->para_birimi == 'USD'){
+            $secilen_para_birimi = '$';
+        } elseif ($request->para_birimi == 'EUR'){
+            $secilen_para_birimi = '€';
+        } else {
+            $secilen_para_birimi = '₺';
+        }
+        return view('teklif_onizle', ['secilen_para_birimi' => $secilen_para_birimi ,'teklif_bitis_tarihi' => $request->due, 'teklif_baslangic_tarihi' => $request->date, 'urun_miktari1' => $request->urun_miktari1, 'indirimsiz_toplam' => ($request->toplam_ucret_input + $request->indirim_miktari_input), 'urun_fiyati1' => $request->urun_fiyati1, 'periyodik_bakim' => $request->periyodik_bakim, 'swift_kodu' => $request->swift_kodu, 'ulke' => $request->ulke, 'banka_adi' => $request->banka_adi, 'hesap_numarasi' => $request->hesap_numarasi, 'toplam_ucret_input' => $request->toplam_ucret_input, 'ara_toplam_input' => $request->ara_toplam_input, 'indirim_miktari_input' => $request->indirim_miktari_input, 'yetkiliismi' => $request->yetkiliismi, 'yetkiliemail' => $request->yetkiliemail, 'musteriadres' => $request->musteriadres, 'musteritelefon' => $request->musteritelefon, 'date' => $request->date, 'due' => $request->due, 'sirketismi' => $request->sirketismi, 'not' => $request->not]);
     }
 
-    public function teklifEkleGiris(Request $request)
-    {
-        $request->validate([
-            'yetkiliismi' => 'required',
-            'yetkiliemail' => 'required|email',
-            'musteriadres' => 'required',
-            'musteritelefon' => 'required',
-            'date' => 'required',
-            'due' => 'required',
-            'sirketismi' => 'required',
-        ], [
-            'yetkiliismi.required' => 'Lütfen isminizi giriniz',
-            'yetkiliemail.required' => 'E-posta boş bırakılamaz',
-            'yetkiliemail.email' => 'Lütfen geçerli bir E-posta girdiğinizden emin olunuz',
-            'musteriadres.required' => 'Adres boş bırakılamaz',
-            'musteritelefon.required' => 'Telefon numarası boş bırakılamaz',
-            'date.required' => 'Teklif tarihi boş bırakılamaz',
-            'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
-            'sirketismi.required' => 'Şirket ismi boş bırakılamaz.'
-        ]);
-
-
-        teklif::create(array('teklif_baslangic_tarihi' => $request->date, 'teklif_bitis_tarihi' => $request->due, 'teklif_veren_isim' => $request->yetkiliismi, 'teklif_veren_email' => $request->yetkiliemail, 'teklif_veren_adres' => $request->musteriadres, 'teklif_veren_telefon' => $request->musteritelefon, 'teklif_veren_sirket' => $request->sirketismi));
-
-        return redirect('giris_yap')->with("success", "Teklif başarıyla oluşturuldu!");
-    }
-
-    public function teklifOnizleGiris(Request $request)
-    {
-        $request->validate([
-            'yetkiliismi' => 'required',
-            'yetkiliemail' => 'required|email',
-            'musteriadres' => 'required',
-            'musteritelefon' => 'required',
-            'date' => 'required',
-            'due' => 'required',
-            'sirketismi' => 'required',
-        ], [
-            'yetkiliismi.required' => 'Lütfen isminizi giriniz',
-            'yetkiliemail.required' => 'E-posta boş bırakılamaz',
-            'yetkiliemail.email' => 'Lütfen geçerli bir E-posta girdiğinizden emin olunuz',
-            'musteriadres.required' => 'Adres boş bırakılamaz',
-            'musteritelefon.required' => 'Telefon numarası boş bırakılamaz',
-            'date.required' => 'Teklif tarihi boş bırakılamaz',
-            'due.required' => 'Teklifin bitiş tarihi boş bırakılamaz',
-            'sirketismi.required' => 'Şirket ismi boş bırakılamaz.',
-        ]);
-
-        return view('teklif_onizle_giris', ['yetkiliismi' => $request->yetkiliismi, 'yetkiliemail' => $request->yetkiliemail, 'musteriadres' => $request->musteriadres, 'musteritelefon' => $request->musteritelefon, 'date' => $request->date, 'due' => $request->due, 'sirketismi' => $request->sirketismi, 'not' => $request->not]);
-    }
 
     public function paraCevir(Request $request)
     {
+        
         $cevirilen = $request->cevirilen;
         $cevirilecek = $request->cevirilecek;
         $miktar = $request->miktar;
@@ -161,6 +121,10 @@ class Teklifler extends Controller
             ->get();
 
         return response()->json(['tutar' => $tutar, 'cevirilen' => $cevirilen, 'cevirilecek' => $cevirilecek, 'miktar' => $miktar]);
+    }
+
+    public function teklifDuzenlemeyeDon(){
+        return redirect()->back()->withInputs(Input::all());
     }
 
     // Giriş yaptıktan sonraki teklif ekleme sayfasını yükler, hizmetler tablosundan hizmet adlarını çeker.
