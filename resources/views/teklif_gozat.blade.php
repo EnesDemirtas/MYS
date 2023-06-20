@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>MYS - TEKLİF ÖNİZLE</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <x-global-mandatory.styles/>
+    <x-global-mandatory.styles />
     <link href="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
-    
+
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     <style>
@@ -21,19 +22,19 @@
             margin-left: auto;
         }*/
         .layout-px-spacing {
-            min-height: calc(100vh - 170px)!important;
+            min-height: calc(100vh - 170px) !important;
         }
-
     </style>
 
     <link href="{{ asset('assets/css/apps/invoice-preview.css') }}" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    
+
 </head>
+
 <body class="sidebar-noneoverflow">
-    
+
     <!--  BEGIN NAVBAR  -->
-    <x-topbar/>
+    <x-topbar />
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
@@ -43,9 +44,9 @@
         <div class="search-overlay"></div>
 
         <!--  BEGIN TOPBAR  -->
-        <x-navbar/>
+        <x-navbar />
         <!--  END TOPBAR  -->
-        
+
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
@@ -54,20 +55,23 @@
                 <div class="page-header">
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">MYS</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Teklif Yönetimi</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);" style="color:whitesmoke">Gözat</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">MYS</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Teklif
+                                    Yönetimi</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);"
+                                    style="color:whitesmoke">Gözat</a></li>
                         </ol>
                     </nav>
                 </div>
-                @if(Session::has("basarili"))
+                @if (Session::has('basarili'))
                     <div class="alert alert-success">
-                        {{Session::get("basarili")}}
+                        {{ Session::get('basarili') }}
                     </div>
                 @endif
                 <div class="row invoice  layout-spacing layout-top-spacing">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        
+
                         <div class="doc-container">
 
                             <div class="row">
@@ -76,72 +80,105 @@
 
                                     <div class="invoice-container">
                                         <div class="invoice-inbox">
-                                            
+
                                             <div id="ct" class="">
-                                                
+
                                                 <div class="invoice-00001">
                                                     <div class="content-section">
-    
+
                                                         <div class="inv--head-section inv--detail-section">
-                                                        
+
                                                             <div class="row">
-                                                            
+
                                                                 <div class="col-sm-6 col-12 mr-auto">
                                                                     <div class="d-flex">
-                                                                        <img class="company-logo" src="assets/img/cork-logo.png" alt="company">
-                                                                        <h3 class="in-heading align-self-center">{{$teklifler->teklif_veren_sirket}}</h3>
+                                                                        <img class="company-logo"
+                                                                            src="assets/img/cork-logo.png"
+                                                                            alt="company">
+                                                                        <h3 class="in-heading align-self-center">
+                                                                            {{ $teklifler->teklif_veren_sirket }}</h3>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="col-sm-6 text-sm-right">
-                                                                    <p class="inv-list-number"><span class="inv-title">Teklif : </span> <span class="inv-number">#0{{$teklifler->id}}</span></p>
+                                                                    <p class="inv-list-number"><span
+                                                                            class="inv-title">Teklif : </span> <span
+                                                                            class="inv-number">#0{{ $teklifler->id }}</span>
+                                                                    </p>
                                                                 </div>
 
                                                                 <div class="col-sm-6 align-self-center mt-3">
-                                                                    <p class="inv-street-addr">{{$teklifler->teklif_veren_isim}}</p>
-                                                                    <p class="inv-email-address">{{$teklifler->teklif_veren_email}}</p>
-                                                                    <p class="inv-email-address">{{$teklifler->teklif_veren_telefon}}</p>
+                                                                    <p class="inv-street-addr">
+                                                                        {{ $teklifler->teklif_veren_isim }}</p>
+                                                                    <p class="inv-email-address">
+                                                                        {{ $teklifler->teklif_veren_email }}</p>
+                                                                    <p class="inv-email-address">
+                                                                        {{ $teklifler->teklif_veren_telefon }}</p>
                                                                 </div>
-                                                                <div class="col-sm-6 align-self-center mt-3 text-sm-right">
-                                                                    <p class="inv-created-date"><span class="inv-title">Teklif Tarihi : </span> <span class="inv-date">{{$teklifler->teklif_baslangic_tarihi}}</span></p>
-                                                                    <p class="inv-due-date"><span class="inv-title">Bitiş Tarihi : </span> <span class="inv-date">{{$teklifler->teklif_bitis_tarihi}}</span></p>
+                                                                <div
+                                                                    class="col-sm-6 align-self-center mt-3 text-sm-right">
+                                                                    <p class="inv-created-date"><span
+                                                                            class="inv-title">Teklif Tarihi : </span>
+                                                                        <span
+                                                                            class="inv-date">{{ $teklifler->teklif_baslangic_tarihi }}</span>
+                                                                    </p>
+                                                                    <p class="inv-due-date"><span
+                                                                            class="inv-title">Bitiş Tarihi : </span>
+                                                                        <span
+                                                                            class="inv-date">{{ $teklifler->teklif_bitis_tarihi }}</span>
+                                                                    </p>
                                                                 </div>
-                                                            
+
                                                             </div>
-                                                            
+
                                                         </div>
-    
+
                                                         <div class="inv--detail-section inv--customer-detail-section">
 
                                                             <div class="row">
-    
-                                                                <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 align-self-center">
+
+                                                                <div
+                                                                    class="col-xl-8 col-lg-7 col-md-6 col-sm-4 align-self-center">
                                                                     <p class="inv-to">Teklif Verilen</p>
                                                                 </div>
 
-                                                                <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 align-self-center order-sm-0 order-1 inv--payment-info">
+                                                                <div
+                                                                    class="col-xl-4 col-lg-5 col-md-6 col-sm-8 align-self-center order-sm-0 order-1 inv--payment-info">
                                                                     <h6 class=" inv-title">Ödeme Bilgileri:</h6>
                                                                 </div>
-                                                                
+
                                                                 <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
                                                                     <p class="inv-customer-name">Sadık Bozkır</p>
-                                                                    <p class="inv-street-addr">Muratpaşa, Kızılarık Mah. Yanık Apt. No: 5/11, Köroğlu Bulvarı, 07310 Antalya</p>
+                                                                    <p class="inv-street-addr">Muratpaşa, Kızılarık Mah.
+                                                                        Yanık Apt. No: 5/11, Köroğlu Bulvarı, 07310
+                                                                        Antalya</p>
                                                                     <p class="inv-email-address">business@sbe.com</p>
                                                                     <p class="inv-email-address">+90 (242) 326 10 11</p>
                                                                 </div>
-                                                                
-                                                                <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 order-sm-0 order-1">
+
+                                                                <div
+                                                                    class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 order-sm-0 order-1">
                                                                     <div class="inv--payment-info">
-                                                                        <p><span class=" inv-subtitle">Banka Adı:</span> <span>{{$teklifler->odeme_bilgileri_banka_adi}}</span></p>
-                                                                        <p><span class=" inv-subtitle">Hesap Numarası: </span> <span>{{$teklifler->odeme_bilgileri_hesap_numarasi}}</span></p>
-                                                                        <p><span class=" inv-subtitle">SWIFT code:</span> <span>{{$teklifler->odeme_bilgileri_swift_kodu}}</span></p>
-                                                                        <p><span class=" inv-subtitle">Ülke: </span> <span>{{$teklifler->odeme_bilgileri_ulke_adi}}</span></p>
+                                                                        <p><span class=" inv-subtitle">Banka Adı:</span>
+                                                                            <span>{{ $teklifler->odeme_bilgileri_banka_adi }}</span>
+                                                                        </p>
+                                                                        <p><span class=" inv-subtitle">Hesap Numarası:
+                                                                            </span>
+                                                                            <span>{{ $teklifler->odeme_bilgileri_hesap_numarasi }}</span>
+                                                                        </p>
+                                                                        <p><span class=" inv-subtitle">SWIFT
+                                                                                code:</span>
+                                                                            <span>{{ $teklifler->odeme_bilgileri_swift_kodu }}</span>
+                                                                        </p>
+                                                                        <p><span class=" inv-subtitle">Ülke: </span>
+                                                                            <span>{{ $teklifler->odeme_bilgileri_ulke_adi }}</span>
+                                                                        </p>
 
                                                                     </div>
                                                                 </div>
 
                                                             </div>
-                                                            
+
                                                         </div>
 
                                                         <div class="inv--product-table-section">
@@ -150,25 +187,35 @@
                                                                     <thead class="">
                                                                         <tr>
                                                                             <th scope="col">Hizmetler</th>
-                                                                            <th class="text-right" scope="col">Adet</th>
-                                                                            <th class="text-right" scope="col">Ücret</th>
-                                                                            <th class="text-right" scope="col">Total</th>
+                                                                            <th class="text-right" scope="col">Adet
+                                                                            </th>
+                                                                            <th class="text-right" scope="col">Ücret
+                                                                            </th>
+                                                                            <th class="text-right" scope="col">Total
+                                                                            </th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td>{{$teklifler->istenilen_hizmetler}}</td>
-                                                                            <td class="text-right">{{$teklifler->istenilen_hizmet_miktar}}</td>
-                                                                            <td class="text-right">{{$teklifler->istenilen_hizmet_fiyat}}</td>
-                                                                            <td class="text-right">{{($teklifler->istenilen_hizmet_fiyat * $teklifler->istenilen_hizmet_miktar)}}</td>
+                                                                            <td>{{ $teklifler->istenilen_hizmetler }}
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                {{ $teklifler->istenilen_hizmet_miktar }}
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                {{ $teklifler->istenilen_hizmet_fiyat }}
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                {{ $teklifler->istenilen_hizmet_fiyat * $teklifler->istenilen_hizmet_miktar }}
+                                                                            </td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                        
+
                                                         <div class="inv--total-amounts">
-                                                        
+
                                                             <div class="row mt-4">
                                                                 <div class="col-sm-5 col-12 order-sm-0 order-1">
                                                                 </div>
@@ -179,19 +226,30 @@
                                                                                 <p class="">Ara Toplam: </p>
                                                                             </div>
                                                                             <div class="col-sm-4 col-5">
-                                                                                <p class="">{{($teklifler->istenilen_hizmet_fiyat * $teklifler->istenilen_hizmet_miktar)}}</p>
+                                                                                <p class="">
+                                                                                    {{ $teklifler->istenilen_hizmet_fiyat * $teklifler->istenilen_hizmet_miktar }}
+                                                                                </p>
                                                                             </div>
                                                                             <div class="col-sm-8 col-7">
-                                                                                <p class=" discount-rate">İndirim : <span class="discount-percentage">{{($teklifler->teklif_edilen_indirim * 100) / ($teklifler->istenilen_hizmet_fiyat * $teklifler->istenilen_hizmet_miktar)}}%</span> </p>
+                                                                                <p class=" discount-rate">İndirim :
+                                                                                    <span
+                                                                                        class="discount-percentage">{{ ($teklifler->teklif_edilen_indirim * 100) / ($teklifler->istenilen_hizmet_fiyat * $teklifler->istenilen_hizmet_miktar) }}%</span>
+                                                                                </p>
                                                                             </div>
                                                                             <div class="col-sm-4 col-5">
-                                                                                <p class="">{{$teklifler->teklif_edilen_indirim}}</p>
+                                                                                <p class="">
+                                                                                    {{ $teklifler->teklif_edilen_indirim }}
+                                                                                </p>
                                                                             </div>
-                                                                            <div class="col-sm-8 col-7 grand-total-title">
+                                                                            <div
+                                                                                class="col-sm-8 col-7 grand-total-title">
                                                                                 <h4 class="">Net Toplam : </h4>
                                                                             </div>
-                                                                            <div class="col-sm-4 col-5 grand-total-amount">
-                                                                                <h4 class="">{{($teklifler->istenilen_hizmet_fiyat * $teklifler->istenilen_hizmet_miktar) - $teklifler->teklif_edilen_indirim}}</h4>
+                                                                            <div
+                                                                                class="col-sm-4 col-5 grand-total-amount">
+                                                                                <h4 class="">
+                                                                                    {{ $teklifler->istenilen_hizmet_fiyat * $teklifler->istenilen_hizmet_miktar - $teklifler->teklif_edilen_indirim }}
+                                                                                </h4>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -203,22 +261,23 @@
                                                         <div class="inv--note">
 
                                                             <div class="row mt-4">
-                                                                <label for="invoice-detail-notes" class="col-sm-12 col-form-label col-form-label-sm">Not:</label>
+                                                                <label for="invoice-detail-notes"
+                                                                    class="col-sm-12 col-form-label col-form-label-sm">Not:</label>
                                                                 <div class="col-sm-12 col-12 order-sm-0 order-1">
-                                                                    <p>{{$teklifler->teklif_veren_not}}</p>
+                                                                    <p>{{ $teklifler->teklif_veren_not }}</p>
                                                                 </div>
                                                             </div>
 
                                                         </div>
-    
+
                                                     </div>
-                                                </div> 
-                                                
+                                                </div>
+
                                             </div>
-    
-    
+
+
                                         </div>
-    
+
                                     </div>
 
                                 </div>
@@ -231,47 +290,49 @@
 
                                             <div class="row">
                                                 <div class="col-xl-12 col-md-3 col-sm-6">
-                                                    <a href="javascript:void(0);" class="btn btn-secondary btn-print  action-print">Yazdır</a>
+                                                    <a href="javascript:void(0);"
+                                                        class="btn btn-secondary btn-print  action-print">Yazdır</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
-                                    
+
                                 </div>
 
 
                             </div>
-                            
-                            
+
+
                         </div>
 
                     </div>
-                <!-- CONTENT AREA -->
-                
+                    <!-- CONTENT AREA -->
+
+                </div>
+                <x-footer />
             </div>
-            <x-footer />
+            <!--  END CONTENT AREA  -->
+
         </div>
-        <!--  END CONTENT AREA  -->
+        <!-- END MAIN CONTAINER -->
 
-    </div>
-    <!-- END MAIN CONTAINER -->
+        <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+        <x-global-mandatory.scripts />
+        <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+        <script src="{{ asset('assets/js/app.js') }}"></script>
 
-    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <x-global-mandatory.scripts />
-    <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
-    
-    <script>
-        $(document).ready(function() {
-            App.init();
-        });
-    </script>
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
-    <!-- END GLOBAL MANDATORY SCRIPTS -->
+        <script>
+            $(document).ready(function() {
+                App.init();
+            });
+        </script>
+        <script src="{{ asset('assets/js/custom.js') }}"></script>
+        <!-- END GLOBAL MANDATORY SCRIPTS -->
 
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    <script src="{{ asset('assets/js/apps/invoice-preview.js') }}"></script>
-    <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+        <script src="{{ asset('assets/js/apps/invoice-preview.js') }}"></script>
+        <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
+
 </html>
