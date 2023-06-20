@@ -37,11 +37,24 @@ class UserController extends Controller
             if ($kullanici && Hash::check($request->input('csifre'), $kullanici->csifre)) {
                 $request->session()->put('kullanici', $kullanici);
                 $request->session()->put('tip', 'Çalışan');
-                return redirect()->route('anasayfa.index');
+                if($kullanici->cyetki == '2'){
+                    return redirect()->route('anasayfa.index');
+                }else if($kullanici->cyetki == '1'){
+                    return redirect()->route('randevu_yonetimi');
+                }else{
+                    return redirect()->route('calisan.index');
+                }
             } else if ($tckn && Hash::check($request->input('csifre'), $kullanici->csifre)) {
                 $request->session()->put('kullanici', $tckn);
                 $request->session()->put('tip', 'Çalışan');
-                return redirect()->route('anasayfa.index');
+                if($kullanici->cyetki == '2'){
+                    return redirect()->route('anasayfa.index');
+                }else if($kullanici->cyetki == '1'){
+                    return redirect()->route('randevu_yonetimi');
+                }else{
+                    return redirect()->route('calisan.index');
+                }
+                
             } else {
                 return back()->withErrors(['ckullaniciadi' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('ckullaniciadi');
             }
@@ -64,11 +77,11 @@ class UserController extends Controller
             if ($kullanici && Hash::check($request->input('msifre'), $kullanici->msifre)) {
                 $request->session()->put('kullanici', $kullanici);
                 $request->session()->put('tip', 'Müşteri');
-                return redirect()->route('anasayfa.index');
+                return redirect()->route('randevu_yonetimi');
             } else if ($tckn && Hash::check($request->input('msifre'), $kullanici->msifre)) {
                 $request->session()->put('kullanici', $tckn);
                 $request->session()->put('tip', 'Müşteri');
-                return redirect()->route('anasayfa.index');
+                return redirect()->route('randevu_yonetimi');
             } else {
                 return back()->withErrors(['mkullaniciadi' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('mkullaniciadi');
             }

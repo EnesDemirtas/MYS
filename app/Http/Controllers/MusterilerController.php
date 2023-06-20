@@ -72,8 +72,8 @@ class MusterilerController extends Controller
                     'mbdogumgunu' => 'before:today',
                     'madres' => 'required',
                     'mbolge' => 'required',
-                    'milce' => 'required|doesnt_start_with:İl',
-                    'mtel' => 'required|doesnt_start_with:İlçe',
+                    'mil' => 'required|doesnt_start_with:İl',
+                    'milce' => 'required|doesnt_start_with:İlçe',
                     'mtel' => 'required',
                     'menlem' => 'required',
                     'meposta' => 'email'

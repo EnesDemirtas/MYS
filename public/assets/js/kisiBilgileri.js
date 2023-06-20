@@ -96,15 +96,14 @@ function changeFields(kayit) {
         $("#iletisim-bilgileri input").prop("readonly", true);
         $("[name='mil']").prop("disabled", true);
         $("[name='mukodutel']").prop("disabled", true);
-
         $("#hk-eposta").prop("readonly", true);
         $("#hk-bolge").prop("readonly", true);
         $("#phone").prop("readonly", true);
         $("#hk-adres").prop("readonly", true);
     } else if (kayit == "Ticari") {
         $("#hk-tcknvno").attr("placeholder", "Vergi No");
+        $("#hk-firma").attr("readonly", false);
         $("#bireysel-bilgiler2 #mbdogumgunu").hide();
-
         $("#bireysel-bilgiler1 input").prop("readonly", false);
         $("#bireysel-bilgiler2 input").prop("readonly", false);
         $("#hk-tcknvno").prop("readonly", false);
@@ -120,7 +119,7 @@ function changeFields(kayit) {
         $("#hk-tcknvno").attr("placeholder", "TCKN/Vergi No");
         $("#bireysel-bilgiler1").show();
         $("#bireysel-bilgiler2").show();
-
+        $("#hk-firma").attr("readonly", false);
         $("#hk-tcknvno").prop("readonly", false);
         $("#hk-marka").prop("readonly", false);
         $("#bireysel-bilgiler1 input").prop("readonly", false);

@@ -3,16 +3,15 @@
         <ul class="navbar-nav theme-brand flex-row  text-center">
             <li class="nav-item theme-logo">
                 <a href="/">
-                    <img src="{{ asset('assets/img/90x90.jpg') }}" class="navbar-logo" alt="logo">
+                    <img src="{{ asset('assets/img/sbe_logo.png') }}" style="width:125px !important;" class="navbar-logo" alt="logo">
                 </a>
             </li>
             <li class="nav-item theme-text">
                 <a href="/" class="nav-link"> MYS </a>
             </li>
         </ul>
-
         <ul class="list-unstyled menu-categories" id="topAccordion">
-
+        @if (session('kullanici')->cyetki == '2')
             <li class="menu single-menu">
                 <a href="/" aria-expanded="false" class="dropdown-toggle autodroprown">
                     <div class="">
@@ -24,16 +23,12 @@
                         </svg>
                         <span>Anasayfa</span>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-down">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
                 </a>
             </li>
-
+        @endif
+        @if (session('kullanici')->cyetki == '2' || session('kullanici')->cyetki == '0')
             <li class="menu single-menu">
-                <a href="/musteriler" aria-expanded="false" class="dropdown-toggle autodroprown">
+                <a href="#" aria-expanded="false" class="dropdown-toggle autodroprown">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -44,13 +39,15 @@
                             <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                         </svg> <span>Müşteri Yönetimi</span>
                     </div>
+                    <span onclick="dropdownAcMusteriler();">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="feather feather-chevron-down">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
+                    </span>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="menu1" data-parent="#topAccordion">
+                <ul class="collapse submenu list-unstyled" id="musteridd" data-parent="#topAccordion">
                     <li>
                         <a href="{{ route('musteriler') }}"> Müşteriler </a>
                     </li>
@@ -59,7 +56,8 @@
                     </li>
                 </ul>
             </li>
-
+        @endif
+            
             <li class="menu single-menu">
                 <a href="{{ route('randevu_yonetimi') }}" aria-expanded="false" class="dropdown-toggle autodroprown">
                     <div class="">
@@ -74,16 +72,11 @@
                         </svg>
                         <span>Randevu Yönetimi</span>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-down">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
                 </a>
             </li>
-
+        @if (session('kullanici')->cyetki == '2' || session('kullanici')->cyetki == '1')
             <li class="menu single-menu">
-                <a href="/gorev_yonetimi" aria-expanded="false" class="dropdown-toggle autodroprown">
+                <a href="#" aria-expanded="false" class="dropdown-toggle autodroprown">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -93,21 +86,25 @@
                         </svg>
                         <span>Görev Yönetimi</span>
                     </div>
+                    <span onclick="dropdownAcCalisanlar();">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="feather feather-chevron-down">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
+                    </span>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="menu1" data-parent="#topAccordion">
+                
+                <ul class="collapse submenu list-unstyled" id="calisandd" data-parent="#topAccordion">
                     <li>
                         <a href="{{ route('calisan.index') }}"> Çalışanlar </a>
                     </li>
                 </ul>
             </li>
-
+        @endif 
+        @if (session('kullanici')->cyetki == '2' || session('tip') == 'Müşteri')  
             <li class="menu single-menu">
-                <a href="/teklifler" aria-expanded="false" class="dropdown-toggle autodroprown">
+                <a href="#" aria-expanded="false" class="dropdown-toggle autodroprown">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -117,13 +114,15 @@
                         </svg>
                         <span>Teklif Yönetimi</span>
                     </div>
+                    <span onclick="dropdownAcTeklifler();">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="feather feather-chevron-down">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
+                    </span>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="menu1" data-parent="#topAccordion">
+                <ul class="collapse submenu list-unstyled" id="teklifdd" data-parent="#topAccordion">
                     <li>
                         <a href="/teklif_ekle"> Teklif Ekle </a>
                     </li>
@@ -132,7 +131,7 @@
                     </li>
                 </ul>
             </li>
-
+        @endif
             <!-- <li class="menu single-menu">
                 <a href="/on_muhasebe"  aria-expanded="false" class="dropdown-toggle autodroprown">
                     <div class="">
@@ -162,14 +161,11 @@
                         </svg>
                         <span>Hizmet ve Ürünler</span>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-down">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
+                    <span>
+                    </span>
                 </a>
             </li>
-
+        @if (session('kullanici')->cyetki == '2' || session('tip') == 'Müşteri' || session('kullanici')->cyetki == '1')
             <li class="menu single-menu">
                 <a href="{{ route('bakim_formu_sonuclari') }}" aria-expanded="false" class="dropdown-toggle autodroprown">
                     <div class="">
@@ -184,13 +180,29 @@
                         </svg>
                         <span>Bakım Sonuçları</span>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-chevron-down">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
                 </a>
             </li>
+        @endif
         </ul>
     </nav>
 </div>
+
+<script>
+    function dropdownAcTeklifler(){
+        document.getElementById('teklifdd').style.display = "block";
+        document.getElementById('calisandd').style.display = "none";
+        document.getElementById('musteridd').style.display = "none";
+    }
+    function dropdownAcCalisanlar(){
+        document.getElementById('calisandd').style.display = "block";
+        document.getElementById('musteridd').style.display = "none";
+        document.getElementById('teklifdd').style.display = "none";
+    }
+    
+    function dropdownAcMusteriler(){
+        document.getElementById('musteridd').style.display = "block";
+        document.getElementById('calisandd').style.display = "none";
+        document.getElementById('teklifdd').style.display = "none";
+        
+    }
+</script>

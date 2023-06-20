@@ -121,14 +121,18 @@
                                             <td><span class="inv-date" id="inv-date">{{ $form->tarih }}</span></td>
                                             @if ($form->onay)
                                                 <td>
-                                                    <a class="btn btn-danger"
+                                                    <a class="btn btn-primary"
                                                         href="{{ route('load_bakim_formu_sonucu', ['form_id' => $form->id]) }}">{{ $form->form_adi }}</a>
                                                 </td>
                                             @else
-                                                <td>
-                                                    <a class="btn btn-success"
-                                                        href="{{ route('formu_onayla', ['form_id' => $form->id]) }}">Onayla</a>
-                                                </td>
+                                                @if (session('kullanici')->cyetki == '2')
+                                                    <td>
+                                                        <a class="btn btn-success"
+                                                            href="{{ route('formu_onayla', ['form_id' => $form->id]) }}">Onayla</a>
+                                                    </td>
+                                                @else
+                                                <td class="text-danger"><b>Henüz Onaylanmadı</b><td>
+                                                @endif
                                             @endif
                                         </tr>
                                     @endforeach

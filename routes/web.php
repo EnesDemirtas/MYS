@@ -31,9 +31,9 @@ Route::delete('/musteri/{mtcknvno}', [MusterilerController::class, 'musteriSil']
 Route::put('/MusteriProfilDuzenleme/{mtcknvno}', [MusterilerController::class, 'musteriGuncelleProfil'])->name('musteri.guncelle.profil')->middleware('isAuthenticated');
 
 
-Route::get('/musteri_ekle', function () {
-    return view('musteri_ekle');
-})->middleware('isAuthenticated');
+// Route::get('/musteri_ekle', function () {
+//     return view('musteri_ekle');
+// })->middleware('isAuthenticated');
 
 Route::get('randevu_yonetimi', [CalisanlarController::class, 'GetRandevuYonetimi'])->middleware('isAuthenticated')->name('randevu_yonetimi');
 
