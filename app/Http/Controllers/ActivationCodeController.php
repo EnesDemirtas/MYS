@@ -78,6 +78,43 @@ class ActivationCodeController extends Controller
 
     public function SendRegisterActivationCode(Request $request)
     {
+        if (!isset($request->tip)) {
+            $request->validate([
+                'eposta' => 'required|email'
+            ], [
+                'eposta.required' => 'E-posta boş bırakılamaz',
+                'eposta.email' => 'Geçerli bir e-posta adresi giriniz'
+            ]);
+            $calisan = calisan::where('ceposta', $request->input('eposta'))->first();
+            $musteri = musteri::where('meposta', $request->input('eposta'))->first();
+            if ($calisan) {
+                $activation_code = rand(100000, 999999);
+                $expires_at = now()->addMinutes(5);
+                $activationcode = ActivationCode::create([
+                    'eposta' => $calisan->ceposta,
+                    'aktivasyonkodu' => $activation_code,
+                    'sure' => $expires_at
+                ]);
+
+                Mail::to($calisan->ceposta)->send(new ResetPasswordActivationCode($activationcode));
+                // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
+                return redirect()->route('load_register_activation_code', ['eposta' => $activationcode->eposta, 'tip' => 'Çalışan']);
+            } else if ($musteri) {
+                $activation_code = rand(100000, 999999);
+                $expires_at = now()->addMinutes(5);
+                $activationcode = ActivationCode::create([
+                    'eposta' => $musteri->meposta,
+                    'aktivasyonkodu' => $activation_code,
+                    'sure' => $expires_at
+                ]);
+
+                Mail::to($musteri->meposta)->send(new ResetPasswordActivationCode($activationcode));
+                // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
+                return redirect()->route('load_register_activation_code_musteri', ['eposta' => $activationcode->eposta, 'tip' => 'Müşteri']);
+            } else {
+                return back()->withErrors(['eposta' => 'E-posta adresi bulunamadı!'])->onlyInput('eposta');
+            }
+        }
         if ($request->tip == "Müşteri") {
             $request->validate([
                 'meposta' => 'required|email'
@@ -191,5 +228,10 @@ class ActivationCodeController extends Controller
         } else {
             return redirect()->route('pages_error404');
         }
+    }
+
+    public function GetRegisterActivationCode()
+    {
+        return view('get_register_activation_code');
     }
 }

@@ -118,6 +118,9 @@
 
                                         @error('ckullaniciadi')
                                             <p class="text-danger mt-1">{{ $message }}</p>
+                                            <p class="text-danger mt-1">Hesabınızı aktifleştirmek için <a
+                                                    href="{{ route('get_register_activation_code') }}">buraya tıklayınız.
+                                                </a> </p>
                                         @enderror
                                     </div>
 

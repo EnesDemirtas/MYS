@@ -31,7 +31,7 @@ class UserController extends Controller
             $tckn = calisan::where('ctckn', $request->input('ckullaniciadi'))->first();
 
             if (!$kullanici->caktif) {
-                return back()->withErrors(['ckullaniciadi' => 'Hesap aktif değil. Destek ile iletişime geçiniz.'])->onlyInput('ckullaniciadi');
+                return back()->withErrors(['ckullaniciadi' => 'Hesap aktif değil.'])->onlyInput('ckullaniciadi');
             }
 
             if ($kullanici && Hash::check($request->input('csifre'), $kullanici->csifre)) {
@@ -58,7 +58,7 @@ class UserController extends Controller
             $tckn = musteri::where('mtcknvno', $request->input('mkullaniciadi'))->first();
 
             if (!$kullanici->maktif) {
-                return back()->withErrors(['mkullaniciadi' => 'Hesap aktif değil. Destek ile iletişime geçiniz.'])->onlyInput('mkullaniciadi');
+                return back()->withErrors(['mkullaniciadi' => 'Hesap aktif değil.'])->onlyInput('mkullaniciadi');
             }
 
             if ($kullanici && Hash::check($request->input('msifre'), $kullanici->msifre)) {

@@ -122,6 +122,7 @@ Route::get('sifre_yenileme', function () {
     return view('sifre_yenileme');
 });
 
+Route::get('get_register_activation_code', [ActivationCodeController::class, 'GetRegisterActivationCode'])->name('get_register_activation_code');
 Route::post('register_activation_code', [ActivationCodeController::class, 'SendRegisterActivationCode'])->name('register_activation_code');
 
 Route::get('load_register_activation_code', [UserController::class, 'LoadRegisterActivationCode'])->name('load_register_activation_code');
