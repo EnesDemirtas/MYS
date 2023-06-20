@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\calisan;
 use App\Models\musteri;
+use App\Models\ActivationCode;
+use App\Mail\ResetPasswordActivationCode;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 // use Illuminate\Support\Facades\Redis;
 use Deligoez\TCKimlikNo\TCKimlikNo;
 
@@ -153,7 +156,18 @@ class UserController extends Controller
                 $kullanici->mweb = $request->input('mweb');
 
                 $kullanici->save();
-                return view('get_register_activation_code', ['tip' => 'Müşteri']);
+                // Aktivasyon mail'i gönder ve kodu girmesini istediğimiz sayfaya yönlendir
+                $activation_code = rand(100000, 999999);
+                $expires_at = now()->addMinutes(5);
+                $activationcode = ActivationCode::create([
+                    'eposta' => $kullanici->meposta,
+                    'aktivasyonkodu' => $activation_code,
+                    'sure' => $expires_at
+                ]);
+
+                Mail::to($kullanici->meposta)->send(new ResetPasswordActivationCode($activationcode));
+                // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
+                return redirect()->route('load_register_activation_code_musteri', ['meposta' => $activationcode->eposta, 'tip' => 'Müşteri']);
             }
         } else if ($request->tip == "calisan") {
             $request->validate([
@@ -215,7 +229,19 @@ class UserController extends Controller
                 $kullanici->cevadresilce = $request->input('cevadresilce');
                 $kullanici->cwhatsapp = 'wa.me/'+$request->input('ctel');
                 $kullanici->save();
-                return view('get_register_activation_code', ['tip' => 'Çalışan']);
+
+                $activation_code = rand(100000, 999999);
+                $expires_at = now()->addMinutes(5);
+                $activationcode = ActivationCode::create([
+                    'eposta' => $kullanici->ceposta,
+                    'aktivasyonkodu' => $activation_code,
+                    'sure' => $expires_at
+                ]);
+
+                Mail::to($kullanici->ceposta)->send(new ResetPasswordActivationCode($activationcode));
+
+                // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
+                return redirect()->route('load_register_activation_code', ['ceposta' => $activationcode->eposta, 'tip' => 'Çalışan']);
             }
         } else {
             return back()->withErrors(['gecersizTip' => 'Kayıt olurken bir hata oluştu. Lütfen bizimle iletişime geçiniz.']);

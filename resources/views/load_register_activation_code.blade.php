@@ -47,7 +47,7 @@
                                 <input name="ceposta" type="hidden" value="{{ $ceposta }}">
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper">
-                                        <button type="submit" class="btn btn-primary" value="">Yenile</button>
+                                        <button type="submit" class="btn btn-primary" value="">Devam Et</button>
                                     </div>
                                 </div>
 

@@ -26,7 +26,8 @@
 
                         <h1 class="">Aktivasyon Kodu</h1>
                         <p class="signup-link">E-posta adresinize gelen aktivasyon kodunu giriniz.</p>
-                        <form class="text-left" action="{{ route('activate_account', ['tip' => $tip]) }}" method="POST">
+                        <form class="text-left" action="{{ route('activate_account', ['tip' => $tip]) }}"
+                            method="POST">
                             @csrf
                             @method('POST')
                             <div class="form">
@@ -46,7 +47,7 @@
                                 <input name="meposta" type="hidden" value="{{ $meposta }}">
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper">
-                                        <button type="submit" class="btn btn-primary" value="">Yenile</button>
+                                        <button type="submit" class="btn btn-primary" value="">Devam Et</button>
                                     </div>
                                 </div>
 
