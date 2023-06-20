@@ -227,7 +227,7 @@ class UserController extends Controller
                 $kullanici->cevadres = $request->input('cevadres');
                 $kullanici->cevadresil = $request->input('cevadresil');
                 $kullanici->cevadresilce = $request->input('cevadresilce');
-                $kullanici->cwhatsapp = 'wa.me/'+$request->input('ctel');
+                $kullanici->cwhatsapp = 'wa.me/' . $request->input('ctel');
                 $kullanici->save();
 
                 $activation_code = rand(100000, 999999);
