@@ -98,7 +98,7 @@ class ActivationCodeController extends Controller
 
                 Mail::to($calisan->ceposta)->send(new ResetPasswordActivationCode($activationcode));
                 // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
-                return redirect()->route('load_register_activation_code', ['eposta' => $activationcode->eposta, 'tip' => 'Çalışan']);
+                return redirect()->route('load_register_activation_code', ['ceposta' => $activationcode->eposta, 'tip' => 'Çalışan']);
             } else if ($musteri) {
                 $activation_code = rand(100000, 999999);
                 $expires_at = now()->addMinutes(5);
