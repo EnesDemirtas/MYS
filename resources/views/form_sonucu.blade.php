@@ -5,7 +5,9 @@
     <x-global-mandatory.styles />
     <link href="{{ asset('plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('plugins/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css">
+    <!-- END GLOBAL MANDATORY STYLES -->
     <style>
+        
         textarea {
             resize: none;
         }
@@ -20,6 +22,9 @@
         /* Firefox */
         input[type=number] {
             -moz-appearance: textfield;
+        }
+        body {
+            background: linear-gradient(180deg, rgb(255, 255, 255) 0%, rgb(225, 247, 255) 100%);
         }
     </style>
 </head>
@@ -42,7 +47,7 @@
             <div class="col-md-4">
                 <label for="date">Tarih</label>
                 <input type="text" class="form-control form-control-sm" id="date" placeholder="Add date picker"
-                    value="{{ $form->tarih }}" name="tarih" readonly>
+                    value="{{ $form->tarih }}" name="tarih" disabled>
             </div>
         </div>
 
@@ -277,9 +282,6 @@
         {{-- <div class="row justify-content-center">
             <button type="submit" class="btn btn-success my-4" style="width: 50%">Bitir</button>
         </div> --}}
-
-        </form>
-
     </div>
 
     {{-- <x-global-mandatory.scripts />

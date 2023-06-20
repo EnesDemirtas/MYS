@@ -11414,7 +11414,7 @@
 			 * * `\_PAGES\_` - Total number of pages of data in the table
 			 *
 			 *  @type string
-			 *  @default Showing _START_ to _END_ of _TOTAL_ entries
+			 *  @default _START_'den _END_'ye kadar toplam _TOTAL_ sayfa listelenmektedir.
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.info
@@ -11428,7 +11428,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "Herhangi bir veri yoktur",
 	
 	
 			/**
@@ -11449,7 +11449,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "Herhangi bir veri yoktur",
 	
 	
 			/**
