@@ -1573,4 +1573,28 @@ var data = [
         return false;
       $('#Ilceler').prop("disabled", true);
     });
+
+
+    // Girişteki Çalışan Kısmı İçin (id'lerin çakışmaması için)
+    $.each(data, function( index, value ) {
+      $('#Iller-calisan').append($('<option>', {
+          value: value.il,
+          text:  value.il
+      }));
+    });
+
+    $("#Iller-calisan").change(function(){
+      var valueSelected = this.value;
+        $('#Ilceler-calisan').html('');
+        $('#Ilceler-calisan').prop("disabled", false);
+        var resultObject = search($('#Iller-calisan').val(), data);
+        $.each(resultObject.ilceleri, function( index, value ) {
+          $('#Ilceler-calisan').append($('<option>', {
+              value: value,
+              text:  value
+          }));
+        });
+        return false;
+      $('#Ilceler-calisan').prop("disabled", true);
+    });
   });

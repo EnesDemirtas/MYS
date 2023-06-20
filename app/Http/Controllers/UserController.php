@@ -126,7 +126,7 @@ class UserController extends Controller
             //     return back()->withErrors(['mernis' => 'Geçersiz kimlik bilgileri!'])->onlyInput('username');
             // }
             if ($kullanici) {
-                return back()->withErrors(['username' => 'Kullanıcı adı/TCKN kullanımda!'])->onlyInput('username');
+                return back()->withErrors(['mkullaniciadi' => 'Kullanıcı adı/TCKN kullanımda!'])->onlyInput('mkullaniciadi');
             } else if ($tckn) {
                 return back()->withErrors(['ctckn' => 'TCKN kullanımda!'])->onlyInput('ctckn');
             } else {
@@ -150,6 +150,7 @@ class UserController extends Controller
                 $kullanici->mphoto = asset('assets/img/img_avatar.png');
                 $kullanici->mbolge = $request->input('mbolge');
                 $kullanici->mfaks = $request->input('mfaks');
+                $kullanici->mweb = $request->input('mweb');
 
                 $kullanici->save();
                 return view('get_register_activation_code', ['tip' => 'Müşteri']);
@@ -166,6 +167,9 @@ class UserController extends Controller
                 'ctel' => 'required',
                 'cisegiris' => 'required',
                 'cunvani' => 'required',
+                'cevadres' => 'required',
+                'cevadresil' => 'required',
+                'cevadresilce' => 'required',
             ], [
                 'ckullaniciadi.required' => 'Kullanıcı adı boş bırakılamaz',
                 'cadi.required' => 'Ad boş bırakılamaz',
@@ -177,7 +181,10 @@ class UserController extends Controller
                 'cdogum.required' => 'Doğum günü boş bırakılamaz',
                 'ctel.required' => 'Telefon numarası boş bırakılamaz',
                 'cunvani.required' => 'Ünvan boş bırakılamaz',
-                'cisegiris.required' => 'Lütfen işe giriş tarihinizi giriniz'
+                'cisegiris.required' => 'Lütfen işe giriş tarihinizi giriniz',
+                'cevadres.required' => 'Lütfen adresinizi giriniz',
+                'cevadresilce.required' => 'Lütfen ilçenizi seçiniz',
+                'cevadresil.required' => 'Lütfen ilinizi seçiniz'
             ]);
 
             $kullanici = calisan::where('ckullaniciadi', $request->input('ckullaniciadi'))->first();
@@ -187,7 +194,7 @@ class UserController extends Controller
             //     return back()->withErrors(['mernis' => 'Geçersiz kimlik bilgileri!'])->onlyInput('username');
             // }
             if ($kullanici) {
-                return back()->withErrors(['username' => 'Kullanıcı adı/TCKN kullanımda!'])->onlyInput('username');
+                return back()->withErrors(['ckullaniciadi' => 'Kullanıcı adı/TCKN kullanımda!'])->onlyInput('ckullaniciadi');
             } else if ($tckn) {
                 return back()->withErrors(['ctckn' => 'TCKN kullanımda!'])->onlyInput('ctckn');
             } else {
@@ -203,6 +210,10 @@ class UserController extends Controller
                 $kullanici->cphoto = asset('assets/img/img_avatar.png');
                 $kullanici->cunvani = $request->input('cunvani');
                 $kullanici->cisegiris = $request->input('cisegiris');
+                $kullanici->cevadres = $request->input('cevadres');
+                $kullanici->cevadresil = $request->input('cevadresil');
+                $kullanici->cevadresilce = $request->input('cevadresilce');
+                $kullanici->cwhatsapp = 'wa.me/'+$request->input('ctel');
                 $kullanici->save();
                 return view('get_register_activation_code', ['tip' => 'Çalışan']);
             }

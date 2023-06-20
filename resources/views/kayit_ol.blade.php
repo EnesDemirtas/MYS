@@ -626,6 +626,38 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Altıncı Satır -->
+                                    <div class="row">
+                                        <div class="col-12 p-0">
+                                            <textarea
+                                                placeholder="Adres bilgilerinizi giriniz. Örn: Muratpaşa, Kızılarık Mah. Yanık Apt. No: 5/11, Köroğlu Bulvarı, 07310 Antalya"
+                                                class="form-control mt-2" name="cevadres" id="calisan-adresi" rows="3" value="{{ old('cevadres') }}"
+                                                style=" resize: none !important;"></textarea>
+                                                @error('cevadres')
+                                                <p class="text-danger text-center mt-1">{{ $message }}</p>
+                                                @enderror
+                                        </div>
+                                    </div>
+                                    <div id="adres-calisan-field" class="row field-wrapper input">
+                                        <div class="col-6 pl-0">
+                                            <select id="Iller-calisan" name="cevadresil"
+                                                class="placeholder js-states form-control" value="{{ old('cevadresil') }}">
+                                                <option>İl</option>
+                                            </select>
+                                            @error('cevadresil')
+                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="col-6 pr-0">
+                                            <select id="Ilceler-calisan" disabled="disabled" name="cevadresilce"
+                                                class="placeholder js-states form-control" value="{{ old('cevadresilce') }}">
+                                                <option>İlçe</option>
+                                            </select>
+                                            @error('cevadresilce')
+                                                <p class="text-danger mt-1">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     <!-- Form Bitişi -->
                                 </div>
                                 <!-- calisan Kayıt-->
