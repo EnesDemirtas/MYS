@@ -113,9 +113,9 @@ class UserController extends Controller
             $kullanici = musteri::where('mkullaniciadi', $request->input('mkullaniciadi'))->first();
             $tckn = musteri::where('mtcknvno', $request->input('mtcknvno'))->first();
             // MERNIS kontrolu
-            if (!TCKimlikNo::validate($request->mtcknvno, $request->mbadi, $request->mbsoyadi, explode("-", $request->mbdogumgunu)[0])) {
-                return back()->withErrors(['mernis' => 'Geçersiz kimlik bilgileri!'])->onlyInput('username');
-            }
+            // if (!TCKimlikNo::validate($request->mtcknvno, $request->mbadi, $request->mbsoyadi, explode("-", $request->mbdogumgunu)[0])) {
+            //     return back()->withErrors(['mernis' => 'Geçersiz kimlik bilgileri!'])->onlyInput('username');
+            // }
             if ($kullanici) {
                 return back()->withErrors(['username' => 'Kullanıcı adı/TCKN kullanımda!'])->onlyInput('username');
             } else if ($tckn) {
@@ -174,9 +174,9 @@ class UserController extends Controller
             $kullanici = calisan::where('ckullaniciadi', $request->input('ckullaniciadi'))->first();
             $tckn = calisan::where('ctckn', $request->input('ctckn'))->first();
             // MERNIS kontrolu
-            if (!TCKimlikNo::validate($request->ctckn, $request->cadi, $request->csoyadi, explode("-", $request->cdogum)[0])) {
-                return back()->withErrors(['mernis' => 'Geçersiz kimlik bilgileri!'])->onlyInput('username');
-            }
+            // if (!TCKimlikNo::validate($request->ctckn, $request->cadi, $request->csoyadi, explode("-", $request->cdogum)[0])) {
+            //     return back()->withErrors(['mernis' => 'Geçersiz kimlik bilgileri!'])->onlyInput('username');
+            // }
             if ($kullanici) {
                 return back()->withErrors(['username' => 'Kullanıcı adı/TCKN kullanımda!'])->onlyInput('username');
             } else if ($tckn) {
