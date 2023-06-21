@@ -45,7 +45,7 @@
                 <div class="col-md-4">
                     <label for="date">Tarih</label>
                     <input type="text" class="form-control form-control-sm" id="date"
-                        placeholder="Add date picker" name="tarih" value="{{ old('tarih') }}">
+                        placeholder="Add date picker" name="tarih" value="{{ old('tarih') }}" style="color:white;">
                 </div>
             </div>
 

@@ -24,10 +24,11 @@
         .layout-px-spacing {
             min-height: calc(100vh - 170px) !important;
         }
+
         #map {
-          height: 300px;
-          width: 100%;
-         }
+            height: 300px;
+            width: 100%;
+        }
     </style>
 
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/datatables.css') }}">
@@ -70,9 +71,12 @@
                 <div class="page-header">
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">MYS</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Randevu Yönetimi</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);" style="color:whitesmoke">Randevular</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">MYS</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Randevu
+                                    Yönetimi</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);"
+                                    style="color:whitesmoke">Randevular</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -88,18 +92,18 @@
                             <table id="invoice-list" class="table table-hover" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Teklif Numarası</th>
+                                        <th>#</th>
                                         <th>Adı</th>
                                         <th>Eposta</th>
                                         <th>Başlangıç - Bitiş Tarihi</th>
                                         <th>Ücret</th>
                                         <th>Durum</th>
                                         @if (session('kullanici')->cyetki == '2')
-                                        <th>İşlemler</th>
+                                            <th>İşlemler</th>
                                         @endif
                                         @if (session('kullanici')->cyetki == '1' || session('kullanici')->cyetki == '2')
-                                        <th>Form</th>
-                                        <th>Harita</th>
+                                            <th>Form</th>
+                                            <th>Harita</th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -151,62 +155,68 @@
                                                     <td><span
                                                             class="badge badge-success inv-success">{{ $teklif->teklif_durumu }}</span>
                                                     </td>
-                                                @if (session('kullanici')->cyetki == '2')
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <a class="dropdown-toggle" href="#" role="button"
-                                                                id="dropdownMenuLink2" data-toggle="dropdown"
-                                                                aria-haspopup="true" aria-expanded="true">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                    height="24" viewBox="0 0 24 24" fill="none"
-                                                                    stroke="currentColor" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                                    class="feather feather-more-horizontal">
-                                                                    <circle cx="12" cy="12" r="1">
-                                                                    </circle>
-                                                                    <circle cx="19" cy="12" r="1">
-                                                                    </circle>
-                                                                    <circle cx="5" cy="12" r="1">
-                                                                    </circle>
-                                                                </svg>
-                                                            </a>
-                                                            <div class="dropdown-menu"
-                                                                aria-labelledby="dropdownMenuLink2">
-                                                                <a class="dropdown-item action-edit" href=""><svg
-                                                                        xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    @if (session('kullanici')->cyetki == '2')
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <a class="dropdown-toggle" href="#" role="button"
+                                                                    id="dropdownMenuLink2" data-toggle="dropdown"
+                                                                    aria-haspopup="true" aria-expanded="true">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                         height="24" viewBox="0 0 24 24" fill="none"
                                                                         stroke="currentColor" stroke-width="2"
                                                                         stroke-linecap="round" stroke-linejoin="round"
-                                                                        class="feather feather-edit-3">
-                                                                        <path d="M12 20h9"></path>
-                                                                        <path
-                                                                            d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
-                                                                        </path>
-                                                                    </svg>Gözat</a>
-                                                            
-                                                                <form method="post" action="">
-                                                                    @csrf
-                                                                    @method('delete')
-                                                                    <button
-                                                                        class="btn btn-danger w-100 text-left pl-2"><svg
+                                                                        class="feather feather-more-horizontal">
+                                                                        <circle cx="12" cy="12"
+                                                                            r="1">
+                                                                        </circle>
+                                                                        <circle cx="19" cy="12"
+                                                                            r="1">
+                                                                        </circle>
+                                                                        <circle cx="5" cy="12"
+                                                                            r="1">
+                                                                        </circle>
+                                                                    </svg>
+                                                                </a>
+                                                                <div class="dropdown-menu"
+                                                                    aria-labelledby="dropdownMenuLink2">
+                                                                    <a class="dropdown-item action-edit"
+                                                                        href=""><svg
                                                                             xmlns="http://www.w3.org/2000/svg"
                                                                             width="24" height="24"
                                                                             viewBox="0 0 24 24" fill="none"
                                                                             stroke="currentColor" stroke-width="2"
                                                                             stroke-linecap="round" stroke-linejoin="round"
-                                                                            class="feather feather-trash">
-                                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                                            class="feather feather-edit-3">
+                                                                            <path d="M12 20h9"></path>
                                                                             <path
-                                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                                                d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
                                                                             </path>
-                                                                        </svg>Sil</button>
-                                                                </form>
+                                                                        </svg>Gözat</a>
+
+                                                                    <form method="post" action="">
+                                                                        @csrf
+                                                                        @method('delete')
+                                                                        <button
+                                                                            class="btn btn-danger w-100 text-left pl-2"><svg
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                width="24" height="24"
+                                                                                viewBox="0 0 24 24" fill="none"
+                                                                                stroke="currentColor" stroke-width="2"
+                                                                                stroke-linecap="round"
+                                                                                stroke-linejoin="round"
+                                                                                class="feather feather-trash">
+                                                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                                                <path
+                                                                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                                                </path>
+                                                                            </svg>Sil</button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                @endif    
-                                                @if (session('kullanici')->cyetki == '1' || session('kullanici')->cyetki == '2')
-                                                    <td>
+                                                        </td>
+                                                    @endif
+                                                    @if (session('kullanici')->cyetki == '1' || session('kullanici')->cyetki == '2')
+                                                        <td>
                                                             @if ($teklif->istenilen_hizmetler == 'Kalorifer Kazanı Periyodik Kontrol')
                                                                 <a class="btn badge-success inv-success"
                                                                     href="{{ route('example_form', ['form_adi' => 'Kalorifer Kazanı' . ';' . $teklif->id]) }}">Kalorifer
@@ -215,47 +225,61 @@
                                                                 <a class="btn badge-success inv-success"
                                                                     href="{{ route('example_form', ['form_adi' => 'Kompresör' . ';' . $teklif->id]) }}">Kompresör</a>
                                                             @endif
-                                                    </td>
-                                                @endif
-                                                        @if (session('kullanici')->cyetki == '2' || session('kullanici')->cyetki == '1')
+                                                        </td>
+                                                    @endif
+                                                    @if (session('kullanici')->cyetki == '2' || session('kullanici')->cyetki == '1')
                                                         <td>
                                                             <!-- Button trigger modal -->
-                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                            <button type="button" class="btn btn-primary"
+                                                                data-toggle="modal" data-target="#exampleModal">
                                                                 Harita
                                                             </button>
                                                             <!-- Button trigger modal -->
                                                         </td>
-                                                        @endif
+                                                    @endif
                                                 </tr>
-                                                
+
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Firamının Harita Bilgisi</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div>
-                                                                <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" value="{{ $teklif->menlem }}" class="form-control">
-                                                            </div>  
-                                                            <div>
-                                                                <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam" value="{{ $teklif->mboylam }}" class="form-control">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Firamının
+                                                                    Harita Bilgisi</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                             </div>
-                                                            <!-- Harita Bilgisi -->
-                                                            <div class="py-3 row">
-                                                                <div class="col-12" id="map"> </div><!-- GOOGLE HARİTALAR -->
+                                                            <div class="modal-body">
+                                                                <div>
+                                                                    <input id="hk-enlem" type="hidden" name="menlem"
+                                                                        placeholder="Enlem" value="{{ $teklif->menlem }}"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <div>
+                                                                    <input id="hk-boylam" type="hidden" name="mboylam"
+                                                                        placeholder="Boylam"
+                                                                        value="{{ $teklif->mboylam }}"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <!-- Harita Bilgisi -->
+                                                                <div class="py-3 row">
+                                                                    <div class="col-12" id="map"> </div>
+                                                                    <!-- GOOGLE HARİTALAR -->
+                                                                </div>
+                                                                <!-- Harita Bilgisi -->
                                                             </div>
-                                                            <!-- Harita Bilgisi -->
+                                                            <div class="modal-footer"
+                                                                style="justify-content: space-between;">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-dismiss="modal">Kapat</button>
+                                                                <a href="https://www.google.com/maps/dir/current+location/{{ $teklif->menlem }},{{ $teklif->mboylam }}"
+                                                                    target="_blank" type="button"
+                                                                    class="btn btn-primary">Hedefe Git</a>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-footer" style="justify-content: space-between;">
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                                                        <a href="https://www.google.com/maps/dir/current+location/{{$teklif->menlem}},{{$teklif->mboylam}}" target="_blank" type="button" class="btn btn-primary">Hedefe Git</a>
-                                                        </div>
-                                                    </div>
                                                     </div>
                                                 </div>
                                                 <!-- Modal -->
@@ -273,7 +297,7 @@
 
         </div>
         <!-- CONTENT AREA -->
-            
+
     </div>
     <x-footer />
     </div>
@@ -285,7 +309,7 @@
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script>
         // GOOGLE HARİTALAR
-    
+
         function initMap() {
             var enlem = document.getElementById("hk-enlem").value;
             var boylam = document.getElementById("hk-boylam").value;
@@ -294,23 +318,25 @@
                 lat: parseFloat(enlem),
                 lng: parseFloat(boylam)
             };
-    
+
             const map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 7,
                 center: myLatlng,
             });
-    
+
             let marker = new google.maps.Marker({
                 position: myLatlng,
                 map,
                 title: "KONUM",
             });
 
-            
+
 
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap"
+        type="text/javascript"></script>
     <x-global-mandatory.scripts />
     <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>

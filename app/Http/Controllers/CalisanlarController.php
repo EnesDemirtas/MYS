@@ -347,9 +347,9 @@ class CalisanlarController extends Controller
 
         teklif::where('id', $request->teklif_id)->update(['teklif_durumu' => 'Bakım Yapıldı']);
         $teklif = teklif::where('id', $request->teklif_id)->first();
-        $date = Carbon::parse($teklif->created_at)->format('d-m-y H:i:s');
-        $islem_tarih_saat = date('d/m/Y', strtotime($teklif->islemsaati));
-        Mail::to($teklif->teklif_veren_email)->send(new ResetPasswordActivationCode('MYS Periyodik Bakımınız Hakkında', null, $date . ' tarihli ' . $teklif->teklif_no . ' numaralı teklifinizin ' . $teklif->istenilen_hizmetler . ' periyodik bakımı ' . $islem_tarih_saat . ' tarih ve saatinde yapılmıştır.'));
+        $date = Carbon::parse($teklif->created_at)->format('d-m-y');
+        $islem_tarih_saat = date('d/m/Y H:i:s', strtotime($teklif->islemsaati));
+        Mail::to($teklif->teklif_veren_email)->send(new ResetPasswordActivationCode('MYS Periyodik Bakımınız Hakkında', null, $date . ' tarihli teklifinizin ' . $teklif->istenilen_hizmetler . ' periyodik bakımı ' . $islem_tarih_saat . ' tarih ve saatinde yapılmıştır.'));
 
         return redirect()->route('randevu_yonetimi')->with('success', 'Form başarıyla kaydedildi.');
     }
