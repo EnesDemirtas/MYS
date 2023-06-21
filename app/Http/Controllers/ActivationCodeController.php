@@ -32,7 +32,7 @@ class ActivationCodeController extends Controller
                 'sure' => $expires_at
             ]);
 
-            Mail::to($kullanici->ceposta)->send(new ResetPasswordActivationCode($activationcode));
+            Mail::to($kullanici->ceposta)->send(new ResetPasswordActivationCode('MYS Şifre Sıfırlama Aktivasyon Kodu', $activationcode, 'Şifrenizi sıfırlamak için aktivasyon kodunuz: '));
 
             // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
             // dd($activationcode->eposta);
@@ -64,7 +64,7 @@ class ActivationCodeController extends Controller
                 'sure' => $expires_at
             ]);
 
-            Mail::to($request->email)->send(new ResetPasswordActivationCode($activationcode));
+            Mail::to($request->email)->send(new ResetPasswordActivationCode('MYS Şifre Sıfırlama Aktivasyon Kodu', $activationcode, 'Şifrenizi sıfırlamak için aktivasyon kodunuz: '));
             return back()->withErrors(['aktivasyonkodu' => 'Aktivasyon kodu süresi doldu! Yeni kod mail adresinize gönderildi.'])->onlyInput('aktivasyonkodu');
         } else if ($request->aktivasyonkodu != $activationcode->aktivasyonkodu) {
             return back()->withErrors(['aktivasyonkodu' => 'Aktivasyon kodu hatalı!']);
@@ -96,7 +96,7 @@ class ActivationCodeController extends Controller
                     'sure' => $expires_at
                 ]);
 
-                Mail::to($calisan->ceposta)->send(new ResetPasswordActivationCode($activationcode));
+                Mail::to($calisan->ceposta)->send(new ResetPasswordActivationCode('MYS Hesap Aktivasyon Kodu', $activationcode, 'Hesabınızı aktifleştirmek için aktivasyon kodunuz: '));
                 // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
                 return redirect()->route('load_register_activation_code', ['ceposta' => $activationcode->eposta, 'tip' => 'Çalışan']);
             } else if ($musteri) {
@@ -108,7 +108,7 @@ class ActivationCodeController extends Controller
                     'sure' => $expires_at
                 ]);
 
-                Mail::to($musteri->meposta)->send(new ResetPasswordActivationCode($activationcode));
+                Mail::to($musteri->meposta)->send(new ResetPasswordActivationCode('MYS Hesap Aktivasyon Kodu', $activationcode, 'Hesabınızı aktifleştirmek için aktivasyon kodunuz: '));
                 // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
                 return redirect()->route('load_register_activation_code_musteri', ['eposta' => $activationcode->eposta, 'tip' => 'Müşteri']);
             } else {
@@ -133,7 +133,7 @@ class ActivationCodeController extends Controller
                     'sure' => $expires_at
                 ]);
 
-                Mail::to($kullanici->meposta)->send(new ResetPasswordActivationCode($activationcode));
+                Mail::to($kullanici->meposta)->send(new ResetPasswordActivationCode('MYS Şifre Sıfırlama Aktivasyon Kodu', $activationcode, 'Şifrenizi sıfırlamak için aktivasyon kodunuz: '));
                 // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
                 return redirect()->route('load_register_activation_code_musteri', ['meposta' => $activationcode->eposta, 'tip' => 'Müşteri']);
             } else {
@@ -157,7 +157,7 @@ class ActivationCodeController extends Controller
                     'sure' => $expires_at
                 ]);
 
-                Mail::to($kullanici->ceposta)->send(new ResetPasswordActivationCode($activationcode));
+                Mail::to($kullanici->ceposta)->send(new ResetPasswordActivationCode('MYS Şifre Sıfırlama Aktivasyon Kodu', $activationcode, 'Şifrenizi sıfırlamak için aktivasyon kodunuz: '));
 
                 // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
                 return redirect()->route('load_register_activation_code', ['ceposta' => $activationcode->eposta, 'tip' => 'Çalışan']);
@@ -177,7 +177,6 @@ class ActivationCodeController extends Controller
             ], [
                 'aktivasyonkodu.required' => 'Aktivasyon kodu boş bırakılamaz'
             ]);
-
             $activationcode = ActivationCode::where('eposta', $request->ceposta)->orderBy('created_at', 'desc')->first();
             if ($activationcode->sure < now()) {
                 $activation_code = rand(100000, 999999);
@@ -188,7 +187,7 @@ class ActivationCodeController extends Controller
                     'sure' => $expires_at
                 ]);
 
-                Mail::to($request->ceposta)->send(new ResetPasswordActivationCode($activationcode));
+                Mail::to($request->ceposta)->send(new ResetPasswordActivationCode('MYS Hesap Aktivasyon Kodu', $activationcode, 'Hesabınızı aktifleştirmek için aktivasyon kodunuz: '));
                 return back()->withErrors(['aktivasyonkodu' => 'Aktivasyon kodu süresi doldu! Yeni kod mail adresinize gönderildi.'])->onlyInput('aktivasyonkodu');
             } else if ($request->aktivasyonkodu != $activationcode->aktivasyonkodu) {
                 return back()->withErrors(['aktivasyonkodu' => 'Aktivasyon kodu hatalı!']);
@@ -215,7 +214,7 @@ class ActivationCodeController extends Controller
                     'sure' => $expires_at
                 ]);
 
-                Mail::to($request->meposta)->send(new ResetPasswordActivationCode($activationcode));
+                Mail::to($request->meposta)->send(new ResetPasswordActivationCode('MYS Hesap Aktivasyon Kodu', $activationcode, 'Hesabınızı aktifleştirmek için aktivasyon kodunuz: '));
                 return back()->withErrors(['aktivasyonkodu' => 'Aktivasyon kodu süresi doldu! Yeni kod mail adresinize gönderildi.'])->onlyInput('aktivasyonkodu');
             } else if ($request->aktivasyonkodu != $activationcode->aktivasyonkodu) {
                 return back()->withErrors(['aktivasyonkodu' => 'Aktivasyon kodu hatalı!']);

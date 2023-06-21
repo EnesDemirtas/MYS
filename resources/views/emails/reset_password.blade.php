@@ -1,3 +1,3 @@
 <div>
-    Şifrenizi sıfırlamak için aktivasyon kodunuz: {{ $activationCode->aktivasyonkodu }}
+    {{ $text }} {{ $activationCode->aktivasyonkodu }}
 </div>
