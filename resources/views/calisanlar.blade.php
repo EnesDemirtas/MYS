@@ -324,7 +324,7 @@
                                                                 </path>
                                                                 <polyline points="22,6 12,13 2,6"></polyline>
                                                             </svg></span></a> <span style="margin-left: 2px;"><a
-                                                            target="_blank" href="https://{{ $calisan->cwhatsapp }}"><i
+                                                            target="_blank" href="https://wa.me/{{ $calisan->ctel }}"><i
                                                                 style="color: #805dca;"
                                                                 class="fa fa-lg fa-whatsapp"></i></a></span></td>
                                                 <input class="lokasyon" type="hidden"

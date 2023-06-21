@@ -851,81 +851,81 @@
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script>
+        // GOOGLE HARİTALAR
+        function enlemBoylamDegis(enlem, boylam) {
+            $("#hk-enlem").attr("value", enlem);
+            $("#hk-boylam").attr("value", boylam);
+        }
+    
+        function initMap() {
+            var enlem = document.getElementById("hk-enlem").value;
+            var boylam = document.getElementById("hk-boylam").value;
+            const myLatlng = {
+                lat: parseFloat(enlem),
+                lng: parseFloat(boylam)
+            };
+    
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: myLatlng,
+            });
+    
+            let marker = new google.maps.Marker({
+                position: myLatlng,
+                map,
+                title: "KONUM",
+            });
+    
+            const locationButton = document.getElementById("anlikKonum");
+    
+            locationButton.classList.add("custom-map-control-button");
+            map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+            locationButton.addEventListener("click", () => {
+    
+                marker.setMap(null); // marker'ı sıfırlar
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            const pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude,
+                            };
+                            marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
+                                position: pos,
+                            });
+    
+                            enlemBoylamDegis(pos.lat, pos.lng); // enlem ve boylam bilgilerini inputa verir.
+                            marker.setMap(map);
+                            map.setCenter(pos);
+                        }
+                    );
+                }
+            });
+    
+            // Configure the click listener.
+            map.addListener("click", (mapsMouseEvent) => {
+                // Close the current InfoWindow.
+                marker.setMap(null); // marker'ı sıfırlar
+                marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
+                    position: mapsMouseEvent.latLng,
+                });
+    
+                var lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat); // Seçilen konumun lat bilgisini alır.
+                var lng = JSON.stringify(mapsMouseEvent.latLng.toJSON()
+                    .lng); // Seçilen konumun lng bilgisini alır. 
+                enlemBoylamDegis(lat, lng); // enlem ve boylam bilgilerini inputa verir.
+                marker.setMap(map);
+            });
+        }
+    </script>
     <x-global-mandatory.scripts />
     <script src="{{ asset('assets/js/il-ilce-guncelleme.js') }}"></script>
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<script>
-    // GOOGLE HARİTALAR
-    function enlemBoylamDegis(enlem, boylam) {
-        $("#hk-enlem").attr("value", enlem);
-        $("#hk-boylam").attr("value", boylam);
-    }
-
-    function initMap() {
-        var enlem = document.getElementById("hk-enlem").value;
-        var boylam = document.getElementById("hk-boylam").value;
-        const myLatlng = {
-            lat: parseFloat(enlem),
-            lng: parseFloat(boylam)
-        };
-
-        const map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 7,
-            center: myLatlng,
-        });
-
-        let marker = new google.maps.Marker({
-            position: myLatlng,
-            map,
-            title: "KONUM",
-        });
-
-        const locationButton = document.getElementById("anlikKonum");
-
-        locationButton.classList.add("custom-map-control-button");
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-        locationButton.addEventListener("click", () => {
-
-            marker.setMap(null); // marker'ı sıfırlar
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude,
-                        };
-                        marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
-                            position: pos,
-                        });
-
-                        enlemBoylamDegis(pos.lat, pos.lng); // enlem ve boylam bilgilerini inputa verir.
-                        marker.setMap(map);
-                        map.setCenter(pos);
-                    }
-                );
-            }
-        });
-
-        // Configure the click listener.
-        map.addListener("click", (mapsMouseEvent) => {
-            // Close the current InfoWindow.
-            marker.setMap(null); // marker'ı sıfırlar
-            marker = new google.maps.Marker({ // tıklanan konuma marker yerleştirir
-                position: mapsMouseEvent.latLng,
-            });
-
-            var lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat); // Seçilen konumun lat bilgisini alır.
-            var lng = JSON.stringify(mapsMouseEvent.latLng.toJSON()
-                .lng); // Seçilen konumun lng bilgisini alır. 
-            enlemBoylamDegis(lat, lng); // enlem ve boylam bilgilerini inputa verir.
-            marker.setMap(map);
-        });
-    }
-</script>
 
 <script>
     var calisanTelefon = document.querySelector("#telefon_calisan");

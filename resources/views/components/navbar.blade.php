@@ -74,7 +74,7 @@
                     </div>
                 </a>
             </li>
-        @if (session('kullanici')->cyetki == '2' || session('kullanici')->cyetki == '1')
+        @if (session('kullanici')->cyetki == '2' || session('kullanici')->cyetki == '0')
             <li class="menu single-menu">
                 <a href="#" aria-expanded="false" class="dropdown-toggle autodroprown">
                     <div class="">

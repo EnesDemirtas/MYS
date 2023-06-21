@@ -13,8 +13,12 @@ class Teklifler extends Controller
     // Bütün Teklifleri Göster
     public function index()
     {
-
-        $teklifler = teklif::all();
+        $tip = session('tip');
+        if ($tip == 'Müşteri') {
+            $teklifler = teklif::where('musteriid', session('kullanici')->id)->get();
+        } else {
+            $teklifler = teklif::All();
+        }
 
         return view('teklifler', compact("teklifler"));
     }
