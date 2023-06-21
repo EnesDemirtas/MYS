@@ -29,6 +29,8 @@ class teklif extends Model
         'odeme_bilgileri_swift_kodu',
         'odeme_bilgileri_hesap_numarasi',
         'odeme_bilgileri_ulke_adi',
-        'teklif_durumu'
+        'teklif_durumu',
+        'menlem',
+        'mboylam'
     ];
 }

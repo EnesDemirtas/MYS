@@ -24,6 +24,10 @@
         .layout-px-spacing {
             min-height: calc(100vh - 170px) !important;
         }
+        #map {
+          height: 300px;
+          width: 100%;
+         }
     </style>
 
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/datatables.css') }}">
@@ -95,7 +99,7 @@
                                         @endif
                                         @if (session('kullanici')->cyetki == '1' || session('kullanici')->cyetki == '2')
                                         <th>Form</th>
-                                        <th>Gözat MODAL</th>
+                                        <th>Harita</th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -215,10 +219,46 @@
                                                 @endif
                                                         @if (session('kullanici')->cyetki == '2' || session('kullanici')->cyetki == '1')
                                                         <td>
-                                                            Gözat Modal
+                                                            <!-- Button trigger modal -->
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                                Harita
+                                                            </button>
+                                                            <!-- Button trigger modal -->
                                                         </td>
                                                         @endif
                                                 </tr>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Firamının Harita Bilgisi</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div>
+                                                                <input id="hk-enlem" type="hidden" name="menlem" placeholder="Enlem" value="{{ $teklif->menlem }}" class="form-control">
+                                                            </div>  
+                                                            <div>
+                                                                <input id="hk-boylam" type="hidden" name="mboylam" placeholder="Boylam" value="{{ $teklif->mboylam }}" class="form-control">
+                                                            </div>
+                                                            <!-- Harita Bilgisi -->
+                                                            <div class="py-3 row">
+                                                                <div class="col-12" id="map"> </div><!-- GOOGLE HARİTALAR -->
+                                                            </div>
+                                                            <!-- Harita Bilgisi -->
+                                                        </div>
+                                                        <div class="modal-footer" style="justify-content: space-between;">
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                                                        <a href="https://www.google.com/maps/dir/current+location/{{$teklif->menlem}},{{$teklif->mboylam}}" target="_blank" type="button" class="btn btn-primary">Hedefe Git</a>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal -->
                                             @endif
                                         @endforeach
                                     @endunless
@@ -233,7 +273,7 @@
 
         </div>
         <!-- CONTENT AREA -->
-
+            
     </div>
     <x-footer />
     </div>
@@ -243,6 +283,34 @@
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script>
+        // GOOGLE HARİTALAR
+    
+        function initMap() {
+            var enlem = document.getElementById("hk-enlem").value;
+            var boylam = document.getElementById("hk-boylam").value;
+            console
+            const myLatlng = {
+                lat: parseFloat(enlem),
+                lng: parseFloat(boylam)
+            };
+    
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: myLatlng,
+            });
+    
+            let marker = new google.maps.Marker({
+                position: myLatlng,
+                map,
+                title: "KONUM",
+            });
+
+            
+
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
     <x-global-mandatory.scripts />
     <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>

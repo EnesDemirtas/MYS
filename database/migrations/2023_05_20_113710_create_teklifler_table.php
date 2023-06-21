@@ -33,6 +33,8 @@ return new class extends Migration
             $table->string('odeme_bilgileri_ulke_adi')->lenght(30);
             $table->string('odeme_bilgileri_hesap_numarasi')->lenght(30);
             $table->string('teklif_durumu')->lenght(30);
+            $table->string('menlem')->lenght(20)->nullable();
+            $table->string('mboylam')->lenght(20)->nullable();
             $table->date('updated_at');
             $table->date('created_at');
             $table->timestamp('islemsaati');

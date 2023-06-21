@@ -51,9 +51,6 @@
                     <li>
                         <a href="{{ route('musteriler') }}"> Müşteriler </a>
                     </li>
-                    <li>
-                        <a href="/musteri_ekle"> Müşteri Ekle </a>
-                    </li>
                 </ul>
             </li>
         @endif
