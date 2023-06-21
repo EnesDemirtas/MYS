@@ -410,15 +410,42 @@
                                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="row text-center">
-                                        <div class="col">
-                                            <div>
-                                                <a class="btn btn-danger"
-                                                    href="{{ route('profile.delete', ['tip' => session('tip'), 'id' => $kullanici->csatirid]) }}">Hesabı
-                                                    Sil</a>
+                                    <!-- Modal -->
+                                    <!-- Button trigger modal -->
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                            Hesabı Sil
+                                        </button>
+                                    </div>  
+                                    <!-- Button trigger modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <div class="modal-title row" id="exampleModalLabel">
+                                                <div class="col-md-1 text-center p-0 pt-3">
+                                                    <span><lottie-player src="https://assets2.lottiefiles.com/packages/lf20_nnVnwmne5l.json"  background="transparent"  speed="1"  style="width: 100px; height: 40px; display:inline-block"  loop autoplay></lottie-player></span> 
+                                                </div>
+                                                <div class="col-md-11 text-center pt-2"> <b style="font-family: 'Roboto', sans-serif; font-size:1.2rem">Hesabınızı silmek istediğinizden emin misiniz?</b></div>
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p style="font-size:1rem; font-weight: 400;">Hesabınızı gerçekten kalıcı olarak inaktif hale getirmeyi mi düşünüyorsunuz yoksa yanlışlıkla mı bastınız? Hesabınızı silmeniz durumunda
+                                                hesabınız inaktif hale gelecektir ve hizmetlerimizden yararlanamayacaksınız. Daha sonra tekrar 
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer" style="justify-content: space-between;">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">İptal</button>
+                                            <a class="btn btn-danger" href="{{ route('profile.delete', ['tip' => session('tip'), 'id' => $kullanici->csatirid]) }}">Hesabı Sil</a>
                                             </div>
                                         </div>
+                                        </div>
                                     </div>
+                                    <!-- Modal -->
+                                    
                                 </div>
 
                                 <!-- Güncelle Butonu -->
@@ -462,7 +489,7 @@
                                 </form>
                                 <div id="kullanici-bilgileri-pp" class="text-center">
                                     <span class="font-weight-bold text-primary" style="font-family: 'Lobster', cursive; font-size:1.3rem;">{{ session('kullanici')->mbadi}} {{session('kullanici')->mbsoyadi}}</span>
-                                    <p class="text-black-50 font-weight-bold" style="font-family: 'Roboto', sans-serif; font-size:1.3rem;"> @if (session('kullanici')->cyetki == "0") İnsan Kaynakları Görevlisi @elseif (session('kullanici')->cyetki == "1") Saha Çalışanı Görevlisi @elseif (session('kullanici')->cyetki == "2") Sistem Admini @else Müşteri @endif</p>
+                                    <p class="text-black-50 font-weight-bold" style="font-family: 'Roboto', sans-serif; font-size:1.3rem;"> @if (session('kullanici')->cyetki == "0") İnsan Kaynakları Görevlisi @elseif (session('kullanici')->cyetki == "1") Saha Çalışanı Görevlisi @elseif (session('kullanici')->cyetki == "2") Sistem Admini @else {{session('kullanici')->mbunvani}} @endif</p>
                                 </div>
                                 </div>
                             </div>
@@ -485,7 +512,7 @@
                                             <input onchange="guncelleGoster()"
                                                         type="text" class="form-control mb-4"
                                                         name="mbadi"
-                                                        value="{{ $musteri->mbadi }}" required>
+                                                        value="{{ $musteri->mbadi }}" readonly>
                                                     @error('mbadi')
                                                         <p class="text-danger mt-1">
                                                             {{ $message }}</p>
@@ -496,7 +523,7 @@
                                             <input onchange="guncelleGoster()"
                                                         type="text" class="form-control mb-4"
                                                         name="mbsoyadi"
-                                                        value="{{ $musteri->mbsoyadi }}" required>
+                                                        value="{{ $musteri->mbsoyadi }}" readonly>
                                                     @error('mbsoyadi')
                                                         <p class="text-danger mt-1">
                                                             {{ $message }}</p>
@@ -532,7 +559,7 @@
                                                         type="date" class="form-control mb-4"
                                                         name="mbdogumgunu" id="dogumgunu"
                                                         value="{{ $musteri->mbdogumgunu }}"
-                                                        required>
+                                                        readonly>
                                                     @error('mbdogumgunu')
                                                         <p class="text-danger mt-1">
                                                             {{ $message }}</p>
@@ -700,9 +727,101 @@
                                         <span class="badge badge-primary font-weight-bold w-100 mb-2"style="font-size:20px;">Firma Bilgileri</span>
                                     </div>
                                     <div class="row mt-2">
-
+                                        <div class="col-md-6">
+                                            <label class="labels">Müşteri Türü</label>
+                                            <select
+                                                        class="form-control form-control text-center"
+                                                        name="mkayitturu" id="hk-kayitturu"
+                                                        onchange="guncelleGoster()"
+                                                        value="{{ $musteri->mkayitturu }}">
+                                                        <option value="{{ $musteri->mkayitturu }}"
+                                                            selected>{{ $musteri->mkayitturu }}
+                                                        </option>
+                                                        <option value="Bireysel">Bireysel</option>
+                                                        <option value="Ticari">Ticari</option>
+                                                        <option value="Tedarikçi">Tedarikçi
+                                                        </option>
+                                                        <option value="Müşteri Adayı">Müşteri Adayı
+                                                        </option>
+                                                        <option value="Diğer">Diğer</option>
+                                                    </select>
+                                                    @error('mkayitturu')
+                                                        <p class="text-danger mt-1">
+                                                            {{ $message }}</p>
+                                                    @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="labels">Firma Adı</label>
+                                            <input onchange="guncelleGoster()"
+                                                        type="text" class="form-control mb-4"
+                                                        name="mbfirmaadi" id="mbfirmaadi"
+                                                        placeholder="Firma Adı"
+                                                        value="{{ $musteri->mbfirmaadi }}">
+                                                    @error('mbfirmaadi')
+                                                        <p class="text-danger mt-1">
+                                                            {{ $message }}</p>
+                                                    @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="labels">Web Adresi</label>
+                                            <input onchange="guncelleGoster()"
+                                                        type="text" class="form-control mb-4"
+                                                        name="mweb" id="mweb"
+                                                        placeholder="Örn: www.sbemuhendislik.com"
+                                                        value="{{ $musteri->mweb }}">
+                                                    @error('mweb')
+                                                        <p class="text-danger mt-1">
+                                                            {{ $message }}</p>
+                                                    @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="labels">Faks</label>
+                                            <input onchange="guncelleGoster()"
+                                                        type="text" class="form-control mb-4"
+                                                        name="mfaks" id="mfaks"
+                                                        placeholder="Faks"
+                                                        value="{{ $musteri->mfaks }}">
+                                                    @error('mfaks')
+                                                        <p class="text-danger mt-1">
+                                                            {{ $message }}</p>
+                                                    @enderror
+                                        </div>
                                     </div>
-                                    
+                                    <!-- Modal -->
+                                    <!-- Button trigger modal -->
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                            Hesabı Sil
+                                        </button>
+                                    </div>  
+                                    <!-- Button trigger modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <div class="modal-title row" id="exampleModalLabel">
+                                                <div class="col-md-1 text-center p-0 pt-3">
+                                                    <span><lottie-player src="https://assets2.lottiefiles.com/packages/lf20_nnVnwmne5l.json"  background="transparent"  speed="1"  style="width: 100px; height: 40px; display:inline-block"  loop autoplay></lottie-player></span> 
+                                                </div>
+                                                <div class="col-md-11 text-center pt-2"> <b style="font-family: 'Roboto', sans-serif; font-size:1.2rem">Hesabınızı silmek istediğinizden emin misiniz?</b></div>
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p style="font-size:1rem; font-weight: 400;">Hesabınızı gerçekten kalıcı olarak inaktif hale getirmeyi mi düşünüyorsunuz yoksa yanlışlıkla mı bastınız? Hesabınızı silmeniz durumunda
+                                                hesabınız inaktif hale gelecektir ve hizmetlerimizden yararlanamayacaksınız. Daha sonra tekrar 
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer" style="justify-content: space-between;">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">İptal</button>
+                                            <a class="btn btn-danger" href="{{ route('profile.delete', ['tip' => session('tip'), 'id' => $musteri->id]) }}">Hesabı Sil</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal -->
                                 </div>
                             </div>
                             <!-- Güncelle Butonu -->
@@ -737,6 +856,7 @@
     <script src="{{ asset('assets/js/inputController.js') }}"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script>
     // GOOGLE HARİTALAR
     function enlemBoylamDegis(enlem, boylam) {
