@@ -238,12 +238,11 @@
                                 <thead>
                                     <tr>
                                         <th class="checkbox-column" style="width:30px !important;"> Kayıt No </th>
-                                        <th style="padding-left:0px !important;">Sicil No</th>
                                         <th>TCKN</th>
                                         <th>Adı</th>
                                         <th>Görevi</th>
                                         <th>Doğum Günü</th>
-                                        <th>Giriş Tarihi</th>
+                                        <th>İşe Giriş Tarihi</th>
                                         <th>İletişim</th>
                                         <th>İşlemler</th>
                                     </tr>
@@ -254,8 +253,6 @@
                                             <tr id="calisan-{{ $calisan->ctckn }}">
                                                 <td class="checkbox-column" style=" width:0px !important;">
                                                     {{ $loop->iteration }} </td>
-                                                <td style="padding-left:0px !important;">
-                                                    <a><span>{{ $calisan->mysrefno }}</span></a></td>
                                                 <td><a><span class="tckn">{{ $calisan->ctckn }}</span></a></td>
                                                 <td>
                                                     <div class="d-flex">
@@ -270,6 +267,8 @@
                                                 <td><a><span class="gorev"> @php
                                                     if ($calisan->cunvani == null) {
                                                         echo 'Belirtilmemiş';
+                                                    }else {
+                                                        echo $calisan->cunvani;
                                                     }
                                                 @endphp</span></a></td>
                                                 <td><span class="inv-date dogum"><svg xmlns="http://www.w3.org/2000/svg"
