@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('teklifler', function (Blueprint $table) {
             $table->id();
+            $table->string('musteriid')->lenght(10)->nullable();
             $table->date('teklif_baslangic_tarihi');
             $table->date('teklif_bitis_tarihi');
             $table->string('teklif_veren_isim')->length(25);

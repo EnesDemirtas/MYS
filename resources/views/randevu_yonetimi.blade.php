@@ -88,10 +88,15 @@
                                         <th>Adı</th>
                                         <th>Eposta</th>
                                         <th>Başlangıç - Bitiş Tarihi</th>
-                                        <th>Miktar</th>
+                                        <th>Ücret</th>
                                         <th>Durum</th>
+                                        @if (session('kullanici')->cyetki == '2')
                                         <th>İşlemler</th>
+                                        @endif
+                                        @if (session('kullanici')->cyetki == '1' || session('kullanici')->cyetki == '2')
                                         <th>Form</th>
+                                        <th>Gözat MODAL</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -142,6 +147,7 @@
                                                     <td><span
                                                             class="badge badge-success inv-success">{{ $teklif->teklif_durumu }}</span>
                                                     </td>
+                                                @if (session('kullanici')->cyetki == '2')
                                                     <td>
                                                         <div class="dropdown">
                                                             <a class="dropdown-toggle" href="#" role="button"
@@ -173,6 +179,7 @@
                                                                             d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
                                                                         </path>
                                                                     </svg>Gözat</a>
+                                                            
                                                                 <form method="post" action="">
                                                                     @csrf
                                                                     @method('delete')
@@ -193,17 +200,24 @@
                                                             </div>
                                                         </div>
                                                     </td>
+                                                @endif    
+                                                @if (session('kullanici')->cyetki == '1' || session('kullanici')->cyetki == '2')
                                                     <td>
-                                                        @if ($teklif->istenilen_hizmetler == 'Kalorifer Kazanı Periyodik Kontrol')
-                                                            <a class="btn badge-success inv-success"
-                                                                href="{{ route('example_form', ['form_adi' => 'Kalorifer Kazanı' . ';' . $teklif->id]) }}">Kalorifer
-                                                                Kazanı</a>
-                                                        @elseif($teklif->istenilen_hizmetler == 'Kompresör Periyodik Kontrol')
-                                                            <a class="btn badge-success inv-success"
-                                                                href="{{ route('example_form', ['form_adi' => 'Kompresör' . ';' . $teklif->id]) }}">Kompresör</a>
-                                                        @endif
-
+                                                            @if ($teklif->istenilen_hizmetler == 'Kalorifer Kazanı Periyodik Kontrol')
+                                                                <a class="btn badge-success inv-success"
+                                                                    href="{{ route('example_form', ['form_adi' => 'Kalorifer Kazanı' . ';' . $teklif->id]) }}">Kalorifer
+                                                                    Kazanı</a>
+                                                            @elseif($teklif->istenilen_hizmetler == 'Kompresör Periyodik Kontrol')
+                                                                <a class="btn badge-success inv-success"
+                                                                    href="{{ route('example_form', ['form_adi' => 'Kompresör' . ';' . $teklif->id]) }}">Kompresör</a>
+                                                            @endif
                                                     </td>
+                                                @endif
+                                                        @if (session('kullanici')->cyetki == '2' || session('kullanici')->cyetki == '1')
+                                                        <td>
+                                                            Gözat Modal
+                                                        </td>
+                                                        @endif
                                                 </tr>
                                             @endif
                                         @endforeach

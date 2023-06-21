@@ -10,6 +10,7 @@ class teklif extends Model
     use HasFactory;
     protected $table = 'teklifler';
     protected $fillable = [
+        'musteriid',
         'teklif_veren_sirket',
         'teklif_baslangic_tarihi',
         'teklif_bitis_tarihi',

@@ -102,11 +102,8 @@
                                 <tbody>
                                     @foreach ($forms as $form)
                                         <tr>
-                                            <td><a href="teklif_onizle.html"><span
-                                                        class="inv-number">{{ $form->id }}</span></a></td>
-                                            <td>
-                                                <p class="align-self-center mb-0 user-name"> {{ $form->kurum_adi }}</p>
-                                            </td>
+                                            <td><a href="teklif_onizle.html"><span class="inv-number">{{ $form->id }}</span></a></td>
+                                            <td><p class="align-self-center mb-0 user-name"> {{ $form->kurum_adi }}</p></td>
                                             <td><span class="inv-email"><svg xmlns="http://www.w3.org/2000/svg"
                                                         width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -120,23 +117,16 @@
 
                                             <td><span class="inv-date" id="inv-date">{{ $form->tarih }}</span></td>
                                             @if ($form->onay)
-                                                <td>
-                                                    <a class="btn btn-primary"
-                                                        href="{{ route('load_bakim_formu_sonucu', ['form_id' => $form->id]) }}">{{ $form->form_adi }}</a>
-                                                </td>
-                                            @else
-                                                @if (session('kullanici')->cyetki == '2')
-                                                    <td>
-                                                        <a class="btn btn-success"
-                                                            href="{{ route('formu_onayla', ['form_id' => $form->id]) }}">Onayla</a>
-                                                    </td>
+                                                <td><a class="btn btn-primary" href="{{ route('load_bakim_formu_sonucu', ['form_id' => $form->id]) }}">{{ $form->form_adi }}</a> </td>
                                                 @else
-                                                <td class="text-danger"><b>Henüz Onaylanmadı</b><td>
-                                                @endif
+                                                    @if (session('kullanici')->cyetki == '2')
+                                                        <td><a class="btn btn-success" href="{{ route('formu_onayla', ['form_id' => $form->id]) }}">Onayla</a> </td>
+                                                    @else
+                                                        <td class="text-danger"> <b>Henüz Onaylanmadı</b> </td>
+                                                    @endif
                                             @endif
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>
@@ -151,10 +141,8 @@
 
     </div>
     <x-footer />
-    </div>
     <!--  END CONTENT AREA  -->
 
-    </div>
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->

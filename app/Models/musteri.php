@@ -12,16 +12,10 @@ class musteri extends Model
     protected $table = 'musteriler';
 
     protected $fillable = [
-    'mrefno',
     'mkayitturu',
     'mturu',
     'mvdairesi',
     'mtcknvno',
-    'mtmarkaadi',
-    'mtsubeadi',
-    'mtkisaltmasi',
-    'firmatamunvan',
-    'mtunvandevami',
     'mbadi',
     'mbsoyadi',
     'mbdogumgunu',

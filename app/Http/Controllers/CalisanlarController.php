@@ -54,8 +54,8 @@ class CalisanlarController extends Controller
                 'cunvani.required' => 'Lütfen çalışan ünvanını boş bırakmayınız.',
             ]
         );
-
-        calisan::where('ctckn', $request->$ctckn)->update(array(
+        
+        calisan::where('ctckn', $ctckn)->update(array(
             'ctel' => $request->ctel,
             'ceposta' => $request->ceposta,
             'cunvani' => $request->cunvani,
@@ -65,8 +65,11 @@ class CalisanlarController extends Controller
             'cbanka' => $request->cbanka,
             'chesapno' => $request->chesapno,
             'cevadres' => $request->cevadres,
+            'cyetki' => $request->cyetki,
         ));
 
+        $kullanici = calisan::where('ctckn',$ctckn)->first();
+        
         return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
     }
 
@@ -232,9 +235,13 @@ class CalisanlarController extends Controller
 
     public function GetRandevuYonetimi(Request $request)
     {
-
-        $teklifler = teklif::All();
-
+        $tip = session('tip');
+        if($tip == 'Müşteri'){
+            $teklifler = teklif::where('musteriid', session('kullanici')->id)->get();
+        }else{
+            $teklifler = teklif::All();
+        }
+        
         $form_isimleri_raw = bakimformu::all('form_adi');
         $form_isimleri_slug = $form_isimleri_raw->map(function ($item, $key) {
             return Str::slug($item->form_adi, '-', 'tr');
@@ -341,7 +348,19 @@ class CalisanlarController extends Controller
 
     public function BakimFormuSonuclari(Request $request)
     {
-        $forms = bakimformusonucu::all();
+        $tip = session('tip');
+        if($tip == 'Müşteri'){
+            $teklifids = array();
+            $teklifler = teklif::where('musteriid', session('kullanici')->id)->get('id');
+            
+            for ($i=0; $i < count($teklifler) ; $i++) { 
+                array_push($teklifids,$teklifler[$i]->id);
+            }
+            $forms = bakimformusonucu::whereIn('teklif_id', $teklifids)->get();
+        }else{
+            $forms = bakimformusonucu::All();
+        }
+
         return view('bakim_formu_sonuclari', compact('forms'));
     }
 

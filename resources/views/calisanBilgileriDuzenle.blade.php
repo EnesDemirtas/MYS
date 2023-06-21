@@ -53,23 +53,17 @@
                 <div class="page-header">
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">MYS</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Görev Yönetimi</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0);">Çalışanlar</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);">{{$calisanlar->cadi}} {{$calisanlar->csoyadi}}</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);"
+                                    style="color:whitesmoke">MYS</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);"
+                                    style="color:whitesmoke">Görev Yönetimi</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);"
+                                    style="color:whitesmoke">Çalışanlar</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);" style="color:whitesmoke">{{$calisanlar->cadi}} {{$calisanlar->csoyadi}}</a></li>
                         </ol>
                     </nav>
                 </div>
                 <div class="row">
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                <li>{{$error}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     @if(Session::has("success"))
                         <div class="alert alert-success">
                             {{Session::get("success")}}
@@ -99,60 +93,68 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="ad">Ad</label>
-                                                                <input type="text" class="form-control mb-4"  name="cadi"  value="{{$calisanlar->cadi}}" required>
+                                                                <input type="text" class="form-control mb-4"  name="cadi"  value="{{$calisanlar->cadi}}" >
+                                                                @error('cadi')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="soyad">Soyad</label>
-                                                                <input type="text" class="form-control mb-4" name="csoyadi"   value="{{$calisanlar->csoyadi}}" required>
+                                                                <input type="text" class="form-control mb-4" name="csoyadi"   value="{{$calisanlar->csoyadi}}" >
+                                                                @error('csoyadi')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="tckn">TCKN</label>
-                                                                <input type="text" class="form-control mb-4" name="ctckn" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$calisanlar->ctckn}}" required>
+                                                                <input type="text" class="form-control mb-4" name="ctckn" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{$calisanlar->ctckn}}" >
+                                                                @error('ctckn')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="website1">Ünvan</label>
-                                                                <input type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" value="{{$calisanlar->cunvani}}" required>
+                                                                <input type="text" class="form-control mb-4" name="cunvani" id="website1" placeholder="Ünvan" value="{{$calisanlar->cunvani}}" >
+                                                                @error('cunvani')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="dg">Doğum Günü</label>
-                                                                <input type="date" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$calisanlar->cdogum}}" required>
+                                                                <input type="date" class="form-control mb-4"  name="cdogum" id="dogumgunu" value="{{$calisanlar->cdogum}}" >
+                                                                @error('cdogum')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         </div>
                                                         <hr>
                                                         <h3 style="text-decoration: underline;">İletişim Bilgileri</h3>
                                                         <div class="row">
-                                                            <div class="col-md-1 pr-0">
-                                                                <div class="form-group">
-                                                                    <label for="phone">Ülke Kodu</label>
-                                                                    <select class="placeholder js-states form-control" name="ukodutel">
-                                                                        <option>{{$calisanlar->ukodutel}}</option>
-                                                                        <option value="90">90</option>
-                                                                        <option value="49">49</option>
-                                                                        <option value="1">1</option>
-                                                                        <option value="7">7</option>
-                                                                        <option value="380">380</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-2">
+                                                            <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="phone">Telefon Numarası</label>
                                                                     <input type="text" maxlength="10" class="form-control mb-4" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="ctel" id="phone" placeholder="Telefon Numarası" value="{{$calisanlar->ctel}}" required>
+                                                                    @error('ctel')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="email">Eposta</label>
-                                                                    <input type="text" class="form-control mb-4" name="ceposta" id="email" placeholder="Eposta" value="{{$calisanlar->ceposta}}" required>
+                                                                    <input type="text" class="form-control mb-4" name="ceposta" id="email" placeholder="Eposta" value="{{$calisanlar->ceposta}}" >
+                                                                    @error('ceposta')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                         </div> 
@@ -165,6 +167,9 @@
                                                                     <select id="Iller" name="cevadresil" class="placeholder js-states form-control">
                                                                         <option value="{{$calisanlar->cevadresil}}">{{$calisanlar->cevadresil}}</option>
                                                                     </select>
+                                                                    @error('cevadresil')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
@@ -173,12 +178,18 @@
                                                                     <select id="Ilceler" name="cevadresilce" class="placeholder js-states form-control">
                                                                         <option value="{{$calisanlar->cevadresil}}" selected> {{$calisanlar->cevadresilce}}</option>
                                                                     </select>
+                                                                    @error('cevadresilce')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="location">Adres</label>
                                                                     <textarea class="form-control mb-4" style="resize:none;" id="cevadres" name="cevadres" placeholder="Adres" rows="2">{{$calisanlar->cevadres}}</textarea>
+                                                                    @error('cevadres')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -189,21 +200,51 @@
                                                                 <div class="form-group">
                                                                     <label for="cbanka">Banka Adı</label>
                                                                     <input type="text" maxlength="11" class="form-control mb-4" name="cbanka" id="cbanka" placeholder="Banka Adı" value="{{$calisanlar->cbanka}}">
+                                                                    @error('cbanka')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="ciban">IBAN</label>
                                                                     <input type="text" maxlength="26"  class="form-control mb-4" name="ciban" id="ciban" placeholder="IBAN" value="{{$calisanlar->ciban}}">
+                                                                    @error('ciban')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="chesapno">Hesap No</label>
                                                                     <input type="text" maxlength="26"  class="form-control mb-4" name="chesapno" id="chesapno" placeholder="Hesap Numarası" value={{$calisanlar->chesapno}}>
+                                                                    @error('chesapno')
+                                                                    <p class="text-danger mt-1">{{ $message }}</p>
+                                                                    @enderror
                                                                 </div>
                                                             </div>   
                                                         </div>
+                                                        <!-- Yetki ve hesap silme kısmı -->
+                                                        @if(session('kullanici')->cyetki == '2')
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <p class="text-danger"><b>İK: 0</b></p>
+                                                                    <p class="text-secondary"><b>Saha Görevlisi: 1</b></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="cyetki">Yetki</label>
+                                                                        <input type="text" class="form-control mb-4" name="cyetki" id="cyetki" placeholder="Yetki" value="" >
+                                                                        @error('cyetki')
+                                                                        <p class="text-danger mt-1">{{ $message }}</p>
+                                                                        @enderror
+                                                                    </div>
+                                                                    <div class="col-4"></div>
+                                                                </div>   
+                                                            </div>
+                                                        @endif
+                                                         <!-- Yetki ve hesap silme kısmı -->
                                                 </div>
                                             </div>
                                         </div>
@@ -212,7 +253,7 @@
                                         <div class="as-footer-container justify-content-center text-center">
                                             <button type="submit" id="multiple-messages" class="btn btn-primary">Güncelle</button>
                                         </div>
-                                        </div>
+                                    </div>
                                     </form>
                                 </div>
                                

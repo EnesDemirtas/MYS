@@ -163,7 +163,7 @@ class UserController extends Controller
                 $kullanici->madres = $request->input('madres');
                 $kullanici->mil = $request->input('mil');
                 $kullanici->milce = $request->input('milce');
-                $kullanici->mphoto = asset('assets/img/img_avatar.png');
+                $kullanici->mphoto = 'img_avatar.png';
                 $kullanici->mbolge = $request->input('mbolge');
                 $kullanici->mfaks = $request->input('mfaks');
                 $kullanici->mweb = $request->input('mweb');
@@ -234,7 +234,7 @@ class UserController extends Controller
                 $kullanici->ctckn = $request->input('ctckn');
                 $kullanici->cdogum = $request->input('cdogum');
                 $kullanici->ctel = $request->input('ctel');
-                $kullanici->cphoto = asset('assets/img/img_avatar.png');
+                $kullanici->cphoto = 'img_avatar.png';
                 $kullanici->cunvani = $request->input('cunvani');
                 $kullanici->cisegiris = $request->input('cisegiris');
                 $kullanici->cevadres = $request->input('cevadres');
@@ -294,7 +294,7 @@ class UserController extends Controller
 
     public function UploadPP(Request $request)
     {
-        if ($request->tip == "Müşteri") {
+        if (session('tip') == "Müşteri") {
             $path = $request->file('photo')->store('public/photos');
             $filename = explode('/', $path)[2];
             $kullanici = musteri::where('mkullaniciadi', session('kullanici')->mkullaniciadi)->first();

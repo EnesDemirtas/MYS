@@ -6,10 +6,12 @@ $('.dropify').dropify({
 
 var f1 = flatpickr(document.getElementById('date'), {
   defaultDate: currentDate,
+  minDate: currentDate,
 });
 
 var f2 = flatpickr(document.getElementById('due'), {
   defaultDate: currentDate.setDate(currentDate.getDate() + 5),
+  minDate: currentDate,
 });
 
 function removeRecurringDigits(s){

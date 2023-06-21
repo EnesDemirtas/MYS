@@ -163,8 +163,7 @@
                             <div class="col-3 mt-5">
                                 <div class="profilepic" style="border-radius: 20%;">
                                     <img class="profilepic__image" alt="Profil Resmi"
-                                        src="@if (is_null(session('kullanici')->cphoto)) {{ asset('assets/img/90x90.jpg') }} @else {{ Storage::url('photos/') . session('kullanici')->cphoto }} @endif"
-                                        width="100%" height="200px" />
+                                    src="@if(session('tip') == 'Çalışan') {{ Storage::url('photos/') . session('kullanici')->cphoto }} @else {{ Storage::url('photos/') . session('kullanici')->mphoto }} @endif"                                        width="100%" height="200px" />
                                     <div class="profilepic__content">
                                         <span class="profilepic__icon"><i
                                                 class="fas fa-camera"></i></span>

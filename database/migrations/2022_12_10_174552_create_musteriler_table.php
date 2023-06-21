@@ -15,17 +15,10 @@ class CreateMusterilerTable extends Migration
     {
         Schema::create('musteriler', function (Blueprint $table) {
             $table->id('id', 11);
-            $table->string('mno')->lenght(11)->nullable();
-            $table->string('mrefno')->lenght(20)->nullable();
             $table->string('mkayitturu')->lenght(20);
             $table->string('mturu')->lenght(20)->nullable();
             $table->string('mvdairesi')->lenght(50)->nullable();
             $table->string('mtcknvno')->lenght(20)->nullable();
-            $table->string('mtmarkaadi')->lenght(50)->nullable();
-            $table->string('mtsubeadi')->lenght(50)->nullable();
-            $table->string('mtkisaltmasi')->lenght(20)->nullable();
-            $table->string('firmatamunvan')->lenght(20)->nullable();
-            $table->string('mtunvandevami')->lenght(50)->nullable();
             $table->string('mbadi')->lenght(20)->nullable();
             $table->string('mbsoyadi')->lenght(20)->nullable();
             $table->date('mbdogumgunu')->nullable()->nullable();
