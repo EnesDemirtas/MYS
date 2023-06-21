@@ -433,8 +433,8 @@
                                             </button>
                                             </div>
                                             <div class="modal-body">
-                                                <p style="font-size:1rem; font-weight: 400;">Hesabınızı gerçekten kalıcı olarak inaktif hale getirmeyi mi düşünüyorsunuz yoksa yanlışlıkla mı bastınız? Hesabınızı silmeniz durumunda
-                                                hesabınız inaktif hale gelecektir ve hizmetlerimizden yararlanamayacaksınız. Daha sonra tekrar 
+                                                <p style="font-size:1rem; font-weight: 400;">Hesabınızı gerçekten inaktif hale getirmeyi mi düşünüyorsunuz yoksa yanlışlıkla mı tıkladınız? Hesabınızı silmeniz durumunda
+                                                hesabınız inaktif hale gelecektir ve hizmetlerimizden yararlanamayacaksınız. Hesabınızı daha sonra tekrar aktif hale getirmek isterseniz bizimle iletişime geçiniz.
                                                 </p>
                                             </div>
                                             <div class="modal-footer" style="justify-content: space-between;">
@@ -811,7 +811,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <p style="font-size:1rem; font-weight: 400;">Hesabınızı gerçekten kalıcı olarak inaktif hale getirmeyi mi düşünüyorsunuz yoksa yanlışlıkla mı bastınız? Hesabınızı silmeniz durumunda
-                                                hesabınız inaktif hale gelecektir ve hizmetlerimizden yararlanamayacaksınız. Daha sonra tekrar 
+                                                hesabınız inaktif hale gelecektir ve hizmetlerimizden yararlanamayacaksınız. Hesabınızı daha sonra tekrar aktif hale getirmek isterseniz bizimle iletişime geçiniz. 
                                                 </p>
                                             </div>
                                             <div class="modal-footer" style="justify-content: space-between;">

@@ -81,10 +81,10 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-top-spacing layout-spacing">
                         <div class="widget widget-content-area br-4">
                             <div class="widget-one">
-                                <div class="text-center">
-                                    <h3>ÇALIŞAN BİLGİLERİNİ GÜNCELLE</h3>
-                                    <hr>
+                                <div class="text-center mb-3">
+                                    <h4>ÇALIŞAN BİLGİLERİNİ GÜNCELLE</h4>
                                 </div>
+                                <hr>
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
                                     <form id="kisiBilgileri" class="section contact" method="post"
                                         action="{{ route('calisan.guncelle', ['ctckn' => $calisanlar->ctckn]) }}">
@@ -93,7 +93,9 @@
                                         <div class="info">
                                             <div class="row">
                                                 <div class="col-md-11 mx-auto">
-                                                    <h3 style="text-decoration: underline;">Kişisel Bilgiler</h3>
+                                                    <div class="text-center">
+                                                        <span class="badge badge-primary font-weight-bold w-100 mb-3" style="font-size:20px;">Kişisel Bilgiler</span>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
@@ -151,7 +153,9 @@
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    <h3 style="text-decoration: underline;">İletişim Bilgileri</h3>
+                                                    <div class="text-center">
+                                                        <span class="badge badge-primary font-weight-bold w-100" style="font-size:20px;">İletişim Bilgileri</span>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
@@ -181,7 +185,9 @@
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    <h3 style="text-decoration: underline;">Adres Bilgileri</h3>
+                                                    <div class="text-center">
+                                                        <span class="badge badge-primary font-weight-bold w-100" style="font-size:20px;">Adres Bilgileri</span>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
@@ -222,7 +228,9 @@
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    <h3 style="text-decoration: underline;">Hesap Bilgileri</h3>
+                                                    <div class="text-center">
+                                                        <span class="badge badge-primary font-weight-bold w-100" style="font-size:20px;">Hesap Bilgileri</span>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="form-group">
@@ -283,15 +291,41 @@
                                                                 <div class="col-4"></div>
                                                             </div>
                                                         </div>
-                                                        <div class="row text-center">
-                                                            <div class="col">
-                                                                <div>
-                                                                    <a class="btn btn-danger"
-                                                                        href="{{ route('profile.deleteCalisanByAdmin', ['id' => $calisanlar->csatirid]) }}">Hesabı
-                                                                        Sil</a>
+                                                        <!-- Modal -->
+                                                        <!-- Button trigger modal -->
+                                                        <div class="text-center">
+                                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                                                Hesabı Sil
+                                                            </button>
+                                                        </div>  
+                                                        <!-- Button trigger modal -->
+                                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header pl-0">
+                                                                <div class="modal-title row" id="exampleModalLabel">
+                                                                    <div class="col-md-1 text-center p-0 pt-2">
+                                                                        <span><lottie-player src="https://assets2.lottiefiles.com/packages/lf20_nnVnwmne5l.json"  background="transparent"  speed="1"  style="width: 100px; height: 40px; display:inline-block"  loop autoplay></lottie-player></span> 
+                                                                    </div>
+                                                                    <div class="col-md-11 text-center pt-3 pl-4"> <b style="font-family: 'Roboto', sans-serif; font-size:1.2rem">Çalışanı silmek istediğinizden emin misiniz?</b></div>
+                                                                </div>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p style="font-size:1rem; font-weight: 400;">Çalışanı gerçekten kalıcı olarak inaktif hale getirmeyi mi düşünüyorsunuz yoksa yanlışlıkla mı bastınız? Çalışanı silmeniz durumunda
+                                                                    çalışan inaktif hale gelecektir ve sisteme giremeyecektir.
+                                                                    </p>
+                                                                </div>
+                                                                <div class="modal-footer" style="justify-content: space-between;">
+                                                                <button type="button" class="btn btn-primary" data-dismiss="modal">İptal</button>
+                                                                <a class="btn btn-danger" href="{{ route('profile.deleteCalisanByAdmin', ['id' => $calisanlar->csatirid]) }}">Çalışanı Sil</a>
                                                                 </div>
                                                             </div>
+                                                            </div>
                                                         </div>
+                                                        <!-- Modal -->
                                                     @endif
                                                     <!-- Yetki ve hesap silme kısmı -->
                                                 </div>
@@ -328,7 +362,7 @@
     <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
     <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script>
         $(document).ready(function() {
             App.init();
