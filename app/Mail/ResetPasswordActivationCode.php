@@ -16,16 +16,20 @@ class ResetPasswordActivationCode extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $subject;
     public $activationCode;
+    public $text;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(ActivationCode $activationCode)
+    public function __construct(string $subject, ActivationCode $activationCode = null, string $text)
     {
+        $this->subject = $subject;
         $this->activationCode = $activationCode;
+        $this->text = $text;
     }
 
 
@@ -38,7 +42,7 @@ class ResetPasswordActivationCode extends Mailable
     {
         return new Envelope(
             from: new Address('20190808018@ogr.akdeniz.edu.tr', 'MYS'),
-            subject: 'MYS Şifre Sıfırlama Aktivasyon Kodu',
+            subject: $this->subject,
         );
     }
 

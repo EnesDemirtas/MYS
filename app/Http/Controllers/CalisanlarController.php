@@ -8,10 +8,13 @@ use App\Models\bakimformu;
 use App\Models\teklif;
 use App\Models\bakimformusonucu;
 use App\Models\configs;
+use App\Mail\ResetPasswordActivationCode;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+
 // use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 
@@ -54,7 +57,7 @@ class CalisanlarController extends Controller
                 'cunvani.required' => 'Lütfen çalışan ünvanını boş bırakmayınız.',
             ]
         );
-        
+
         calisan::where('ctckn', $ctckn)->update(array(
             'ctel' => $request->ctel,
             'ceposta' => $request->ceposta,
@@ -68,8 +71,8 @@ class CalisanlarController extends Controller
             'cyetki' => $request->cyetki,
         ));
 
-        $kullanici = calisan::where('ctckn',$ctckn)->first();
-        
+        $kullanici = calisan::where('ctckn', $ctckn)->first();
+
         return redirect()->back()->with("success", "Çalışan Başarıyla Güncellendi.");
     }
 
@@ -236,12 +239,12 @@ class CalisanlarController extends Controller
     public function GetRandevuYonetimi(Request $request)
     {
         $tip = session('tip');
-        if($tip == 'Müşteri'){
+        if ($tip == 'Müşteri') {
             $teklifler = teklif::where('musteriid', session('kullanici')->id)->get();
-        }else{
+        } else {
             $teklifler = teklif::All();
         }
-        
+
         $form_isimleri_raw = bakimformu::all('form_adi');
         $form_isimleri_slug = $form_isimleri_raw->map(function ($item, $key) {
             return Str::slug($item->form_adi, '-', 'tr');
@@ -343,21 +346,26 @@ class CalisanlarController extends Controller
         $form->save();
 
         teklif::where('id', $request->teklif_id)->update(['teklif_durumu' => 'Bakım Yapıldı']);
+        $teklif = teklif::where('id', $request->teklif_id)->first();
+        $date = Carbon::parse($teklif->created_at)->format('d-m-y H:i:s');
+        $islem_tarih_saat = date('d/m/Y', strtotime($teklif->islemsaati));
+        Mail::to($teklif->teklif_veren_email)->send(new ResetPasswordActivationCode('MYS Periyodik Bakımınız Hakkında', null, $date . ' tarihli ' . $teklif->teklif_no . ' numaralı teklifinizin ' . $teklif->istenilen_hizmetler . ' periyodik bakımı ' . $islem_tarih_saat . ' tarih ve saatinde yapılmıştır.'));
+
         return redirect()->route('randevu_yonetimi')->with('success', 'Form başarıyla kaydedildi.');
     }
 
     public function BakimFormuSonuclari(Request $request)
     {
         $tip = session('tip');
-        if($tip == 'Müşteri'){
+        if ($tip == 'Müşteri') {
             $teklifids = array();
             $teklifler = teklif::where('musteriid', session('kullanici')->id)->get('id');
-            
-            for ($i=0; $i < count($teklifler) ; $i++) { 
-                array_push($teklifids,$teklifler[$i]->id);
+
+            for ($i = 0; $i < count($teklifler); $i++) {
+                array_push($teklifids, $teklifler[$i]->id);
             }
             $forms = bakimformusonucu::whereIn('teklif_id', $teklifids)->get();
-        }else{
+        } else {
             $forms = bakimformusonucu::All();
         }
 

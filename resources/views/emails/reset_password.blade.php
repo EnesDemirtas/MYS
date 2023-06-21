@@ -1,3 +1,7 @@
 <div>
-    Şifrenizi sıfırlamak için aktivasyon kodunuz: {{ $activationCode->aktivasyonkodu }}
+    @if (isset($activationCode))
+        {{ $text }} {{ $activationCode->aktivasyonkodu }}
+    @else
+        {{ $text }}
+    @endif
 </div>

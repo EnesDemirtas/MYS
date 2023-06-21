@@ -31,30 +31,29 @@ class UserController extends Controller
             $tckn = calisan::where('ctckn', $request->input('ckullaniciadi'))->first();
 
             if (!$kullanici->caktif) {
-                return back()->withErrors(['ckullaniciadi' => 'Hesap aktif değil.'])->onlyInput('ckullaniciadi');
+                return back()->withErrors(['inaktif' => 'Hesap aktif değil.'])->onlyInput('ckullaniciadi');
             }
 
             if ($kullanici && Hash::check($request->input('csifre'), $kullanici->csifre)) {
                 $request->session()->put('kullanici', $kullanici);
                 $request->session()->put('tip', 'Çalışan');
-                if($kullanici->cyetki == '2'){
+                if ($kullanici->cyetki == '2') {
                     return redirect()->route('anasayfa.index');
-                }else if($kullanici->cyetki == '1'){
+                } else if ($kullanici->cyetki == '1') {
                     return redirect()->route('randevu_yonetimi');
-                }else{
+                } else {
                     return redirect()->route('calisan.index');
                 }
             } else if ($tckn && Hash::check($request->input('csifre'), $kullanici->csifre)) {
                 $request->session()->put('kullanici', $tckn);
                 $request->session()->put('tip', 'Çalışan');
-                if($kullanici->cyetki == '2'){
+                if ($kullanici->cyetki == '2') {
                     return redirect()->route('anasayfa.index');
-                }else if($kullanici->cyetki == '1'){
+                } else if ($kullanici->cyetki == '1') {
                     return redirect()->route('randevu_yonetimi');
-                }else{
+                } else {
                     return redirect()->route('calisan.index');
                 }
-                
             } else {
                 return back()->withErrors(['ckullaniciadi' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('ckullaniciadi');
             }
@@ -71,7 +70,7 @@ class UserController extends Controller
             $tckn = musteri::where('mtcknvno', $request->input('mkullaniciadi'))->first();
 
             if (!$kullanici->maktif) {
-                return back()->withErrors(['mkullaniciadi' => 'Hesap aktif değil.'])->onlyInput('mkullaniciadi');
+                return back()->withErrors(['inaktif' => 'Hesap aktif değil.'])->onlyInput('mkullaniciadi');
             }
 
             if ($kullanici && Hash::check($request->input('msifre'), $kullanici->msifre)) {
@@ -178,7 +177,7 @@ class UserController extends Controller
                     'sure' => $expires_at
                 ]);
 
-                Mail::to($kullanici->meposta)->send(new ResetPasswordActivationCode($activationcode));
+                Mail::to($kullanici->meposta)->send(new ResetPasswordActivationCode('MYS Hesap Aktivasyon Kodu', $activationcode, 'Hesabınızı aktifleştirmek için aktivasyon kodunuz: '));
                 // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
                 return redirect()->route('load_register_activation_code_musteri', ['meposta' => $activationcode->eposta, 'tip' => 'Müşteri']);
             }
@@ -251,7 +250,7 @@ class UserController extends Controller
                     'sure' => $expires_at
                 ]);
 
-                Mail::to($kullanici->ceposta)->send(new ResetPasswordActivationCode($activationcode));
+                Mail::to($kullanici->ceposta)->send(new ResetPasswordActivationCode('MYS Hesap Aktivasyon Kodu', $activationcode, 'Hesabınızı aktifleştirmek için aktivasyon kodunuz: '));
 
                 // return view('sifre_yenileme_kod', ['aktivasyonkodu' => $activationcode]);
                 return redirect()->route('load_register_activation_code', ['ceposta' => $activationcode->eposta, 'tip' => 'Çalışan']);
@@ -326,6 +325,13 @@ class UserController extends Controller
             $request->session()->flush();
             return redirect()->route('giris_yap')->with('success_delete', 'Hesabınız başarıyla silindi.');
         }
+    }
+
+    public function DeleteCalisanByAdmin(Request $request)
+    {
+        $id = $request->id;
+        calisan::where('csatirid', $id)->update(['caktif' => 0]);
+        return redirect()->route('calisan.index')->with('success_delete', 'Çalışan başarıyla silindi.');
     }
 
     public function GetNewPassword(Request $request)

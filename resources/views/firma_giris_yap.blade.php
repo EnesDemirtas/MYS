@@ -74,6 +74,11 @@
                                         @error('mkullaniciadi')
                                             <p class="text-danger mt-1">{{ $message }}</p>
                                         @enderror
+                                        @error('inaktif')
+                                            <p class="text-danger mt-1">Hesabınızı aktifleştirmek için <a
+                                                    href="{{ route('get_register_activation_code') }}">buraya tıklayınız.
+                                                </a> </p>
+                                        @enderror
                                     </div>
 
                                     <div class="field-wrapper input mb-2">
@@ -118,6 +123,8 @@
 
                                         @error('ckullaniciadi')
                                             <p class="text-danger mt-1">{{ $message }}</p>
+                                        @enderror
+                                        @error('inaktif')
                                             <p class="text-danger mt-1">Hesabınızı aktifleştirmek için <a
                                                     href="{{ route('get_register_activation_code') }}">buraya tıklayınız.
                                                 </a> </p>
