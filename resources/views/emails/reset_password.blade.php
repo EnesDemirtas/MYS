@@ -1,3 +1,7 @@
 <div>
-    {{ $text }} {{ $activationCode->aktivasyonkodu }}
+    @if (isset($activationcode))
+        {{ $text }} {{ $activationCode->aktivasyonkodu }}
+    @else
+        {{ $text }}
+    @endif
 </div>

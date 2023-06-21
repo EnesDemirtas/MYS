@@ -25,7 +25,7 @@ class ResetPasswordActivationCode extends Mailable
      *
      * @return void
      */
-    public function __construct(string $subject, ActivationCode $activationCode, string $text)
+    public function __construct(string $subject, ActivationCode $activationCode = null, string $text)
     {
         $this->subject = $subject;
         $this->activationCode = $activationCode;
