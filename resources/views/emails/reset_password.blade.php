@@ -1,5 +1,5 @@
 <div>
-    @if (isset($activationcode))
+    @if (isset($activationCode))
         {{ $text }} {{ $activationCode->aktivasyonkodu }}
     @else
         {{ $text }}

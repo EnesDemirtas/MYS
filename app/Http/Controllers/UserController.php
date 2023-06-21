@@ -327,6 +327,13 @@ class UserController extends Controller
         }
     }
 
+    public function DeleteCalisanByAdmin(Request $request)
+    {
+        $id = $request->id;
+        calisan::where('csatirid', $id)->update(['caktif' => 0]);
+        return redirect()->route('calisan.index')->with('success_delete', 'Çalışan başarıyla silindi.');
+    }
+
     public function GetNewPassword(Request $request)
     {
         return view('sifre_yenileme_kod', ['eposta' => $request->query('eposta')]);
