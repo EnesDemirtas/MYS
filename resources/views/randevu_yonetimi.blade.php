@@ -25,7 +25,7 @@
             min-height: calc(100vh - 170px) !important;
         }
         #map {
-          height: 300px;
+          height: 500px;
           width: 100%;
          }
     </style>
@@ -183,7 +183,6 @@
                                                                             d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
                                                                         </path>
                                                                     </svg>Gözat</a>
-                                                            
                                                                 <form method="post" action="">
                                                                     @csrf
                                                                     @method('delete')
@@ -232,8 +231,11 @@
                                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Firamının Harita Bilgisi</h5>
+                                                        <div class="modal-header text-center">
+                                                        <span><lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_D4yZiV.json"  background="transparent"  speed="1"  style="width: 100px; height: 60px; display:inline-block"  loop autoplay></lottie-player></span> 
+                                                        
+                                                        <h5 class="modal-title pt-3 pl-5" id="exampleModalLabel"><b>Firamının Harita Bilgisi</b></h5>
+                                                        
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -324,6 +326,7 @@
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="{{ asset('plugins/table/datatable/datatables.js') }}"></script>
     <script src="{{ asset('plugins/table/datatable/button-ext/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('assets/js/apps/invoice-list.js') }}"></script>

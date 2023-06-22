@@ -186,7 +186,7 @@ class MusterilerController extends Controller
                 'mtcknvno.required' => 'Lütfen müşterin TCKN/Vergi No alanını boş bırakmayınız.',
                 'mbfirmaadi.required' => 'Lütfen firma adını boş bırakmayınız.',
                 'mbadi.required' => 'Lütfen müşteri adını boş bırakmayınız.',
-                'mbsoyadi.required' => 'Lütfen çalışan telefonunu boş bırakmayınız.',
+                'mbsoyadi.required' => 'Lütfen çalışan soyadını boş bırakmayınız.',
                 'mbdogumgunu.before' => 'Lütfen müşterinin doğum tarihini doğru girdiğinizden emin olunuz.',
                 'mbolge.required' => 'Lütfen müşterinin bölgesini boş bırakmayınız.',
                 'menlem.required' => 'Lütfen müşterinin konumunu haritalarda seçiniz.',
@@ -207,7 +207,7 @@ class MusterilerController extends Controller
 
     public function musteriGuncelleProfil(Request $request, $mtcknvno)
     {
-
+        
         $request->validate(
             [
                 'mkayitturu' => 'required|doesnt_start_with:Kayıt Türü',
@@ -244,7 +244,7 @@ class MusterilerController extends Controller
                 'mtel.requried' => 'Lütfen telefon numarası giriniz',
             ]
         );
-        $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
+
         musteri::where('mtcknvno', $mtcknvno)->update(array(
             'mkayitturu' => $request->mkayitturu,
             'mbfirmaadi' => $request->mbfirmaadi,
@@ -256,7 +256,7 @@ class MusterilerController extends Controller
             'meposta' => $request->meposta,
             'madres' => $request->madres,
             'mtel' => $request->mtel,
-            'mbdogumgunu' => $request['mbdogumgunu'],
+            'mbdogumgunu' => $request->mbdogumgunu,
         ));
 
         $musteri = musteri::where('mtcknvno', $mtcknvno)->first();

@@ -60,6 +60,10 @@ class CalisanlarController extends Controller
 
         calisan::where('ctckn', $ctckn)->update(array(
             'ctel' => $request->ctel,
+            'cadi' => $request->cadi,
+            'csoyadi' => $request->csoyadi,
+            'ctckn' => $request->ctckn,
+            'cdogum' => $request->cdogum,
             'ceposta' => $request->ceposta,
             'cunvani' => $request->cunvani,
             'cevadresil' => $request->cevadresil,

@@ -308,13 +308,14 @@
                               </div>
 
                               <div class="row py-3">
-                                <div class="col-12 pl-1">
-                                    <div class="">
-                                        <input type="tel" class="" name="mtel" id="telefon_musteri1" value="{{ old('mtel') }}">
-                                        @error('mtel')
-                                          <p class="text-danger mt-1">{{ $message }}</p>
-                                        @enderror
-                                    </div>
+                                <div class="col-md-12">
+                                  <input type="text" class="form-control mb-4" onchange='return event.charCode >= 48 && event.charCode <= 57'
+                                              name="mtel" id="telefon_musteri"
+                                              placeholder="Telefon Numarası">
+                                          @error('mtel')
+                                              <p class="text-danger mt-1">
+                                                  {{ $message }}</p>
+                                          @enderror
                                 </div>
                                 <div class="col-12 pl-3">
                                   <div class="form-group">
@@ -567,7 +568,22 @@
   <script src="{{ asset('assets/js/inputController.js') }}"></script>
   <script src="{{ asset('assets/js/il-ilce-secme.js') }}"></script>
   <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+    <script>
+        var musteriTelefon = document.querySelector("#telefon_musteri1");
+        var musteriTelefonHandler = window.intlTelInput(musteriTelefon, {
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+            setCountry: "tr",
+            initialCountry: "tr",
+            preferredCountries: ["tr", "us", "gb"],
+            separateDialCode: true,
+            nationalMode: false,
+        });
 
+        musteriTelefon.addEventListener("change", function() {
+            this.value = musteriTelefonHandler.getNumber();
+        });
+      </script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
 <script src="{{ asset('plugins/table/datatable/button-ext/dataTables.buttons.min.js') }}"></script>

@@ -282,7 +282,7 @@
                                                                     <label for="cyetki">Yetki</label>
                                                                     <input type="text" class="form-control mb-4"
                                                                         name="cyetki" id="cyetki"
-                                                                        placeholder="Yetki" value="">
+                                                                        placeholder="Yetki" value="{{ $calisanlar->cyetki }}">
                                                                     @error('cyetki')
                                                                         <p class="text-danger mt-1">{{ $message }}
                                                                         </p>
