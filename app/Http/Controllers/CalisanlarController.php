@@ -416,7 +416,7 @@ class CalisanlarController extends Controller
         // Step 3: Attach the Signature (Store the signature in the database along with the document)
         $form->signature = $signature;
 
-        $verificationUrl = "127.0.0.1:8000/form_verify/" . $id;
+        $verificationUrl = "3.76.192.165/form_verify/" . $id;
         $form->qrCodeData = Crypt::encryptString($verificationUrl);
         $form->save();
         return redirect()->route('bakim_formu_sonuclari')->with('success', 'Form başarıyla onaylandı.');
