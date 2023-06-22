@@ -285,7 +285,7 @@
                                                             <line x1="3" y1="10" x2="21"
                                                                 y2="10"></line>
                                                         </svg>
-                                                        {{ $calisan->cdogum[8] }}{{ $calisan->cdogum[9] }}.{{ $calisan->cdogum[5] }}{{ $calisan->cdogum[6] }}.{{ $calisan->cdogum[0] }}{{ $calisan->cdogum[1] }}{{ $calisan->cdogum[2] }}{{ $calisan->cdogum[3] }}</span>
+                                                        @if ($calisan->cdogum == null) Belirtilmemiş @else {{$calisan->cdogum}} @endif</span>
                                                 </td>
                                                 <td><span class="inv-date"><svg xmlns="http://www.w3.org/2000/svg"
                                                             width="24" height="24" viewBox="0 0 24 24"
@@ -301,7 +301,7 @@
                                                             <line x1="3" y1="10" x2="21"
                                                                 y2="10"></line>
                                                         </svg>
-                                                        {{ $calisan->cisegiris[8] }}{{ $calisan->cisegiris[9] }}.{{ $calisan->cisegiris[5] }}{{ $calisan->cisegiris[6] }}.{{ $calisan->cisegiris[0] }}{{ $calisan->cisegiris[1] }}{{ $calisan->cisegiris[2] }}{{ $calisan->cisegiris[3] }}</span>
+                                                        @if ($calisan->cisegiris == null) Belirtilmemiş @else {{$calisan->cisegiris}} @endif</span>
                                                 </td>
                                                 <td><a href="tel:{{ $calisan->ctel }}"><span class="inv-email"><svg
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"

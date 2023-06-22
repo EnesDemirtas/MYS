@@ -102,7 +102,7 @@ class MusterilerController extends Controller
 
         $request['mbdogumgunu'] = date('Y-m-d', strtotime($request['mbdogumgunu']));
         musteri::create($request->all());
-
+        musteri::where('mtcknvno',$request->mtcknvno)->update(array('maktif' => 1));
         return redirect()->back()->with("success", "Kayıt Başarıyla Eklendi!");
     }
 
@@ -267,7 +267,7 @@ class MusterilerController extends Controller
     public function musteriSil($mtcknvno)
     {
         // musteri::where('mtcknvno', $mtcknvno)->delete();
-        musteri::where('mtcknvno', $mtcknvno)->update(['aktif' => 0]);
+        musteri::where('mtcknvno', $mtcknvno)->update(['maktif' => 0]);
 
         return redirect()->back()->with("success", "Müşteri Başarıyla Silindi.");
     }
