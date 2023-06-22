@@ -30,9 +30,6 @@ class UserController extends Controller
             $kullanici = calisan::where('ckullaniciadi', $request->input('ckullaniciadi'))->first();
             $tckn = calisan::where('ctckn', $request->input('ckullaniciadi'))->first();
 
-            if (!$kullanici->caktif) {
-                return back()->withErrors(['inaktif' => 'Hesap aktif değil.'])->onlyInput('ckullaniciadi');
-            }
 
             if ($kullanici && Hash::check($request->input('csifre'), $kullanici->csifre)) {
                 $request->session()->put('kullanici', $kullanici);
@@ -54,6 +51,8 @@ class UserController extends Controller
                 } else {
                     return redirect()->route('calisan.index');
                 }
+            } else if ($kullanici && !$kullanici->caktif) {
+                return back()->withErrors(['inaktif' => 'Hesap aktif değil.'])->onlyInput('ckullaniciadi');
             } else {
                 return back()->withErrors(['ckullaniciadi' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('ckullaniciadi');
             }
@@ -69,10 +68,6 @@ class UserController extends Controller
             $kullanici = musteri::where('mkullaniciadi', $request->input('mkullaniciadi'))->first();
             $tckn = musteri::where('mtcknvno', $request->input('mkullaniciadi'))->first();
 
-            if (!$kullanici->maktif) {
-                return back()->withErrors(['inaktif' => 'Hesap aktif değil.'])->onlyInput('mkullaniciadi');
-            }
-
             if ($kullanici && Hash::check($request->input('msifre'), $kullanici->msifre)) {
                 $request->session()->put('kullanici', $kullanici);
                 $request->session()->put('tip', 'Müşteri');
@@ -81,6 +76,8 @@ class UserController extends Controller
                 $request->session()->put('kullanici', $tckn);
                 $request->session()->put('tip', 'Müşteri');
                 return redirect()->route('randevu_yonetimi');
+            } else if ($kullanici && !$kullanici->maktif) {
+                return back()->withErrors(['inaktif' => 'Hesap aktif değil.'])->onlyInput('mkullaniciadi');
             } else {
                 return back()->withErrors(['mkullaniciadi' => 'Kullanıcı adı/TCKN veya şifre hatalı!'])->onlyInput('mkullaniciadi');
             }

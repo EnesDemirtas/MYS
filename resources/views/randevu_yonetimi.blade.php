@@ -24,6 +24,7 @@
         .layout-px-spacing {
             min-height: calc(100vh - 170px) !important;
         }
+
         #map {
           height: 500px;
           width: 100%;
@@ -70,9 +71,12 @@
                 <div class="page-header">
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">MYS</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Randevu Yönetimi</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);" style="color:whitesmoke">Randevular</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">MYS</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);" style="color:whitesmoke">Randevu
+                                    Yönetimi</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="javascript:void(0);"
+                                    style="color:whitesmoke">Randevular</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -88,18 +92,18 @@
                             <table id="invoice-list" class="table table-hover" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Teklif Numarası</th>
+                                        <th>#</th>
                                         <th>Adı</th>
                                         <th>Eposta</th>
                                         <th>Başlangıç - Bitiş Tarihi</th>
                                         <th>Ücret</th>
                                         <th>Durum</th>
                                         @if (session('kullanici')->cyetki == '2')
-                                        <th>İşlemler</th>
+                                            <th>İşlemler</th>
                                         @endif
                                         @if (session('kullanici')->cyetki == '1' || session('kullanici')->cyetki == '2')
-                                        <th>Form</th>
-                                        <th>Harita</th>
+                                            <th>Form</th>
+                                            <th>Harita</th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -214,21 +218,23 @@
                                                                 <a class="btn badge-success inv-success"
                                                                     href="{{ route('example_form', ['form_adi' => 'Kompresör' . ';' . $teklif->id]) }}">Kompresör</a>
                                                             @endif
-                                                    </td>
-                                                @endif
-                                                        @if (session('kullanici')->cyetki == '2' || session('kullanici')->cyetki == '1')
+                                                        </td>
+                                                    @endif
+                                                    @if (session('kullanici')->cyetki == '2' || session('kullanici')->cyetki == '1')
                                                         <td>
                                                             <!-- Button trigger modal -->
-                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                            <button type="button" class="btn btn-primary"
+                                                                data-toggle="modal" data-target="#exampleModal">
                                                                 Harita
                                                             </button>
                                                             <!-- Button trigger modal -->
                                                         </td>
-                                                        @endif
+                                                    @endif
                                                 </tr>
-                                                
+
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header text-center">
@@ -251,13 +257,15 @@
                                                             <div class="py-3 row">
                                                                 <div class="col-12" id="map"> </div><!-- GOOGLE HARİTALAR -->
                                                             </div>
-                                                            <!-- Harita Bilgisi -->
+                                                            <div class="modal-footer"
+                                                                style="justify-content: space-between;">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-dismiss="modal">Kapat</button>
+                                                                <a href="https://www.google.com/maps/dir/current+location/{{ $teklif->menlem }},{{ $teklif->mboylam }}"
+                                                                    target="_blank" type="button"
+                                                                    class="btn btn-primary">Hedefe Git</a>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-footer" style="justify-content: space-between;">
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
-                                                        <a href="https://www.google.com/maps/dir/current+location/{{$teklif->menlem}},{{$teklif->mboylam}}" target="_blank" type="button" class="btn btn-primary">Hedefe Git</a>
-                                                        </div>
-                                                    </div>
                                                     </div>
                                                 </div>
                                                 <!-- Modal -->
@@ -275,7 +283,7 @@
 
         </div>
         <!-- CONTENT AREA -->
-            
+
     </div>
     <x-footer />
     </div>
@@ -287,7 +295,7 @@
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script>
         // GOOGLE HARİTALAR
-    
+
         function initMap() {
             var enlem = document.getElementById("hk-enlem").value;
             var boylam = document.getElementById("hk-boylam").value;
@@ -296,23 +304,25 @@
                 lat: parseFloat(enlem),
                 lng: parseFloat(boylam)
             };
-    
+
             const map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 7,
                 center: myLatlng,
             });
-    
+
             let marker = new google.maps.Marker({
                 position: myLatlng,
                 map,
                 title: "KONUM",
             });
 
-            
+
 
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap"
+        type="text/javascript"></script>
     <x-global-mandatory.scripts />
     <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
