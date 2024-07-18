@@ -336,7 +336,7 @@
 }
         
         </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7rnOaEVELsqt70bjd2up_KCHbg2RRnCk&callback=initMap" type="text/javascript"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=googleapikeynotvalidanymore&callback=initMap" type="text/javascript"></script>
 
     <script>
         $(document).ready(function() {
